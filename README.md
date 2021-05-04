@@ -6,7 +6,7 @@
 | -------------------- | --------- | ---------------------- |
 | Miguel Azevedo Lopes | 201704590 |up201704590@edu.fe.up.pt|
 | Sofia Germer         | 201907461 |up201907461@edu.fe.up.pt|
-| João Ferreira        | 201806716 |up201806716@edu.fe.up.pt|
+| Rafael Camelo        | 201806716 |up201907729@edu.fe.up.pt|
 
 ## Problem Statement
 	Development of a waste management app, integrated in a smart network that
