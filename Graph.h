@@ -15,11 +15,13 @@ template <class T> class Vertex;
 
 template <class T> class Vertex{
     T info;
+    double latitude;
+    double longitude;
     vector<Edge<T>> outgoingEdges;
     void addEdge(Vertex<T> *dest, double weight);
     bool removeEdgeTo(Vertex<T> *dest);
 public:
-    Vertex(T info);
+    Vertex(double lat, double lon,T info);
     friend class Graph<T>;
 
 };
@@ -36,18 +38,20 @@ public:
 template <class T> class Graph {
     std::vector<Vertex<T> *> vertexSet;    // vertex set
 
-    Vertex<T> *findVertex(const T &info) const;
+    Vertex<T> *findVertex(double lat, double lon);
 
 public:
     int getNumVertex() const;
 
-    bool addVertex(const T &info);
+    bool addVertex(double lat, double lon,T &info);
 
-    bool removeVertex(const T &info);
+    bool removeVertex(double latitude, double longitude);
 
-    bool addEdge(const T &source, const T &dest, double weight);
+    bool addEdge(double sourceLat, double sourceLon, double destLat, double destLon);
 
-    bool removeEdge(const T &source, const T &dest);
+    bool removeEdge(double sourceLat, double sourceLon, double destLat, double destLon);
+
+    double distanceBetweenCoords(double lat1, double lat2, double lon1, double lon2);
 
 };
 #endif //WASTE_APP_GRAPH_H

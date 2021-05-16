@@ -8,142 +8,144 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug"/>
+				<Option working_dir="/home/miguel/Desktop/FACULDADE/WASTE-APP/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/miguel/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/miguel/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/miguel/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/miguel/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug"/>
+				<Option working_dir="/home/miguel/Desktop/FACULDADE/WASTE-APP/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="WASTE_APP">
-				<Option output="C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/WASTE_APP.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 WASTE_APP"/>
-					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="WASTE_APP/fast">
-				<Option output="C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/WASTE_APP.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 WASTE_APP/fast"/>
-					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/miguel/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/miguel/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/miguel/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/miguel/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug"/>
+				<Option working_dir="/home/miguel/Desktop/FACULDADE/WASTE-APP/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/miguel/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/miguel/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/miguel/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/miguel/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="WASTE_APP">
+				<Option output="/home/miguel/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/WASTE_APP" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/miguel/Desktop/FACULDADE/WASTE-APP/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/miguel/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 WASTE_APP"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/miguel/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/miguel/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/miguel/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="WASTE_APP/fast">
+				<Option output="/home/miguel/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/WASTE_APP" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/miguel/Desktop/FACULDADE/WASTE-APP/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/miguel/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 WASTE_APP/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/miguel/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/miguel/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/miguel/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/migue/Desktop/FACULDADE/WASTE-APP/Car.cpp">
+		<Unit filename="/home/miguel/Desktop/FACULDADE/WASTE-APP/Car.cpp">
 			<Option target="WASTE_APP"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FACULDADE/WASTE-APP/Car.h">
+		<Unit filename="/home/miguel/Desktop/FACULDADE/WASTE-APP/Car.h">
 			<Option target="WASTE_APP"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FACULDADE/WASTE-APP/Driver.cpp">
+		<Unit filename="/home/miguel/Desktop/FACULDADE/WASTE-APP/Driver.cpp">
 			<Option target="WASTE_APP"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FACULDADE/WASTE-APP/Driver.h">
+		<Unit filename="/home/miguel/Desktop/FACULDADE/WASTE-APP/Driver.h">
 			<Option target="WASTE_APP"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FACULDADE/WASTE-APP/GarbageCollectionFacility.cpp">
+		<Unit filename="/home/miguel/Desktop/FACULDADE/WASTE-APP/GarbageCollectionFacility.cpp">
 			<Option target="WASTE_APP"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FACULDADE/WASTE-APP/GarbageCollectionFacility.h">
+		<Unit filename="/home/miguel/Desktop/FACULDADE/WASTE-APP/GarbageCollectionFacility.h">
 			<Option target="WASTE_APP"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FACULDADE/WASTE-APP/Graph.cpp">
+		<Unit filename="/home/miguel/Desktop/FACULDADE/WASTE-APP/Graph.cpp">
 			<Option target="WASTE_APP"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FACULDADE/WASTE-APP/Graph.h">
+		<Unit filename="/home/miguel/Desktop/FACULDADE/WASTE-APP/Graph.h">
 			<Option target="WASTE_APP"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FACULDADE/WASTE-APP/GraphLoader.cpp">
+		<Unit filename="/home/miguel/Desktop/FACULDADE/WASTE-APP/GraphLoader.cpp">
 			<Option target="WASTE_APP"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FACULDADE/WASTE-APP/GraphLoader.h">
+		<Unit filename="/home/miguel/Desktop/FACULDADE/WASTE-APP/GraphLoader.h">
 			<Option target="WASTE_APP"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FACULDADE/WASTE-APP/House.cpp">
+		<Unit filename="/home/miguel/Desktop/FACULDADE/WASTE-APP/House.cpp">
 			<Option target="WASTE_APP"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FACULDADE/WASTE-APP/House.h">
+		<Unit filename="/home/miguel/Desktop/FACULDADE/WASTE-APP/House.h">
 			<Option target="WASTE_APP"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FACULDADE/WASTE-APP/MapPoint.cpp">
+		<Unit filename="/home/miguel/Desktop/FACULDADE/WASTE-APP/MapPoint.cpp">
 			<Option target="WASTE_APP"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FACULDADE/WASTE-APP/MapPoint.h">
+		<Unit filename="/home/miguel/Desktop/FACULDADE/WASTE-APP/MapPoint.h">
 			<Option target="WASTE_APP"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FACULDADE/WASTE-APP/Menu.cpp">
+		<Unit filename="/home/miguel/Desktop/FACULDADE/WASTE-APP/Menu.cpp">
 			<Option target="WASTE_APP"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FACULDADE/WASTE-APP/Menu.h">
+		<Unit filename="/home/miguel/Desktop/FACULDADE/WASTE-APP/Menu.h">
 			<Option target="WASTE_APP"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FACULDADE/WASTE-APP/TrashContainer.cpp">
+		<Unit filename="/home/miguel/Desktop/FACULDADE/WASTE-APP/TrashContainer.cpp">
 			<Option target="WASTE_APP"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FACULDADE/WASTE-APP/TrashContainer.h">
+		<Unit filename="/home/miguel/Desktop/FACULDADE/WASTE-APP/TrashContainer.h">
 			<Option target="WASTE_APP"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FACULDADE/WASTE-APP/User.cpp">
+		<Unit filename="/home/miguel/Desktop/FACULDADE/WASTE-APP/User.cpp">
 			<Option target="WASTE_APP"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FACULDADE/WASTE-APP/User.h">
+		<Unit filename="/home/miguel/Desktop/FACULDADE/WASTE-APP/User.h">
 			<Option target="WASTE_APP"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FACULDADE/WASTE-APP/main.cpp">
+		<Unit filename="/home/miguel/Desktop/FACULDADE/WASTE-APP/main.cpp">
 			<Option target="WASTE_APP"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FACULDADE/WASTE-APP/CMakeLists.txt">
+		<Unit filename="/home/miguel/Desktop/FACULDADE/WASTE-APP/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

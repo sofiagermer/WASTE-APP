@@ -21,17 +21,20 @@ template <class T> class GraphLoader {
         nFile.open(nodesFile,ios::in);
         eFile.open(edgesFile,ios::in);
         tFile.open(tagsFile,ios::in);
-        int typesTags,numberElements;
-        string type;
-        tFile>>typesTags;
-        while(typesTags!=0){
-            tFile>>type;
-            if(type=='Recycle'){
+        int numberElements;
+        char c;
 
-            }
-            tFile>>numberElements;
-            typesTags--;
+        int id;
+        double latitude,longitude;
+        //Reads number of nodes
+        nFile>>numberElements;
+
+        for(int i=0;i<numberElements;i++){
+            //Reads each vertex/node's info
+            nFile>>c>>id>>c>>latitude>>c>>longitude>>c;
+            graph.addVertex(latitude,longitude, nullptr);
         }
+
 
 
         double x,y;
