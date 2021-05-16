@@ -16,6 +16,7 @@ TrashType TrashContainer::getType() const {
     return type;
 }
 
-TrashContainer::TrashContainer(int maxCapacity, int currentCapacity, TrashType type)
-        : maxCapacity(maxCapacity), currentCapacity(currentCapacity), type(type) {
+TrashContainer::TrashContainer(int maxCapacity, TrashType type)
+        : maxCapacity(maxCapacity), type(type) {
+    this->currentCapacity=maxCapacity;
 }

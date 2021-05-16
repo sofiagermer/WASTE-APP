@@ -1,3 +1,0 @@
-/home/miguel/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/miguel/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/miguel/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/CMakeFiles/WASTE_APP.dir

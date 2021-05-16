@@ -1,6 +1,10 @@
 #include <iostream>
+#include "Graph.h"
+#include "MapPoint.h"
 
+using namespace std;
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    Graph graph("Map/nodes_lat_lon_porto.txt","Map/edges_porto.txt","Map/t02_tags_porto.txt");
+    cout<<"done";
     return 0;
 }

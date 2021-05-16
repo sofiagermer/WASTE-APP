@@ -5,9 +5,11 @@
 #ifndef WASTE_APP_TRASHCONTAINER_H
 #define WASTE_APP_TRASHCONTAINER_H
 
+#include "MapPoint.h"
+
 enum TrashType {Regular,Paper,Plastic,Glass};
 
-class TrashContainer {
+class TrashContainer: public MapPoint{
 private:
     /**
      * Maximum Capacity - the maximum amount of waste it can hold
@@ -25,7 +27,7 @@ private:
     TrashType type;
 public:
 
-    TrashContainer(int maxCapacity, int currentCapacity, TrashType type);
+    TrashContainer(int maxCapacity, TrashType type);
 
     int getMaxCapacity() const;
 

@@ -6,52 +6,64 @@
 #define WASTE_APP_GRAPH_H
 
 #include <vector>
+#include <string>
+#include <fstream>
+#include "TrashContainer.h"
+#include "GarbageCollectionFacility.h"
 
 using namespace std;
+class Edge;
+class Graph;
+class Vertex;
 
-template <class T> class Edge;
-template <class T> class Graph;
-template <class T> class Vertex;
-
-template <class T> class Vertex{
-    T info;
+class Vertex{
+    int ID;
+    MapPoint *info;
     double latitude;
     double longitude;
-    vector<Edge<T>> outgoingEdges;
-    void addEdge(Vertex<T> *dest, double weight);
-    bool removeEdgeTo(Vertex<T> *dest);
+    vector<Edge> outgoingEdges;
+    void addEdge(Vertex *dest, double weight);
+    bool removeEdgeTo(Vertex *dest);
+    double getLatitude();
+    double getLongitute();
 public:
-    Vertex(double lat, double lon,T info);
-    friend class Graph<T>;
-
+    Vertex(int ID,double lat, double lon,MapPoint *info);
+    void updateInfo(MapPoint *info);
+    friend class Graph;
 };
 
-template <class T> class Edge {
-    Vertex<T> * dest;      // destination vertex
+class Edge {
+    Vertex * dest;      // destination vertex
     double weight;         // edge weight
 public:
-    Edge(Vertex<T> *dest, double weight);
-    friend class Graph<T>;
-    friend class Vertex<T>;
+    Edge(Vertex *dest, double weight);
+    friend class Graph;
+    friend class Vertex;
 };
 
-template <class T> class Graph {
-    std::vector<Vertex<T> *> vertexSet;    // vertex set
+class Graph {
+    std::vector<Vertex *> vertexSet;    // vertex set
 
-    Vertex<T> *findVertex(double lat, double lon);
+    Vertex *findVertex(double lat, double lon);
 
 public:
+    Graph(string nodesFile,string edgesFile,string tagsFile);
+
     int getNumVertex() const;
 
-    bool addVertex(double lat, double lon,T &info);
+    bool addVertex(int id,double lat, double lon,MapPoint *info);
 
     bool removeVertex(double latitude, double longitude);
 
     bool addEdge(double sourceLat, double sourceLon, double destLat, double destLon);
 
+    bool addEdge(int id1, int id2);
+
     bool removeEdge(double sourceLat, double sourceLon, double destLat, double destLon);
 
     double distanceBetweenCoords(double lat1, double lat2, double lon1, double lon2);
+
+    Vertex *findVertex(int ID);
 
 };
 #endif //WASTE_APP_GRAPH_H

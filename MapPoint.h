@@ -1,5 +1,5 @@
 //
-// Created by migue on 12/05/2021.
+// Created by miguel on 17/05/21.
 //
 
 #ifndef WASTE_APP_MAPPOINT_H
@@ -12,3 +12,4 @@ class MapPoint {
 
 
 #endif //WASTE_APP_MAPPOINT_H
+
