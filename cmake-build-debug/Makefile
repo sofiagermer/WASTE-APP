@@ -142,33 +142,6 @@ WASTE_APP/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/WASTE_APP.dir/build.make CMakeFiles/WASTE_APP.dir/build
 .PHONY : WASTE_APP/fast
 
-src/Graph/Edge.o: src/Graph/Edge.cpp.o
-
-.PHONY : src/Graph/Edge.o
-
-# target to build an object file
-src/Graph/Edge.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/WASTE_APP.dir/build.make CMakeFiles/WASTE_APP.dir/src/Graph/Edge.cpp.o
-.PHONY : src/Graph/Edge.cpp.o
-
-src/Graph/Edge.i: src/Graph/Edge.cpp.i
-
-.PHONY : src/Graph/Edge.i
-
-# target to preprocess a source file
-src/Graph/Edge.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/WASTE_APP.dir/build.make CMakeFiles/WASTE_APP.dir/src/Graph/Edge.cpp.i
-.PHONY : src/Graph/Edge.cpp.i
-
-src/Graph/Edge.s: src/Graph/Edge.cpp.s
-
-.PHONY : src/Graph/Edge.s
-
-# target to generate assembly for a file
-src/Graph/Edge.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/WASTE_APP.dir/build.make CMakeFiles/WASTE_APP.dir/src/Graph/Edge.cpp.s
-.PHONY : src/Graph/Edge.cpp.s
-
 src/Graph/Graph.o: src/Graph/Graph.cpp.o
 
 .PHONY : src/Graph/Graph.o
@@ -195,33 +168,6 @@ src/Graph/Graph.s: src/Graph/Graph.cpp.s
 src/Graph/Graph.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/WASTE_APP.dir/build.make CMakeFiles/WASTE_APP.dir/src/Graph/Graph.cpp.s
 .PHONY : src/Graph/Graph.cpp.s
-
-src/Graph/Vertex.o: src/Graph/Vertex.cpp.o
-
-.PHONY : src/Graph/Vertex.o
-
-# target to build an object file
-src/Graph/Vertex.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/WASTE_APP.dir/build.make CMakeFiles/WASTE_APP.dir/src/Graph/Vertex.cpp.o
-.PHONY : src/Graph/Vertex.cpp.o
-
-src/Graph/Vertex.i: src/Graph/Vertex.cpp.i
-
-.PHONY : src/Graph/Vertex.i
-
-# target to preprocess a source file
-src/Graph/Vertex.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/WASTE_APP.dir/build.make CMakeFiles/WASTE_APP.dir/src/Graph/Vertex.cpp.i
-.PHONY : src/Graph/Vertex.cpp.i
-
-src/Graph/Vertex.s: src/Graph/Vertex.cpp.s
-
-.PHONY : src/Graph/Vertex.s
-
-# target to generate assembly for a file
-src/Graph/Vertex.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/WASTE_APP.dir/build.make CMakeFiles/WASTE_APP.dir/src/Graph/Vertex.cpp.s
-.PHONY : src/Graph/Vertex.cpp.s
 
 src/UI/Menu.o: src/UI/Menu.cpp.o
 
@@ -303,33 +249,6 @@ src/Utils/MapPoint.s: src/Utils/MapPoint.cpp.s
 src/Utils/MapPoint.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/WASTE_APP.dir/build.make CMakeFiles/WASTE_APP.dir/src/Utils/MapPoint.cpp.s
 .PHONY : src/Utils/MapPoint.cpp.s
-
-src/Utils/main.o: src/Utils/main.cpp.o
-
-.PHONY : src/Utils/main.o
-
-# target to build an object file
-src/Utils/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/WASTE_APP.dir/build.make CMakeFiles/WASTE_APP.dir/src/Utils/main.cpp.o
-.PHONY : src/Utils/main.cpp.o
-
-src/Utils/main.i: src/Utils/main.cpp.i
-
-.PHONY : src/Utils/main.i
-
-# target to preprocess a source file
-src/Utils/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/WASTE_APP.dir/build.make CMakeFiles/WASTE_APP.dir/src/Utils/main.cpp.i
-.PHONY : src/Utils/main.cpp.i
-
-src/Utils/main.s: src/Utils/main.cpp.s
-
-.PHONY : src/Utils/main.s
-
-# target to generate assembly for a file
-src/Utils/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/WASTE_APP.dir/build.make CMakeFiles/WASTE_APP.dir/src/Utils/main.cpp.s
-.PHONY : src/Utils/main.cpp.s
 
 src/Waste-App/Car.o: src/Waste-App/Car.cpp.o
 
@@ -493,6 +412,33 @@ src/Waste-App/User.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/WASTE_APP.dir/build.make CMakeFiles/WASTE_APP.dir/src/Waste-App/User.cpp.s
 .PHONY : src/Waste-App/User.cpp.s
 
+src/main.o: src/main.cpp.o
+
+.PHONY : src/main.o
+
+# target to build an object file
+src/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/WASTE_APP.dir/build.make CMakeFiles/WASTE_APP.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
+
+src/main.i: src/main.cpp.i
+
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/WASTE_APP.dir/build.make CMakeFiles/WASTE_APP.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/WASTE_APP.dir/build.make CMakeFiles/WASTE_APP.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -502,15 +448,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... WASTE_APP"
-	@echo "... src/Graph/Edge.o"
-	@echo "... src/Graph/Edge.i"
-	@echo "... src/Graph/Edge.s"
 	@echo "... src/Graph/Graph.o"
 	@echo "... src/Graph/Graph.i"
 	@echo "... src/Graph/Graph.s"
-	@echo "... src/Graph/Vertex.o"
-	@echo "... src/Graph/Vertex.i"
-	@echo "... src/Graph/Vertex.s"
 	@echo "... src/UI/Menu.o"
 	@echo "... src/UI/Menu.i"
 	@echo "... src/UI/Menu.s"
@@ -520,9 +460,6 @@ help:
 	@echo "... src/Utils/MapPoint.o"
 	@echo "... src/Utils/MapPoint.i"
 	@echo "... src/Utils/MapPoint.s"
-	@echo "... src/Utils/main.o"
-	@echo "... src/Utils/main.i"
-	@echo "... src/Utils/main.s"
 	@echo "... src/Waste-App/Car.o"
 	@echo "... src/Waste-App/Car.i"
 	@echo "... src/Waste-App/Car.s"
@@ -541,6 +478,9 @@ help:
 	@echo "... src/Waste-App/User.o"
 	@echo "... src/Waste-App/User.i"
 	@echo "... src/Waste-App/User.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
 .PHONY : help
 
 

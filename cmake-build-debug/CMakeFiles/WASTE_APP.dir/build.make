@@ -76,22 +76,9 @@ include CMakeFiles/WASTE_APP.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/WASTE_APP.dir/flags.make
 
-CMakeFiles/WASTE_APP.dir/src/Graph/Edge.cpp.o: CMakeFiles/WASTE_APP.dir/flags.make
-CMakeFiles/WASTE_APP.dir/src/Graph/Edge.cpp.o: ../src/Graph/Edge.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/WASTE_APP.dir/src/Graph/Edge.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/WASTE_APP.dir/src/Graph/Edge.cpp.o -c /home/sofia/Desktop/WASTE-APP/src/Graph/Edge.cpp
-
-CMakeFiles/WASTE_APP.dir/src/Graph/Edge.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/WASTE_APP.dir/src/Graph/Edge.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sofia/Desktop/WASTE-APP/src/Graph/Edge.cpp > CMakeFiles/WASTE_APP.dir/src/Graph/Edge.cpp.i
-
-CMakeFiles/WASTE_APP.dir/src/Graph/Edge.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/WASTE_APP.dir/src/Graph/Edge.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sofia/Desktop/WASTE-APP/src/Graph/Edge.cpp -o CMakeFiles/WASTE_APP.dir/src/Graph/Edge.cpp.s
-
 CMakeFiles/WASTE_APP.dir/src/Graph/Graph.cpp.o: CMakeFiles/WASTE_APP.dir/flags.make
 CMakeFiles/WASTE_APP.dir/src/Graph/Graph.cpp.o: ../src/Graph/Graph.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/WASTE_APP.dir/src/Graph/Graph.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/WASTE_APP.dir/src/Graph/Graph.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/WASTE_APP.dir/src/Graph/Graph.cpp.o -c /home/sofia/Desktop/WASTE-APP/src/Graph/Graph.cpp
 
 CMakeFiles/WASTE_APP.dir/src/Graph/Graph.cpp.i: cmake_force
@@ -102,22 +89,9 @@ CMakeFiles/WASTE_APP.dir/src/Graph/Graph.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/WASTE_APP.dir/src/Graph/Graph.cpp.s"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sofia/Desktop/WASTE-APP/src/Graph/Graph.cpp -o CMakeFiles/WASTE_APP.dir/src/Graph/Graph.cpp.s
 
-CMakeFiles/WASTE_APP.dir/src/Graph/Vertex.cpp.o: CMakeFiles/WASTE_APP.dir/flags.make
-CMakeFiles/WASTE_APP.dir/src/Graph/Vertex.cpp.o: ../src/Graph/Vertex.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/WASTE_APP.dir/src/Graph/Vertex.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/WASTE_APP.dir/src/Graph/Vertex.cpp.o -c /home/sofia/Desktop/WASTE-APP/src/Graph/Vertex.cpp
-
-CMakeFiles/WASTE_APP.dir/src/Graph/Vertex.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/WASTE_APP.dir/src/Graph/Vertex.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sofia/Desktop/WASTE-APP/src/Graph/Vertex.cpp > CMakeFiles/WASTE_APP.dir/src/Graph/Vertex.cpp.i
-
-CMakeFiles/WASTE_APP.dir/src/Graph/Vertex.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/WASTE_APP.dir/src/Graph/Vertex.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sofia/Desktop/WASTE-APP/src/Graph/Vertex.cpp -o CMakeFiles/WASTE_APP.dir/src/Graph/Vertex.cpp.s
-
 CMakeFiles/WASTE_APP.dir/src/UI/Menu.cpp.o: CMakeFiles/WASTE_APP.dir/flags.make
 CMakeFiles/WASTE_APP.dir/src/UI/Menu.cpp.o: ../src/UI/Menu.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/WASTE_APP.dir/src/UI/Menu.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/WASTE_APP.dir/src/UI/Menu.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/WASTE_APP.dir/src/UI/Menu.cpp.o -c /home/sofia/Desktop/WASTE-APP/src/UI/Menu.cpp
 
 CMakeFiles/WASTE_APP.dir/src/UI/Menu.cpp.i: cmake_force
@@ -130,7 +104,7 @@ CMakeFiles/WASTE_APP.dir/src/UI/Menu.cpp.s: cmake_force
 
 CMakeFiles/WASTE_APP.dir/src/Utils/GraphLoader.cpp.o: CMakeFiles/WASTE_APP.dir/flags.make
 CMakeFiles/WASTE_APP.dir/src/Utils/GraphLoader.cpp.o: ../src/Utils/GraphLoader.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/WASTE_APP.dir/src/Utils/GraphLoader.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/WASTE_APP.dir/src/Utils/GraphLoader.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/WASTE_APP.dir/src/Utils/GraphLoader.cpp.o -c /home/sofia/Desktop/WASTE-APP/src/Utils/GraphLoader.cpp
 
 CMakeFiles/WASTE_APP.dir/src/Utils/GraphLoader.cpp.i: cmake_force
@@ -143,7 +117,7 @@ CMakeFiles/WASTE_APP.dir/src/Utils/GraphLoader.cpp.s: cmake_force
 
 CMakeFiles/WASTE_APP.dir/src/Utils/MapPoint.cpp.o: CMakeFiles/WASTE_APP.dir/flags.make
 CMakeFiles/WASTE_APP.dir/src/Utils/MapPoint.cpp.o: ../src/Utils/MapPoint.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/WASTE_APP.dir/src/Utils/MapPoint.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/WASTE_APP.dir/src/Utils/MapPoint.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/WASTE_APP.dir/src/Utils/MapPoint.cpp.o -c /home/sofia/Desktop/WASTE-APP/src/Utils/MapPoint.cpp
 
 CMakeFiles/WASTE_APP.dir/src/Utils/MapPoint.cpp.i: cmake_force
@@ -154,22 +128,9 @@ CMakeFiles/WASTE_APP.dir/src/Utils/MapPoint.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/WASTE_APP.dir/src/Utils/MapPoint.cpp.s"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sofia/Desktop/WASTE-APP/src/Utils/MapPoint.cpp -o CMakeFiles/WASTE_APP.dir/src/Utils/MapPoint.cpp.s
 
-CMakeFiles/WASTE_APP.dir/src/Utils/main.cpp.o: CMakeFiles/WASTE_APP.dir/flags.make
-CMakeFiles/WASTE_APP.dir/src/Utils/main.cpp.o: ../src/Utils/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/WASTE_APP.dir/src/Utils/main.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/WASTE_APP.dir/src/Utils/main.cpp.o -c /home/sofia/Desktop/WASTE-APP/src/Utils/main.cpp
-
-CMakeFiles/WASTE_APP.dir/src/Utils/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/WASTE_APP.dir/src/Utils/main.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sofia/Desktop/WASTE-APP/src/Utils/main.cpp > CMakeFiles/WASTE_APP.dir/src/Utils/main.cpp.i
-
-CMakeFiles/WASTE_APP.dir/src/Utils/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/WASTE_APP.dir/src/Utils/main.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sofia/Desktop/WASTE-APP/src/Utils/main.cpp -o CMakeFiles/WASTE_APP.dir/src/Utils/main.cpp.s
-
 CMakeFiles/WASTE_APP.dir/src/Waste-App/Car.cpp.o: CMakeFiles/WASTE_APP.dir/flags.make
 CMakeFiles/WASTE_APP.dir/src/Waste-App/Car.cpp.o: ../src/Waste-App/Car.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/WASTE_APP.dir/src/Waste-App/Car.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/WASTE_APP.dir/src/Waste-App/Car.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/WASTE_APP.dir/src/Waste-App/Car.cpp.o -c /home/sofia/Desktop/WASTE-APP/src/Waste-App/Car.cpp
 
 CMakeFiles/WASTE_APP.dir/src/Waste-App/Car.cpp.i: cmake_force
@@ -182,7 +143,7 @@ CMakeFiles/WASTE_APP.dir/src/Waste-App/Car.cpp.s: cmake_force
 
 CMakeFiles/WASTE_APP.dir/src/Waste-App/Driver.cpp.o: CMakeFiles/WASTE_APP.dir/flags.make
 CMakeFiles/WASTE_APP.dir/src/Waste-App/Driver.cpp.o: ../src/Waste-App/Driver.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/WASTE_APP.dir/src/Waste-App/Driver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/WASTE_APP.dir/src/Waste-App/Driver.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/WASTE_APP.dir/src/Waste-App/Driver.cpp.o -c /home/sofia/Desktop/WASTE-APP/src/Waste-App/Driver.cpp
 
 CMakeFiles/WASTE_APP.dir/src/Waste-App/Driver.cpp.i: cmake_force
@@ -195,7 +156,7 @@ CMakeFiles/WASTE_APP.dir/src/Waste-App/Driver.cpp.s: cmake_force
 
 CMakeFiles/WASTE_APP.dir/src/Waste-App/GarbageCollectionFacility.cpp.o: CMakeFiles/WASTE_APP.dir/flags.make
 CMakeFiles/WASTE_APP.dir/src/Waste-App/GarbageCollectionFacility.cpp.o: ../src/Waste-App/GarbageCollectionFacility.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/WASTE_APP.dir/src/Waste-App/GarbageCollectionFacility.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/WASTE_APP.dir/src/Waste-App/GarbageCollectionFacility.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/WASTE_APP.dir/src/Waste-App/GarbageCollectionFacility.cpp.o -c /home/sofia/Desktop/WASTE-APP/src/Waste-App/GarbageCollectionFacility.cpp
 
 CMakeFiles/WASTE_APP.dir/src/Waste-App/GarbageCollectionFacility.cpp.i: cmake_force
@@ -208,7 +169,7 @@ CMakeFiles/WASTE_APP.dir/src/Waste-App/GarbageCollectionFacility.cpp.s: cmake_fo
 
 CMakeFiles/WASTE_APP.dir/src/Waste-App/House.cpp.o: CMakeFiles/WASTE_APP.dir/flags.make
 CMakeFiles/WASTE_APP.dir/src/Waste-App/House.cpp.o: ../src/Waste-App/House.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/WASTE_APP.dir/src/Waste-App/House.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/WASTE_APP.dir/src/Waste-App/House.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/WASTE_APP.dir/src/Waste-App/House.cpp.o -c /home/sofia/Desktop/WASTE-APP/src/Waste-App/House.cpp
 
 CMakeFiles/WASTE_APP.dir/src/Waste-App/House.cpp.i: cmake_force
@@ -221,7 +182,7 @@ CMakeFiles/WASTE_APP.dir/src/Waste-App/House.cpp.s: cmake_force
 
 CMakeFiles/WASTE_APP.dir/src/Waste-App/TrashContainer.cpp.o: CMakeFiles/WASTE_APP.dir/flags.make
 CMakeFiles/WASTE_APP.dir/src/Waste-App/TrashContainer.cpp.o: ../src/Waste-App/TrashContainer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/WASTE_APP.dir/src/Waste-App/TrashContainer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/WASTE_APP.dir/src/Waste-App/TrashContainer.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/WASTE_APP.dir/src/Waste-App/TrashContainer.cpp.o -c /home/sofia/Desktop/WASTE-APP/src/Waste-App/TrashContainer.cpp
 
 CMakeFiles/WASTE_APP.dir/src/Waste-App/TrashContainer.cpp.i: cmake_force
@@ -234,7 +195,7 @@ CMakeFiles/WASTE_APP.dir/src/Waste-App/TrashContainer.cpp.s: cmake_force
 
 CMakeFiles/WASTE_APP.dir/src/Waste-App/User.cpp.o: CMakeFiles/WASTE_APP.dir/flags.make
 CMakeFiles/WASTE_APP.dir/src/Waste-App/User.cpp.o: ../src/Waste-App/User.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/WASTE_APP.dir/src/Waste-App/User.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/WASTE_APP.dir/src/Waste-App/User.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/WASTE_APP.dir/src/Waste-App/User.cpp.o -c /home/sofia/Desktop/WASTE-APP/src/Waste-App/User.cpp
 
 CMakeFiles/WASTE_APP.dir/src/Waste-App/User.cpp.i: cmake_force
@@ -245,41 +206,50 @@ CMakeFiles/WASTE_APP.dir/src/Waste-App/User.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/WASTE_APP.dir/src/Waste-App/User.cpp.s"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sofia/Desktop/WASTE-APP/src/Waste-App/User.cpp -o CMakeFiles/WASTE_APP.dir/src/Waste-App/User.cpp.s
 
+CMakeFiles/WASTE_APP.dir/src/main.cpp.o: CMakeFiles/WASTE_APP.dir/flags.make
+CMakeFiles/WASTE_APP.dir/src/main.cpp.o: ../src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/WASTE_APP.dir/src/main.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/WASTE_APP.dir/src/main.cpp.o -c /home/sofia/Desktop/WASTE-APP/src/main.cpp
+
+CMakeFiles/WASTE_APP.dir/src/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/WASTE_APP.dir/src/main.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sofia/Desktop/WASTE-APP/src/main.cpp > CMakeFiles/WASTE_APP.dir/src/main.cpp.i
+
+CMakeFiles/WASTE_APP.dir/src/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/WASTE_APP.dir/src/main.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sofia/Desktop/WASTE-APP/src/main.cpp -o CMakeFiles/WASTE_APP.dir/src/main.cpp.s
+
 # Object files for target WASTE_APP
 WASTE_APP_OBJECTS = \
-"CMakeFiles/WASTE_APP.dir/src/Graph/Edge.cpp.o" \
 "CMakeFiles/WASTE_APP.dir/src/Graph/Graph.cpp.o" \
-"CMakeFiles/WASTE_APP.dir/src/Graph/Vertex.cpp.o" \
 "CMakeFiles/WASTE_APP.dir/src/UI/Menu.cpp.o" \
 "CMakeFiles/WASTE_APP.dir/src/Utils/GraphLoader.cpp.o" \
 "CMakeFiles/WASTE_APP.dir/src/Utils/MapPoint.cpp.o" \
-"CMakeFiles/WASTE_APP.dir/src/Utils/main.cpp.o" \
 "CMakeFiles/WASTE_APP.dir/src/Waste-App/Car.cpp.o" \
 "CMakeFiles/WASTE_APP.dir/src/Waste-App/Driver.cpp.o" \
 "CMakeFiles/WASTE_APP.dir/src/Waste-App/GarbageCollectionFacility.cpp.o" \
 "CMakeFiles/WASTE_APP.dir/src/Waste-App/House.cpp.o" \
 "CMakeFiles/WASTE_APP.dir/src/Waste-App/TrashContainer.cpp.o" \
-"CMakeFiles/WASTE_APP.dir/src/Waste-App/User.cpp.o"
+"CMakeFiles/WASTE_APP.dir/src/Waste-App/User.cpp.o" \
+"CMakeFiles/WASTE_APP.dir/src/main.cpp.o"
 
 # External object files for target WASTE_APP
 WASTE_APP_EXTERNAL_OBJECTS =
 
-WASTE_APP: CMakeFiles/WASTE_APP.dir/src/Graph/Edge.cpp.o
 WASTE_APP: CMakeFiles/WASTE_APP.dir/src/Graph/Graph.cpp.o
-WASTE_APP: CMakeFiles/WASTE_APP.dir/src/Graph/Vertex.cpp.o
 WASTE_APP: CMakeFiles/WASTE_APP.dir/src/UI/Menu.cpp.o
 WASTE_APP: CMakeFiles/WASTE_APP.dir/src/Utils/GraphLoader.cpp.o
 WASTE_APP: CMakeFiles/WASTE_APP.dir/src/Utils/MapPoint.cpp.o
-WASTE_APP: CMakeFiles/WASTE_APP.dir/src/Utils/main.cpp.o
 WASTE_APP: CMakeFiles/WASTE_APP.dir/src/Waste-App/Car.cpp.o
 WASTE_APP: CMakeFiles/WASTE_APP.dir/src/Waste-App/Driver.cpp.o
 WASTE_APP: CMakeFiles/WASTE_APP.dir/src/Waste-App/GarbageCollectionFacility.cpp.o
 WASTE_APP: CMakeFiles/WASTE_APP.dir/src/Waste-App/House.cpp.o
 WASTE_APP: CMakeFiles/WASTE_APP.dir/src/Waste-App/TrashContainer.cpp.o
 WASTE_APP: CMakeFiles/WASTE_APP.dir/src/Waste-App/User.cpp.o
+WASTE_APP: CMakeFiles/WASTE_APP.dir/src/main.cpp.o
 WASTE_APP: CMakeFiles/WASTE_APP.dir/build.make
 WASTE_APP: CMakeFiles/WASTE_APP.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Linking CXX executable WASTE_APP"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable WASTE_APP"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/WASTE_APP.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

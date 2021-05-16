@@ -82,22 +82,13 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/sofia/Desktop/WASTE-APP/src/Graph/Edge.cpp">
-			<Option target="WASTE_APP"/>
-		</Unit>
-		<Unit filename="/home/sofia/Desktop/WASTE-APP/src/Graph/Edge.h">
+		<Unit filename="/home/sofia/Desktop/WASTE-APP/cmake-build-debug/WASTE_APP">
 			<Option target="WASTE_APP"/>
 		</Unit>
 		<Unit filename="/home/sofia/Desktop/WASTE-APP/src/Graph/Graph.cpp">
 			<Option target="WASTE_APP"/>
 		</Unit>
 		<Unit filename="/home/sofia/Desktop/WASTE-APP/src/Graph/Graph.h">
-			<Option target="WASTE_APP"/>
-		</Unit>
-		<Unit filename="/home/sofia/Desktop/WASTE-APP/src/Graph/Vertex.cpp">
-			<Option target="WASTE_APP"/>
-		</Unit>
-		<Unit filename="/home/sofia/Desktop/WASTE-APP/src/Graph/Vertex.h">
 			<Option target="WASTE_APP"/>
 		</Unit>
 		<Unit filename="/home/sofia/Desktop/WASTE-APP/src/UI/Menu.cpp">
@@ -116,9 +107,6 @@
 			<Option target="WASTE_APP"/>
 		</Unit>
 		<Unit filename="/home/sofia/Desktop/WASTE-APP/src/Utils/MapPoint.h">
-			<Option target="WASTE_APP"/>
-		</Unit>
-		<Unit filename="/home/sofia/Desktop/WASTE-APP/src/Utils/main.cpp">
 			<Option target="WASTE_APP"/>
 		</Unit>
 		<Unit filename="/home/sofia/Desktop/WASTE-APP/src/Waste-App/Car.cpp">
@@ -155,6 +143,9 @@
 			<Option target="WASTE_APP"/>
 		</Unit>
 		<Unit filename="/home/sofia/Desktop/WASTE-APP/src/Waste-App/User.h">
+			<Option target="WASTE_APP"/>
+		</Unit>
+		<Unit filename="/home/sofia/Desktop/WASTE-APP/src/main.cpp">
 			<Option target="WASTE_APP"/>
 		</Unit>
 		<Unit filename="/home/sofia/Desktop/WASTE-APP/CMakeLists.txt">
