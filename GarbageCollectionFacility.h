@@ -18,8 +18,6 @@ private:
     string name;
 public:
     const string &getName() const;
-
-
 };
 
 

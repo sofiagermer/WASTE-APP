@@ -222,6 +222,60 @@ GarbageCollectionFacility.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\WASTE_APP.dir\build.make CMakeFiles/WASTE_APP.dir/GarbageCollectionFacility.cpp.s
 .PHONY : GarbageCollectionFacility.cpp.s
 
+Graph.obj: Graph.cpp.obj
+
+.PHONY : Graph.obj
+
+# target to build an object file
+Graph.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\WASTE_APP.dir\build.make CMakeFiles/WASTE_APP.dir/Graph.cpp.obj
+.PHONY : Graph.cpp.obj
+
+Graph.i: Graph.cpp.i
+
+.PHONY : Graph.i
+
+# target to preprocess a source file
+Graph.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\WASTE_APP.dir\build.make CMakeFiles/WASTE_APP.dir/Graph.cpp.i
+.PHONY : Graph.cpp.i
+
+Graph.s: Graph.cpp.s
+
+.PHONY : Graph.s
+
+# target to generate assembly for a file
+Graph.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\WASTE_APP.dir\build.make CMakeFiles/WASTE_APP.dir/Graph.cpp.s
+.PHONY : Graph.cpp.s
+
+GraphLoader.obj: GraphLoader.cpp.obj
+
+.PHONY : GraphLoader.obj
+
+# target to build an object file
+GraphLoader.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\WASTE_APP.dir\build.make CMakeFiles/WASTE_APP.dir/GraphLoader.cpp.obj
+.PHONY : GraphLoader.cpp.obj
+
+GraphLoader.i: GraphLoader.cpp.i
+
+.PHONY : GraphLoader.i
+
+# target to preprocess a source file
+GraphLoader.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\WASTE_APP.dir\build.make CMakeFiles/WASTE_APP.dir/GraphLoader.cpp.i
+.PHONY : GraphLoader.cpp.i
+
+GraphLoader.s: GraphLoader.cpp.s
+
+.PHONY : GraphLoader.s
+
+# target to generate assembly for a file
+GraphLoader.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\WASTE_APP.dir\build.make CMakeFiles/WASTE_APP.dir/GraphLoader.cpp.s
+.PHONY : GraphLoader.cpp.s
+
 House.obj: House.cpp.obj
 
 .PHONY : House.obj
@@ -248,6 +302,33 @@ House.s: House.cpp.s
 House.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\WASTE_APP.dir\build.make CMakeFiles/WASTE_APP.dir/House.cpp.s
 .PHONY : House.cpp.s
+
+MapPoint.obj: MapPoint.cpp.obj
+
+.PHONY : MapPoint.obj
+
+# target to build an object file
+MapPoint.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\WASTE_APP.dir\build.make CMakeFiles/WASTE_APP.dir/MapPoint.cpp.obj
+.PHONY : MapPoint.cpp.obj
+
+MapPoint.i: MapPoint.cpp.i
+
+.PHONY : MapPoint.i
+
+# target to preprocess a source file
+MapPoint.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\WASTE_APP.dir\build.make CMakeFiles/WASTE_APP.dir/MapPoint.cpp.i
+.PHONY : MapPoint.cpp.i
+
+MapPoint.s: MapPoint.cpp.s
+
+.PHONY : MapPoint.s
+
+# target to generate assembly for a file
+MapPoint.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\WASTE_APP.dir\build.make CMakeFiles/WASTE_APP.dir/MapPoint.cpp.s
+.PHONY : MapPoint.cpp.s
 
 Menu.obj: Menu.cpp.obj
 
@@ -375,9 +456,18 @@ help:
 	@echo ... GarbageCollectionFacility.obj
 	@echo ... GarbageCollectionFacility.i
 	@echo ... GarbageCollectionFacility.s
+	@echo ... Graph.obj
+	@echo ... Graph.i
+	@echo ... Graph.s
+	@echo ... GraphLoader.obj
+	@echo ... GraphLoader.i
+	@echo ... GraphLoader.s
 	@echo ... House.obj
 	@echo ... House.i
 	@echo ... House.s
+	@echo ... MapPoint.obj
+	@echo ... MapPoint.i
+	@echo ... MapPoint.s
 	@echo ... Menu.obj
 	@echo ... Menu.i
 	@echo ... Menu.s

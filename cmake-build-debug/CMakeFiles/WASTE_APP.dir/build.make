@@ -78,106 +78,145 @@ include CMakeFiles/WASTE_APP.dir/flags.make
 CMakeFiles/WASTE_APP.dir/main.cpp.obj: CMakeFiles/WASTE_APP.dir/flags.make
 CMakeFiles/WASTE_APP.dir/main.cpp.obj: ../main.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\migue\Desktop\FACULDADE\WASTE-APP\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/WASTE_APP.dir/main.cpp.obj"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-W\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\WASTE_APP.dir\main.cpp.obj -c C:\Users\migue\Desktop\FACULDADE\WASTE-APP\main.cpp
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\WASTE_APP.dir\main.cpp.obj -c C:\Users\migue\Desktop\FACULDADE\WASTE-APP\main.cpp
 
 CMakeFiles/WASTE_APP.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/WASTE_APP.dir/main.cpp.i"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-W\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\migue\Desktop\FACULDADE\WASTE-APP\main.cpp > CMakeFiles\WASTE_APP.dir\main.cpp.i
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\migue\Desktop\FACULDADE\WASTE-APP\main.cpp > CMakeFiles\WASTE_APP.dir\main.cpp.i
 
 CMakeFiles/WASTE_APP.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/WASTE_APP.dir/main.cpp.s"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-W\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\migue\Desktop\FACULDADE\WASTE-APP\main.cpp -o CMakeFiles\WASTE_APP.dir\main.cpp.s
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\migue\Desktop\FACULDADE\WASTE-APP\main.cpp -o CMakeFiles\WASTE_APP.dir\main.cpp.s
 
 CMakeFiles/WASTE_APP.dir/TrashContainer.cpp.obj: CMakeFiles/WASTE_APP.dir/flags.make
 CMakeFiles/WASTE_APP.dir/TrashContainer.cpp.obj: ../TrashContainer.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\migue\Desktop\FACULDADE\WASTE-APP\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/WASTE_APP.dir/TrashContainer.cpp.obj"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-W\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\WASTE_APP.dir\TrashContainer.cpp.obj -c C:\Users\migue\Desktop\FACULDADE\WASTE-APP\TrashContainer.cpp
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\WASTE_APP.dir\TrashContainer.cpp.obj -c C:\Users\migue\Desktop\FACULDADE\WASTE-APP\TrashContainer.cpp
 
 CMakeFiles/WASTE_APP.dir/TrashContainer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/WASTE_APP.dir/TrashContainer.cpp.i"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-W\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\migue\Desktop\FACULDADE\WASTE-APP\TrashContainer.cpp > CMakeFiles\WASTE_APP.dir\TrashContainer.cpp.i
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\migue\Desktop\FACULDADE\WASTE-APP\TrashContainer.cpp > CMakeFiles\WASTE_APP.dir\TrashContainer.cpp.i
 
 CMakeFiles/WASTE_APP.dir/TrashContainer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/WASTE_APP.dir/TrashContainer.cpp.s"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-W\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\migue\Desktop\FACULDADE\WASTE-APP\TrashContainer.cpp -o CMakeFiles\WASTE_APP.dir\TrashContainer.cpp.s
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\migue\Desktop\FACULDADE\WASTE-APP\TrashContainer.cpp -o CMakeFiles\WASTE_APP.dir\TrashContainer.cpp.s
 
 CMakeFiles/WASTE_APP.dir/House.cpp.obj: CMakeFiles/WASTE_APP.dir/flags.make
 CMakeFiles/WASTE_APP.dir/House.cpp.obj: ../House.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\migue\Desktop\FACULDADE\WASTE-APP\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/WASTE_APP.dir/House.cpp.obj"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-W\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\WASTE_APP.dir\House.cpp.obj -c C:\Users\migue\Desktop\FACULDADE\WASTE-APP\House.cpp
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\WASTE_APP.dir\House.cpp.obj -c C:\Users\migue\Desktop\FACULDADE\WASTE-APP\House.cpp
 
 CMakeFiles/WASTE_APP.dir/House.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/WASTE_APP.dir/House.cpp.i"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-W\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\migue\Desktop\FACULDADE\WASTE-APP\House.cpp > CMakeFiles\WASTE_APP.dir\House.cpp.i
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\migue\Desktop\FACULDADE\WASTE-APP\House.cpp > CMakeFiles\WASTE_APP.dir\House.cpp.i
 
 CMakeFiles/WASTE_APP.dir/House.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/WASTE_APP.dir/House.cpp.s"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-W\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\migue\Desktop\FACULDADE\WASTE-APP\House.cpp -o CMakeFiles\WASTE_APP.dir\House.cpp.s
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\migue\Desktop\FACULDADE\WASTE-APP\House.cpp -o CMakeFiles\WASTE_APP.dir\House.cpp.s
 
 CMakeFiles/WASTE_APP.dir/GarbageCollectionFacility.cpp.obj: CMakeFiles/WASTE_APP.dir/flags.make
 CMakeFiles/WASTE_APP.dir/GarbageCollectionFacility.cpp.obj: ../GarbageCollectionFacility.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\migue\Desktop\FACULDADE\WASTE-APP\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/WASTE_APP.dir/GarbageCollectionFacility.cpp.obj"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-W\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\WASTE_APP.dir\GarbageCollectionFacility.cpp.obj -c C:\Users\migue\Desktop\FACULDADE\WASTE-APP\GarbageCollectionFacility.cpp
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\WASTE_APP.dir\GarbageCollectionFacility.cpp.obj -c C:\Users\migue\Desktop\FACULDADE\WASTE-APP\GarbageCollectionFacility.cpp
 
 CMakeFiles/WASTE_APP.dir/GarbageCollectionFacility.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/WASTE_APP.dir/GarbageCollectionFacility.cpp.i"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-W\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\migue\Desktop\FACULDADE\WASTE-APP\GarbageCollectionFacility.cpp > CMakeFiles\WASTE_APP.dir\GarbageCollectionFacility.cpp.i
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\migue\Desktop\FACULDADE\WASTE-APP\GarbageCollectionFacility.cpp > CMakeFiles\WASTE_APP.dir\GarbageCollectionFacility.cpp.i
 
 CMakeFiles/WASTE_APP.dir/GarbageCollectionFacility.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/WASTE_APP.dir/GarbageCollectionFacility.cpp.s"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-W\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\migue\Desktop\FACULDADE\WASTE-APP\GarbageCollectionFacility.cpp -o CMakeFiles\WASTE_APP.dir\GarbageCollectionFacility.cpp.s
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\migue\Desktop\FACULDADE\WASTE-APP\GarbageCollectionFacility.cpp -o CMakeFiles\WASTE_APP.dir\GarbageCollectionFacility.cpp.s
 
 CMakeFiles/WASTE_APP.dir/User.cpp.obj: CMakeFiles/WASTE_APP.dir/flags.make
 CMakeFiles/WASTE_APP.dir/User.cpp.obj: ../User.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\migue\Desktop\FACULDADE\WASTE-APP\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/WASTE_APP.dir/User.cpp.obj"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-W\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\WASTE_APP.dir\User.cpp.obj -c C:\Users\migue\Desktop\FACULDADE\WASTE-APP\User.cpp
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\WASTE_APP.dir\User.cpp.obj -c C:\Users\migue\Desktop\FACULDADE\WASTE-APP\User.cpp
 
 CMakeFiles/WASTE_APP.dir/User.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/WASTE_APP.dir/User.cpp.i"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-W\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\migue\Desktop\FACULDADE\WASTE-APP\User.cpp > CMakeFiles\WASTE_APP.dir\User.cpp.i
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\migue\Desktop\FACULDADE\WASTE-APP\User.cpp > CMakeFiles\WASTE_APP.dir\User.cpp.i
 
 CMakeFiles/WASTE_APP.dir/User.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/WASTE_APP.dir/User.cpp.s"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-W\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\migue\Desktop\FACULDADE\WASTE-APP\User.cpp -o CMakeFiles\WASTE_APP.dir\User.cpp.s
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\migue\Desktop\FACULDADE\WASTE-APP\User.cpp -o CMakeFiles\WASTE_APP.dir\User.cpp.s
 
 CMakeFiles/WASTE_APP.dir/Car.cpp.obj: CMakeFiles/WASTE_APP.dir/flags.make
 CMakeFiles/WASTE_APP.dir/Car.cpp.obj: ../Car.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\migue\Desktop\FACULDADE\WASTE-APP\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/WASTE_APP.dir/Car.cpp.obj"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-W\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\WASTE_APP.dir\Car.cpp.obj -c C:\Users\migue\Desktop\FACULDADE\WASTE-APP\Car.cpp
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\WASTE_APP.dir\Car.cpp.obj -c C:\Users\migue\Desktop\FACULDADE\WASTE-APP\Car.cpp
 
 CMakeFiles/WASTE_APP.dir/Car.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/WASTE_APP.dir/Car.cpp.i"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-W\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\migue\Desktop\FACULDADE\WASTE-APP\Car.cpp > CMakeFiles\WASTE_APP.dir\Car.cpp.i
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\migue\Desktop\FACULDADE\WASTE-APP\Car.cpp > CMakeFiles\WASTE_APP.dir\Car.cpp.i
 
 CMakeFiles/WASTE_APP.dir/Car.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/WASTE_APP.dir/Car.cpp.s"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-W\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\migue\Desktop\FACULDADE\WASTE-APP\Car.cpp -o CMakeFiles\WASTE_APP.dir\Car.cpp.s
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\migue\Desktop\FACULDADE\WASTE-APP\Car.cpp -o CMakeFiles\WASTE_APP.dir\Car.cpp.s
 
 CMakeFiles/WASTE_APP.dir/Driver.cpp.obj: CMakeFiles/WASTE_APP.dir/flags.make
 CMakeFiles/WASTE_APP.dir/Driver.cpp.obj: ../Driver.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\migue\Desktop\FACULDADE\WASTE-APP\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/WASTE_APP.dir/Driver.cpp.obj"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-W\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\WASTE_APP.dir\Driver.cpp.obj -c C:\Users\migue\Desktop\FACULDADE\WASTE-APP\Driver.cpp
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\WASTE_APP.dir\Driver.cpp.obj -c C:\Users\migue\Desktop\FACULDADE\WASTE-APP\Driver.cpp
 
 CMakeFiles/WASTE_APP.dir/Driver.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/WASTE_APP.dir/Driver.cpp.i"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-W\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\migue\Desktop\FACULDADE\WASTE-APP\Driver.cpp > CMakeFiles\WASTE_APP.dir\Driver.cpp.i
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\migue\Desktop\FACULDADE\WASTE-APP\Driver.cpp > CMakeFiles\WASTE_APP.dir\Driver.cpp.i
 
 CMakeFiles/WASTE_APP.dir/Driver.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/WASTE_APP.dir/Driver.cpp.s"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-W\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\migue\Desktop\FACULDADE\WASTE-APP\Driver.cpp -o CMakeFiles\WASTE_APP.dir\Driver.cpp.s
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\migue\Desktop\FACULDADE\WASTE-APP\Driver.cpp -o CMakeFiles\WASTE_APP.dir\Driver.cpp.s
 
 CMakeFiles/WASTE_APP.dir/Menu.cpp.obj: CMakeFiles/WASTE_APP.dir/flags.make
 CMakeFiles/WASTE_APP.dir/Menu.cpp.obj: ../Menu.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\migue\Desktop\FACULDADE\WASTE-APP\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/WASTE_APP.dir/Menu.cpp.obj"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-W\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\WASTE_APP.dir\Menu.cpp.obj -c C:\Users\migue\Desktop\FACULDADE\WASTE-APP\Menu.cpp
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\WASTE_APP.dir\Menu.cpp.obj -c C:\Users\migue\Desktop\FACULDADE\WASTE-APP\Menu.cpp
 
 CMakeFiles/WASTE_APP.dir/Menu.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/WASTE_APP.dir/Menu.cpp.i"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-W\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\migue\Desktop\FACULDADE\WASTE-APP\Menu.cpp > CMakeFiles\WASTE_APP.dir\Menu.cpp.i
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\migue\Desktop\FACULDADE\WASTE-APP\Menu.cpp > CMakeFiles\WASTE_APP.dir\Menu.cpp.i
 
 CMakeFiles/WASTE_APP.dir/Menu.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/WASTE_APP.dir/Menu.cpp.s"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-W\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\migue\Desktop\FACULDADE\WASTE-APP\Menu.cpp -o CMakeFiles\WASTE_APP.dir\Menu.cpp.s
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\migue\Desktop\FACULDADE\WASTE-APP\Menu.cpp -o CMakeFiles\WASTE_APP.dir\Menu.cpp.s
+
+CMakeFiles/WASTE_APP.dir/GraphLoader.cpp.obj: CMakeFiles/WASTE_APP.dir/flags.make
+CMakeFiles/WASTE_APP.dir/GraphLoader.cpp.obj: ../GraphLoader.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\migue\Desktop\FACULDADE\WASTE-APP\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/WASTE_APP.dir/GraphLoader.cpp.obj"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\WASTE_APP.dir\GraphLoader.cpp.obj -c C:\Users\migue\Desktop\FACULDADE\WASTE-APP\GraphLoader.cpp
+
+CMakeFiles/WASTE_APP.dir/GraphLoader.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/WASTE_APP.dir/GraphLoader.cpp.i"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\migue\Desktop\FACULDADE\WASTE-APP\GraphLoader.cpp > CMakeFiles\WASTE_APP.dir\GraphLoader.cpp.i
+
+CMakeFiles/WASTE_APP.dir/GraphLoader.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/WASTE_APP.dir/GraphLoader.cpp.s"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\migue\Desktop\FACULDADE\WASTE-APP\GraphLoader.cpp -o CMakeFiles\WASTE_APP.dir\GraphLoader.cpp.s
+
+CMakeFiles/WASTE_APP.dir/Graph.cpp.obj: CMakeFiles/WASTE_APP.dir/flags.make
+CMakeFiles/WASTE_APP.dir/Graph.cpp.obj: ../Graph.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\migue\Desktop\FACULDADE\WASTE-APP\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/WASTE_APP.dir/Graph.cpp.obj"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\WASTE_APP.dir\Graph.cpp.obj -c C:\Users\migue\Desktop\FACULDADE\WASTE-APP\Graph.cpp
+
+CMakeFiles/WASTE_APP.dir/Graph.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/WASTE_APP.dir/Graph.cpp.i"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\migue\Desktop\FACULDADE\WASTE-APP\Graph.cpp > CMakeFiles\WASTE_APP.dir\Graph.cpp.i
+
+CMakeFiles/WASTE_APP.dir/Graph.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/WASTE_APP.dir/Graph.cpp.s"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\migue\Desktop\FACULDADE\WASTE-APP\Graph.cpp -o CMakeFiles\WASTE_APP.dir\Graph.cpp.s
+
+CMakeFiles/WASTE_APP.dir/MapPoint.cpp.obj: CMakeFiles/WASTE_APP.dir/flags.make
+CMakeFiles/WASTE_APP.dir/MapPoint.cpp.obj: ../MapPoint.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\migue\Desktop\FACULDADE\WASTE-APP\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/WASTE_APP.dir/MapPoint.cpp.obj"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\WASTE_APP.dir\MapPoint.cpp.obj -c C:\Users\migue\Desktop\FACULDADE\WASTE-APP\MapPoint.cpp
+
+CMakeFiles/WASTE_APP.dir/MapPoint.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/WASTE_APP.dir/MapPoint.cpp.i"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\migue\Desktop\FACULDADE\WASTE-APP\MapPoint.cpp > CMakeFiles\WASTE_APP.dir\MapPoint.cpp.i
+
+CMakeFiles/WASTE_APP.dir/MapPoint.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/WASTE_APP.dir/MapPoint.cpp.s"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\migue\Desktop\FACULDADE\WASTE-APP\MapPoint.cpp -o CMakeFiles\WASTE_APP.dir\MapPoint.cpp.s
 
 # Object files for target WASTE_APP
 WASTE_APP_OBJECTS = \
@@ -188,7 +227,10 @@ WASTE_APP_OBJECTS = \
 "CMakeFiles/WASTE_APP.dir/User.cpp.obj" \
 "CMakeFiles/WASTE_APP.dir/Car.cpp.obj" \
 "CMakeFiles/WASTE_APP.dir/Driver.cpp.obj" \
-"CMakeFiles/WASTE_APP.dir/Menu.cpp.obj"
+"CMakeFiles/WASTE_APP.dir/Menu.cpp.obj" \
+"CMakeFiles/WASTE_APP.dir/GraphLoader.cpp.obj" \
+"CMakeFiles/WASTE_APP.dir/Graph.cpp.obj" \
+"CMakeFiles/WASTE_APP.dir/MapPoint.cpp.obj"
 
 # External object files for target WASTE_APP
 WASTE_APP_EXTERNAL_OBJECTS =
@@ -201,11 +243,14 @@ WASTE_APP.exe: CMakeFiles/WASTE_APP.dir/User.cpp.obj
 WASTE_APP.exe: CMakeFiles/WASTE_APP.dir/Car.cpp.obj
 WASTE_APP.exe: CMakeFiles/WASTE_APP.dir/Driver.cpp.obj
 WASTE_APP.exe: CMakeFiles/WASTE_APP.dir/Menu.cpp.obj
+WASTE_APP.exe: CMakeFiles/WASTE_APP.dir/GraphLoader.cpp.obj
+WASTE_APP.exe: CMakeFiles/WASTE_APP.dir/Graph.cpp.obj
+WASTE_APP.exe: CMakeFiles/WASTE_APP.dir/MapPoint.cpp.obj
 WASTE_APP.exe: CMakeFiles/WASTE_APP.dir/build.make
 WASTE_APP.exe: CMakeFiles/WASTE_APP.dir/linklibs.rsp
 WASTE_APP.exe: CMakeFiles/WASTE_APP.dir/objects1.rsp
 WASTE_APP.exe: CMakeFiles/WASTE_APP.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\migue\Desktop\FACULDADE\WASTE-APP\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable WASTE_APP.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\migue\Desktop\FACULDADE\WASTE-APP\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable WASTE_APP.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\WASTE_APP.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
