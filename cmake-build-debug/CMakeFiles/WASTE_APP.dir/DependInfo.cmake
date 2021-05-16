@@ -4,17 +4,19 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/migue/Desktop/FACULDADE/WASTE-APP/Car.cpp" "C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/CMakeFiles/WASTE_APP.dir/Car.cpp.obj"
-  "C:/Users/migue/Desktop/FACULDADE/WASTE-APP/Driver.cpp" "C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/CMakeFiles/WASTE_APP.dir/Driver.cpp.obj"
-  "C:/Users/migue/Desktop/FACULDADE/WASTE-APP/GarbageCollectionFacility.cpp" "C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/CMakeFiles/WASTE_APP.dir/GarbageCollectionFacility.cpp.obj"
-  "C:/Users/migue/Desktop/FACULDADE/WASTE-APP/Graph.cpp" "C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/CMakeFiles/WASTE_APP.dir/Graph.cpp.obj"
-  "C:/Users/migue/Desktop/FACULDADE/WASTE-APP/GraphLoader.cpp" "C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/CMakeFiles/WASTE_APP.dir/GraphLoader.cpp.obj"
-  "C:/Users/migue/Desktop/FACULDADE/WASTE-APP/House.cpp" "C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/CMakeFiles/WASTE_APP.dir/House.cpp.obj"
-  "C:/Users/migue/Desktop/FACULDADE/WASTE-APP/MapPoint.cpp" "C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/CMakeFiles/WASTE_APP.dir/MapPoint.cpp.obj"
-  "C:/Users/migue/Desktop/FACULDADE/WASTE-APP/Menu.cpp" "C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/CMakeFiles/WASTE_APP.dir/Menu.cpp.obj"
-  "C:/Users/migue/Desktop/FACULDADE/WASTE-APP/TrashContainer.cpp" "C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/CMakeFiles/WASTE_APP.dir/TrashContainer.cpp.obj"
-  "C:/Users/migue/Desktop/FACULDADE/WASTE-APP/User.cpp" "C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/CMakeFiles/WASTE_APP.dir/User.cpp.obj"
-  "C:/Users/migue/Desktop/FACULDADE/WASTE-APP/main.cpp" "C:/Users/migue/Desktop/FACULDADE/WASTE-APP/cmake-build-debug/CMakeFiles/WASTE_APP.dir/main.cpp.obj"
+  "/home/sofia/Desktop/WASTE-APP/src/Graph/Edge.cpp" "/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles/WASTE_APP.dir/src/Graph/Edge.cpp.o"
+  "/home/sofia/Desktop/WASTE-APP/src/Graph/Graph.cpp" "/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles/WASTE_APP.dir/src/Graph/Graph.cpp.o"
+  "/home/sofia/Desktop/WASTE-APP/src/Graph/Vertex.cpp" "/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles/WASTE_APP.dir/src/Graph/Vertex.cpp.o"
+  "/home/sofia/Desktop/WASTE-APP/src/UI/Menu.cpp" "/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles/WASTE_APP.dir/src/UI/Menu.cpp.o"
+  "/home/sofia/Desktop/WASTE-APP/src/Utils/GraphLoader.cpp" "/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles/WASTE_APP.dir/src/Utils/GraphLoader.cpp.o"
+  "/home/sofia/Desktop/WASTE-APP/src/Utils/MapPoint.cpp" "/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles/WASTE_APP.dir/src/Utils/MapPoint.cpp.o"
+  "/home/sofia/Desktop/WASTE-APP/src/Utils/main.cpp" "/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles/WASTE_APP.dir/src/Utils/main.cpp.o"
+  "/home/sofia/Desktop/WASTE-APP/src/Waste-App/Car.cpp" "/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles/WASTE_APP.dir/src/Waste-App/Car.cpp.o"
+  "/home/sofia/Desktop/WASTE-APP/src/Waste-App/Driver.cpp" "/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles/WASTE_APP.dir/src/Waste-App/Driver.cpp.o"
+  "/home/sofia/Desktop/WASTE-APP/src/Waste-App/GarbageCollectionFacility.cpp" "/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles/WASTE_APP.dir/src/Waste-App/GarbageCollectionFacility.cpp.o"
+  "/home/sofia/Desktop/WASTE-APP/src/Waste-App/House.cpp" "/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles/WASTE_APP.dir/src/Waste-App/House.cpp.o"
+  "/home/sofia/Desktop/WASTE-APP/src/Waste-App/TrashContainer.cpp" "/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles/WASTE_APP.dir/src/Waste-App/TrashContainer.cpp.o"
+  "/home/sofia/Desktop/WASTE-APP/src/Waste-App/User.cpp" "/home/sofia/Desktop/WASTE-APP/cmake-build-debug/CMakeFiles/WASTE_APP.dir/src/Waste-App/User.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

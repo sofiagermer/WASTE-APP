@@ -82,4 +82,57 @@ bool Graph<T>::removeVertex(const T &in) {
     return true;
 }
 
+/*-----------------TARJAN----------------------------------------------------------------*/
+template<class T>
+vector<vector<int>> Graph<T>::tarjan(const int id_src) {
+    for (Vertex<T>* vertex : vertexSet) {
+        vertex->index = -1;
+        vertex->low = -1;
+        vertex->onStack = false;
+    }
+
+    vector<vector<int>> scc;
+
+    int index = 0;
+    stack<Vertex<T>*> st;
+
+    for (Vertex<T>* vertex : vertexSet) {
+        if (vertex->index == -1) {
+            strongconnect(vertex, index, st, scc);
+        }
+    }
+
+    return scc;
+}
+
+template<class T>
+void Graph<T>::strongconnect(Vertex<T>* src, int &index, stack<Vertex<T>*> &st, vector<vector<int>> &scc) {
+    src->index = index;
+    src->low = index;
+    index++;
+    st.push(src);
+    src->onStack = true;
+
+    for (Edge<T>* edge : src->getAdj()) {
+        if (edge->dest->index == -1) {
+            strongconnect(edge->dest, index, st, scc);
+            src->low = min(src->low, edge->dest->low);
+        } else if (edge->dest->onStack) {
+            src->low = min(src->low, edge->dest->index);
+        }
+    }
+
+    if (src->low == src->index) {
+        vector<int> sc;
+        Vertex<T>* w;
+        do {
+            w = st.top();
+            st.pop();
+            w->onStack = false;
+            sc.push_back(w->getId());
+        } while (w != src);
+        scc.push_back(sc);
+    }
+}
+/*---------------------------------------------------------------------------------------*/
 

@@ -6,6 +6,7 @@
 #define WASTE_APP_GRAPH_H
 
 #include <vector>
+#include <stack>
 
 using namespace std;
 
@@ -49,5 +50,8 @@ public:
 
     bool removeEdge(const T &source, const T &dest);
 
+    vector<vector<int>> tarjan(const int id_src);
+
+    void strongconnect(Vertex<T>* src, int &index, stack<Vertex<T>*> &st, vector<vector<int>> &scc)
 };
 #endif //WASTE_APP_GRAPH_H

@@ -17,7 +17,7 @@ template <class T> class GraphLoader {
     Graph<T> readGraphFromFiles(string nodesFile,string edgesFile,string tagsFile){
         Graph<T> graph;
 
-        fstream nFile,eFile,tFile;
+        /*fstream nFile,eFile,tFile;
         nFile.open(nodesFile,ios::in);
         eFile.open(edgesFile,ios::in);
         tFile.open(tagsFile,ios::in);
@@ -34,20 +34,20 @@ template <class T> class GraphLoader {
         }
 
 
-        double x,y;
+        double x,y;*/
 
         return graph;
     }
 
     Graph<T> loadNodes(string nodesFile,Graph<T> *graph){
 
-        int numberNodes;
+        /*int numberNodes;
         nFile>>numberNodes;
         while(!nFile.eof()){
             Vertex<T> vertex;
             vertex
             nFile>>
-        }
+        }*/
 
     }
 };
