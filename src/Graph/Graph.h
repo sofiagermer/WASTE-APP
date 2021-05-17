@@ -29,10 +29,17 @@ class Vertex{
     bool removeEdgeTo(Vertex *dest);
     double getLatitude();
     double getLongitute();
+    vector<Edge> getOutgoingEdges();
+
+    // Tarjan
+    int index = -1;
+    int low = -1;
 public:
     Vertex(int ID,double lat, double lon,MapPoint *info);
     void updateInfo(MapPoint *info);
     friend class Graph;
+
+    int getID();
 };
 
 class Edge {
@@ -45,12 +52,14 @@ public:
 };
 
 class Graph {
-    std::vector<Vertex *> vertexSet;    // vertex set
+    vector<Vertex *> vertexSet;    // vertex set
 
     Vertex *findVertex(double lat, double lon);
 
 public:
     Graph(string nodesFile,string edgesFile,string tagsFile);
+
+    vector<Vertex *> getVertexSet();
 
     int getNumVertex() const;
 
@@ -68,8 +77,11 @@ public:
 
     Vertex *findVertex(int ID);
 
-    vector<vector<int>> tarjan(const int id_src);
+    vector<vector<int>> kosaraju();
+    vector<vector<int>> tarjan();
 
-    void strongconnect(Vertex* src, int &index, stack<Vertex*> &st, vector<vector<int>> &scc);
+    void strongConnectedComponent(Vertex* src, vector<vector<int>> &scc); //Tarjan
+
+    void DFS_Tarjan(Vertex* src, int nid, stack<Vertex*> &st, vector<vector<int>> &scc);
 };
 #endif //WASTE_APP_GRAPH_H
