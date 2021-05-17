@@ -1,6 +1,6 @@
 #include <iostream>
-#include "Graph.h"
-#include "MapPoint.h"
+#include "/Graph/Graph.h"
+
 
 using namespace std;
 int main() {

@@ -3,8 +3,7 @@
 //
 
 #include "Graph.h"
-#include <math.h>
-#include <iostream>
+
 
 #define degreeToRadian (M_PI / 180.0)
 
@@ -123,10 +122,10 @@ bool Graph::addEdge(int id1, int id2) {
 
 
 Graph::Graph(string nodesFile, string edgesFile, string tagsFile) {
-    fstream nFile,eFile,tFile;
-    nFile.open(nodesFile,ios::in);
-    eFile.open(edgesFile,ios::in);
-    tFile.open(tagsFile,ios::in);
+    ifstream nFile,eFile,tFile;
+    nFile.open(nodesFile);
+    eFile.open(edgesFile);
+    tFile.open(tagsFile);
 
     int numberElements;
     char c;
@@ -192,7 +191,7 @@ Graph::Graph(string nodesFile, string edgesFile, string tagsFile) {
 }
 
 /*-----------------TARJAN----------------------------------------------------------------*/
-template<class T>
+/*
 vector<vector<int>> Graph::tarjan(const int id_src) {
     for (Vertex<T>* vertex : vertexSet) {
         vertex->index = -1;
@@ -215,7 +214,7 @@ vector<vector<int>> Graph::tarjan(const int id_src) {
 }
 
 template<class T>
-void Graph<T>::strongconnect(Vertex<T>* src, int &index, stack<Vertex<T>*> &st, vector<vector<int>> &scc) {
+void Graph::strongconnect(Vertex* src, int &index, stack<Vertex*> &st, vector<vector<int>> &scc) {
     src->index = index;
     src->low = index;
     index++;
@@ -243,5 +242,6 @@ void Graph<T>::strongconnect(Vertex<T>* src, int &index, stack<Vertex<T>*> &st, 
         scc.push_back(sc);
     }
 }
+ */
 /*---------------------------------------------------------------------------------------*/
 

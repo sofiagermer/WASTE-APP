@@ -8,9 +8,11 @@
 #include <vector>
 #include <string>
 #include <fstream>
-#include "TrashContainer.h"
-#include "GarbageCollectionFacility.h"
+#include "../Elements/TrashContainer.h"
+#include "../Elements/GarbageCollectionFacility.h"
 #include <stack>
+#include <math.h>
+#include <iostream>
 
 using namespace std;
 class Edge;
