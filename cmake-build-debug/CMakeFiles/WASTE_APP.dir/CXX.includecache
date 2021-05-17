@@ -6,11 +6,39 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/migue/Desktop/FACULDADE/WASTE-APP/src/main.cpp
+/home/sofia/Desktop/WASTE-APP/src/Elements/GarbageCollectionFacility.h
 iostream
 -
-/Graph/Graph.h
+MapPoint.h
+/home/sofia/Desktop/WASTE-APP/src/Elements/MapPoint.h
+
+/home/sofia/Desktop/WASTE-APP/src/Elements/MapPoint.h
+
+/home/sofia/Desktop/WASTE-APP/src/Elements/TrashContainer.h
+MapPoint.h
+/home/sofia/Desktop/WASTE-APP/src/Elements/MapPoint.h
+
+/home/sofia/Desktop/WASTE-APP/src/Graph/Graph.h
+vector
 -
-/Elements/MapPoint.h
+string
 -
+fstream
+-
+../Elements/TrashContainer.h
+/home/sofia/Desktop/WASTE-APP/src/Elements/TrashContainer.h
+../Elements/GarbageCollectionFacility.h
+/home/sofia/Desktop/WASTE-APP/src/Elements/GarbageCollectionFacility.h
+stack
+-
+math.h
+-
+iostream
+-
+
+/home/sofia/Desktop/WASTE-APP/src/main.cpp
+iostream
+-
+Graph/Graph.h
+/home/sofia/Desktop/WASTE-APP/src/Graph/Graph.h
 
