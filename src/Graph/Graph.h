@@ -29,6 +29,9 @@ class Vertex{
     vector<Edge> outgoingEdges;
     void addEdge(Vertex *dest, double weight);
     bool removeEdgeTo(Vertex *dest);
+    // Tarjan
+    int index = -1;
+    int low = -1;
 public:
     Vertex(int ID,double lat, double lon,MapPoint *info);
     void updateInfo(MapPoint *info);
@@ -36,6 +39,8 @@ public:
     double getLongitute();
     vector<Edge> getOutgoingEdges();
     friend class Graph;
+
+    int getID();
 };
 
 class Edge {
@@ -54,6 +59,8 @@ class Graph {
 
 public:
     Graph(string nodesFile,string edgesFile,string tagsFile);
+
+    vector<Vertex *> getVertexSet();
 
     int getNumVertex() const;
 
@@ -84,5 +91,11 @@ public:
     stack<Vertex *> reconstructPath(map<Vertex *, Vertex *> cameFrom, Vertex *current,Vertex *start);
 
     queue<Vertex *> nearestNeighbour(vector<Vertex*> pointsTravel);
+    vector<vector<int>> kosaraju();
+    vector<vector<int>> tarjan();
+
+    void strongConnectedComponent(Vertex* src, vector<vector<int>> &scc); //Tarjan
+
+    void DFS_Tarjan(Vertex* src, int nid, stack<Vertex*> &st, vector<vector<int>> &scc);
 };
 #endif //WASTE_APP_GRAPH_H

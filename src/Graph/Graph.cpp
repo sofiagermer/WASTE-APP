@@ -72,6 +72,14 @@ double Vertex::getLongitute() {
     return longitude;
 }
 
+int Vertex::getID(){
+    return ID;
+}
+
+vector<Edge> Vertex::getOutgoingEdges() {
+    return outgoingEdges;
+}
+
 void Vertex::updateInfo(MapPoint *i) {
     info=i;
 }
@@ -116,6 +124,9 @@ Vertex *Graph::findVertex(int ID) {
     return NULL;
 }
 
+vector<Vertex *> Graph::getVertexSet() {
+    return vertexSet;
+}
 
 bool Graph::addEdge(int id1, int id2) {
     auto v1= findVertex(id1);
@@ -192,6 +203,10 @@ Graph::Graph(string nodesFile, string edgesFile, string tagsFile) {
     }
 
 }
+/* ================================================================================================
+ * Kosaraju
+ * ================================================================================================
+ */
 
 vector<Vertex *> Graph::getVertexSet() {return vertexSet;}
 
@@ -265,56 +280,100 @@ queue<Vertex *> Graph::nearestNeighbour(vector<Vertex*> pointsTravel){
 
 /*-----------------TARJAN----------------------------------------------------------------*/
 /*
-vector<vector<int>> Graph::tarjan(const int id_src) {
-    for (Vertex<T>* vertex : vertexSet) {
-        vertex->index = -1;
-        vertex->low = -1;
-        vertex->onStack = false;
+vector<vector<int>> Graph::kosaraju() {
+    stack<Vertex*> L;
+    for (Vertex * vertex : vertexSet) {
+        vertex->index = NULL;
     }
 
     vector<vector<int>> scc;
 
-    int index = 0;
-    stack<Vertex<T>*> st;
-
-    for (Vertex<T>* vertex : vertexSet) {
-        if (vertex->index == -1) {
-            strongconnect(vertex, index, st, scc);
+    for (Vertex* vertex : vertexSet) {
+        if (vertex->index == NULL) {
+            strongConnectedComponent(vertex, scc);
         }
     }
 
     return scc;
 }
 
-template<class T>
-void Graph::strongconnect(Vertex* src, int &index, stack<Vertex*> &st, vector<vector<int>> &scc) {
-    src->index = index;
-    src->low = index;
-    index++;
-    st.push(src);
-    src->onStack = true;
+void Graph::DFS_Kosaraju(Vertex* src, int nid, stack<Vertex*> &L, vector<vector<int>> &scc) {
+    if (S.find(u) != S.end()) return;
+    S.insert(u);
+    for (node_t v : G->getAdj(u)) DFS_K(v);
+    L.push(u);
+}
 
-    for (Edge<T>* edge : src->getAdj()) {
-        if (edge->dest->index == -1) {
-            strongconnect(edge->dest, index, st, scc);
-            src->low = min(src->low, edge->dest->low);
-        } else if (edge->dest->onStack) {
-            src->low = min(src->low, edge->dest->index);
+void Graph:: assign(){
+    if (SCCs.find(u) != SCCs.end()) return;
+    SCCs[u] = root;
+    DUGraph temp = G->getTranspose();
+    for (node_t v : temp.getAdj(u)) {
+        assign(v, root);
+    }
+}*/
+/* ================================================================================================
+ * Tarjan
+ * ================================================================================================
+ */
+
+bool findStackElement (stack<Vertex*> stackV, Vertex * vertex)
+{
+    while (!stackV.empty() && stackV.top() != vertex){
+        stackV.pop();
+    }
+
+    if (!stackV.empty())
+        return true;
+
+    return false;
+}
+
+vector<vector<int>> Graph::tarjan() {
+    for (Vertex * vertex : vertexSet) {
+        vertex->index = NULL;
+    }
+
+    vector<vector<int>> scc;
+
+    for (Vertex* vertex : vertexSet) {
+        if (vertex->index == NULL) {
+            strongConnectedComponent(vertex, scc);
+        }
+    }
+
+    return scc;
+}
+
+void Graph::strongConnectedComponent(Vertex* src, vector<vector<int>> &scc) {
+    int nid = 1;
+    stack<Vertex*> L;
+
+    DFS_Tarjan(src, nid, L, scc);
+}
+
+void Graph::DFS_Tarjan(Vertex* src, int nid, stack<Vertex*> &L, vector<vector<int>> &scc){
+    L.push(src);
+    src->index = nid++;
+    src->low = nid;
+
+    for (Edge edge : src->getOutgoingEdges()) {
+        if (edge.dest->index == NULL) {
+            DFS_Tarjan(edge.dest, nid, L, scc);
+            src->low = min(src->low, edge.dest->low);
+        } else if (findStackElement(L, edge.dest)) {
+            src->low = min(src->low, edge.dest->index);
         }
     }
 
     if (src->low == src->index) {
         vector<int> sc;
-        Vertex<T>* w;
+        Vertex * v;
         do {
-            w = st.top();
-            st.pop();
-            w->onStack = false;
-            sc.push_back(w->getId());
-        } while (w != src);
+            v = L.top();
+            L.pop();
+            sc.push_back(v->getID());
+        } while (v != src);
         scc.push_back(sc);
     }
 }
- */
-/*---------------------------------------------------------------------------------------*/
-
