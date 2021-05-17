@@ -83,10 +83,10 @@ vector<Edge> Vertex::getOutgoingEdges() {
 void Vertex::updateInfo(MapPoint *i) {
     info=i;
 }
-
+/*
 vector<Edge> Vertex::getOutgoingEdges() {
     return outgoingEdges;
-}
+}*/
 
 
 bool Graph::removeVertex(double latitude, double longitude) {
@@ -207,9 +207,9 @@ Graph::Graph(string nodesFile, string edgesFile, string tagsFile) {
  * Kosaraju
  * ================================================================================================
  */
-
+/*
 vector<Vertex *> Graph::getVertexSet() {return vertexSet;}
-
+*/
 stack<Vertex*> Graph::AStar(Vertex *start, Vertex *end) {
     vector<Vertex*> discoveredNodes;
     discoveredNodes.push_back(start);
