@@ -10,6 +10,7 @@
 #include <fstream>
 #include "TrashContainer.h"
 #include "GarbageCollectionFacility.h"
+#include <stack>
 
 using namespace std;
 class Edge;
@@ -65,5 +66,8 @@ public:
 
     Vertex *findVertex(int ID);
 
+    vector<vector<int>> tarjan(const int id_src);
+
+    void strongconnect(Vertex* src, int &index, stack<Vertex*> &st, vector<vector<int>> &scc);
 };
 #endif //WASTE_APP_GRAPH_H
