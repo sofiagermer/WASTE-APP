@@ -122,10 +122,8 @@ bool Graph::addEdge(int id1, int id2) {
 
 
 Graph::Graph(string nodesFile, string edgesFile, string tagsFile) {
-    ifstream nFile,eFile,tFile;
-    nFile.open(nodesFile);
-    eFile.open(edgesFile);
-    tFile.open(tagsFile);
+    ifstream nFile(nodesFile),eFile(edgesFile),tFile(tagsFile);
+
 
     int numberElements;
     char c;
