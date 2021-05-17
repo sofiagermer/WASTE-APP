@@ -1,9 +1,10 @@
 #include <iostream>
+#include <iomanip>
 #include "Graph/Graph.h"
 
 
 using namespace std;
 int main() {
-    Graph graph("../Map/nodes_lat_lon_porto.txt","../Map/edges_porto.txt","../Map/t02_tags_porto.txt");
+    Graph graph("../Map/porto_full_nodes_latlng.txt","../Map/porto_full_edges.txt","../Map/tags.txt");
     return 0;
 }

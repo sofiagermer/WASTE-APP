@@ -6,6 +6,7 @@
 
 
 #define degreeToRadian (M_PI / 180.0)
+#define INF std::numeric_limits<double>::max()
 
 Vertex::Vertex(int id,double lat, double lon,MapPoint *i): info(i), latitude(lat), longitude(lon), ID(id){}
 
@@ -75,6 +76,10 @@ void Vertex::updateInfo(MapPoint *i) {
     info=i;
 }
 
+vector<Edge> Vertex::getOutgoingEdges() {
+    return outgoingEdges;
+}
+
 
 bool Graph::removeVertex(double latitude, double longitude) {
     auto v=findVertex(latitude,longitude);
@@ -100,6 +105,8 @@ double Graph::distanceBetweenCoords(double lat1, double lat2, double long1, doub
     double c = 2 * atan2(sqrt(a), sqrt(1-a));
     double d = 6371 * c; //6371 is the Earth's radius
     return d;
+
+    //return sqrt((lat2-lat1)*(lat2-lat1)+(long2-long1)*(long2-long1));
 }
 
 Vertex *Graph::findVertex(int ID) {
@@ -132,7 +139,6 @@ Graph::Graph(string nodesFile, string edgesFile, string tagsFile) {
 
     //Reads number of nodes
     nFile>>numberElements;
-    std::cout<<(numberElements);
     for(int i=0;i<numberElements;i++){
         //Reads each vertex/node's info
         nFile>>c>>id>>c>>latitude>>c>>longitude>>c;
@@ -184,6 +190,76 @@ Graph::Graph(string nodesFile, string edgesFile, string tagsFile) {
             v->updateInfo(info);
         }
     }
+
+}
+
+vector<Vertex *> Graph::getVertexSet() {return vertexSet;}
+
+stack<Vertex*> Graph::AStar(Vertex *start, Vertex *end) {
+    vector<Vertex*> discoveredNodes;
+    discoveredNodes.push_back(start);
+    map<Vertex*,Vertex*> cameFrom;
+    map<Vertex*,double> costMap;
+    map<Vertex*,double> guessMap;
+    for(auto v:vertexSet){
+        costMap[v]=INF;
+        guessMap[v]=INF;
+    }
+    costMap[start]=0;
+    guessMap[start]=heuristic(start,end);
+    while(!discoveredNodes.empty()){
+        Vertex* current;
+        double min=INF;
+        vector<Vertex*>::iterator it=discoveredNodes.begin();
+        vector<Vertex*>::iterator toErase;
+        while(it!=discoveredNodes.end()){
+            if(guessMap[*it]<min){
+                min=guessMap[*it];
+                current=*it;
+                toErase=it;
+            }
+            it++;
+        }
+        if(current==end){
+            return reconstructPath(cameFrom,current,start);
+        }
+        discoveredNodes.erase(toErase);
+        for(auto edge:current->outgoingEdges){
+            double tentative=costMap[current]+edge.weight;
+            if(tentative<costMap[edge.dest]){
+                cameFrom[edge.dest]=current;
+                costMap[edge.dest]=tentative;
+                guessMap[edge.dest]=costMap[edge.dest]+ heuristic(current,end);
+                bool exists=false;
+                for(auto d:discoveredNodes){
+                    if(d==edge.dest){
+                        exists=true;
+                    }
+                }
+                if(!exists) discoveredNodes.push_back(edge.dest);
+            }
+        }
+
+    }
+    return {};
+}
+
+double Graph::heuristic(Vertex *start, Vertex *end) {
+    return distanceBetweenCoords(start->getLatitude(),end->getLatitude(),start->getLongitute(),end->getLongitute());
+}
+
+stack<Vertex *> Graph::reconstructPath(map<Vertex *, Vertex *> cameFrom, Vertex *current,Vertex *start) {
+    stack<Vertex*> path;
+    path.push(current);
+    while(current!=start){
+        current=cameFrom[current];
+        path.push(current);
+    }
+
+    return path;
+}
+
+queue<Vertex *> Graph::nearestNeighbour(vector<Vertex*> pointsTravel){
 
 }
 

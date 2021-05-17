@@ -12,6 +12,8 @@
 #include "../Elements/GarbageCollectionFacility.h"
 #include <stack>
 #include <math.h>
+#include <map>
+#include <queue>
 #include <iostream>
 
 using namespace std;
@@ -27,11 +29,12 @@ class Vertex{
     vector<Edge> outgoingEdges;
     void addEdge(Vertex *dest, double weight);
     bool removeEdgeTo(Vertex *dest);
-    double getLatitude();
-    double getLongitute();
 public:
     Vertex(int ID,double lat, double lon,MapPoint *info);
     void updateInfo(MapPoint *info);
+    double getLatitude();
+    double getLongitute();
+    vector<Edge> getOutgoingEdges();
     friend class Graph;
 };
 
@@ -45,7 +48,7 @@ public:
 };
 
 class Graph {
-    std::vector<Vertex *> vertexSet;    // vertex set
+    vector<Vertex *> vertexSet;    // vertex set
 
     Vertex *findVertex(double lat, double lon);
 
@@ -68,8 +71,18 @@ public:
 
     Vertex *findVertex(int ID);
 
+    vector<Vertex *> getVertexSet();;
+
     vector<vector<int>> tarjan(const int id_src);
 
     void strongconnect(Vertex* src, int &index, stack<Vertex*> &st, vector<vector<int>> &scc);
+
+    stack<Vertex*> AStar(Vertex* start,Vertex* end);
+
+    double heuristic(Vertex* start, Vertex* end);
+
+    stack<Vertex *> reconstructPath(map<Vertex *, Vertex *> cameFrom, Vertex *current,Vertex *start);
+
+    queue<Vertex *> nearestNeighbour(vector<Vertex*> pointsTravel);
 };
 #endif //WASTE_APP_GRAPH_H
