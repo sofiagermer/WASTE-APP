@@ -19,16 +19,16 @@ vector<int> largestSCC(Graph &graph) {
 }
 
 using namespace std;
+
 int main() {
-    /*
+
     Graph graph("../Map/porto_full_nodes_latlng.txt","../Map/porto_full_edges.txt","../Map/tags.txt");
-    vector <int> strongComponent = largestSCC(graph);
+    /*vector <int> strongComponent = largestSCC(graph);
     cout << strongComponent.size() << endl;
     for(auto elem : strongComponent){
         cout << elem << endl;
     }*/
-    Menu::mainMenu();
-
+    //Menu::mainMenu();
     return 0;
 }
 
