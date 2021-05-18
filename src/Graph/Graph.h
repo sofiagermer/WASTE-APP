@@ -77,7 +77,6 @@ public:
     double distanceBetweenCoords(double lat1, double lat2, double lon1, double lon2);
 
     Vertex *findVertex(int ID);
-
     vector<vector<int>> tarjan(const int id_src);
 
     void strongconnect(Vertex* src, int &index, stack<Vertex*> &st, vector<vector<int>> &scc);

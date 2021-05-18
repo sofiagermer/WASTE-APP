@@ -5,8 +5,13 @@
 #ifndef WASTE_APP_MENU_H
 #define WASTE_APP_MENU_H
 
+#include <iostream>
+#include <string>
 
-class Menu {
+namespace Menu {
+    void frontpage();
+    void beginningMenu();
+    void mainMenu();
 
 };
 
