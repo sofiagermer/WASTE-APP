@@ -5,6 +5,8 @@
 #ifndef WASTE_APP_USER_H
 #define WASTE_APP_USER_H
 
+#include <iostream>
+#include <string>
 
 class User {
 private:
@@ -13,9 +15,32 @@ private:
      */
     int userID;
 
-public:
-    User(int userId);
+    /**
+     * User's name, used for identification purposes
+     */
+    std::string name;
 
+    /**
+     * User's password
+     */
+    std::string password;
+
+
+public:
+    User(int uId);
+    User(int uId, std::string n, std::string pass);
+
+    void setUserId(int userId);
+
+    void setName(const std::string &name);
+
+    void setPassword(const std::string &password);
+
+    int getUserId() const;
+
+    const std::string &getName() const;
+
+    const std::string &getPassword() const;
 
 
 };
