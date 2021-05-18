@@ -4,7 +4,7 @@
 #define degreeToRadian (M_PI / 180.0)
 #define INF std::numeric_limits<double>::max()
 
-Vertex::Vertex(int id,double lat, double lon,MapPoint *i): info(i), latitude(lat), longitude(lon), ID(id){}
+Vertex::Vertex(int id, double x, double y, MapPoint *i): info(i), x(x), y(y), ID(id){}
 
 
 Edge::Edge(Vertex *d, double w): dest(d), weight(w) {}
@@ -15,26 +15,28 @@ int Graph::getNumVertex() const {
 }
 
 
-Vertex * Graph::findVertex(double lat, double lon) {
+Vertex * Graph::findVertex(double x, double y) {
     for (auto v : vertexSet)
-        if (v->latitude == lat && v->longitude == lon)
+        if (v->x == x && v->y == y)
             return v;
     return NULL;
 }
 
-bool Graph::addVertex(int id,double lat, double lon,MapPoint *in) {
-    if(findVertex(lat,lon)!=NULL)
+bool Graph::addVertex(int id,double x, double y,MapPoint *in) {
+    if(findVertex(x,y)!=NULL)
         return false;
-    vertexSet.push_back(new Vertex(id,lat,lon,in));
+    vertexSet.push_back(new Vertex(id,x,y,in));
     return true;
 }
 
-bool Graph::addEdge(double sourceLat, double sourceLon, double destLat, double destLon) {
-    if(findVertex(sourceLat,sourceLon)==NULL||findVertex(destLat,destLon)==NULL)
+bool Graph::addEdge(double sourceX, double sourceY, double destX, double destY
+) {
+    if(findVertex(sourceX,sourceY)==NULL||findVertex(destX,destY)==NULL)
         return false;
-    auto v1= findVertex(sourceLat,sourceLon);
-    double d=distanceBetweenCoords(sourceLat,destLat,sourceLon,destLon);
-    v1->addEdge(findVertex(destLat,destLon), d);
+    auto v1= findVertex(sourceX,sourceY);
+    double d=distanceBetweenCoords(sourceX,destX,sourceY,destY
+    );
+    v1->addEdge(findVertex(destX,destY), d);
     return true;
 }
 
@@ -42,9 +44,10 @@ void Vertex::addEdge(Vertex *d, double w) {
     outgoingEdges.push_back(Edge(d,w));
 }
 
-bool Graph::removeEdge(double sourceLat, double sourceLon, double destLat, double destLon) {
-    auto *v1=findVertex(sourceLat,sourceLon);
-    auto *v2=findVertex(destLat,destLon);
+bool Graph::removeEdge(double sourceX, double sourceY, double destX, double destY
+) {
+    auto *v1=findVertex(sourceX,sourceY);
+    auto *v2=findVertex(destX,destY);
     if(v1==NULL||v2==NULL) return false;
     return v1->removeEdgeTo(v2);
 }
@@ -60,12 +63,12 @@ bool Vertex::removeEdgeTo(Vertex *d) {
     return false;
 }
 
-double Vertex::getLatitude() {
-    return latitude;
+double Vertex::getX() {
+    return x;
 }
 
-double Vertex::getLongitute() {
-    return longitude;
+double Vertex::getY() {
+    return y;
 }
 
 int Vertex::getID(){
@@ -80,13 +83,13 @@ void Vertex::updateInfo(MapPoint *i) {
     info=i;
 }
 
-bool Graph::removeVertex(double latitude, double longitude) {
-    auto v=findVertex(latitude,longitude);
+bool Graph::removeVertex(double x, double y) {
+    auto v=findVertex(x,y);
     if(v==NULL) return false;
     typename std::vector<Vertex*>::iterator it;
     auto copy=vertexSet.begin();
     for(it=vertexSet.begin();it!=vertexSet.end();it++){
-        if((*it)->latitude==latitude && (*it)->longitude==longitude){
+        if((*it)->x == x && (*it)->y == y){
             copy=it;
             continue;
         }
@@ -96,16 +99,20 @@ bool Graph::removeVertex(double latitude, double longitude) {
     return true;
 }
 
-double Graph::distanceBetweenCoords(double lat1, double lat2, double long1, double long2) {
-    //uses the Haversine formula to calculate distances in a sphere
-    double dLong = (long2 - long1) * degreeToRadian;
-    double dLat = (lat2 - lat1) * degreeToRadian;
-    double a = pow(sin(dLat / 2.0), 2) + cos(lat1 * degreeToRadian) * cos(lat2 * degreeToRadian) * pow(sin(dLong / 2.0), 2);
+
+
+
+
+double Graph::distanceBetweenCoords(double x1, double x2, double y1, double y2) {
+    //uses the Haversine formula to calcuxe distances in a sphere
+    /*double dYg = (y2 - y1) * degreeToRadian;
+    double dX = (x2 - x1) * degreeToRadian;
+    double a = pow(sin(dX / 2.0), 2) + cos(x1 * degreeToRadian) * cos(x2 * degreeToRadian) * pow(sin(dYg / 2.0), 2);
     double c = 2 * atan2(sqrt(a), sqrt(1-a));
     double d = 6371 * c; //6371 is the Earth's radius
-    return d;
+    return d;*/
 
-    //return sqrt((lat2-lat1)*(lat2-lat1)+(long2-long1)*(long2-long1));
+    return sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
 }
 
 Vertex *Graph::findVertex(int ID) {
@@ -124,7 +131,7 @@ bool Graph::addEdge(int id1, int id2) {
     auto v2= findVertex(id2);
     if(v1==NULL||v2==NULL)
         return false;
-    double d=distanceBetweenCoords(v1->getLatitude(),v2->getLatitude(),v1->getLongitute(),v2->getLongitute());
+    double d=distanceBetweenCoords(v1->getX(), v2->getX(), v1->getY(), v2->getY());
     v1->addEdge(v2, d);
     return true;
 }
@@ -141,17 +148,17 @@ Graph::Graph(string nodesFile, string edgesFile, string tagsFile) {
     char c;
 
     int id;
-    double latitude,longitude;
+    double x,y;
 
     //Reads number of nodes
     nFile>>numberElements;
     for(int i=0;i<numberElements;i++){
         if(i%(numberElements/5)==0) cout<<"* ";
         //Reads each vertex/node's info
-        nFile>>c>>id>>c>>latitude>>c>>longitude>>c;
-        addVertex(id,latitude,longitude, nullptr);
-
+        nFile>>c>>id>>c>>x>>c>>y>>c;
+        addVertex(id,x,y, nullptr);
     }
+
     int v1,v2;
     cout<<"50% ";
     eFile>>numberElements;
@@ -257,7 +264,7 @@ stack<Vertex*> Graph::AStar(Vertex *start, Vertex *end) {
 }
 
 double Graph::heuristic(Vertex *start, Vertex *end) {
-    return distanceBetweenCoords(start->getLatitude(),end->getLatitude(),start->getLongitute(),end->getLongitute());
+    return distanceBetweenCoords(start->getX(), end->getX(), start->getY(), end->getY());
 }
 
 stack<Vertex *> Graph::reconstructPath(map<Vertex *, Vertex *> cameFrom, Vertex *current,Vertex *start) {
@@ -323,13 +330,13 @@ bool findStackElement (stack<Vertex*> stackV, Vertex * vertex)
 
 vector<vector<int>> Graph::tarjan() {
     for (Vertex * vertex : vertexSet) {
-        vertex->index = NULL;
+        vertex->index = 0;
     }
 
     vector<vector<int>> scc;
 
     for (Vertex* vertex : vertexSet) {
-        if (vertex->index == NULL) {
+        if (vertex->index == 0) {
             strongConnectedComponent(vertex, scc);
         }
     }
@@ -350,7 +357,7 @@ void Graph::DFS_Tarjan(Vertex* src, int nid, stack<Vertex*> &L, vector<vector<in
     src->low = nid;
 
     for (Edge edge : src->getOutgoingEdges()) {
-        if (edge.dest->index == NULL) {
+        if (edge.dest->index == 0) {
             DFS_Tarjan(edge.dest, nid, L, scc);
             src->low = min(src->low, edge.dest->low);
         } else if (findStackElement(L, edge.dest)) {
@@ -385,17 +392,45 @@ vector<int> Graph::largestSCC() {
 }
 
 void Graph::preprocessGraph() {
+    vector<int> strongComponent = this->largestSCC();
+    stack<int> toRemove;
+    int i=0,k=0;
     bool remove;
-    auto strongComponent= largestSCC();
-    for(auto v:vertexSet){
+    for(Vertex* v:vertexSet){
         remove=true;
-        for(auto id:strongComponent){
-            if(v->getID()==id){
+        for(int j=0;j<strongComponent.size();j++){
+            if(v->getID()==strongComponent[j]) {
                 remove=false;
                 break;
             }
         }
-        if(remove) removeVertex(v->getLatitude(),v->getLongitute());
+        if(remove==true) {
+            toRemove.push(v->getID());
+            k++;
+        };
+    }
+    cout<<toRemove.size()<<"\n";
+    while(!toRemove.empty()){
+
+        if(!removeVertex(toRemove.top())){
+            cout<<"e\n"<<endl;
+            i++;
+        }
+        toRemove.pop();
+    }
+    cout<<i;
+    ofstream nodeFile("../Map/processedNodes.txt"),edgeFile("../Map/processedEdges.txt");
+    nodeFile<<vertexSet.size()<<"\n";
+    int edges=0;
+    for (auto v:vertexSet){
+        nodeFile<<setprecision(17)<<"("<<v->getID()<<","<<v->getX()<<","<<v->getY()<<")\n";
+        edges+=v->getOutgoingEdges().size();
+    }
+    edgeFile<<edges<<"\n";
+    for (auto v:vertexSet){
+        for(auto e:v->getOutgoingEdges()){
+            edgeFile<<setprecision(17)<<"("<<v->getID()<<","<<e.dest->getID()<<")\n";
+        }
     }
 }
 
@@ -404,7 +439,7 @@ vector<vector<int>> Graph::kosaraju() {
     unordered_set<Vertex*> S;
     vector<vector<int>> SCC;
     for (Vertex * vertex : vertexSet) {
-        vertex->index = NULL;
+        vertex->index = 0;
     }
 
     for (Vertex * vertex : vertexSet) {
@@ -444,11 +479,28 @@ void Graph::assign(Vertex *u, Vertex *root, vector<int> &sc) {
 
 Graph Graph::getTransposedGraph() const {
     Graph transposedGraph;
-    for(const Vertex *v : vertexSet) transposedGraph.addVertex(v->ID, v->latitude, v->longitude, v->info);
+    for(const Vertex *v : vertexSet) transposedGraph.addVertex(v->ID, v->x, v->y, v->info);
     for(Vertex *v : vertexSet){
         for( const Edge e : v->getOutgoingEdges()){
-            transposedGraph.addEdge(e.dest->getLatitude(), e.dest->getLongitute(),v->getLatitude(),v->getLongitute());
+            transposedGraph.addEdge(e.dest->getX(), e.dest->getY(), v->getX(), v->getY());
         }
     }
     return transposedGraph;
+}
+
+bool Graph::removeVertex(int id) {
+    auto v=findVertex(id);
+    if(v==NULL) return false;
+    typename std::vector<Vertex*>::iterator it;
+    auto copy=vertexSet.begin();
+    for(it=vertexSet.begin();it!=vertexSet.end();it++){
+        if((*it)->getID()==id){
+            copy=it;
+            continue;
+        }
+        (*it)->removeEdgeTo(v);
+    }
+    vertexSet.erase(copy);
+    free(v);
+    return true;
 }

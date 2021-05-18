@@ -25,8 +25,8 @@ class Vertex;
 class Vertex{
     int ID;
     MapPoint *info;
-    double latitude;
-    double longitude;
+    double x;
+    double y;
     vector<Edge> outgoingEdges;
     void addEdge(Vertex *dest, double weight);
     bool removeEdgeTo(Vertex *dest);
@@ -34,10 +34,10 @@ class Vertex{
     int index = -1;
     int low = -1;
 public:
-    Vertex(int ID,double lat, double lon,MapPoint *info);
+    Vertex(int ID, double x, double y, MapPoint *info);
     void updateInfo(MapPoint *info);
-    double getLatitude();
-    double getLongitute();
+    double getX();
+    double getY();
     vector<Edge> getOutgoingEdges();
     friend class Graph;
 
@@ -56,7 +56,7 @@ public:
 class Graph {
     vector<Vertex *> vertexSet;    // vertex set
 
-    Vertex *findVertex(double lat, double lon);
+    Vertex *findVertex(double x, double y);
 
 public:
     Graph(string nodesFile,string edgesFile,string tagsFile);
@@ -65,17 +65,19 @@ public:
 
     int getNumVertex() const;
 
-    bool addVertex(int id,double lat, double lon,MapPoint *info);
+    bool addVertex(int id,double x, double y,MapPoint *info);
 
-    bool removeVertex(double latitude, double longitude);
+    bool removeVertex(double x, double y);
 
-    bool addEdge(double sourceLat, double sourceLon, double destLat, double destLon);
+    bool removeVertex(int id);
+
+    bool addEdge(double sourceX, double sourceY, double destX, double destY);
 
     bool addEdge(int id1, int id2);
 
-    bool removeEdge(double sourceLat, double sourceLon, double destLat, double destLon);
+    bool removeEdge(double sourceX, double sourceY, double destX, double destY);
 
-    double distanceBetweenCoords(double lat1, double lat2, double lon1, double lon2);
+    double distanceBetweenCoords(double x1, double x2, double y1, double y2);
 
     Vertex *findVertex(int ID);
 
@@ -97,8 +99,9 @@ public:
     void DFS_Tarjan(Vertex* src, int nid, stack<Vertex*> &st, vector<vector<int>> &scc);
 
     vector<int> largestSCC();
+
     void preprocessGraph();
-    /*unordered_map<Vertex *, Vertex >  kosaraju();
+
     vector<vector<int>> kosaraju();
 
     void DFS_Kosaraju(Vertex* src, stack<Vertex*> &L,  unordered_set<Vertex*> S);
@@ -108,6 +111,6 @@ public:
     Graph getTransposedGraph() const;
 
 
-     */
+
 };
 #endif //WASTE_APP_GRAPH_H

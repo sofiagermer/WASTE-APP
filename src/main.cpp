@@ -24,10 +24,10 @@ using namespace std;
 
 int main() {
 
-    Graph graph("../Map/porto_full_nodes_latlng.txt","../Map/porto_full_edges.txt","../Map/tags.txt");
+    Graph graph("../Map/porto_full_nodes_xy.txt","../Map/porto_full_edges.txt","../Map/tags.txt");
     graph.preprocessGraph();
-    cout<<"terminei";
-    vector <int> strongComponent = KO(graph);
+    //cout<<"terminei";
+    //vector <int> strongComponent = KO(graph);
     /*cout << strongComponent.size() << endl;
     for(auto elem : strongComponent){
         cout << elem << endl;
