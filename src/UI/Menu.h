@@ -7,11 +7,19 @@
 
 #include <iostream>
 #include <string>
+#include "../Elements/User.h"
+#include "../Elements/Driver.h"
 
 namespace Menu {
     void frontpage();
-    void beginningMenu();
+    void beginningOptions();
     void mainMenu();
+    void userMenu();
+    void driverMenu();
+    void loginOptions();
+    void userOptions(User &user);
+    void driverOptions(User &user);
+
 
 };
 
