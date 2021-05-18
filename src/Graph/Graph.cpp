@@ -131,6 +131,10 @@ bool Graph::addEdge(int id1, int id2) {
 
 
 Graph::Graph(string nodesFile, string edgesFile, string tagsFile) {
+    cout<< "==================================="<<endl;
+    cout<< "         LOADING THE GRAPH         "<<endl;
+    cout<< "==================================="<<endl;
+    cout<<"0% ";
     ifstream nFile(nodesFile),eFile(edgesFile),tFile(tagsFile);
 
     int numberElements;
@@ -142,16 +146,18 @@ Graph::Graph(string nodesFile, string edgesFile, string tagsFile) {
     //Reads number of nodes
     nFile>>numberElements;
     for(int i=0;i<numberElements;i++){
+        if(i%(numberElements/5)==0) cout<<"* ";
         //Reads each vertex/node's info
         nFile>>c>>id>>c>>latitude>>c>>longitude>>c;
         addVertex(id,latitude,longitude, nullptr);
 
     }
     int v1,v2;
-
+    cout<<"50% ";
     eFile>>numberElements;
 
     for(int i=0;i<numberElements;i++){
+        if(i%(numberElements/6)==0) cout<<"* ";
         eFile>>c>>v1>>c>>v2>>c;
         addEdge(v1,v2);
     }
@@ -160,6 +166,7 @@ Graph::Graph(string nodesFile, string edgesFile, string tagsFile) {
     int tags;
     tFile>>tags;
     for(int i=0;i<tags;i++){
+        if(i%6==0) cout<<"* ";
         tFile>>type;
         tFile>>numberElements;
         TrashType trashType;
@@ -191,6 +198,7 @@ Graph::Graph(string nodesFile, string edgesFile, string tagsFile) {
             auto v=findVertex(id);
             v->updateInfo(info);
         }
+        cout<<"100%"<<endl;
     }
 
 }
@@ -359,6 +367,35 @@ void Graph::DFS_Tarjan(Vertex* src, int nid, stack<Vertex*> &L, vector<vector<in
             sc.push_back(v->getID());
         } while (v != src);
         scc.push_back(sc);
+    }
+}
+
+vector<int> Graph::largestSCC() {
+    vector<vector<int>> scc_list = tarjan();
+    cout << "Total number of strongly connected components: " << scc_list.size() << endl;
+    int majorSize = 0;
+    int index = -1;
+    for(int i = 0; i < scc_list.size(); i++){
+        if(scc_list.at(i).size() > majorSize){
+            majorSize = scc_list.at(i).size();
+            index = i;
+        }
+    }
+    return scc_list.at(index);
+}
+
+void Graph::preprocessGraph() {
+    bool remove;
+    auto strongComponent= largestSCC();
+    for(auto v:vertexSet){
+        remove=true;
+        for(auto id:strongComponent){
+            if(v->getID()==id){
+                remove=false;
+                break;
+            }
+        }
+        if(remove) removeVertex(v->getLatitude(),v->getLongitute());
     }
 }
 /*

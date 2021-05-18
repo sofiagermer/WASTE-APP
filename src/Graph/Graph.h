@@ -96,12 +96,17 @@ public:
 
     void DFS_Tarjan(Vertex* src, int nid, stack<Vertex*> &st, vector<vector<int>> &scc);
 
-    unordered_map<Vertex *, Vertex >  kosaraju();
+    vector<int> largestSCC();
+    void preprocessGraph();
+    /*unordered_map<Vertex *, Vertex >  kosaraju();
 
     void DFS_Kosaraju(Vertex* src, stack<Vertex> &L,  unordered_set<Vertex> S);
 
     void assign(Vertex * u, Vertex * root, unordered_map<Vertex *, Vertex *> SCC);
 
     Graph getTransposedGraph() const;
+
+
+     */
 };
 #endif //WASTE_APP_GRAPH_H
