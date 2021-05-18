@@ -398,40 +398,11 @@ void Graph::preprocessGraph() {
         if(remove) removeVertex(v->getLatitude(),v->getLongitute());
     }
 }
-/*
-Graph Graph::getTransposedGraph() const {
-    Graph transposedGraph;
-    for(const Vertex *v : vertexSet) transposedGraph.addVertex(v->ID, v->latitude, v->longitude, v->info);
-    for(Vertex *v : vertexSet){
-        for( const Edge e : v->getOutgoingEdges()){
-            transposedGraph.addEdge(v->getLatitude(),v->getLongitute(), e.dest->getLatitude(), e.dest->getLongitute());
-        }
-    }
-    return transposedGraph;
-}
 
-void Graph::assign(Vertex *u, Vertex *root, unordered_map<Vertex *, Vertex *> SCC) {
-    if (SCC.find(u) != SCC.end()) return;
-    SCC[u] = root;
-    Graph temp = getTransposedGraph();
-    for (Edge e : temp.findVertex(u->ID)->getOutgoingEdges()) {
-        assign(e.dest, root,SCC);
-    }
-}
-
-void Graph::DFS_Kosaraju(Vertex *src, stack<Vertex> &L, unordered_set <Vertex> S) {
-    if (S.find(src) != S.end()) return;
-    S.insert(src);
-    for(Edge e : src->getOutgoingEdges()) {
-        DFS_Kosaraju(e.dest, L, S);
-    }
-    L.push(src);
-}
-
-unordered_map<Vertex *, Vertex> Graph::kosaraju() {
-    stack<Vertex> L;
+vector<vector<int>> Graph::kosaraju() {
+    stack<Vertex*> L;
     unordered_set<Vertex*> S;
-    unordered_map<Vertex *, Vertex *> SCC;
+    vector<vector<int>> SCC;
     for (Vertex * vertex : vertexSet) {
         vertex->index = NULL;
     }
@@ -441,11 +412,43 @@ unordered_map<Vertex *, Vertex> Graph::kosaraju() {
     }
 
     while(!L.empty()){
-        Vertex * vertex = L.top();
+        Vertex *vertex = L.top();
         L.pop();
-        assign(vertex, vertex, SCC);
+        vector<int> sc;
+        assign(vertex, vertex, sc);
+        SCC.push_back(sc);
     }
 
     return SCC;
 }
-*/
+
+void Graph::DFS_Kosaraju(Vertex *src, stack<Vertex*> &L, unordered_set <Vertex *> S) {
+    if (S.find(src) != S.end()) return;
+    S.insert(src);
+    for(Edge e : src->getOutgoingEdges()) {
+        DFS_Kosaraju(e.dest, L, S);
+    }
+    L.push(src);
+}
+
+void Graph::assign(Vertex *u, Vertex *root, vector<int> &sc) {
+    vector<int>:: iterator it;
+    it = find(sc.begin(), sc.end(), u->getID());
+    if(it != sc.end()) return;
+    sc.push_back(root->getID());
+    Graph temp = getTransposedGraph();
+    for (Edge e : temp.findVertex(u->ID)->getOutgoingEdges()) {
+        assign(e.dest, root,sc);
+    }
+}
+
+Graph Graph::getTransposedGraph() const {
+    Graph transposedGraph;
+    for(const Vertex *v : vertexSet) transposedGraph.addVertex(v->ID, v->latitude, v->longitude, v->info);
+    for(Vertex *v : vertexSet){
+        for( const Edge e : v->getOutgoingEdges()){
+            transposedGraph.addEdge(e.dest->getLatitude(), e.dest->getLongitute(),v->getLatitude(),v->getLongitute());
+        }
+    }
+    return transposedGraph;
+}

@@ -15,6 +15,7 @@
 #include <map>
 #include <queue>
 #include <iostream>
+#include <bits/stdc++.h>
 
 using namespace std;
 class Edge;
@@ -59,7 +60,7 @@ class Graph {
 
 public:
     Graph(string nodesFile,string edgesFile,string tagsFile);
-
+    Graph(){};
     vector<Vertex *> getVertexSet();
 
     int getNumVertex() const;
@@ -89,7 +90,6 @@ public:
     stack<Vertex *> reconstructPath(map<Vertex *, Vertex *> cameFrom, Vertex *current,Vertex *start);
 
     queue<Vertex *> nearestNeighbour(vector<Vertex*> pointsTravel);
-    vector<vector<int>> kosaraju();
     vector<vector<int>> tarjan();
 
     void strongConnectedComponent(Vertex* src, vector<vector<int>> &scc); //Tarjan
@@ -99,10 +99,11 @@ public:
     vector<int> largestSCC();
     void preprocessGraph();
     /*unordered_map<Vertex *, Vertex >  kosaraju();
+    vector<vector<int>> kosaraju();
 
-    void DFS_Kosaraju(Vertex* src, stack<Vertex> &L,  unordered_set<Vertex> S);
+    void DFS_Kosaraju(Vertex* src, stack<Vertex*> &L,  unordered_set<Vertex*> S);
 
-    void assign(Vertex * u, Vertex * root, unordered_map<Vertex *, Vertex *> SCC);
+    void assign(Vertex * u, Vertex * root, vector<int> &sc);
 
     Graph getTransposedGraph() const;
 
