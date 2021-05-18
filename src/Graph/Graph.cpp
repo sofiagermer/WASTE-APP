@@ -1,7 +1,3 @@
-//
-// Created by migue on 11/05/2021.
-//
-
 #include "Graph.h"
 
 
@@ -83,11 +79,6 @@ vector<Edge> Vertex::getOutgoingEdges() {
 void Vertex::updateInfo(MapPoint *i) {
     info=i;
 }
-/*
-vector<Edge> Vertex::getOutgoingEdges() {
-    return outgoingEdges;
-}*/
-
 
 bool Graph::removeVertex(double latitude, double longitude) {
     auto v=findVertex(latitude,longitude);
@@ -207,9 +198,7 @@ Graph::Graph(string nodesFile, string edgesFile, string tagsFile) {
  * Kosaraju
  * ================================================================================================
  */
-/*
-vector<Vertex *> Graph::getVertexSet() {return vertexSet;}
-*/
+
 stack<Vertex*> Graph::AStar(Vertex *start, Vertex *end) {
     vector<Vertex*> discoveredNodes;
     discoveredNodes.push_back(start);
@@ -285,25 +274,20 @@ vector<vector<int>> Graph::kosaraju() {
     for (Vertex * vertex : vertexSet) {
         vertex->index = NULL;
     }
-
     vector<vector<int>> scc;
-
     for (Vertex* vertex : vertexSet) {
         if (vertex->index == NULL) {
             strongConnectedComponent(vertex, scc);
         }
     }
-
     return scc;
 }
-
 void Graph::DFS_Kosaraju(Vertex* src, int nid, stack<Vertex*> &L, vector<vector<int>> &scc) {
     if (S.find(u) != S.end()) return;
     S.insert(u);
     for (node_t v : G->getAdj(u)) DFS_K(v);
     L.push(u);
 }
-
 void Graph:: assign(){
     if (SCCs.find(u) != SCCs.end()) return;
     SCCs[u] = root;
@@ -377,3 +361,54 @@ void Graph::DFS_Tarjan(Vertex* src, int nid, stack<Vertex*> &L, vector<vector<in
         scc.push_back(sc);
     }
 }
+/*
+Graph Graph::getTransposedGraph() const {
+    Graph transposedGraph;
+    for(const Vertex *v : vertexSet) transposedGraph.addVertex(v->ID, v->latitude, v->longitude, v->info);
+    for(Vertex *v : vertexSet){
+        for( const Edge e : v->getOutgoingEdges()){
+            transposedGraph.addEdge(v->getLatitude(),v->getLongitute(), e.dest->getLatitude(), e.dest->getLongitute());
+        }
+    }
+    return transposedGraph;
+}
+
+void Graph::assign(Vertex *u, Vertex *root, unordered_map<Vertex *, Vertex *> SCC) {
+    if (SCC.find(u) != SCC.end()) return;
+    SCC[u] = root;
+    Graph temp = getTransposedGraph();
+    for (Edge e : temp.findVertex(u->ID)->getOutgoingEdges()) {
+        assign(e.dest, root,SCC);
+    }
+}
+
+void Graph::DFS_Kosaraju(Vertex *src, stack<Vertex> &L, unordered_set <Vertex> S) {
+    if (S.find(src) != S.end()) return;
+    S.insert(src);
+    for(Edge e : src->getOutgoingEdges()) {
+        DFS_Kosaraju(e.dest, L, S);
+    }
+    L.push(src);
+}
+
+unordered_map<Vertex *, Vertex> Graph::kosaraju() {
+    stack<Vertex> L;
+    unordered_set<Vertex*> S;
+    unordered_map<Vertex *, Vertex *> SCC;
+    for (Vertex * vertex : vertexSet) {
+        vertex->index = NULL;
+    }
+
+    for (Vertex * vertex : vertexSet) {
+        DFS_Kosaraju(vertex, L, S);
+    }
+
+    while(!L.empty()){
+        Vertex * vertex = L.top();
+        L.pop();
+        assign(vertex, vertex, SCC);
+    }
+
+    return SCC;
+}
+*/
