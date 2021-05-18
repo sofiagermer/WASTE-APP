@@ -23,8 +23,8 @@ using namespace std;
 int main() {
 
     Graph graph("../Map/porto_full_nodes_latlng.txt","../Map/porto_full_edges.txt","../Map/tags.txt");
-    /*vector <int> strongComponent = largestSCC(graph);
-    cout << strongComponent.size() << endl;
+    vector <int> strongComponent = largestSCC(graph);
+    /*cout << strongComponent.size() << endl;
     for(auto elem : strongComponent){
         cout << elem << endl;
     }*/

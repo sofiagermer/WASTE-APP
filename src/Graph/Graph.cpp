@@ -1,7 +1,3 @@
-//
-// Created by migue on 11/05/2021.
-//
-
 #include "Graph.h"
 
 
@@ -84,7 +80,6 @@ void Vertex::updateInfo(MapPoint *i) {
     info=i;
 }
 
-
 bool Graph::removeVertex(double latitude, double longitude) {
     auto v=findVertex(latitude,longitude);
     if(v==NULL) return false;
@@ -136,12 +131,8 @@ bool Graph::addEdge(int id1, int id2) {
 
 
 Graph::Graph(string nodesFile, string edgesFile, string tagsFile) {
-    cout<< "==================================="<<endl;
-    cout<< "         LOADING THE GRAPH         "<<endl;
-    cout<< "==================================="<<endl;
-    cout<<"0% ";
     ifstream nFile(nodesFile),eFile(edgesFile),tFile(tagsFile);
-    int progress;
+
     int numberElements;
     char c;
 
@@ -151,18 +142,16 @@ Graph::Graph(string nodesFile, string edgesFile, string tagsFile) {
     //Reads number of nodes
     nFile>>numberElements;
     for(int i=0;i<numberElements;i++){
-        if(i%(numberElements/5)==0) cout<<"* ";
         //Reads each vertex/node's info
         nFile>>c>>id>>c>>latitude>>c>>longitude>>c;
         addVertex(id,latitude,longitude, nullptr);
 
     }
     int v1,v2;
-    cout<<"50% ";
+
     eFile>>numberElements;
 
     for(int i=0;i<numberElements;i++){
-        if(i%(numberElements/6)==0) cout<<"* ";
         eFile>>c>>v1>>c>>v2>>c;
         addEdge(v1,v2);
     }
@@ -171,7 +160,6 @@ Graph::Graph(string nodesFile, string edgesFile, string tagsFile) {
     int tags;
     tFile>>tags;
     for(int i=0;i<tags;i++){
-        if(i%6==0) cout<<"* ";
         tFile>>type;
         tFile>>numberElements;
         TrashType trashType;
@@ -204,12 +192,13 @@ Graph::Graph(string nodesFile, string edgesFile, string tagsFile) {
             v->updateInfo(info);
         }
     }
-    cout<<"100%"<<endl;
+
 }
 /* ================================================================================================
- * A Star
+ * Kosaraju
  * ================================================================================================
  */
+
 stack<Vertex*> Graph::AStar(Vertex *start, Vertex *end) {
     vector<Vertex*> discoveredNodes;
     discoveredNodes.push_back(start);
@@ -278,44 +267,27 @@ queue<Vertex *> Graph::nearestNeighbour(vector<Vertex*> pointsTravel){
 
 }
 
-/* ================================================================================================
- * KOSARAJU
- * ================================================================================================
- */
-
+/*-----------------TARJAN----------------------------------------------------------------*/
 /*
 vector<vector<int>> Graph::kosaraju() {
     stack<Vertex*> L;
-    unordered_set<Vertex*> S;
     for (Vertex * vertex : vertexSet) {
         vertex->index = NULL;
     }
-
     vector<vector<int>> scc;
-
-    for (Vertex * vertex : vertexSet) {
-        DFS_Kosaraju(vertex, L);
+    for (Vertex* vertex : vertexSet) {
+        if (vertex->index == NULL) {
+            strongConnectedComponent(vertex, scc);
+        }
     }
-
-    while(!L.empty()){
-        Vertex * vertex = L.top();
-        L.pop();
-        assign(vertex, vertex);
-    }
-
-
     return scc;
 }
-
-void Graph::DFS_Kosaraju(Vertex* src, stack<Vertex*> &L,  unordered_set<Vertex*> S) {
-    if (S.find(src) != S.end()) return;
-    S.insert(src);
-    for(Edge e : src->getOutgoingEdges()) {
-        DFS_Kosaraju(e.dest, L, S);
-    }
-    L.push(src);
+void Graph::DFS_Kosaraju(Vertex* src, int nid, stack<Vertex*> &L, vector<vector<int>> &scc) {
+    if (S.find(u) != S.end()) return;
+    S.insert(u);
+    for (node_t v : G->getAdj(u)) DFS_K(v);
+    L.push(u);
 }
-
 void Graph:: assign(){
     if (SCCs.find(u) != SCCs.end()) return;
     SCCs[u] = root;
@@ -328,6 +300,18 @@ void Graph:: assign(){
  * Tarjan
  * ================================================================================================
  */
+
+bool findStackElement (stack<Vertex*> stackV, Vertex * vertex)
+{
+    while (!stackV.empty() && stackV.top() != vertex){
+        stackV.pop();
+    }
+
+    if (!stackV.empty())
+        return true;
+
+    return false;
+}
 
 vector<vector<int>> Graph::tarjan() {
     for (Vertex * vertex : vertexSet) {
@@ -377,14 +361,54 @@ void Graph::DFS_Tarjan(Vertex* src, int nid, stack<Vertex*> &L, vector<vector<in
         scc.push_back(sc);
     }
 }
+/*
+Graph Graph::getTransposedGraph() const {
+    Graph transposedGraph;
+    for(const Vertex *v : vertexSet) transposedGraph.addVertex(v->ID, v->latitude, v->longitude, v->info);
+    for(Vertex *v : vertexSet){
+        for( const Edge e : v->getOutgoingEdges()){
+            transposedGraph.addEdge(v->getLatitude(),v->getLongitute(), e.dest->getLatitude(), e.dest->getLongitute());
+        }
+    }
+    return transposedGraph;
+}
 
-bool Graph::findStackElement(stack<Vertex *> &stack, Vertex *vertex) {
-    while (!stack.empty() && stack.top() != vertex){
-        stack.pop();
+void Graph::assign(Vertex *u, Vertex *root, unordered_map<Vertex *, Vertex *> SCC) {
+    if (SCC.find(u) != SCC.end()) return;
+    SCC[u] = root;
+    Graph temp = getTransposedGraph();
+    for (Edge e : temp.findVertex(u->ID)->getOutgoingEdges()) {
+        assign(e.dest, root,SCC);
+    }
+}
+
+void Graph::DFS_Kosaraju(Vertex *src, stack<Vertex> &L, unordered_set <Vertex> S) {
+    if (S.find(src) != S.end()) return;
+    S.insert(src);
+    for(Edge e : src->getOutgoingEdges()) {
+        DFS_Kosaraju(e.dest, L, S);
+    }
+    L.push(src);
+}
+
+unordered_map<Vertex *, Vertex> Graph::kosaraju() {
+    stack<Vertex> L;
+    unordered_set<Vertex*> S;
+    unordered_map<Vertex *, Vertex *> SCC;
+    for (Vertex * vertex : vertexSet) {
+        vertex->index = NULL;
     }
 
-    if (!stack.empty())
-        return true;
+    for (Vertex * vertex : vertexSet) {
+        DFS_Kosaraju(vertex, L, S);
+    }
 
-    return false;
+    while(!L.empty()){
+        Vertex * vertex = L.top();
+        L.pop();
+        assign(vertex, vertex, SCC);
+    }
+
+    return SCC;
 }
+*/

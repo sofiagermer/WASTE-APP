@@ -11,7 +11,6 @@
 #include "../Elements/TrashContainer.h"
 #include "../Elements/GarbageCollectionFacility.h"
 #include <stack>
-#include <bits/stdc++.h>
 #include <math.h>
 #include <map>
 #include <queue>
@@ -78,6 +77,7 @@ public:
     double distanceBetweenCoords(double lat1, double lat2, double lon1, double lon2);
 
     Vertex *findVertex(int ID);
+
     vector<vector<int>> tarjan(const int id_src);
 
     void strongconnect(Vertex* src, int &index, stack<Vertex*> &st, vector<vector<int>> &scc);
@@ -96,6 +96,12 @@ public:
 
     void DFS_Tarjan(Vertex* src, int nid, stack<Vertex*> &st, vector<vector<int>> &scc);
 
-    bool findStackElement(stack<Vertex *> &stack, Vertex *pVertex);
+    unordered_map<Vertex *, Vertex >  kosaraju();
+
+    void DFS_Kosaraju(Vertex* src, stack<Vertex> &L,  unordered_set<Vertex> S);
+
+    void assign(Vertex * u, Vertex * root, unordered_map<Vertex *, Vertex *> SCC);
+
+    Graph getTransposedGraph() const;
 };
 #endif //WASTE_APP_GRAPH_H

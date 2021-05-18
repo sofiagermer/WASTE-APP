@@ -5,7 +5,7 @@
 #ifndef WASTE_APP_GRAPHVIEW_H
 #define WASTE_APP_GRAPHVIEW_H
 
-#include "graphviewer.h"
+//#include "graphviewer.h"
 #include "../Graph/Graph.h"
 
 class GraphView {

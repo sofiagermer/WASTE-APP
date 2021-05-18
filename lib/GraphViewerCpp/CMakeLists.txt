@@ -7,7 +7,7 @@ if(NOT DEFINED CMAKE_SUPPRESS_DEVELOPER_WARNINGS)
 endif()
 
 if(DEFINED WIN32)
-    add_subdirectory(SFML)
+    #add_subdirectory(SFML)
 endif()
 
 include_directories(SFML/include)
