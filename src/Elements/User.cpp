@@ -6,7 +6,10 @@
 
 #include <utility>
 
-User::User(int uId) : userID(uId) {}
+User::User(int uId) : userID(uId) {
+    name = "abc xyz";
+    password = "abcxyz";
+}
 
 User::User(int uId, std::string n, std::string pass) : userID(uId), name(std::move(n)), password(std::move(pass)) {}
 
