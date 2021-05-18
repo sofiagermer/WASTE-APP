@@ -10,6 +10,8 @@
 #include "../Elements/User.h"
 #include "../Elements/Driver.h"
 
+#define INVALIDOPTION "That's not a valid option! Try again please:"
+
 namespace Menu {
     void frontpage();
     void beginningOptions();
@@ -17,6 +19,7 @@ namespace Menu {
     void userMenu();
     void driverMenu();
     void loginOptions();
+    User* createUser();
     void userOptions(User &user);
     void driverOptions(User &user);
 

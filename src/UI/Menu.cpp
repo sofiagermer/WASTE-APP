@@ -32,6 +32,9 @@ void Menu::mainMenu() {
     while (true){
         Menu::beginningOptions();
         std::getline(std::cin, input);
+
+        if(input.size() != 1) continue;
+
         switch (input[0]) {
             case '1':
                 //Users Menu
@@ -45,28 +48,60 @@ void Menu::mainMenu() {
                 std::cout << "Thank you for using WASTE-APP, we hope to you see again soon!" << std::endl;
                 return;
             default:
-                std::cout << "That's not a valid option! Try again please:" << std::endl;
+                std::cout << INVALIDOPTION << std::endl;
         }
     }
 }
 
 void Menu::userMenu() {
     std::string input;
+    bool endWhile = false;
+    User* user = new User(0);
 
     //ask for credentials
-    std::cout << "Now we need to know who you are." << std::endl;
-    Menu::loginOptions();
-    //check if valid credentials
+    do {
+        std::cout << "Now we need to know who you are." << std::endl;
+        Menu::loginOptions();
+        std::getline(std::cin, input);
+
+        if(input.size() != 1) continue;
+
+        switch (input[0]) {
+            case '1':
+                //Log in
+                std::cout << "Logging in to an account..." << std::endl;
+                //DO AFTER IMPLEMENTING A CLASS THAT SAVES USER'S INFOS!!!
+                endWhile = true;
+                break;
+
+            case '2':
+                //Create account
+                std::cout << "Creating account..." << std::endl;
+                delete user;
+                user = Menu::createUser();
+                endWhile = true;
+                break;
+
+            case '9':
+                return;
+
+            default:
+                std::cout << INVALIDOPTION << std::endl;
+                break;
+        }
+    } while (!endWhile);
 
     //Get User
     User* userpt = new User(1);
 
     //show options
-    std::string userName = "ABC XYZ";
-    std::cout << "Hello there " << userName << std::endl;
+    std::cout << "Hello there " << user->getName() << std::endl;
     while (true){
         Menu::userOptions(*userpt);
         std::getline(std::cin, input);
+
+        if(input.size() != 1) continue;
+
         switch (input[0]) {
             case '1':
                 //Set/change address
@@ -77,12 +112,12 @@ void Menu::userMenu() {
                 std::cout << "Set/cancel pickup" << std::endl;
                 break;
             case '9': {
-                std::cout << "we hope to you see again" << userName << std::endl;
+                std::cout << "we hope to you see again" << user->getName() << std::endl;
                 delete userpt;
                 return;
             }
             default:
-                std::cout << "That's not a valid option! Try again please:" << std::endl;
+                std::cout << INVALIDOPTION << std::endl;
         }
     }
 
@@ -106,6 +141,9 @@ void Menu::driverMenu() {
     while (true){
         Menu::driverOptions(*userpt);
         std::getline(std::cin, input);
+
+        if(input.size() != 1) continue;
+
         switch (input[0]) {
             case '1':
                 //Set/change address
@@ -121,7 +159,7 @@ void Menu::driverMenu() {
                 return;
             }
             default:
-                std::cout << "That's not a valid option! Try again please:" << std::endl;
+                std::cout << INVALIDOPTION << std::endl;
         }
     }
 }
@@ -135,7 +173,6 @@ void Menu::loginOptions() {
 
 void Menu::userOptions(User &user) {
     //need to change this!!!
-    std::string userName = "ABC XYZ";
     bool hasAddress = false, needsPickup = false;
 
     std::cout << "Here's what you can do: " << std::endl;
@@ -173,4 +210,25 @@ void Menu::driverOptions(User &user) {
 
     std::cout << " 9. Go back" << std::endl;
 
+}
+
+User* Menu::createUser() {
+    std::string input;
+    User user = User(rand() * 1000);
+
+    std::cout << "Hello! Let's create an account for you." << std::endl;
+    //get users name
+    std::cout << "First of all we will need your name:" << std::endl;
+    std::getline(std::cin, input);
+    user.setName(input);
+    //get users password
+    std::cout << "Next we will need your password:" << std::endl;
+    std::getline(std::cin, input);
+    user.setPassword(input);
+
+    std::cout << "Your user ID is: " << user.getUserId() << std::endl;
+    std::cout << "You are all set, " << user.getName() << ", don't forget your password and user ID!" << std::endl;
+
+    //INSERIR USER NO VETOR!!!
+    return &user;
 }
