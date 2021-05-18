@@ -200,7 +200,7 @@ Graph::Graph(string nodesFile, string edgesFile, string tagsFile) {
 
 }
 /* ================================================================================================
- * Kosaraju
+ * A Star
  * ================================================================================================
  */
 stack<Vertex*> Graph::AStar(Vertex *start, Vertex *end) {
@@ -271,30 +271,42 @@ queue<Vertex *> Graph::nearestNeighbour(vector<Vertex*> pointsTravel){
 
 }
 
-/*-----------------TARJAN----------------------------------------------------------------*/
+/* ================================================================================================
+ * KOSARAJU
+ * ================================================================================================
+ */
+
 /*
 vector<vector<int>> Graph::kosaraju() {
     stack<Vertex*> L;
+    unordered_set<Vertex*> S;
     for (Vertex * vertex : vertexSet) {
         vertex->index = NULL;
     }
 
     vector<vector<int>> scc;
 
-    for (Vertex* vertex : vertexSet) {
-        if (vertex->index == NULL) {
-            strongConnectedComponent(vertex, scc);
-        }
+    for (Vertex * vertex : vertexSet) {
+        DFS_Kosaraju(vertex, L);
     }
+
+    while(!L.empty()){
+        Vertex * vertex = L.top();
+        L.pop();
+        assign(vertex, vertex);
+    }
+
 
     return scc;
 }
 
-void Graph::DFS_Kosaraju(Vertex* src, int nid, stack<Vertex*> &L, vector<vector<int>> &scc) {
-    if (S.find(u) != S.end()) return;
-    S.insert(u);
-    for (node_t v : G->getAdj(u)) DFS_K(v);
-    L.push(u);
+void Graph::DFS_Kosaraju(Vertex* src, stack<Vertex*> &L,  unordered_set<Vertex*> S) {
+    if (S.find(src) != S.end()) return;
+    S.insert(src);
+    for(Edge e : src->getOutgoingEdges()) {
+        DFS_Kosaraju(e.dest, L, S);
+    }
+    L.push(src);
 }
 
 void Graph:: assign(){
@@ -309,18 +321,6 @@ void Graph:: assign(){
  * Tarjan
  * ================================================================================================
  */
-
-bool findStackElement (stack<Vertex*> stackV, Vertex * vertex)
-{
-    while (!stackV.empty() && stackV.top() != vertex){
-        stackV.pop();
-    }
-
-    if (!stackV.empty())
-        return true;
-
-    return false;
-}
 
 vector<vector<int>> Graph::tarjan() {
     for (Vertex * vertex : vertexSet) {
@@ -369,4 +369,15 @@ void Graph::DFS_Tarjan(Vertex* src, int nid, stack<Vertex*> &L, vector<vector<in
         } while (v != src);
         scc.push_back(sc);
     }
+}
+
+bool Graph::findStackElement(stack<Vertex *> &stack, Vertex *vertex) {
+    while (!stack.empty() && stack.top() != vertex){
+        stack.pop();
+    }
+
+    if (!stack.empty())
+        return true;
+
+    return false;
 }

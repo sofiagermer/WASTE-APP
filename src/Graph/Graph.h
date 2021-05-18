@@ -11,6 +11,7 @@
 #include "../Elements/TrashContainer.h"
 #include "../Elements/GarbageCollectionFacility.h"
 #include <stack>
+#include <bits/stdc++.h>
 #include <math.h>
 #include <map>
 #include <queue>
@@ -94,5 +95,7 @@ public:
     void strongConnectedComponent(Vertex* src, vector<vector<int>> &scc); //Tarjan
 
     void DFS_Tarjan(Vertex* src, int nid, stack<Vertex*> &st, vector<vector<int>> &scc);
+
+    bool findStackElement(stack<Vertex *> &stack, Vertex *pVertex);
 };
 #endif //WASTE_APP_GRAPH_H
