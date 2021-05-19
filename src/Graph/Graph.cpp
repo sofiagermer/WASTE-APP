@@ -10,6 +10,9 @@ Vertex::Vertex(int id, double x, double y, MapPoint *i): info(i), x(x), y(y), ID
 Edge::Edge(Vertex *d, double w): dest(d), weight(w) {}
 
 
+Vertex *Edge::getDest() {
+    return dest;
+}
 int Graph::getNumVertex() const {
     return vertexSet.size();
 }

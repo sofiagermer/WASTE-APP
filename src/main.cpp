@@ -3,9 +3,9 @@
 #include <algorithm>
 #include "Graph/Graph.h"
 #include "UI/Menu.h"
+#include "UI/UI.h"
 
-
-
+/*
 vector<int> KO(Graph &graph) {
     vector<vector<int>> scc_list = graph.kosaraju();
     cout << "Total number of strongly connected components: " << scc_list.size() << endl;
@@ -18,7 +18,7 @@ vector<int> KO(Graph &graph) {
         }
     }
     return scc_list.at(index);
-}
+}*/
 
 using namespace std;
 
@@ -26,6 +26,9 @@ int main() {
 
     Graph graph("../Map/porto_full_nodes_xy.txt","../Map/porto_full_edges.txt","../Map/tags.txt");
     graph.preprocessGraph();
+
+    UI ui(&graph, 300, 300);
+    ui.showGraph();
     //cout<<"terminei";
     //vector <int> strongComponent = KO(graph);
     /*cout << strongComponent.size() << endl;

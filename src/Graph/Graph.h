@@ -49,6 +49,7 @@ class Edge {
     double weight;         // edge weight
 public:
     Edge(Vertex *dest, double weight);
+    Vertex * getDest();
     friend class Graph;
     friend class Vertex;
 };
@@ -113,4 +114,5 @@ public:
 
 
 };
+
 #endif //WASTE_APP_GRAPH_H

@@ -14,4 +14,9 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 file(GLOB_RECURSE SRC "src/*.cpp" "src/*.h")
 add_executable(WASTE-APP ${SRC})
 
-#target_link_libraries(WASTE-APP graphviewer)
+target_link_libraries(WASTE-APP graphviewer)
+
+
+cmake_minimum_required(VERSION 3.17)
+project(VaccineRouter)
+
