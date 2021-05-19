@@ -22,6 +22,14 @@ vector<int> KO(Graph &graph) {
 
 using namespace std;
 
+TrashContainer getNearestTrashContainer(int x, int y){
+
+}
+
+void TestSofi(){
+    TrashContainer trashContainer = getNearestTrashContainer(int x, int y);
+}
+
 int main() {
 
     Graph graph("../Map/porto_full_nodes_xy.txt","../Map/porto_full_edges.txt","../Map/tags.txt");

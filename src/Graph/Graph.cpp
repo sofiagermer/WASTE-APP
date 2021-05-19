@@ -213,7 +213,7 @@ Graph::Graph(string nodesFile, string edgesFile, string tagsFile) {
 
 }
 /* ================================================================================================
- * Kosaraju
+ * A Star
  * ================================================================================================
  */
 
@@ -285,35 +285,6 @@ queue<Vertex *> Graph::nearestNeighbour(vector<Vertex*> pointsTravel){
 
 }
 
-/*-----------------TARJAN----------------------------------------------------------------*/
-/*
-vector<vector<int>> Graph::kosaraju() {
-    stack<Vertex*> L;
-    for (Vertex * vertex : vertexSet) {
-        vertex->index = NULL;
-    }
-    vector<vector<int>> scc;
-    for (Vertex* vertex : vertexSet) {
-        if (vertex->index == NULL) {
-            strongConnectedComponent(vertex, scc);
-        }
-    }
-    return scc;
-}
-void Graph::DFS_Kosaraju(Vertex* src, int nid, stack<Vertex*> &L, vector<vector<int>> &scc) {
-    if (S.find(u) != S.end()) return;
-    S.insert(u);
-    for (node_t v : G->getAdj(u)) DFS_K(v);
-    L.push(u);
-}
-void Graph:: assign(){
-    if (SCCs.find(u) != SCCs.end()) return;
-    SCCs[u] = root;
-    DUGraph temp = G->getTranspose();
-    for (node_t v : temp.getAdj(u)) {
-        assign(v, root);
-    }
-}*/
 /* ================================================================================================
  * Tarjan
  * ================================================================================================
@@ -394,48 +365,10 @@ vector<int> Graph::largestSCC() {
     return scc_list.at(index);
 }
 
-void Graph::preprocessGraph() {
-    vector<int> strongComponent = this->largestSCC();
-    stack<int> toRemove;
-    int i=0,k=0;
-    bool remove;
-    for(Vertex* v:vertexSet){
-        remove=true;
-        for(int j=0;j<strongComponent.size();j++){
-            if(v->getID()==strongComponent[j]) {
-                remove=false;
-                break;
-            }
-        }
-        if(remove==true) {
-            toRemove.push(v->getID());
-            k++;
-        };
-    }
-    cout<<toRemove.size()<<"\n";
-    while(!toRemove.empty()){
-
-        if(!removeVertex(toRemove.top())){
-            cout<<"e\n"<<endl;
-            i++;
-        }
-        toRemove.pop();
-    }
-    cout<<i;
-    ofstream nodeFile("../Map/processedNodes.txt"),edgeFile("../Map/processedEdges.txt");
-    nodeFile<<vertexSet.size()<<"\n";
-    int edges=0;
-    for (auto v:vertexSet){
-        nodeFile<<setprecision(17)<<"("<<v->getID()<<","<<v->getX()<<","<<v->getY()<<")\n";
-        edges+=v->getOutgoingEdges().size();
-    }
-    edgeFile<<edges<<"\n";
-    for (auto v:vertexSet){
-        for(auto e:v->getOutgoingEdges()){
-            edgeFile<<setprecision(17)<<"("<<v->getID()<<","<<e.dest->getID()<<")\n";
-        }
-    }
-}
+/* ================================================================================================
+ * Kosaraju
+ * ================================================================================================
+ */
 
 vector<vector<int>> Graph::kosaraju() {
     stack<Vertex*> L;
@@ -506,4 +439,51 @@ bool Graph::removeVertex(int id) {
     vertexSet.erase(copy);
     free(v);
     return true;
+}
+
+/* ================================================================================================
+ * Pre Process Graph
+ * ================================================================================================
+ */
+void Graph::preprocessGraph() {
+    vector<int> strongComponent = this->largestSCC();
+    stack<int> toRemove;
+    int i=0,k=0;
+    bool remove;
+    for(Vertex* v:vertexSet){
+        remove=true;
+        for(int j=0;j<strongComponent.size();j++){
+            if(v->getID()==strongComponent[j]) {
+                remove=false;
+                break;
+            }
+        }
+        if(remove==true) {
+            toRemove.push(v->getID());
+            k++;
+        };
+    }
+    cout<<toRemove.size()<<"\n";
+    while(!toRemove.empty()){
+
+        if(!removeVertex(toRemove.top())){
+            cout<<"e\n"<<endl;
+            i++;
+        }
+        toRemove.pop();
+    }
+    cout<<i;
+    ofstream nodeFile("../Map/processedNodes.txt"),edgeFile("../Map/processedEdges.txt");
+    nodeFile<<vertexSet.size()<<"\n";
+    int edges=0;
+    for (auto v:vertexSet){
+        nodeFile<<setprecision(17)<<"("<<v->getID()<<","<<v->getX()<<","<<v->getY()<<")\n";
+        edges+=v->getOutgoingEdges().size();
+    }
+    edgeFile<<edges<<"\n";
+    for (auto v:vertexSet){
+        for(auto e:v->getOutgoingEdges()){
+            edgeFile<<setprecision(17)<<"("<<v->getID()<<","<<e.dest->getID()<<")\n";
+        }
+    }
 }
