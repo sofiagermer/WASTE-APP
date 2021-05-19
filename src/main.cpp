@@ -27,7 +27,7 @@ int main() {
     Graph graph("../Map/porto_full_nodes_xy.txt","../Map/porto_full_edges.txt","../Map/tags.txt");
     graph.preprocessGraph();
 
-    UI ui(&graph, 300, 300);
+    UI ui(&graph, 1600, 900);
     ui.showGraph();
     //cout<<"terminei";
     //vector <int> strongComponent = KO(graph);
