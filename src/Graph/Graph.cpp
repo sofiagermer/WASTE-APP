@@ -3,19 +3,15 @@
 
 
 
-Vertex::Vertex(int id, double x, double y, MapPoint *i): info(i), x(x), y(y), ID(id){}
-
-
-Edge::Edge(Vertex *d, double w): dest(d), weight(w) {}
-
+/* ================================================================================================
+ * Vertex
+ * ================================================================================================
+ */
+Vertex::Vertex(int id, double x, double y): x(x), y(y), ID(id){}
 
 Vertex *Edge::getDest() {
     return dest;
 }
-int Graph::getNumVertex() const {
-    return vertexSet.size();
-}
-
 
 Vertex * Graph::findVertex(double x, double y) {
     for (auto v : vertexSet)
@@ -24,34 +20,8 @@ Vertex * Graph::findVertex(double x, double y) {
     return NULL;
 }
 
-bool Graph::addVertex(int id,double x, double y,MapPoint *in) {
-    if(findVertex(x,y)!=NULL)
-        return false;
-    vertexSet.push_back(new Vertex(id,x,y,in));
-    return true;
-}
-
-bool Graph::addEdge(double sourceX, double sourceY, double destX, double destY
-) {
-    if(findVertex(sourceX,sourceY)==NULL||findVertex(destX,destY)==NULL)
-        return false;
-    auto v1= findVertex(sourceX,sourceY);
-    double d=distanceBetweenCoords(sourceX,destX,sourceY,destY
-    );
-    v1->addEdge(findVertex(destX,destY), d);
-    return true;
-}
-
 void Vertex::addEdge(Vertex *d, double w) {
     outgoingEdges.push_back(Edge(d,w));
-}
-
-bool Graph::removeEdge(double sourceX, double sourceY, double destX, double destY
-) {
-    auto *v1=findVertex(sourceX,sourceY);
-    auto *v2=findVertex(destX,destY);
-    if(v1==NULL||v2==NULL) return false;
-    return v1->removeEdgeTo(v2);
 }
 
 bool Vertex::removeEdgeTo(Vertex *d) {
@@ -74,15 +44,49 @@ double Vertex::getY() {
 }
 
 int Vertex::getID(){
-    return ID;
+    return this->ID;
 }
 
 vector<Edge> Vertex::getOutgoingEdges() {
     return outgoingEdges;
 }
 
-void Vertex::updateInfo(MapPoint *i) {
-    info=i;
+/* ================================================================================================
+ * Edge
+ * ================================================================================================
+ */
+Edge::Edge(Vertex *d, double w): dest(d), weight(w) {}
+
+
+/* ================================================================================================
+ * Graph
+ * ================================================================================================
+ */
+int Graph::getNumVertex() const {
+    return vertexSet.size();
+}
+
+bool Graph::addVertex(int id,double x, double y) {
+    if(findVertex(x,y)!=NULL)
+        return false;
+    vertexSet.push_back(new Vertex(id,x,y));
+    return true;
+}
+
+bool Graph::addEdge(double sourceX, double sourceY, double destX, double destY) {
+    if(findVertex(sourceX,sourceY)==NULL||findVertex(destX,destY)==NULL)
+        return false;
+    auto v1= findVertex(sourceX,sourceY);
+    double d=distanceBetweenCoords(sourceX,destX,sourceY,destY);
+    v1->addEdge(findVertex(destX,destY), d);
+    return true;
+}
+
+bool Graph::removeEdge(double sourceX, double sourceY, double destX, double destY) {
+    auto *v1=findVertex(sourceX,sourceY);
+    auto *v2=findVertex(destX,destY);
+    if(v1==NULL||v2==NULL) return false;
+    return v1->removeEdgeTo(v2);
 }
 
 bool Vertex::operator<(Vertex *v) {
@@ -104,10 +108,6 @@ bool Graph::removeVertex(double x, double y) {
     vertexSet.erase(copy);
     return true;
 }
-
-
-
-
 
 double Graph::distanceBetweenCoords(double x1, double x2, double y1, double y2) {
     //uses the Haversine formula to calcuxe distances in a sphere
@@ -162,7 +162,7 @@ Graph::Graph(string nodesFile, string edgesFile) {
         if(i%(numberElements/6)==0) cout<<"* ";
         //Reads each vertex/node's info
         nFile>>c>>id>>c>>x>>c>>y>>c;
-        addVertex(id,x,y, nullptr);
+        addVertex(id,x,y);
     }
 
     int v1,v2;
@@ -174,10 +174,20 @@ Graph::Graph(string nodesFile, string edgesFile) {
         eFile>>c>>v1>>c>>v2>>c;
         addEdge(v1,v2);
     }
-
     cout<<"100%"<<endl;
-
 }
+
+/* ================================================================================================
+ *
+ *
+ *
+ *                                      ALGORITHMS
+ *
+ *
+ * ================================================================================================
+ */
+
+
 /* ================================================================================================
  * A Star
  * ================================================================================================
@@ -405,7 +415,7 @@ void Graph::assign(Vertex *u, Vertex *root, vector<int> &sc) {
 
 Graph Graph::getTransposedGraph() const {
     Graph transposedGraph;
-    for(const Vertex *v : vertexSet) transposedGraph.addVertex(v->ID, v->x, v->y, v->info);
+    for(const Vertex *v : vertexSet) transposedGraph.addVertex(v->ID, v->x, v->y);
     for(Vertex *v : vertexSet){
         for( const Edge e : v->getOutgoingEdges()){
             transposedGraph.addEdge(e.dest->getX(), e.dest->getY(), v->getX(), v->getY());

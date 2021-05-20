@@ -1,0 +1,4 @@
+3
+(100,CentralSofia)
+(101,CentralMiguel)
+(102,CentralRafael)

@@ -8,8 +8,6 @@
 #include <vector>
 #include <string>
 #include <fstream>
-#include "../Elements/TrashContainer.h"
-#include "../Elements/GarbageCollectionFacility.h"
 #include <stack>
 #include <math.h>
 #include <map>
@@ -28,7 +26,6 @@ class Vertex;
 
 class Vertex{
     int ID;
-    MapPoint *info;
     double x;
     double y;
     vector<Edge> outgoingEdges;
@@ -41,8 +38,7 @@ class Vertex{
     int queueIndex = 0; // required by MutablePriorityQueue
     double distance;
 public:
-    Vertex(int ID, double x, double y, MapPoint *info);
-    void updateInfo(MapPoint *info);
+    Vertex(int ID, double x, double y);
     double getX();
     double getY();
     bool operator<(Vertex* v);;
@@ -74,7 +70,7 @@ public:
 
     int getNumVertex() const;
 
-    bool addVertex(int id,double x, double y,MapPoint *info);
+    bool addVertex(int id,double x, double y);
 
     bool removeVertex(double x, double y);
 

@@ -7,6 +7,7 @@
 #include "User.h"
 #include "Car.h"
 
+using namespace std;
 class Driver: public User{
     /**
      * Amount of money earned by the Driver
@@ -18,7 +19,7 @@ class Driver: public User{
      */
     Car *car;
 public:
-    Driver(int uId, Car *ca, std::string name, std::string password);
+    Driver(int uId, Car *ca, string name, string password);
 
     Driver(int uID);
 

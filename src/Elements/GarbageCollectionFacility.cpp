@@ -4,6 +4,15 @@
 
 #include "GarbageCollectionFacility.h"
 
-const string &GarbageCollectionFacility::getName() const {
+GarbageCollectionFacility::GarbageCollectionFacility(Vertex *vertexPt, string name) {
+    this->vertexPt = vertexPt;
+    this->name = name;
+}
+
+string GarbageCollectionFacility::getName() {
     return name;
+}
+
+Vertex *GarbageCollectionFacility::getVertex() {
+    return this->vertexPt;
 }

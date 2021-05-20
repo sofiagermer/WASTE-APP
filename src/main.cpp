@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <algorithm>
 #include "Graph/Graph.h"
+#include "Elements/Initializing.h"
 #include "UI/Menu.h"
 #include "UI/UI.h"
 
@@ -29,6 +30,12 @@ int main() {
 
     /*UI ui(&graph, 1600, 900);
     ui.showGraph();*/
+    Initializing initializing(graph);
+    //graph.preprocessGraph();
+
+    //UI ui(&graph, 1600, 900);
+    //ui.showGraph();
+    //cout<<"terminei";
     //Menu::mainMenu();
     return 0;
 }

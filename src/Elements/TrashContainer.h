@@ -5,11 +5,11 @@
 #ifndef WASTE_APP_TRASHCONTAINER_H
 #define WASTE_APP_TRASHCONTAINER_H
 
-#include "MapPoint.h"
+#include "../Graph/Graph.h"
 
 enum TrashType {Regular,Paper,Plastic,Glass};
 
-class TrashContainer: public MapPoint{
+class TrashContainer{
 private:
     /**
      * Maximum Capacity - the maximum amount of waste it can hold
@@ -25,15 +25,19 @@ private:
      * Type of trash the container takes - Can be Regular, Paper, Plastic or Glass
      */
     TrashType type;
-public:
 
-    TrashContainer(int maxCapacity, TrashType type);
+    Vertex * vertexPt;
+public:
+    TrashContainer(Vertex *vertexPt, TrashType type, int maxCapacity);
 
     int getMaxCapacity() const;
 
     int getCurrentCapacity() const;
 
     TrashType getType() const;
+
+    Vertex* getVertex();
+
 };
 
 
