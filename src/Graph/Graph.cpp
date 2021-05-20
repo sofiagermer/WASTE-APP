@@ -140,12 +140,12 @@ bool Graph::addEdge(int id1, int id2) {
 }
 
 
-Graph::Graph(string nodesFile, string edgesFile, string tagsFile) {
+Graph::Graph(string nodesFile, string edgesFile) {
     cout<< "==================================="<<endl;
     cout<< "         LOADING THE GRAPH         "<<endl;
     cout<< "==================================="<<endl;
     cout<<"0% ";
-    ifstream nFile(nodesFile),eFile(edgesFile),tFile(tagsFile);
+    ifstream nFile(nodesFile),eFile(edgesFile);
 
     int numberElements;
     char c;

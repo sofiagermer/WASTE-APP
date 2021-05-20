@@ -25,7 +25,7 @@ using namespace std;
 
 int main() {
 
-    Graph graph("../Map/porto_full_nodes_xy.txt","../Map/porto_full_edges.txt","../Map/tags.txt");
+    Graph graph("../Map/processedNodes.txt","../Map/processedEdges.txt");
     Initializing initializing(graph);
     //graph.preprocessGraph();
 

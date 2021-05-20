@@ -17,7 +17,7 @@ Initializing::Initializing(Graph graph) {
 void Initializing::initializePoints(){
     initializeHouses("../data/houses.txt");
     initializeTrashContainers("../data/trashContainers.txt");
-    //initializeGarbageFacilitys("../data/garbageFacilitys.txt");
+    initializeGarbageFacilitys("../data/garbageFacilitys.txt");
 }
 
 void Initializing::initializeHouses(string filename) {
@@ -77,13 +77,8 @@ void Initializing::initializeGarbageFacilitys(string filename) {
     for(int i=0;i<numberElements;i++){
         fileGarbageFacilitys>>c>>id>>c>>centralName;
         centralName.pop_back();
-        //GarbageCollectionFacility garbageCollectionFacility(graph.findVertex(id), centralName);
-       //cout << garbageCollectionFacility.getVertex()->getID() << endl;
-        garbageCFs.push_back(new GarbageCollectionFacility( graph.findVertex(id), centralName));
-        cout << "id : " << graph.findVertex(id)->getID() << endl;
+        GarbageCollectionFacility garbageCollectionFacility(graph.findVertex(id), centralName);
+        garbageCFs.push_back(garbageCollectionFacility);
     }
-    for(auto gF : garbageCFs){
-        cout << gF->getVertex()->getID() << " " << gF->getVertex()->getX() << "  " << gF->getVertex()->getY() << "  " << gF->getName() << endl;
-    }
-    fileGarbageFacilitys.close();
+   fileGarbageFacilitys.close();
 }

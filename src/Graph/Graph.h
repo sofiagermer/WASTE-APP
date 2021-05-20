@@ -56,7 +56,7 @@ class Graph {
     Vertex *findVertex(double x, double y);
 
 public:
-    Graph(string nodesFile,string edgesFile,string tagsFile);
+    Graph(string nodesFile,string edgesFile);
     Graph(){};
     vector<Vertex *> getVertexSet();
 

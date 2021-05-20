@@ -4,7 +4,7 @@
 
 #include "GarbageCollectionFacility.h"
 
-GarbageCollectionFacility::GarbageCollectionFacility(Vertex *vertex, string name) {
+GarbageCollectionFacility::GarbageCollectionFacility(Vertex *vertexPt, string name) {
     this->vertexPt = vertexPt;
     this->name = name;
 }

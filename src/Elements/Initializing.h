@@ -13,7 +13,7 @@
 class Initializing {
     vector<House> houses;
     vector<TrashContainer> trashContainers;
-    vector<GarbageCollectionFacility*> garbageCFs;
+    vector<GarbageCollectionFacility> garbageCFs;
     Graph graph;
 
 public:
