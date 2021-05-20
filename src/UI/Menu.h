@@ -19,9 +19,10 @@ namespace Menu {
     void userMenu();
     void driverMenu();
     void loginOptions();
-    User* createUser();
+    void createUser(User* user);
     void userOptions(User &user);
-    void driverOptions(User &user);
+    void driverOptions(Driver &driver);
+    void createDriver(Driver* driver);
 
 
 };

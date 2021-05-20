@@ -8,7 +8,6 @@
 #include "Car.h"
 
 class Driver: public User{
-private:
     /**
      * Amount of money earned by the Driver
      */
@@ -19,6 +18,12 @@ private:
      */
     Car *car;
 public:
+    Driver(int uId, Car *ca, std::string name, std::string password);
+
+    Driver(int uID);
+
+    Driver();
+
     void setMoneyEarned(double moneyEarned);
 
     double getMoneyEarned() const;
