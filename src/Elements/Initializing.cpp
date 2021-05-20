@@ -18,6 +18,7 @@ void Initializing::initializePoints(){
     initializeHouses("../data/houses.txt");
     initializeTrashContainers("../data/trashContainers.txt");
     initializeGarbageFacilitys("../data/garbageFacilitys.txt");
+    initializeCars("../data/cars.txt");
 }
 
 void Initializing::initializeHouses(string filename) {
@@ -61,9 +62,6 @@ void Initializing::initializeTrashContainers(string filename) {
             trashContainers.push_back(trashContainer);
         }
     }
-    for(TrashContainer tc : trashContainers){
-        cout << tc.getVertex()->getID() << "  " << tc.getType() << endl;
-    }
     fileTrashContainers.close();
 }
 
@@ -81,4 +79,18 @@ void Initializing::initializeGarbageFacilitys(string filename) {
         garbageCFs.push_back(garbageCollectionFacility);
     }
    fileGarbageFacilitys.close();
+}
+
+void Initializing::initializeCars(string filename) {
+    ifstream fileCars(filename);
+    int numberElements;
+    fileCars >> numberElements;
+    int capacity;
+    string centralName;
+    for(int i=0;i<numberElements;i++){
+        fileCars>>capacity;
+        Car car(capacity);
+        cars.push_back(car);
+    }
+    fileCars.close();
 }

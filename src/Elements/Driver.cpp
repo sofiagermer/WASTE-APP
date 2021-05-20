@@ -6,7 +6,7 @@
 
 #include <utility>
 
-Driver::Driver(int uID, Car *ca, std::string name, std::string password) : User(uID, std::move(name), std::move(password)), car(ca) {
+Driver::Driver(int uID, Car *ca, string name, string password) : User(uID, move(name), move(password)), car(ca) {
     moneyEarned = 0;
 }
 

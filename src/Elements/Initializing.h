@@ -9,21 +9,22 @@
 #include "House.h"
 #include "TrashContainer.h"
 #include "GarbageCollectionFacility.h"
+#include "Car.h"
 
 class Initializing {
     vector<House> houses;
     vector<TrashContainer> trashContainers;
     vector<GarbageCollectionFacility> garbageCFs;
+    vector<Car> cars;
     Graph graph;
 
 public:
     Initializing(Graph graph);
+    void initializePoints();
     void initializeHouses(string filename);
     void initializeTrashContainers(string filename);
     void initializeGarbageFacilitys(string filename);
-    void initializePoints();
-
-    Initializing(Graph *pGraph);
+    void initializeCars(string filename);
 };
 
 
