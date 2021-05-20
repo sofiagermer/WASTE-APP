@@ -24,7 +24,6 @@ class Vertex;
 
 class Vertex{
     int ID;
-    MapPoint *info;
     double x;
     double y;
     vector<Edge> outgoingEdges;
@@ -34,8 +33,7 @@ class Vertex{
     int index = -1;
     int low = -1;
 public:
-    Vertex(int ID, double x, double y, MapPoint *info);
-    void updateInfo(MapPoint *info);
+    Vertex(int ID, double x, double y);
     double getX();
     double getY();
     vector<Edge> getOutgoingEdges();
@@ -66,7 +64,7 @@ public:
 
     int getNumVertex() const;
 
-    bool addVertex(int id,double x, double y,MapPoint *info);
+    bool addVertex(int id,double x, double y);
 
     bool removeVertex(double x, double y);
 

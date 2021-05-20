@@ -6,11 +6,10 @@
 #define WASTE_APP_GARBAGECOLLECTIONFACILITY_H
 
 #include <iostream>
-#include "MapPoint.h"
 
 using namespace std;
 
-class GarbageCollectionFacility: public MapPoint{
+class GarbageCollectionFacility{
 private:
 
     /**

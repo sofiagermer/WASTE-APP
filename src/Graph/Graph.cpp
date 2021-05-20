@@ -4,7 +4,7 @@
 #define degreeToRadian (M_PI / 180.0)
 #define INF std::numeric_limits<double>::max()
 
-Vertex::Vertex(int id, double x, double y, MapPoint *i): info(i), x(x), y(y), ID(id){}
+Vertex::Vertex(int id, double x, double y): x(x), y(y), ID(id){}
 
 
 Edge::Edge(Vertex *d, double w): dest(d), weight(w) {}
@@ -25,10 +25,10 @@ Vertex * Graph::findVertex(double x, double y) {
     return NULL;
 }
 
-bool Graph::addVertex(int id,double x, double y,MapPoint *in) {
+bool Graph::addVertex(int id,double x, double y) {
     if(findVertex(x,y)!=NULL)
         return false;
-    vertexSet.push_back(new Vertex(id,x,y,in));
+    vertexSet.push_back(new Vertex(id,x,y));
     return true;
 }
 
@@ -82,10 +82,6 @@ vector<Edge> Vertex::getOutgoingEdges() {
     return outgoingEdges;
 }
 
-void Vertex::updateInfo(MapPoint *i) {
-    info=i;
-}
-
 bool Graph::removeVertex(double x, double y) {
     auto v=findVertex(x,y);
     if(v==NULL) return false;
@@ -101,10 +97,6 @@ bool Graph::removeVertex(double x, double y) {
     vertexSet.erase(copy);
     return true;
 }
-
-
-
-
 
 double Graph::distanceBetweenCoords(double x1, double x2, double y1, double y2) {
     //uses the Haversine formula to calcuxe distances in a sphere
@@ -159,7 +151,7 @@ Graph::Graph(string nodesFile, string edgesFile, string tagsFile) {
         if(i%(numberElements/5)==0) cout<<"* ";
         //Reads each vertex/node's info
         nFile>>c>>id>>c>>x>>c>>y>>c;
-        addVertex(id,x,y, nullptr);
+        addVertex(id,x,y);
     }
 
     int v1,v2;
@@ -414,7 +406,7 @@ void Graph::assign(Vertex *u, Vertex *root, vector<int> &sc) {
 
 Graph Graph::getTransposedGraph() const {
     Graph transposedGraph;
-    for(const Vertex *v : vertexSet) transposedGraph.addVertex(v->ID, v->x, v->y, v->info);
+    for(const Vertex *v : vertexSet) transposedGraph.addVertex(v->ID, v->x, v->y);
     for(Vertex *v : vertexSet){
         for( const Edge e : v->getOutgoingEdges()){
             transposedGraph.addEdge(e.dest->getX(), e.dest->getY(), v->getX(), v->getY());
