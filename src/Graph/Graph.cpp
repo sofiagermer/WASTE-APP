@@ -4,19 +4,15 @@
 #define degreeToRadian (M_PI / 180.0)
 #define INF std::numeric_limits<double>::max()
 
+/* ================================================================================================
+ * Vertex
+ * ================================================================================================
+ */
 Vertex::Vertex(int id, double x, double y): x(x), y(y), ID(id){}
-
-
-Edge::Edge(Vertex *d, double w): dest(d), weight(w) {}
-
 
 Vertex *Edge::getDest() {
     return dest;
 }
-int Graph::getNumVertex() const {
-    return vertexSet.size();
-}
-
 
 Vertex * Graph::findVertex(double x, double y) {
     for (auto v : vertexSet)
@@ -25,34 +21,8 @@ Vertex * Graph::findVertex(double x, double y) {
     return NULL;
 }
 
-bool Graph::addVertex(int id,double x, double y) {
-    if(findVertex(x,y)!=NULL)
-        return false;
-    vertexSet.push_back(new Vertex(id,x,y));
-    return true;
-}
-
-bool Graph::addEdge(double sourceX, double sourceY, double destX, double destY
-) {
-    if(findVertex(sourceX,sourceY)==NULL||findVertex(destX,destY)==NULL)
-        return false;
-    auto v1= findVertex(sourceX,sourceY);
-    double d=distanceBetweenCoords(sourceX,destX,sourceY,destY
-    );
-    v1->addEdge(findVertex(destX,destY), d);
-    return true;
-}
-
 void Vertex::addEdge(Vertex *d, double w) {
     outgoingEdges.push_back(Edge(d,w));
-}
-
-bool Graph::removeEdge(double sourceX, double sourceY, double destX, double destY
-) {
-    auto *v1=findVertex(sourceX,sourceY);
-    auto *v2=findVertex(destX,destY);
-    if(v1==NULL||v2==NULL) return false;
-    return v1->removeEdgeTo(v2);
 }
 
 bool Vertex::removeEdgeTo(Vertex *d) {
@@ -75,11 +45,49 @@ double Vertex::getY() {
 }
 
 int Vertex::getID(){
-    return ID;
+    return this->ID;
 }
 
 vector<Edge> Vertex::getOutgoingEdges() {
     return outgoingEdges;
+}
+
+/* ================================================================================================
+ * Edge
+ * ================================================================================================
+ */
+Edge::Edge(Vertex *d, double w): dest(d), weight(w) {}
+
+
+/* ================================================================================================
+ * Graph
+ * ================================================================================================
+ */
+int Graph::getNumVertex() const {
+    return vertexSet.size();
+}
+
+bool Graph::addVertex(int id,double x, double y) {
+    if(findVertex(x,y)!=NULL)
+        return false;
+    vertexSet.push_back(new Vertex(id,x,y));
+    return true;
+}
+
+bool Graph::addEdge(double sourceX, double sourceY, double destX, double destY) {
+    if(findVertex(sourceX,sourceY)==NULL||findVertex(destX,destY)==NULL)
+        return false;
+    auto v1= findVertex(sourceX,sourceY);
+    double d=distanceBetweenCoords(sourceX,destX,sourceY,destY);
+    v1->addEdge(findVertex(destX,destY), d);
+    return true;
+}
+
+bool Graph::removeEdge(double sourceX, double sourceY, double destX, double destY) {
+    auto *v1=findVertex(sourceX,sourceY);
+    auto *v2=findVertex(destX,destY);
+    if(v1==NULL||v2==NULL) return false;
+    return v1->removeEdgeTo(v2);
 }
 
 bool Graph::removeVertex(double x, double y) {
@@ -163,46 +171,20 @@ Graph::Graph(string nodesFile, string edgesFile, string tagsFile) {
         eFile>>c>>v1>>c>>v2>>c;
         addEdge(v1,v2);
     }
-
-    /*string type;
-    int tags;
-    tFile>>tags;
-    for(int i=0;i<tags;i++){
-        if(i%6==0) cout<<"* ";
-        tFile>>type;
-        tFile>>numberElements;
-        TrashType trashType;
-        int maxCapacity;
-        MapPoint *info;
-        if(type=="Bin"){
-            info=new TrashContainer(20,Regular);
-        }
-        else if(type=="Glass"){
-            info=new TrashContainer(500,Glass);
-        }
-        else if(type=="Regular"){
-            info=new TrashContainer(500,Regular);
-        }
-        else if(type=="Paper"){
-            info=new TrashContainer(500,Paper);
-        }
-        else if(type=="Plastic"){
-            info=new TrashContainer(500,Plastic);
-        }
-        else if(type=="Plastic"){
-            info=new TrashContainer(500,Plastic);
-        }
-        else if(type=="Facility"){
-            info=new GarbageCollectionFacility();
-        }
-        for(int i=0;i<numberElements;i++){
-            tFile>>id;
-            auto v=findVertex(id);
-            v->updateInfo(info);
-        }*/
-        cout<<"100%"<<endl;
-   // }
+    cout<<"100%"<<endl;
 }
+
+/* ================================================================================================
+ *
+ *
+ *
+ *                                      ALGORITHMS
+ *
+ *
+ * ================================================================================================
+ */
+
+
 /* ================================================================================================
  * A Star
  * ================================================================================================

@@ -8,10 +8,12 @@
 
 #include "House.h"
 #include "TrashContainer.h"
+#include "GarbageCollectionFacility.h"
 
 class Initializing {
     vector<House> houses;
     vector<TrashContainer> trashContainers;
+    vector<GarbageCollectionFacility*> garbageCFs;
     Graph graph;
 
 public:

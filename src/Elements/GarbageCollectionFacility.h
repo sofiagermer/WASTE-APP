@@ -6,18 +6,22 @@
 #define WASTE_APP_GARBAGECOLLECTIONFACILITY_H
 
 #include <iostream>
+#include "../Graph/Graph.h"
 
 using namespace std;
 
 class GarbageCollectionFacility{
 private:
-
     /**
      * Name of the Garbage Collection Facility
      */
     string name;
+    Vertex * vertexPt;
 public:
-    const string &getName() const;
+    GarbageCollectionFacility(Vertex * vertexPt, string name);
+    string getName();
+
+    Vertex* getVertex();
 };
 
 

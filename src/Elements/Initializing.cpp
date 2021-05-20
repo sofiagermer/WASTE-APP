@@ -32,6 +32,7 @@ void Initializing::initializeHouses(string filename) {
         House house(graph.findVertex(id),amountTrash);
         houses.push_back(house);
     }
+    fileHouses.close();
 }
 
 void Initializing::initializeTrashContainers(string filename) {
@@ -60,15 +61,29 @@ void Initializing::initializeTrashContainers(string filename) {
             trashContainers.push_back(trashContainer);
         }
     }
+    for(TrashContainer tc : trashContainers){
+        cout << tc.getVertex()->getID() << "  " << tc.getType() << endl;
+    }
+    fileTrashContainers.close();
 }
 
-/*
 void Initializing::initializeGarbageFacilitys(string filename) {
     ifstream fileGarbageFacilitys(filename);
     int numberElements;
     fileGarbageFacilitys >> numberElements;
-    int id, x, y;
+    int id ;
+    char c;
+    string centralName;
     for(int i=0;i<numberElements;i++){
-        fileGarbageFacilitys>>id>>x>>y;
+        fileGarbageFacilitys>>c>>id>>c>>centralName;
+        centralName.pop_back();
+        //GarbageCollectionFacility garbageCollectionFacility(graph.findVertex(id), centralName);
+       //cout << garbageCollectionFacility.getVertex()->getID() << endl;
+        garbageCFs.push_back(new GarbageCollectionFacility( graph.findVertex(id), centralName));
+        cout << "id : " << graph.findVertex(id)->getID() << endl;
     }
-}*/
+    for(auto gF : garbageCFs){
+        cout << gF->getVertex()->getID() << " " << gF->getVertex()->getX() << "  " << gF->getVertex()->getY() << "  " << gF->getName() << endl;
+    }
+    fileGarbageFacilitys.close();
+}
