@@ -1,7 +1,7 @@
 //
 // Created by sofia on 19/05/21.
 //
-
+/*
 #include "UI.h"
 
 UI::UI(Graph * graph, int width, int height) : graph(graph), graphViewerHeight(graphViewerHeight), graphViewerWidth(graphViewerWidth){}
@@ -21,4 +21,4 @@ void UI::showGraph() {
             id++;
         }
     }
-}
+}*/

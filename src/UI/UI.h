@@ -1,7 +1,7 @@
 //
 // Created by sofia on 19/05/21.
 //
-
+/*
 #ifndef WASTE_APP_UI_H
 #define WASTE_APP_UI_H
 
@@ -23,3 +23,4 @@ public:
 
 
 #endif //WASTE_APP_UI_H
+*/

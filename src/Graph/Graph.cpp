@@ -1,8 +1,7 @@
 #include "Graph.h"
 
 
-#define degreeToRadian (M_PI / 180.0)
-#define INF std::numeric_limits<double>::max()
+
 
 Vertex::Vertex(int id, double x, double y, MapPoint *i): info(i), x(x), y(y), ID(id){}
 
@@ -86,6 +85,10 @@ void Vertex::updateInfo(MapPoint *i) {
     info=i;
 }
 
+bool Vertex::operator<(Vertex *v) {
+    return this->distance<v->distance;
+}
+
 bool Graph::removeVertex(double x, double y) {
     auto v=findVertex(x,y);
     if(v==NULL) return false;
@@ -140,12 +143,12 @@ bool Graph::addEdge(int id1, int id2) {
 }
 
 
-Graph::Graph(string nodesFile, string edgesFile, string tagsFile) {
-    cout<< "==================================="<<endl;
-    cout<< "         LOADING THE GRAPH         "<<endl;
-    cout<< "==================================="<<endl;
+Graph::Graph(string nodesFile, string edgesFile) {
+    cout<< "===================================="<<endl;
+    cout<< "         LOADING THE GRAPH          "<<endl;
+    cout<< "===================================="<<endl;
     cout<<"0% ";
-    ifstream nFile(nodesFile),eFile(edgesFile),tFile(tagsFile);
+    ifstream nFile(nodesFile),eFile(edgesFile);
 
     int numberElements;
     char c;
@@ -156,7 +159,7 @@ Graph::Graph(string nodesFile, string edgesFile, string tagsFile) {
     //Reads number of nodes
     nFile>>numberElements;
     for(int i=0;i<numberElements;i++){
-        if(i%(numberElements/5)==0) cout<<"* ";
+        if(i%(numberElements/6)==0) cout<<"* ";
         //Reads each vertex/node's info
         nFile>>c>>id>>c>>x>>c>>y>>c;
         addVertex(id,x,y, nullptr);
@@ -172,44 +175,7 @@ Graph::Graph(string nodesFile, string edgesFile, string tagsFile) {
         addEdge(v1,v2);
     }
 
-    string type;
-    int tags;
-    tFile>>tags;
-    for(int i=0;i<tags;i++){
-        if(i%6==0) cout<<"* ";
-        tFile>>type;
-        tFile>>numberElements;
-        TrashType trashType;
-        int maxCapacity;
-        MapPoint *info;
-        if(type=="Bin"){
-            info=new TrashContainer(20,Regular);
-        }
-        else if(type=="Glass"){
-            info=new TrashContainer(500,Glass);
-        }
-        else if(type=="Regular"){
-            info=new TrashContainer(500,Regular);
-        }
-        else if(type=="Paper"){
-            info=new TrashContainer(500,Paper);
-        }
-        else if(type=="Plastic"){
-            info=new TrashContainer(500,Plastic);
-        }
-        else if(type=="Plastic"){
-            info=new TrashContainer(500,Plastic);
-        }
-        else if(type=="Facility"){
-            info=new GarbageCollectionFacility();
-        }
-        for(int i=0;i<numberElements;i++){
-            tFile>>id;
-            auto v=findVertex(id);
-            v->updateInfo(info);
-        }
-        cout<<"100%"<<endl;
-    }
+    cout<<"100%"<<endl;
 
 }
 /* ================================================================================================
@@ -217,7 +183,7 @@ Graph::Graph(string nodesFile, string edgesFile, string tagsFile) {
  * ================================================================================================
  */
 
-stack<Vertex*> Graph::AStar(Vertex *start, Vertex *end) {
+stack<Vertex*> Graph::aStar(Vertex *start, Vertex *end) {
     vector<Vertex*> discoveredNodes;
     discoveredNodes.push_back(start);
     map<Vertex*,Vertex*> cameFrom;
@@ -281,8 +247,32 @@ stack<Vertex *> Graph::reconstructPath(map<Vertex *, Vertex *> cameFrom, Vertex 
     return path;
 }
 
-queue<Vertex *> Graph::nearestNeighbour(vector<Vertex*> pointsTravel){
-
+queue<Vertex *> Graph::nearestNeighbour(double x,double y,vector<Vertex*> pointsTravel){
+    queue<Vertex*> orderedCompletePath;
+    Vertex *initialVertex = findClosestVertex(x,y);
+    orderedCompletePath.push(initialVertex);
+    double minDistance;
+    stack<Vertex*> next;
+    vector<Vertex*>::iterator copy;
+    while(!pointsTravel.empty()) {
+        minDistance=INF;
+        for (auto it = pointsTravel.begin(); it != pointsTravel.end(); it++) {
+            auto path = aStar(initialVertex, (*it));
+            double aux = pathCost(path);
+            if (aux < minDistance) {
+                minDistance = aux;
+                next = path;
+                copy=it;
+            }
+        }
+        while(!next.empty()){
+            orderedCompletePath.push(next.top());
+            next.pop();
+        }
+        pointsTravel.erase(copy);
+        cout<<pointsTravel.size()<<endl;
+    }
+    return orderedCompletePath;
 }
 
 /* ================================================================================================
@@ -486,4 +476,60 @@ void Graph::preprocessGraph() {
             edgeFile<<setprecision(17)<<"("<<v->getID()<<","<<e.dest->getID()<<")\n";
         }
     }
+}
+
+Vertex *Graph::findClosestVertex(double x, double y) {
+    Vertex *closest= nullptr;
+    double min=INF;
+    for(auto v:vertexSet){
+        double aux;
+        if((aux=distanceBetweenCoords(v->getX(),x,v->getY(),y))<min){
+            closest=v;
+            min=aux;
+        }
+    }
+    return closest;
+}
+
+double Graph::pathCost(stack<Vertex *> path) {
+    if(path.size()<2) return 0;
+    double cost=0;
+    auto v=path.top();
+    path.pop();
+    while(!path.empty()){
+        for(auto e:v->getOutgoingEdges()){
+            if(e.dest==path.top()){
+                cost+=e.weight;
+                break;
+            }
+        }
+        v=path.top();
+        path.pop();
+    }
+    return cost;
+}
+
+stack<Vertex *> Graph::dijkstra(Vertex *start, Vertex *end) {
+    map <Vertex*,Vertex*> cameFrom;
+    for(auto v:vertexSet){
+        v->distance=INF;
+        v->queueIndex=0;
+    }
+    start->distance=0;
+    MutablePriorityQueue<Vertex*> queue;
+    queue.insert(start);
+    Vertex* v;
+    while(!queue.empty()){
+        v=queue.extractMin();
+        if(v==end) break;
+        for(auto e:v->outgoingEdges){
+            double d=v->distance+e.weight;
+            if(d<e.dest->distance){
+                e.dest->distance=d;
+                cameFrom[e.dest]=v;
+            }
+        }
+    }
+    return reconstructPath(cameFrom,end,start);
+
 }

@@ -16,6 +16,10 @@
 #include <queue>
 #include <iostream>
 #include <bits/stdc++.h>
+#include "MutablePriorityQueue.h"
+
+#define degreeToRadian (M_PI / 180.0)
+#define INF std::numeric_limits<double>::max()
 
 using namespace std;
 class Edge;
@@ -33,14 +37,18 @@ class Vertex{
     // Tarjan
     int index = -1;
     int low = -1;
+    //Dijkstra
+    int queueIndex = 0; // required by MutablePriorityQueue
+    double distance;
 public:
     Vertex(int ID, double x, double y, MapPoint *info);
     void updateInfo(MapPoint *info);
     double getX();
     double getY();
+    bool operator<(Vertex* v);;
     vector<Edge> getOutgoingEdges();
     friend class Graph;
-
+    friend class MutablePriorityQueue<Vertex*>;
     int getID();
 };
 
@@ -60,7 +68,7 @@ class Graph {
     Vertex *findVertex(double x, double y);
 
 public:
-    Graph(string nodesFile,string edgesFile,string tagsFile);
+    Graph(string nodesFile,string edgesFile);
     Graph(){};
     vector<Vertex *> getVertexSet();
 
@@ -86,13 +94,15 @@ public:
 
     void strongconnect(Vertex* src, int &index, stack<Vertex*> &st, vector<vector<int>> &scc);
 
-    stack<Vertex*> AStar(Vertex* start,Vertex* end);
+    stack<Vertex*> aStar(Vertex* start, Vertex* end);
+
+    stack<Vertex*> dijkstra(Vertex* start,Vertex* end);
 
     double heuristic(Vertex* start, Vertex* end);
 
     stack<Vertex *> reconstructPath(map<Vertex *, Vertex *> cameFrom, Vertex *current,Vertex *start);
 
-    queue<Vertex *> nearestNeighbour(vector<Vertex*> pointsTravel);
+    queue<Vertex *> nearestNeighbour(double x,double y,vector<Vertex*> pointsTravel);
     vector<vector<int>> tarjan();
 
     void strongConnectedComponent(Vertex* src, vector<vector<int>> &scc); //Tarjan
@@ -111,6 +121,9 @@ public:
 
     Graph getTransposedGraph() const;
 
+    Vertex *findClosestVertex(double x, double y);
+
+    double pathCost(stack<Vertex *> path);
 
 
 };
