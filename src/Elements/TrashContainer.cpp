@@ -16,7 +16,13 @@ TrashType TrashContainer::getType() const {
     return type;
 }
 
-TrashContainer::TrashContainer(int maxCapacity, TrashType type)
-        : maxCapacity(maxCapacity), type(type) {
-    this->currentCapacity=maxCapacity;
+TrashContainer::TrashContainer(Vertex *vertexPt, TrashType type ,int maxCapacity) {
+    this->vertexPt = vertexPt;
+    this->maxCapacity = maxCapacity;
+    this->type = type;
+    this->currentCapacity = maxCapacity;
+}
+
+Vertex *TrashContainer::getVertex() {
+    return vertexPt;
 }

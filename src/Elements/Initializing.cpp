@@ -16,7 +16,7 @@ Initializing::Initializing(Graph graph) {
 
 void Initializing::initializePoints(){
     initializeHouses("../data/houses.txt");
-    //initializeTrashContainers("../data/trashContainers.txt");
+    initializeTrashContainers("../data/trashContainers.txt");
     //initializeGarbageFacilitys("../data/garbageFacilitys.txt");
 }
 
@@ -34,17 +34,35 @@ void Initializing::initializeHouses(string filename) {
     }
 }
 
-/*
 void Initializing::initializeTrashContainers(string filename) {
     ifstream fileTrashContainers(filename);
     int numberElements;
     fileTrashContainers>>numberElements;
-    int id, x, y;
+    int id, maxCapacity;
+    char trashType;
+    char c1, c2,c3, c4;
     for(int i=0;i<numberElements;i++){
-        fileTrashContainers>>id>>x>>y;
+        fileTrashContainers>>c1>>id>>c2>>trashType>>c3>>maxCapacity>>c4;
+        if(trashType=='G'){
+            TrashContainer trashContainer(graph.findVertex(id), Glass, maxCapacity);
+            trashContainers.push_back(trashContainer);
+        }
+        else if(trashType=='R'){
+            TrashContainer trashContainer(graph.findVertex(id), Regular, maxCapacity);
+            trashContainers.push_back(trashContainer);
+        }
+        else if(trashType=='P'){
+            TrashContainer trashContainer(graph.findVertex(id), Paper, maxCapacity);
+            trashContainers.push_back(trashContainer);
+        }
+        else if(trashType=='P'){
+            TrashContainer trashContainer(graph.findVertex(id), Plastic, maxCapacity);
+            trashContainers.push_back(trashContainer);
+        }
     }
 }
 
+/*
 void Initializing::initializeGarbageFacilitys(string filename) {
     ifstream fileGarbageFacilitys(filename);
     int numberElements;

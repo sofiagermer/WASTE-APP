@@ -7,9 +7,11 @@
 
 
 #include "House.h"
+#include "TrashContainer.h"
 
 class Initializing {
     vector<House> houses;
+    vector<TrashContainer> trashContainers;
     Graph graph;
 
 public:

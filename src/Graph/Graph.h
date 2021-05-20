@@ -8,8 +8,6 @@
 #include <vector>
 #include <string>
 #include <fstream>
-#include "../Elements/TrashContainer.h"
-#include "../Elements/GarbageCollectionFacility.h"
 #include <stack>
 #include <math.h>
 #include <map>
