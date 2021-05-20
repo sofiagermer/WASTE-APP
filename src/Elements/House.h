@@ -9,34 +9,21 @@
 #include <string>
 
 #include "User.h"
-
+#include "../Graph/Graph.h"
 
 
 class House {
-    User* UserPt;
-    bool NeedPickUp;
-    float AmountOfTrash;
+    float amountTrash;
+    Vertex * vertexPt;
 
 public:
-    /**
-     * Default constructor
-     */
-    House();
-    /**
-     * Constructor
-     * @param up - User pointer, to the user who lives in this house
-     */
-    House(User* up);
+    House(Vertex *vertexPt, float amountTrash);
 
     /**
      * Gets the user pointer
      * @return User pointer, to the user who lives in this house
      */
-    User* getUserPt();
-    /**
-     * Gets the flag if the house has trash that needs to be picked up
-     * @return Need Pick Up falg
-     */
+
     bool getNeedPickUp();
     /**
      * Gets the Amount of trash that needs to be collected
@@ -44,11 +31,6 @@ public:
      */
     float getAmountOfTrash();
 
-    /**
-     * Sets the User pointer
-     * @param up - User pointer to set
-     */
-    void setUserPt(User* up);
     /**
      * Sets the flag if the house needs trash to be collected
      * @param needpu - flag if the house needs collection
@@ -60,6 +42,7 @@ public:
      */
     void setAmountOfTrash(float amount);
 
+    Vertex* getHouseVertex();
 };
 
 

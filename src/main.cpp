@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <algorithm>
 #include "Graph/Graph.h"
+#include "Elements/Initializing.h"
 #include "UI/Menu.h"
 #include "UI/UI.h"
 
@@ -25,16 +26,12 @@ using namespace std;
 int main() {
 
     Graph graph("../Map/porto_full_nodes_xy.txt","../Map/porto_full_edges.txt","../Map/tags.txt");
-    graph.preprocessGraph();
+    Initializing initializing(graph);
+    //graph.preprocessGraph();
 
-    UI ui(&graph, 1600, 900);
-    ui.showGraph();
+    //UI ui(&graph, 1600, 900);
+    //ui.showGraph();
     //cout<<"terminei";
-    //vector <int> strongComponent = KO(graph);
-    /*cout << strongComponent.size() << endl;
-    for(auto elem : strongComponent){
-        cout << elem << endl;
-    }*/
     //Menu::mainMenu();
     return 0;
 }

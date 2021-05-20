@@ -172,7 +172,7 @@ Graph::Graph(string nodesFile, string edgesFile, string tagsFile) {
         addEdge(v1,v2);
     }
 
-    string type;
+    /*string type;
     int tags;
     tFile>>tags;
     for(int i=0;i<tags;i++){
@@ -207,10 +207,9 @@ Graph::Graph(string nodesFile, string edgesFile, string tagsFile) {
             tFile>>id;
             auto v=findVertex(id);
             v->updateInfo(info);
-        }
+        }*/
         cout<<"100%"<<endl;
-    }
-
+   // }
 }
 /* ================================================================================================
  * A Star

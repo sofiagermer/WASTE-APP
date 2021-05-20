@@ -111,7 +111,10 @@ public:
 
     Graph getTransposedGraph() const;
 
-
+    void initializeHouses(string filename);
+    void initializeTrashContainers(string filename);
+    void initializeGarbageFacilitys(string filename);
+    void initializePoints();
 
 };
 

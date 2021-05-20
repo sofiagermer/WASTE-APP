@@ -16,7 +16,3 @@ add_executable(WASTE-APP ${SRC})
 
 target_link_libraries(WASTE-APP graphviewer)
 
-
-cmake_minimum_required(VERSION 3.17)
-project(VaccineRouter)
-
