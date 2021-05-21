@@ -44,6 +44,14 @@ public:
     const std::string &getPassword() const;
 
 
+    /**
+     * Input operator.
+     */
+    friend std::istream& operator>>(std::istream& input, User &u);
+    /**
+     * Output operator.
+     */
+    friend std::ostream& operator<<(std::ostream& output, const User &u);
 };
 
 

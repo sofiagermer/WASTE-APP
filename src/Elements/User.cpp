@@ -36,3 +36,13 @@ void User::setName(const std::string &name) {
 void User::setPassword(const std::string &password) {
     User::password = password;
 }
+
+std::istream& operator>>(std::istream& input, User &u){
+    input >> u.userID >> u.name >> u.password;
+    return input;
+}
+
+std::ostream& operator<<(std::ostream& output, const User &u){
+    output << u.userID << " " << u.name << " " << u.password << std::endl;
+    return output;
+}
