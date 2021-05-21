@@ -105,9 +105,10 @@ public:
 
     void DFS_Tarjan(Vertex* src, int nid, stack<Vertex*> &st, vector<vector<int>> &scc);
 
-    vector<int> largestSCC();
-
+    vector<int> largestSCCTarjan();
+    vector<int> largestSCCKosaraju();
     void preprocessGraph();
+    void createSCCFile(string fileNodes, string fileEdges);
 
     vector<vector<int>> kosaraju();
 

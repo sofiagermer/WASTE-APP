@@ -25,8 +25,9 @@ using namespace std;
 
 int main() {
 
-    Graph graph("../Map/processedNodes.txt","../Map/processedEdges.txt");
-    //graph.preprocessGraph();
+    //Graph graph("../Map/processedNodes.txt","../Map/processedEdges.txt");
+    Graph graph("../Map/porto_full_nodes_xy.txt","../Map/porto_full_edges.txt");
+    graph.preprocessGraph();
 
     /*UI ui(&graph, 1600, 900);
     ui.showGraph();*/

@@ -351,7 +351,7 @@ void Graph::DFS_Tarjan(Vertex* src, int nid, stack<Vertex*> &L, vector<vector<in
     }
 }
 
-vector<int> Graph::largestSCC() {
+vector<int> Graph::largestSCCTarjan() {
     vector<vector<int>> scc_list = tarjan();
     cout << "Total number of strongly connected components: " << scc_list.size() << endl;
     int majorSize = 0;
@@ -441,12 +441,28 @@ bool Graph::removeVertex(int id) {
     return true;
 }
 
+vector<int> Graph::largestSCCKosaraju() {
+    vector<vector<int>> scc_list = kosaraju();
+    cout << "Total number of strongly connected components: " << scc_list.size() << endl;
+    int majorSize = 0;
+    int index = -1;
+    for(int i = 0; i < scc_list.size(); i++){
+        if(scc_list.at(i).size() > majorSize){
+            majorSize = scc_list.at(i).size();
+            index = i;
+        }
+    }
+    return scc_list.at(index);
+}
+
 /* ================================================================================================
  * Pre Process Graph
  * ================================================================================================
  */
 void Graph::preprocessGraph() {
-    vector<int> strongComponent = this->largestSCC();
+    //vector<int> strongComponent = this->largestSCCKosaraju();
+    vector<int> strongComponent = this->largestSCCTarjan();
+    //cout << "Size of Larger SCC "  << strongComponent.size() << endl;
     stack<int> toRemove;
     int i=0,k=0;
     bool remove;
@@ -463,7 +479,7 @@ void Graph::preprocessGraph() {
             k++;
         };
     }
-    cout<<toRemove.size()<<"\n";
+    //cout<<"Number of edges that will be removed: " << toRemove.size()<< endl;
     while(!toRemove.empty()){
 
         if(!removeVertex(toRemove.top())){
@@ -472,8 +488,12 @@ void Graph::preprocessGraph() {
         }
         toRemove.pop();
     }
-    cout<<i;
-    ofstream nodeFile("../Map/processedNodes.txt"),edgeFile("../Map/processedEdges.txt");
+    createSCCFile("../Map/outputTarjan/processedNodes.txt", "../Map/outputTarjan/processedEdges.txt");
+    //createSCCFile("../Map/outputKosaraju/processedNodes.txt", "../Map/outputKosaraju/processedEdges.txt");
+}
+
+void Graph::createSCCFile(string fileNodes, string fileEdges){
+    ofstream nodeFile(fileNodes),edgeFile(fileEdges);
     nodeFile<<vertexSet.size()<<"\n";
     int edges=0;
     for (auto v:vertexSet){
@@ -487,7 +507,6 @@ void Graph::preprocessGraph() {
         }
     }
 }
-
 Vertex *Graph::findClosestVertex(double x, double y) {
     Vertex *closest= nullptr;
     double min=INF;
