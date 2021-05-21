@@ -27,10 +27,18 @@ int main() {
 
     Graph graph("../Map/processedNodes.txt","../Map/processedEdges.txt");
     //graph.preprocessGraph();
-
+    auto s1=graph.aStar(graph.findVertex(53545),graph.findVertex(53564));
+    cout<<"astar done"<<endl;
+    auto s2=graph.dijkstra(graph.findVertex(53545),graph.findVertex(53564));
+    while(!s1.empty()&&!s2.empty()){
+        cout<<s1.top()->getX()<<" : "<<s1.top()->getY()<<endl;
+        cout<<s2.top()->getX()<<" : "<<s2.top()->getY()<<endl;
+        s2.pop();
+        s1.pop();
+    }
     /*UI ui(&graph, 1600, 900);
     ui.showGraph();*/
-    Initializing initializing(graph);
+    //Initializing initializing(graph);
     //graph.preprocessGraph();
 
     //UI ui(&graph, 1600, 900);

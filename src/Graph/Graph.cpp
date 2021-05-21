@@ -537,6 +537,7 @@ stack<Vertex *> Graph::dijkstra(Vertex *start, Vertex *end) {
             if(d<e.dest->distance){
                 e.dest->distance=d;
                 cameFrom[e.dest]=v;
+                queue.insertOrDecreaseKey(e.dest);
             }
         }
     }
