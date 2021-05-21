@@ -5,23 +5,23 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include "Initializing.h"
+#include "APP.h"
 
 using namespace std;
 
-Initializing::Initializing(Graph graph) {
+APP::APP(Graph graph) {
     this->graph = graph;
     initializePoints();
 }
 
-void Initializing::initializePoints(){
+void APP::initializePoints(){
     initializeHouses("../data/houses.txt");
     initializeTrashContainers("../data/trashContainers.txt");
     initializeGarbageFacilitys("../data/garbageFacilitys.txt");
     initializeCars("../data/cars.txt");
 }
 
-void Initializing::initializeHouses(string filename) {
+void APP::initializeHouses(string filename) {
     ifstream fileHouses(filename);
     int numberElements;
     fileHouses>>numberElements;
@@ -36,7 +36,7 @@ void Initializing::initializeHouses(string filename) {
     fileHouses.close();
 }
 
-void Initializing::initializeTrashContainers(string filename) {
+void APP::initializeTrashContainers(string filename) {
     ifstream fileTrashContainers(filename);
     int numberElements;
     fileTrashContainers>>numberElements;
@@ -65,7 +65,7 @@ void Initializing::initializeTrashContainers(string filename) {
     fileTrashContainers.close();
 }
 
-void Initializing::initializeGarbageFacilitys(string filename) {
+void APP::initializeGarbageFacilitys(string filename) {
     ifstream fileGarbageFacilitys(filename);
     int numberElements;
     fileGarbageFacilitys >> numberElements;
@@ -81,7 +81,7 @@ void Initializing::initializeGarbageFacilitys(string filename) {
    fileGarbageFacilitys.close();
 }
 
-void Initializing::initializeCars(string filename) {
+void APP::initializeCars(string filename) {
     ifstream fileCars(filename);
     int numberElements;
     fileCars >> numberElements;
