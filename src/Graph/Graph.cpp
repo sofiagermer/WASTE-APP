@@ -93,6 +93,30 @@ bool Vertex::operator<(Vertex *v) {
     return this->distance<v->distance;
 }
 
+int Vertex::getIndex() const {
+    return index;
+}
+
+void Vertex::setIndex(int index) {
+    Vertex::index = index;
+}
+
+int Vertex::getLow() const {
+    return low;
+}
+
+void Vertex::setLow(int low) {
+    Vertex::low = low;
+}
+
+double Vertex::getDistance() const {
+    return distance;
+}
+
+void Vertex::setDistance(double distance) {
+    Vertex::distance = distance;
+}
+
 bool Graph::removeVertex(double x, double y) {
     auto v=findVertex(x,y);
     if(v==NULL) return false;
@@ -109,17 +133,7 @@ bool Graph::removeVertex(double x, double y) {
     return true;
 }
 
-double Graph::distanceBetweenCoords(double x1, double x2, double y1, double y2) {
-    //uses the Haversine formula to calcuxe distances in a sphere
-    /*double dYg = (y2 - y1) * degreeToRadian;
-    double dX = (x2 - x1) * degreeToRadian;
-    double a = pow(sin(dX / 2.0), 2) + cos(x1 * degreeToRadian) * cos(x2 * degreeToRadian) * pow(sin(dYg / 2.0), 2);
-    double c = 2 * atan2(sqrt(a), sqrt(1-a));
-    double d = 6371 * c; //6371 is the Earth's radius
-    return d;*/
-
-    return sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
-}
+double distanceBetweenCoords(double x1, double x2, double y1, double y2);
 
 Vertex *Graph::findVertex(int ID) {
     for (auto v : vertexSet)
@@ -147,7 +161,7 @@ Graph::Graph(string nodesFile, string edgesFile) {
     cout<< "===================================="<<endl;
     cout<< "         LOADING THE GRAPH          "<<endl;
     cout<< "===================================="<<endl;
-    cout<<"0% ";
+    cout<<"0% "<<flush;
     ifstream nFile(nodesFile),eFile(edgesFile);
 
     int numberElements;
@@ -159,7 +173,7 @@ Graph::Graph(string nodesFile, string edgesFile) {
     //Reads number of nodes
     nFile>>numberElements;
     for(int i=0;i<numberElements;i++){
-        if(i%(numberElements/6)==0) cout<<"* ";
+        if(i%(numberElements/6)==0) cout<<"* "<<flush;
         //Reads each vertex/node's info
         nFile>>c>>id>>c>>x>>c>>y>>c;
         addVertex(id,x,y);
@@ -170,12 +184,26 @@ Graph::Graph(string nodesFile, string edgesFile) {
     eFile>>numberElements;
 
     for(int i=0;i<numberElements;i++){
-        if(i%(numberElements/6)==0) cout<<"* ";
+        if(i%(numberElements/6)==0) cout<<"* "<<flush;
         eFile>>c>>v1>>c>>v2>>c;
         addEdge(v1,v2);
     }
     cout<<"100%"<<endl;
 }
+
+Vertex * Graph::findClosestVertex(double x, double y) {
+    Vertex *closest= nullptr;
+    double min=INF;
+    for(auto v:vertexSet){
+        double aux;
+        if((aux=distanceBetweenCoords(v->getX(),x,v->getY(),y))<min){
+            closest=v;
+            min=aux;
+        }
+    }
+    return closest;
+}
+
 
 /* ================================================================================================
  *
@@ -193,177 +221,13 @@ Graph::Graph(string nodesFile, string edgesFile) {
  * ================================================================================================
  */
 
-stack<Vertex*> Graph::aStar(Vertex *start, Vertex *end) {
-    vector<Vertex*> discoveredNodes;
-    discoveredNodes.push_back(start);
-    map<Vertex*,Vertex*> cameFrom;
-    map<Vertex*,double> costMap;
-    map<Vertex*,double> guessMap;
-    for(auto v:vertexSet){
-        costMap[v]=INF;
-        guessMap[v]=INF;
-    }
-    costMap[start]=0;
-    guessMap[start]=heuristic(start,end);
-    while(!discoveredNodes.empty()){
-        Vertex* current;
-        double min=INF;
-        vector<Vertex*>::iterator it=discoveredNodes.begin();
-        vector<Vertex*>::iterator toErase;
-        while(it!=discoveredNodes.end()){
-            if(guessMap[*it]<min){
-                min=guessMap[*it];
-                current=*it;
-                toErase=it;
-            }
-            it++;
-        }
-        if(current==end){
-            return reconstructPath(cameFrom,current,start);
-        }
-        discoveredNodes.erase(toErase);
-        for(auto edge:current->outgoingEdges){
-            double tentative=costMap[current]+edge.weight;
-            if(tentative<costMap[edge.dest]){
-                cameFrom[edge.dest]=current;
-                costMap[edge.dest]=tentative;
-                guessMap[edge.dest]=costMap[edge.dest]+ heuristic(current,end);
-                bool exists=false;
-                for(auto d:discoveredNodes){
-                    if(d==edge.dest){
-                        exists=true;
-                    }
-                }
-                if(!exists) discoveredNodes.push_back(edge.dest);
-            }
-        }
 
-    }
-    return {};
-}
-
-double Graph::heuristic(Vertex *start, Vertex *end) {
-    return distanceBetweenCoords(start->getX(), end->getX(), start->getY(), end->getY());
-}
-
-stack<Vertex *> Graph::reconstructPath(map<Vertex *, Vertex *> cameFrom, Vertex *current,Vertex *start) {
-    stack<Vertex*> path;
-    path.push(current);
-    while(current!=start){
-        current=cameFrom[current];
-        path.push(current);
-    }
-
-    return path;
-}
-
-queue<Vertex *> Graph::nearestNeighbour(double x,double y,vector<Vertex*> pointsTravel){
-    queue<Vertex*> orderedCompletePath;
-    Vertex *initialVertex = findClosestVertex(x,y);
-    orderedCompletePath.push(initialVertex);
-    double minDistance;
-    stack<Vertex*> next;
-    vector<Vertex*>::iterator copy;
-    while(!pointsTravel.empty()) {
-        minDistance=INF;
-        for (auto it = pointsTravel.begin(); it != pointsTravel.end(); it++) {
-            auto path = aStar(initialVertex, (*it));
-            double aux = pathCost(path);
-            if (aux < minDistance) {
-                minDistance = aux;
-                next = path;
-                copy=it;
-            }
-        }
-        while(!next.empty()){
-            orderedCompletePath.push(next.top());
-            next.pop();
-        }
-        pointsTravel.erase(copy);
-        cout<<pointsTravel.size()<<endl;
-    }
-    return orderedCompletePath;
-}
 
 /* ================================================================================================
  * Tarjan
  * ================================================================================================
  */
 
-bool findStackElement (stack<Vertex*> stackV, Vertex * vertex)
-{
-    while (!stackV.empty() && stackV.top() != vertex){
-        stackV.pop();
-    }
-
-    if (!stackV.empty())
-        return true;
-
-    return false;
-}
-
-vector<vector<int>> Graph::tarjan() {
-    for (Vertex * vertex : vertexSet) {
-        vertex->index = 0;
-    }
-
-    vector<vector<int>> scc;
-
-    for (Vertex* vertex : vertexSet) {
-        if (vertex->index == 0) {
-            strongConnectedComponent(vertex, scc);
-        }
-    }
-
-    return scc;
-}
-
-void Graph::strongConnectedComponent(Vertex* src, vector<vector<int>> &scc) {
-    int nid = 1;
-    stack<Vertex*> L;
-
-    DFS_Tarjan(src, nid, L, scc);
-}
-
-void Graph::DFS_Tarjan(Vertex* src, int nid, stack<Vertex*> &L, vector<vector<int>> &scc){
-    L.push(src);
-    src->index = nid++;
-    src->low = nid;
-
-    for (Edge edge : src->getOutgoingEdges()) {
-        if (edge.dest->index == 0) {
-            DFS_Tarjan(edge.dest, nid, L, scc);
-            src->low = min(src->low, edge.dest->low);
-        } else if (findStackElement(L, edge.dest)) {
-            src->low = min(src->low, edge.dest->index);
-        }
-    }
-
-    if (src->low == src->index) {
-        vector<int> sc;
-        Vertex * v;
-        do {
-            v = L.top();
-            L.pop();
-            sc.push_back(v->getID());
-        } while (v != src);
-        scc.push_back(sc);
-    }
-}
-
-vector<int> Graph::largestSCCTarjan() {
-    vector<vector<int>> scc_list = tarjan();
-    cout << "Total number of strongly connected components: " << scc_list.size() << endl;
-    int majorSize = 0;
-    int index = -1;
-    for(int i = 0; i < scc_list.size(); i++){
-        if(scc_list.at(i).size() > majorSize){
-            majorSize = scc_list.at(i).size();
-            index = i;
-        }
-    }
-    return scc_list.at(index);
-}
 
 /* ================================================================================================
  * Kosaraju
@@ -455,111 +319,16 @@ vector<int> Graph::largestSCCKosaraju() {
     return scc_list.at(index);
 }
 
+double Graph::distanceBetweenCoords(double x1, double x2, double y1, double y2) {
+    return sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
+}
+
+double Edge::getWeight() const {
+    return weight;
+}
 /* ================================================================================================
  * Pre Process Graph
  * ================================================================================================
  */
-void Graph::preprocessGraph() {
-    //vector<int> strongComponent = this->largestSCCKosaraju();
-    vector<int> strongComponent = this->largestSCCTarjan();
-    //cout << "Size of Larger SCC "  << strongComponent.size() << endl;
-    stack<int> toRemove;
-    int i=0,k=0;
-    bool remove;
-    for(Vertex* v:vertexSet){
-        remove=true;
-        for(int j=0;j<strongComponent.size();j++){
-            if(v->getID()==strongComponent[j]) {
-                remove=false;
-                break;
-            }
-        }
-        if(remove==true) {
-            toRemove.push(v->getID());
-            k++;
-        };
-    }
-    //cout<<"Number of edges that will be removed: " << toRemove.size()<< endl;
-    while(!toRemove.empty()){
 
-        if(!removeVertex(toRemove.top())){
-            cout<<"e\n"<<endl;
-            i++;
-        }
-        toRemove.pop();
-    }
-    createSCCFile("../Map/outputTarjan/processedNodes.txt", "../Map/outputTarjan/processedEdges.txt");
-    //createSCCFile("../Map/outputKosaraju/processedNodes.txt", "../Map/outputKosaraju/processedEdges.txt");
-}
 
-void Graph::createSCCFile(string fileNodes, string fileEdges){
-    ofstream nodeFile(fileNodes),edgeFile(fileEdges);
-    nodeFile<<vertexSet.size()<<"\n";
-    int edges=0;
-    for (auto v:vertexSet){
-        nodeFile<<setprecision(17)<<"("<<v->getID()<<","<<v->getX()<<","<<v->getY()<<")\n";
-        edges+=v->getOutgoingEdges().size();
-    }
-    edgeFile<<edges<<"\n";
-    for (auto v:vertexSet){
-        for(auto e:v->getOutgoingEdges()){
-            edgeFile<<setprecision(17)<<"("<<v->getID()<<","<<e.dest->getID()<<")\n";
-        }
-    }
-}
-Vertex *Graph::findClosestVertex(double x, double y) {
-    Vertex *closest= nullptr;
-    double min=INF;
-    for(auto v:vertexSet){
-        double aux;
-        if((aux=distanceBetweenCoords(v->getX(),x,v->getY(),y))<min){
-            closest=v;
-            min=aux;
-        }
-    }
-    return closest;
-}
-
-double Graph::pathCost(stack<Vertex *> path) {
-    if(path.size()<2) return 0;
-    double cost=0;
-    auto v=path.top();
-    path.pop();
-    while(!path.empty()){
-        for(auto e:v->getOutgoingEdges()){
-            if(e.dest==path.top()){
-                cost+=e.weight;
-                break;
-            }
-        }
-        v=path.top();
-        path.pop();
-    }
-    return cost;
-}
-
-stack<Vertex *> Graph::dijkstra(Vertex *start, Vertex *end) {
-    map <Vertex*,Vertex*> cameFrom;
-    for(auto v:vertexSet){
-        v->distance=INF;
-        v->queueIndex=0;
-    }
-    start->distance=0;
-    MutablePriorityQueue<Vertex*> queue;
-    queue.insert(start);
-    Vertex* v;
-    while(!queue.empty()){
-        v=queue.extractMin();
-        if(v==end) break;
-        for(auto e:v->outgoingEdges){
-            double d=v->distance+e.weight;
-            if(d<e.dest->distance){
-                e.dest->distance=d;
-                cameFrom[e.dest]=v;
-                queue.insertOrDecreaseKey(e.dest);
-            }
-        }
-    }
-    return reconstructPath(cameFrom,end,start);
-
-}

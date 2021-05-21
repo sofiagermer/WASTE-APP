@@ -16,6 +16,7 @@
 #include <bits/stdc++.h>
 #include "MutablePriorityQueue.h"
 
+
 #define degreeToRadian (M_PI / 180.0)
 #define INF std::numeric_limits<double>::max()
 
@@ -38,6 +39,17 @@ class Vertex{
     int queueIndex = 0; // required by MutablePriorityQueue
     double distance;
 public:
+    double getDistance() const;
+
+    void setDistance(double distance);
+
+    int getIndex() const;
+
+    void setIndex(int index);
+
+    int getLow() const;
+
+    void setLow(int low);
     Vertex(int ID, double x, double y);
     double getX();
     double getY();
@@ -50,10 +62,11 @@ public:
 
 class Edge {
     Vertex * dest;      // destination vertex
-    double weight;         // edge weight
+    double weight;
 public:
     Edge(Vertex *dest, double weight);
     Vertex * getDest();
+    double getWeight() const;
     friend class Graph;
     friend class Vertex;
 };
@@ -74,6 +87,8 @@ public:
 
     bool removeVertex(double x, double y);
 
+    double distanceBetweenCoords(double x1, double x2, double y1, double y2);
+
     bool removeVertex(int id);
 
     bool addEdge(double sourceX, double sourceY, double destX, double destY);
@@ -82,33 +97,9 @@ public:
 
     bool removeEdge(double sourceX, double sourceY, double destX, double destY);
 
-    double distanceBetweenCoords(double x1, double x2, double y1, double y2);
-
     Vertex *findVertex(int ID);
 
-    vector<vector<int>> tarjan(const int id_src);
-
-    void strongconnect(Vertex* src, int &index, stack<Vertex*> &st, vector<vector<int>> &scc);
-
-    stack<Vertex*> aStar(Vertex* start, Vertex* end);
-
-    stack<Vertex*> dijkstra(Vertex* start,Vertex* end);
-
-    double heuristic(Vertex* start, Vertex* end);
-
-    stack<Vertex *> reconstructPath(map<Vertex *, Vertex *> cameFrom, Vertex *current,Vertex *start);
-
-    queue<Vertex *> nearestNeighbour(double x,double y,vector<Vertex*> pointsTravel);
-    vector<vector<int>> tarjan();
-
-    void strongConnectedComponent(Vertex* src, vector<vector<int>> &scc); //Tarjan
-
-    void DFS_Tarjan(Vertex* src, int nid, stack<Vertex*> &st, vector<vector<int>> &scc);
-
-    vector<int> largestSCCTarjan();
     vector<int> largestSCCKosaraju();
-    void preprocessGraph();
-    void createSCCFile(string fileNodes, string fileEdges);
 
     vector<vector<int>> kosaraju();
 
@@ -124,5 +115,7 @@ public:
 
 
 };
+
+
 
 #endif //WASTE_APP_GRAPH_H

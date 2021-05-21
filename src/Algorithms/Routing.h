@@ -1,0 +1,31 @@
+//
+// Created by miguel on 21/05/21.
+//
+
+#ifndef WASTE_APP_ROUTING_H
+#define WASTE_APP_ROUTING_H
+
+
+#include "../Graph/Graph.h"
+
+class Routing {
+
+    static double pathCost(stack<Vertex *> path);
+
+    static double heuristic(Vertex *start, Vertex *end);
+
+    static stack<Vertex *> reconstructPath(map<Vertex *, Vertex *> cameFrom, Vertex *current,Vertex *start);
+
+    static double distanceBetweenCoords(double x1, double x2, double y1, double y2);
+
+public:
+    static stack<Vertex *> dijkstra(Graph graph,Vertex *start, Vertex *end);
+
+    static stack<Vertex*> aStar(Graph graph,Vertex *start, Vertex *end);
+
+    static queue<Vertex *> nearestNeighbour(Graph graph, double x,double y,vector<Vertex*> pointsTravel);
+
+};
+
+
+#endif //WASTE_APP_ROUTING_H
