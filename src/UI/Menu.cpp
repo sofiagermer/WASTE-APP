@@ -31,7 +31,7 @@ void Menu::mainMenu() {
 
     Menu::frontpage();
 
-    std::cout << std::endl << "Welcome to WASTE-APP!" << std::endl;
+    std::cout << std::endl << "Welcome to WASTE-App!" << std::endl;
     while (true){
         Menu::beginningOptions();
         std::getline(std::cin, input);
@@ -51,7 +51,7 @@ void Menu::mainMenu() {
                 Menu::driverMenu();
                 break;
             case '9':
-                std::cout << "Thank you for using WASTE-APP, we hope to you see again soon!" << std::endl;
+                std::cout << "Thank you for using WASTE-App, we hope to you see again soon!" << std::endl;
                 return;
             default:
                 std::cout << INVALIDOPTION << std::endl;

@@ -2,26 +2,24 @@
 // Created by sofia on 20/05/21.
 //
 
-#include <iostream>
-#include <string>
-#include <fstream>
-#include "APP.h"
+
+#include "App.h"
 
 using namespace std;
 
-APP::APP(Graph graph) {
+App::App(Graph graph) {
     this->graph = graph;
     initializePoints();
 }
 
-void APP::initializePoints(){
+void App::initializePoints(){
     initializeHouses("../data/houses.txt");
     initializeTrashContainers("../data/trashContainers.txt");
-    initializeGarbageFacilitys("../data/garbageFacilitys.txt");
+    initializeGarbageFacilities("../data/garbageFacilitys.txt");
     initializeCars("../data/cars.txt");
 }
 
-void APP::initializeHouses(string filename) {
+void App::initializeHouses(string filename) {
     ifstream fileHouses(filename);
     int numberElements;
     fileHouses>>numberElements;
@@ -36,7 +34,7 @@ void APP::initializeHouses(string filename) {
     fileHouses.close();
 }
 
-void APP::initializeTrashContainers(string filename) {
+void App::initializeTrashContainers(string filename) {
     ifstream fileTrashContainers(filename);
     int numberElements;
     fileTrashContainers>>numberElements;
@@ -65,7 +63,7 @@ void APP::initializeTrashContainers(string filename) {
     fileTrashContainers.close();
 }
 
-void APP::initializeGarbageFacilitys(string filename) {
+void App::initializeGarbageFacilities(string filename) {
     ifstream fileGarbageFacilitys(filename);
     int numberElements;
     fileGarbageFacilitys >> numberElements;
@@ -81,7 +79,7 @@ void APP::initializeGarbageFacilitys(string filename) {
    fileGarbageFacilitys.close();
 }
 
-void APP::initializeCars(string filename) {
+void App::initializeCars(string filename) {
     ifstream fileCars(filename);
     int numberElements;
     fileCars >> numberElements;
@@ -93,4 +91,48 @@ void APP::initializeCars(string filename) {
         cars.push_back(car);
     }
     fileCars.close();
+}
+
+void App::preprocessingAnalysisTarjan() {
+    cout<<endl<<"Using a Porto Map with 53 621 nodes."<<endl;
+
+    //Initializes a full graph
+    Graph graph("../Map/porto_full_nodes_xy.txt","../Map/porto_full_edges.txt");
+
+    //Runs Tarjan's algorithm and records the time it took
+    auto start = std::chrono::high_resolution_clock::now();
+    Preprocessing::preprocessGraphTarjan(graph,"../Map/testNodes.txt","../Map/testEdges.txt");
+    auto end = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+
+    //Reads the number of nodes created from the nodes file
+    ifstream f("../Map/testNodes.txt");
+    int nodes;
+    f>>nodes;
+    cout <<"Tarjan's Algorithm ran in "<<duration.count()<<" milliseconds and produced a graph with "<<nodes<<" nodes"<<endl;
+    f.close();
+
+    //Erases temporary files created to test the algorithm
+    int result1=remove("../Map/testNodes.txt");
+    int result2=remove("../Map/testEdges.txt");
+    if(result1!=0 || result2!=0) cout <<"Error deleting temporary files"<<endl;
+}
+
+void App::aStarAnalysis() {
+    auto v1 = graph.findVertex(3);
+    auto v2 = graph.findVertex(8);
+
+    auto start = std::chrono::high_resolution_clock::now();
+    auto pathAStar=Routing::aStar(graph,v1,v2);
+    auto end = std::chrono::high_resolution_clock::now();
+    auto durationAStar = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+    cout<<"A:"<<durationAStar.count()<<endl;
+    start = std::chrono::high_resolution_clock::now();
+    auto pathDijkstra=Routing::dijkstra(graph,v1,v2);
+    end = std::chrono::high_resolution_clock::now();
+    auto durationDijkstra = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+
+    cout<<"D:"<<durationDijkstra.count()<<endl;
+
+
 }

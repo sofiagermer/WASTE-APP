@@ -5,13 +5,16 @@
 #ifndef WASTE_APP_APP_H
 #define WASTE_APP_APP_H
 
-
+#include <iostream>
+#include <string>
+#include <fstream>
 #include "House.h"
 #include "TrashContainer.h"
 #include "GarbageCollectionFacility.h"
 #include "Car.h"
-
-class APP {
+#include "../Algorithms/Preprocessing.h"
+#include "../Algorithms/Routing.h"
+class App {
     vector<House> houses;
     vector<TrashContainer> trashContainers;
     vector<GarbageCollectionFacility> garbageCFs;
@@ -19,13 +22,18 @@ class APP {
     Graph graph;
 
 public:
-    APP(Graph graph);
+    App(Graph graph);
     void initializePoints();
     void initializeHouses(string filename);
     void initializeTrashContainers(string filename);
-    void initializeGarbageFacilitys(string filename);
+    void initializeGarbageFacilities(string filename);
     void initializeCars(string filename);
+
+    //Algorithm's Analysis
+    static void preprocessingAnalysisTarjan();
+    void aStarAnalysis();
 };
+
 
 
 #endif //WASTE_APP_APP_H
