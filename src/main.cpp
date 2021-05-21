@@ -24,7 +24,7 @@ vector<int> KO(Graph &graph) {
 using namespace std;
 
 int main() {
-/*
+
     Graph graph("../Map/processedNodes.txt","../Map/processedEdges.txt");
     //graph.preprocessGraph();
     auto s1=graph.aStar(graph.findVertex(53545),graph.findVertex(53564));
@@ -35,7 +35,7 @@ int main() {
         cout<<s2.top()->getX()<<" : "<<s2.top()->getY()<<endl;
         s2.pop();
         s1.pop();
-    }*/
+    }
     /*UI ui(&graph, 1600, 900);
     ui.showGraph();*/
     //Initializing initializing(graph);
