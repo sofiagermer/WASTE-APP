@@ -27,6 +27,8 @@ private:
 
 
 public:
+    User();
+
     User(int uId);
 
     User(int uId, std::string n, std::string pass);

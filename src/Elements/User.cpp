@@ -6,6 +6,11 @@
 
 #include <utility>
 
+User::User() {
+    userID = 0;
+    name = "";
+    password = "";
+}
 User::User(int uId) : userID(uId) {
     name = "abc xyz";
     password = "abcxyz";

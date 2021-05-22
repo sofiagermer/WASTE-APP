@@ -42,6 +42,7 @@ public:
     User* findUser(int userID, string password);
     int addDriver(string name, string password, string licenseplate);
     Driver* findDriver(int userID, string password);
+    bool userIDRepeated(const int &userID);
 
     //Algorithm's Analysis
     static void preprocessingAnalysisTarjan();

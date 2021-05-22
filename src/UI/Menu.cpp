@@ -308,6 +308,10 @@ Driver* Menu::createDriver() {
 
     app.addCar(carlicenseplate, inputcarmax);
     int driverid = app.addDriver(username, userpassowrd, carlicenseplate);
+    if(driverid  == -1){
+        cout << "ERROR CREATING CAR!" << endl;
+        return nullptr;
+    }
     Driver* driver = app.findDriver(driverid, userpassowrd);
     if(driver == nullptr){
             cout << "ERROR CREATING DRIVER!" << endl;

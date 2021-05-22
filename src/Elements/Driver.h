@@ -33,10 +33,8 @@ public:
 
     void setCar(Car *car);
 
-    /**
-     * Input operator.
-     */
-    friend std::istream& operator>>(std::istream& input, Driver &d);
+    //friend std::istream& operator>>(std::istream& input, Driver &d);
+
     /**
      * Output operator.
      */

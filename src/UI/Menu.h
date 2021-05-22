@@ -44,12 +44,12 @@ namespace Menu {
     void frontpage();
     void beginningOptions();
     void mainMenu();
+    void loginOptions();
     void userMenu();
     void driverMenu();
-    void loginOptions();
-    User* createUser();
     void userOptions(User &user);
     void driverOptions(Driver &driver);
+    User* createUser();
     Driver* createDriver();
     User* loginUser();
     Driver* loginDriver();
