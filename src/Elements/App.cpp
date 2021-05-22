@@ -162,3 +162,27 @@ void App::aStarAnalysis() {
 
     cout<<"D:"<<durationDijkstra.count()<<endl;
 }
+
+void App::addCar(string licenseplate, float maxcarcap) {
+
+}
+
+Car *App::findCar(string licenseplate) {
+    return nullptr;
+}
+
+int App::addUser(string name, string password) {
+    return 0;
+}
+
+User *App::findUser(int userID, string password) {
+    return nullptr;
+}
+
+int App::addDriver(string name, string password, string licenseplate) {
+    return 0;
+}
+
+Driver *App::findDriver(int userID, string password) {
+    return nullptr;
+}
