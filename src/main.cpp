@@ -26,7 +26,7 @@ int main() {
     //UI ui(&graph, 1600, 900);
     //ui.showGraph();
     //cout<<"terminei";
-    //Menu::mainMenu();
+    Menu::mainMenu();
     return 0;
 }
 

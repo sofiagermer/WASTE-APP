@@ -35,3 +35,22 @@ double Driver::getMoneyEarned() const {
 void Driver::setMoneyEarned(double moneyEarned) {
     Driver::moneyEarned = moneyEarned;
 }
+
+std::istream& operator>>(std::istream& input, Driver &d){
+    std::string uname, upassword;
+    int uid;
+    float carMaxCap;
+    input >> uid >> uname >> upassword >> d.moneyEarned >> carMaxCap;
+    d.setUserId(uid);
+    d.setName(uname);
+    d.setPassword(upassword);
+    //Replace this!!!
+    Car* car = new Car(carMaxCap);
+    d.setCar(car);
+    return input;
+}
+
+std::ostream& operator<<(std::ostream& output, const Driver &d){
+    output << d.getUserId() << " " << d.getName() << " " << d.getPassword() << " " << d.moneyEarned << " " << d.getCar()->getMaxCapacity() << std::endl;
+    return output;
+}
