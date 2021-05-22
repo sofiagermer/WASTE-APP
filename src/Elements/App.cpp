@@ -7,6 +7,8 @@
 
 using namespace std;
 
+App::App() {}
+
 App::App(Graph graph) {
     this->graph = graph;
     initializePoints();
@@ -92,6 +94,32 @@ void App::initializeCars(string filename) {
     }
     fileCars.close();
 }
+
+//NEED SOME CHANGES!!!
+void App::initializeDrivers(string filename) {
+    ifstream fileDrivers(filename);
+    int numDrivers;
+    fileDrivers >> numDrivers;
+    for(int i = 0; i < numDrivers; i++){
+        Driver d(0);
+        fileDrivers >> d;
+        drivers.push_back(d);
+    }
+    fileDrivers.close();
+}
+
+void App::initializeUsers(string filename){
+    ifstream fileUsers(filename);
+    int numUsers;
+    fileUsers >> numUsers;
+    for(int i = 0; i < numUsers; i++){
+        User u(0);
+        fileUsers >> u;
+        users.push_back(u);
+    }
+    fileUsers.close();
+}
+
 
 void App::preprocessingAnalysisTarjan() {
     cout<<endl<<"Using a Porto Map with 53 621 nodes."<<endl;

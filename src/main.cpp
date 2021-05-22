@@ -10,14 +10,15 @@
 #include "Algorithms/Preprocessing.h"
 
 using namespace std;
+App app;
 
 int main() {
-    Graph graph("../Map/outputTarjan/processedNodes.txt","../Map/outputKosaraju/processedEdges.txt");
+    //Graph graph("../Map/outputTarjan/processedNodes.txt","../Map/outputKosaraju/processedEdges.txt");
     //Graph graph("../Map/porto_full_nodes_xy.txt","../Map/porto_full_edges.txt");
     //Preprocessing::preprocessGraphKosaraju(graph,"../Map/porto_full_nodes_xy.txt","../Map/porto_full_nodes_xy.txt");
 
-    App app(graph);
-    app.aStarAnalysis();
+    //App app(graph);
+    //app.aStarAnalysis();
     /*UI ui(&graph, 1600, 900);
     ui.showGraph();*/
     //Initializing initializing(graph);

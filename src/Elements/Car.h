@@ -7,13 +7,16 @@
 
 #include <iostream>
 #include <string>
+#include <ctime>
 
 #define TRASHWILLNOTFIT "The trash amount is too high, the car cannot hold that much trash"
+
+using namespace std;
 
 class Car {
     float MaxCapacity;
     float CurrentCapacity;
-
+    string LicensePlate;
 public:
     /**
      * Default Constructor
@@ -24,6 +27,12 @@ public:
      * @param maxcap - the max capacity of the car
      */
     Car(float maxcap);
+    /**
+     *
+     * @param maxcap
+     * @param licenseplate
+     */
+    Car(float maxcap, string licenseplate);
 
     /**
      * Gets Maximum capacity of the car
@@ -54,6 +63,14 @@ public:
      * @param amount - amount of trash to add to the car
      */
     void AddTrash(float amount);
+
+    /**
+     *
+     * @return
+     */
+    const string &getLicensePlate() const;
+
+    void setLicensePlate(const string &licensePlate);
 };
 
 
