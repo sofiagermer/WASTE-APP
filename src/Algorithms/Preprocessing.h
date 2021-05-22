@@ -21,10 +21,18 @@ private:
     static vector<int> largestSCCTarjan(Graph graph);
 
     static void createSCCFile(string fileNodes, string fileEdges,Graph graph);
+
+    //KOSARAJU
+    static vector<vector<int>> kosaraju(Graph graph);
+    static void DFS_Kosaraju(Vertex *src, stack<Vertex*> &L, unordered_set <Vertex *> &S);
+    static void DFS_2(Vertex *src, unordered_set <Vertex *> &S, vector <int> &sc);
+    static Graph getTransposedGraph(Graph graph);
+    static vector<int> largestSCCKosaraju(Graph graph);
 public:
 
     static void preprocessGraphTarjan(Graph graph, string nodePath, string edgesPath);
-
+    static void preprocessGraphKosaraju(Graph graph, string nodePath, string edgesPath);
+    static void preprocess(Graph graph, string nodePath, string edgesPath,vector<int> strongComponent);
 
 
 };

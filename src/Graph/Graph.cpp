@@ -1,8 +1,5 @@
 #include "Graph.h"
 
-
-
-
 /* ================================================================================================
  * Vertex
  * ================================================================================================
@@ -133,6 +130,23 @@ bool Graph::removeVertex(double x, double y) {
     return true;
 }
 
+bool Graph::removeVertex(int id) {
+    auto v=findVertex(id);
+    if(v==NULL) return false;
+    typename std::vector<Vertex*>::iterator it;
+    auto copy=vertexSet.begin();
+    for(it=vertexSet.begin();it!=vertexSet.end();it++){
+        if((*it)->x == v->getX() && (*it)->y == v->getY()){
+            copy=it;
+            continue;
+        }
+        (*it)->removeEdgeTo(v);
+    }
+    vertexSet.erase(copy);
+    return true;
+}
+
+
 double distanceBetweenCoords(double x1, double x2, double y1, double y2);
 
 Vertex *Graph::findVertex(int ID) {
@@ -220,105 +234,6 @@ Vertex * Graph::findClosestVertex(double x, double y) {
  * A Star
  * ================================================================================================
  */
-
-
-
-/* ================================================================================================
- * Tarjan
- * ================================================================================================
- */
-
-
-/* ================================================================================================
- * Kosaraju
- * ================================================================================================
- */
-
-vector<vector<int>> Graph::kosaraju() {
-    stack<Vertex*> L;
-    unordered_set<Vertex*> S;
-    vector<vector<int>> SCC;
-    for (Vertex * vertex : vertexSet) {
-        vertex->index = 0;
-    }
-
-    for (Vertex * vertex : vertexSet) {
-        DFS_Kosaraju(vertex, L, S);
-    }
-
-    while(!L.empty()){
-        Vertex *vertex = L.top();
-        L.pop();
-        vector<int> sc;
-        assign(vertex, vertex, sc);
-        SCC.push_back(sc);
-    }
-
-    return SCC;
-}
-
-void Graph::DFS_Kosaraju(Vertex *src, stack<Vertex*> &L, unordered_set <Vertex *> S) {
-    if (S.find(src) != S.end()) return;
-    S.insert(src);
-    for(Edge e : src->getOutgoingEdges()) {
-        DFS_Kosaraju(e.dest, L, S);
-    }
-    L.push(src);
-}
-
-void Graph::assign(Vertex *u, Vertex *root, vector<int> &sc) {
-    vector<int>:: iterator it;
-    it = find(sc.begin(), sc.end(), u->getID());
-    if(it != sc.end()) return;
-    sc.push_back(root->getID());
-    Graph temp = getTransposedGraph();
-    for (Edge e : temp.findVertex(u->ID)->getOutgoingEdges()) {
-        assign(e.dest, root,sc);
-    }
-}
-
-Graph Graph::getTransposedGraph() const {
-    Graph transposedGraph;
-    for(const Vertex *v : vertexSet) transposedGraph.addVertex(v->ID, v->x, v->y);
-    for(Vertex *v : vertexSet){
-        for( const Edge e : v->getOutgoingEdges()){
-            transposedGraph.addEdge(e.dest->getX(), e.dest->getY(), v->getX(), v->getY());
-        }
-    }
-    return transposedGraph;
-}
-
-bool Graph::removeVertex(int id) {
-    auto v=findVertex(id);
-    if(v==NULL) return false;
-    typename std::vector<Vertex*>::iterator it;
-    auto copy=vertexSet.begin();
-    for(it=vertexSet.begin();it!=vertexSet.end();it++){
-        if((*it)->getID()==id){
-            copy=it;
-            continue;
-        }
-        (*it)->removeEdgeTo(v);
-    }
-    vertexSet.erase(copy);
-    free(v);
-    return true;
-}
-
-vector<int> Graph::largestSCCKosaraju() {
-    vector<vector<int>> scc_list = kosaraju();
-    cout << "Total number of strongly connected components: " << scc_list.size() << endl;
-    int majorSize = 0;
-    int index = -1;
-    for(int i = 0; i < scc_list.size(); i++){
-        if(scc_list.at(i).size() > majorSize){
-            majorSize = scc_list.at(i).size();
-            index = i;
-        }
-    }
-    return scc_list.at(index);
-}
-
 double Graph::distanceBetweenCoords(double x1, double x2, double y1, double y2) {
     return sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
 }

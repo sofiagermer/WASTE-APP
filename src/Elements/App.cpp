@@ -101,7 +101,7 @@ void App::preprocessingAnalysisTarjan() {
 
     //Runs Tarjan's algorithm and records the time it took
     auto start = std::chrono::high_resolution_clock::now();
-    Preprocessing::preprocessGraphTarjan(graph,"../Map/testNodes.txt","../Map/testEdges.txt");
+    (graph,"../Map/testNodes.txt","../Map/testEdges.txt");
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
@@ -133,6 +133,4 @@ void App::aStarAnalysis() {
     auto durationDijkstra = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
     cout<<"D:"<<durationDijkstra.count()<<endl;
-
-
 }
