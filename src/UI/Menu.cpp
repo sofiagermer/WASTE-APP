@@ -424,8 +424,7 @@ void Menu::programmerMenu() {
                 app.preprocessingAnalysisTarjan();
                 break;
             case '2':
-                //Kosaraju
-                cout<<"Not implemented yet"<<endl;
+                app.preprocessingAnalysisKosaraju();
                 break;
             case '3':
                 app.aStarAnalysis();

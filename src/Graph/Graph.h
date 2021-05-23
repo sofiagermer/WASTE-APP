@@ -35,6 +35,7 @@ class Vertex{
     // Tarjan
     int index = -1;
     int low = -1;
+    bool inStack;
     //Dijkstra
     int queueIndex;
     // required by MutablePriorityQueue
@@ -62,6 +63,11 @@ public:
     friend class Graph;
     friend class MutablePriorityQueue<Vertex*>;
     int getID();
+
+    //for tarjan
+    void addToStack();
+    void removeFromStack();
+    bool getInStack();
 };
 
 class Edge {

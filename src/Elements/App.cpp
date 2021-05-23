@@ -204,6 +204,31 @@ void App::preprocessingAnalysisTarjan() {
     if(result1!=0 || result2!=0) cout <<"Error deleting temporary files"<<endl;
 }
 
+void App::preprocessingAnalysisKosaraju() {
+    cout<<endl<<"Using a Porto Map with 53 621 nodes."<<endl;
+
+    //Initializes a full graph
+    Graph graph("../Map/porto_full_nodes_xy.txt","../Map/porto_full_edges.txt");
+
+    //Runs Kosaraju's algorithm and records the time it took
+    auto start = std::chrono::high_resolution_clock::now();
+    Preprocessing::preprocessGraphKosaraju(graph,"../Map/testNodes.txt","../Map/testEdges.txt");
+    auto end = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+
+    //Reads the number of nodes created from the nodes file
+    ifstream f("../Map/testNodes.txt");
+    int nodes;
+    f>>nodes;
+    cout <<"Kosaraju's Algorithm ran in "<<duration.count()<<" milliseconds and produced a graph with "<<nodes<<" nodes"<<endl;
+    f.close();
+
+    //Erases temporary files created to test the algorithm
+    int result1=remove("../Map/testNodes.txt");
+    int result2=remove("../Map/testEdges.txt");
+    if(result1!=0 || result2!=0) cout <<"Error deleting temporary files"<<endl;
+}
+
 void App::aStarAnalysis() {
     srand (time(NULL));
     int index1=rand()%graph.getNumVertex();

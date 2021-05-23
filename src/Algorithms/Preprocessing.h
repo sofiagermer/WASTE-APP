@@ -16,7 +16,7 @@ private:
 
     static void strongConnectedComponent(Vertex* src, vector<vector<int>> &scc);
 
-    static void DFS_Tarjan(Vertex* src, int nid, stack<Vertex*> &L, vector<vector<int>> &scc);
+    static void DFS_Tarjan(Vertex* src, int &index, stack<Vertex*> &L, vector<vector<int>> &scc);
 
     static vector<int> largestSCCTarjan(Graph graph);
 

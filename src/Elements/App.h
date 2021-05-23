@@ -54,6 +54,7 @@ public:
 
     //Algorithm's Analysis
     void preprocessingAnalysisTarjan();
+    void preprocessingAnalysisKosaraju();
     void aStarAnalysis();
     void dijkstraAnalysis();
     void aStarVsDijkstra();
