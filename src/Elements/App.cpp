@@ -128,13 +128,13 @@ void App::initializeUsers(string filename){
     fileUsers.close();
 }
 
-void App::addCar(string licenseplate, float maxcarcap) {
-    cars.emplace_back(maxcarcap, licenseplate);
+void App::addCar(string licensePlate, float maxCarCap) {
+    cars.emplace_back(maxCarCap, licensePlate);
 }
 
-Car *App::findCar(string licenseplate) {
+Car *App::findCar(string licensePlate) {
     for(auto carit = cars.begin(); carit < cars.end(); carit++){
-        if((*carit).getLicensePlate() == licenseplate) return &(*carit);
+        if((*carit).getLicensePlate() == licensePlate) return &(*carit);
     }
     return nullptr;
 }
@@ -160,11 +160,11 @@ User *App::findUser(int userID, string password) {
     return nullptr;
 }
 
-int App::addDriver(string name, string password, string licenseplate) {
+int App::addDriver(string name, string password, string licensePlate) {
     srand(time(NULL));
     int userid = rand();
     while (userIDRepeated(userid)) userid = rand();
-    Car* car = findCar(licenseplate);
+    Car* car = findCar(licensePlate);
     if(car == nullptr) return -1;
     drivers.emplace_back(userid, car, name, password);
     return userid;
@@ -219,5 +219,20 @@ void App::aStarAnalysis() {
 
 
     cout<<"D:"<<durationDijkstra.count()<<endl;
+}
+
+Vertex* App::findClosestTrashContainer(User user, TrashType type) {
+    auto userLocation=graph.findClosestVertex(user.getX(),user.getY());
+    Vertex* selectedTrashContainer= nullptr;
+    double min=INF;
+    for(auto t:trashContainers){
+        if(t.getType()==type && t.getCurrentCapacity()>0){
+            auto temp=Routing::dijkstra(graph,userLocation,t.getVertex());
+            if(Routing::pathCost(temp)<min){
+                selectedTrashContainer=t.getVertex();
+            }
+        }
+    }
+    return selectedTrashContainer;
 }
 

@@ -38,9 +38,12 @@
 
 using namespace std;
 
-extern App app;
+class Menu {
+private:
+    App app;
+public:
 
-namespace Menu {
+    Menu(App app);;
     void frontpage();
     void beginningOptions();
     void mainMenu();
@@ -54,7 +57,7 @@ namespace Menu {
     User* loginUser();
     Driver* loginDriver();
     void trashOptions();
-    void trashMenu();
+    void trashMenu(User *user);
     void programmerMenu();
     void programmerOptions();
 

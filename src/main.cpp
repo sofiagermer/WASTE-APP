@@ -13,7 +13,7 @@ using namespace std;
 App app;
 
 int main() {
-    //Graph graph("../Map/outputTarjan/processedNodes.txt","../Map/outputKosaraju/processedEdges.txt");
+
     //Graph graph("../Map/porto_full_nodes_xy.txt","../Map/porto_full_edges.txt");
     //Preprocessing::preprocessGraphKosaraju(graph,"../Map/porto_full_nodes_xy.txt","../Map/porto_full_nodes_xy.txt");
 
@@ -27,6 +27,9 @@ int main() {
     //UI ui(&graph, 1600, 900);
     //ui.showGraph();
     //cout<<"terminei";
+    Menu::frontpage();
+    Graph graph("../Map/outputTarjan/processedNodes.txt","../Map/outputKosaraju/processedEdges.txt");
+    App app(graph);
     Menu::mainMenu();
     return 0;
 }

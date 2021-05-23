@@ -51,3 +51,12 @@ std::ostream& operator<<(std::ostream& output, const User &u){
     output << u.userID << " " << u.name << " " << u.password << std::endl;
     return output;
 }
+
+void User::setPosition(double x, double y) {
+    this->x=x;
+    this->y=y;
+}
+
+double User::getX() const {return this->x;}
+
+double User::getY() const {return this->y;}

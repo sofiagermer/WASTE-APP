@@ -7,11 +7,11 @@
 void Menu::frontpage(){
     cout << "=======================================================================================================" << endl;
     cout << "  __          _____     _____________________________                  ___      ________   ________" << endl;
-    cout << "  \\ \\        / /   \\  /  ___________   ___|  ________|                /   \\    |  _____  \\|  _____  \\" << endl;
-    cout << "   \\ \\  /\\  / / /_\\ \\ | |_______    | |   |  |_______    _____       / /_\\ \\   | |_____|  | |_____|  |" << endl;
-    cout << "    \\ \\/  \\/ / _____ \\\\_______  \\   | |   |  ________|  |_____|     / _____ \\  |  _______/|  _______/" << endl;
-    cout << "     \\  /\\  / /     \\ \\_______| |   | |   |  |_______              / /     \\ \\ | |        | |" << endl;
-    cout << "      \\/  \\/_/       \\_\\________/   |_|   |__________|            /_/       \\_\\|_|        |_|" << endl;
+    cout << "  \\ \\        / /   \\  /  ___________  ___|  ________|                /   \\    |  _____  \\|  _____  \\" << endl;
+    cout << "   \\ \\  /\\  / / /_\\ \\ | |_______    | |  |  |_______    _____     / /_\\ \\   | |_____|  | |_____|  |" << endl;
+    cout << "    \\ \\/  \\/ / _____ \\\\_______  \\  | |  |  ________|  |_____|   / _____ \\  |  _______/|  _______/" << endl;
+    cout << "     \\  /\\  / /     \\ \\_______| |    | |  |  |_______            / /     \\ \\ | |        | |" << endl;
+    cout << "      \\/  \\/_/       \\_\\________/    |_|  |__________|          /_/       \\_\\|_|        |_|" << endl;
     cout << endl;
     cout << "=======================================================================================================" << endl;
 
@@ -27,8 +27,6 @@ void Menu::beginningOptions(){
 
 void Menu::mainMenu() {
     string input;
-
-    Menu::frontpage();
 
     cout << endl << "Welcome to WASTE-App!" << endl;
     while (true){
@@ -128,7 +126,7 @@ void Menu::userMenu() {
                 break;
             case '3':
                 //Search for a specific trash container
-                Menu::trashMenu();
+                Menu::trashMenu(user);
                 break;
             case '0': {
                 cout << "We hope to you see again " << user->getName() << endl;
@@ -346,7 +344,7 @@ Driver *Menu::loginDriver() {
     return app.findDriver(userid, password);
 }
 
-void Menu::trashMenu() {
+void Menu::trashMenu(User *user) {
     string input;
 
     while (true){
@@ -363,39 +361,26 @@ void Menu::trashMenu() {
             case '1':
                 //Paper
                 cout << "Searching for the closest Paper container..." << endl;
-                //NEED FUNCTION HERE!!!
+                app.findClosestTrashContainer(*user,Paper);
                 break;
 
             case '2':
                 //Plastic
                 cout << "Searching for the closest Plastic container..." << endl;
-                //NEED FUNCTION HERE!!!
+                app.findClosestTrashContainer(*user,Plastic);
                 break;
 
             case '3':
                 //Glass
                 cout << "Searching for the closest Glass container..." << endl;
-                //NEED FUNCTION HERE!!!
+                app.findClosestTrashContainer(*user,Glass);
                 break;
 
             case '4':
-                //Metal
+                //Regular
                 cout << "Searching for the closest Metal container..." << endl;
-                //NEED FUNCTION HERE!!!
+                app.findClosestTrashContainer(*user,Regular);
                 break;
-
-            case '5':
-                //Plastic
-                cout << "Searching for the closest Organic container..." << endl;
-                //NEED FUNCTION HERE!!!
-                break;
-
-            case '6':
-                //Plastic
-                cout << "Searching for the closest Non-recyclable container..." << endl;
-                //NEED FUNCTION HERE!!!
-                break;
-
             case '0':
                 return;
 
@@ -410,9 +395,7 @@ void Menu::trashOptions() {
     cout << " 1. Paper" << endl;
     cout << " 2. Plastic" << endl;
     cout << " 3. Glass" << endl;
-    cout << " 4. Metal" << endl;
-    cout << " 5. Organic" << endl;
-    cout << " 6. Non-recyclable" << endl;
+    cout << " 4. Regular" << endl;
     cout << " 0. Go back" << endl;
 }
 
@@ -454,4 +437,7 @@ void Menu::programmerOptions() {
     cout << " 1. Check Graph" << endl;
     cout << " 2. Check Algorithm efficiency" << endl;
     cout << " 0. Go back" << endl;
+}
+
+Menu::Menu(App app) : app(app){
 }

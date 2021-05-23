@@ -9,9 +9,6 @@
 #include "../Graph/Graph.h"
 
 class Routing {
-
-    static double pathCost(stack<Vertex *> path);
-
     static double heuristic(Vertex *start, Vertex *end);
 
     static stack<Vertex *> reconstructPath(map<Vertex *, Vertex *> cameFrom, Vertex *current,Vertex *start);
@@ -25,6 +22,7 @@ public:
 
     static queue<Vertex *> nearestNeighbour(Graph graph, double x,double y,vector<Vertex*> pointsTravel);
 
+    static double pathCost(stack<Vertex *> path);
 };
 
 

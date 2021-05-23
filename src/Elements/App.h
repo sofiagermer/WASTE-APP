@@ -36,13 +36,15 @@ public:
     void initializeDrivers(string filename);
     void initializeUsers(string filename);
 
-    void addCar(string licenseplate, float maxcarcap);
-    Car* findCar(string licenseplate);
+    void addCar(string licensePlate, float maxCarCap);
+    Car* findCar(string licensePlate);
     int addUser(string name, string password);
     User* findUser(int userID, string password);
-    int addDriver(string name, string password, string licenseplate);
+    int addDriver(string name, string password, string licensePlate);
     Driver* findDriver(int userID, string password);
     bool userIDRepeated(const int &userID);
+
+    Vertex* findClosestTrashContainer(User user, TrashType type);
 
     //Algorithm's Analysis
     static void preprocessingAnalysisTarjan();

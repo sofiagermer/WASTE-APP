@@ -25,6 +25,11 @@ private:
      */
     std::string password;
 
+    /*
+     * User's position
+     */
+    double x;
+    double y;
 
 public:
     User();
@@ -36,6 +41,12 @@ public:
     void setUserId(int userId);
 
     void setName(const std::string &name);
+
+    void setPosition(double x,double y);
+
+    double getX() const;;
+
+    double getY() const;;
 
     void setPassword(const std::string &password);
 
