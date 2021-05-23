@@ -4,11 +4,17 @@
 
 #include "House.h"
 
-House::House(Vertex *vertexPt, float amoutTrash) {
+House::House(Vertex *vertexPt, float amoutTrash, bool needPickUp) {
+    this->needPickUp = needPickUp;
     this->vertexPt = vertexPt;
     this->amountTrash = amoutTrash;
 }
 
+House::House(Vertex *vertexPt, float amoutTrash) {
+    this->needPickUp = false;
+    this->vertexPt = vertexPt;
+    this->amountTrash = amoutTrash;
+}
 
 float House::getAmountOfTrash() {
     return amountTrash;

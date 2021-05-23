@@ -17,8 +17,9 @@ class House {
     bool needPickUp;
 
 public:
-    House(Vertex *vertexPt, float amountTrash);
+    House(Vertex *vertexPt, float amountTrash, bool neeedPickUp);
 
+    House(Vertex *vertexPt, float amountTrash);
     /**
      * Gets the user pointer
      * @return User pointer, to the user who lives in this house

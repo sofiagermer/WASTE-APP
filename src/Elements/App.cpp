@@ -29,10 +29,11 @@ void App::initializeHouses(string filename) {
     fileHouses>>numberElements;
     int id;
     float amountTrash;
+    bool needPickUp;
     char c;
     for(int i=0;i<numberElements;i++){
-        fileHouses>>c>>id>>c>>amountTrash>>c;
-        House house(graph.findVertex(id),amountTrash);
+        fileHouses>>c>>id>>c>>amountTrash>>c>>needPickUp>>c;
+        House house(graph.findVertex(id),amountTrash,needPickUp);
         houses.push_back(house);
     }
     fileHouses.close();

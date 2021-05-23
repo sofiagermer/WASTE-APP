@@ -35,11 +35,12 @@ queue<Vertex *> Routing::nearestNeighbour(Graph graph,double x, double y, vector
 stack<Vertex *> Routing::reconstructPath(map<Vertex *, Vertex *> cameFrom, Vertex *current, Vertex *start) {
     stack<Vertex*> path;
     path.push(current);
+    cout << "inicio" << endl;
     while(current!=start){
         current=cameFrom[current];
         path.push(current);
     }
-
+    cout << "fim do reconstruct path " << endl;
     return path;
 }
 
