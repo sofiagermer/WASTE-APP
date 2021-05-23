@@ -7,6 +7,8 @@
 
 using namespace std;
 
+App::App() {}
+
 App::App(Graph graph) {
     this->graph = graph;
     initializePoints();
@@ -93,6 +95,90 @@ void App::initializeCars(string filename) {
     fileCars.close();
 }
 
+void App::initializeDrivers(string filename) {
+    ifstream fileDrivers(filename);
+    int numDrivers;
+    fileDrivers >> numDrivers;
+    for(int i = 0; i < numDrivers; i++){
+        std::string uname, upassword, carlicenseplate;
+        int uid;
+        float carmaxcap, moneyearned;
+        fileDrivers >> uid >> uname >> upassword >> moneyearned >> carlicenseplate >> carmaxcap;
+        Car* car = findCar(carlicenseplate);
+        if(car == nullptr) {
+            addCar(carlicenseplate, carmaxcap);
+            car = findCar(carlicenseplate);
+        }
+        Driver driver(uid, car, uname, upassword);
+        driver.setMoneyEarned(moneyearned);
+        drivers.push_back(driver);
+    }
+    fileDrivers.close();
+}
+
+void App::initializeUsers(string filename){
+    ifstream fileUsers(filename);
+    int numUsers;
+    fileUsers >> numUsers;
+    for(int i = 0; i < numUsers; i++){
+        User u;
+        fileUsers >> u;
+        users.push_back(u);
+    }
+    fileUsers.close();
+}
+
+void App::addCar(string licenseplate, float maxcarcap) {
+    cars.emplace_back(maxcarcap, licenseplate);
+}
+
+Car *App::findCar(string licenseplate) {
+    for(auto carit = cars.begin(); carit < cars.end(); carit++){
+        if((*carit).getLicensePlate() == licenseplate) return &(*carit);
+    }
+    return nullptr;
+}
+
+bool App::userIDRepeated(const int &userid) {
+    for(auto u : users) if(u.getUserId() == userid) return true;
+    for(auto d : drivers) if(d.getUserId() == userid) return true;
+    return false;
+}
+
+int App::addUser(string name, string password) {
+    srand(time(NULL));
+    int userid = rand();
+    while (userIDRepeated(userid)) userid = rand();
+    users.emplace_back(userid, name, password);
+    return userid;
+}
+
+User *App::findUser(int userID, string password) {
+    for(auto userit = users.begin(); userit < users.end(); userit++){
+        if((*userit).getUserId() == userID && (*userit).getPassword() == password) return &(*userit);
+    }
+    return nullptr;
+}
+
+int App::addDriver(string name, string password, string licenseplate) {
+    srand(time(NULL));
+    int userid = rand();
+    while (userIDRepeated(userid)) userid = rand();
+    Car* car = findCar(licenseplate);
+    if(car == nullptr) return -1;
+    drivers.emplace_back(userid, car, name, password);
+    return userid;
+}
+
+Driver *App::findDriver(int userID, string password) {
+    for(auto driverit = drivers.begin(); driverit < drivers.end(); driverit++){
+        if((*driverit).getUserId() == userID && (*driverit).getPassword() == password) return &(*driverit);
+    }
+    return nullptr;
+}
+
+
+
 void App::preprocessingAnalysisTarjan() {
     cout<<endl<<"Using a Porto Map with 53 621 nodes."<<endl;
 
@@ -101,7 +187,7 @@ void App::preprocessingAnalysisTarjan() {
 
     //Runs Tarjan's algorithm and records the time it took
     auto start = std::chrono::high_resolution_clock::now();
-    Preprocessing::preprocessGraphTarjan(graph,"../Map/testNodes.txt","../Map/testEdges.txt");
+    (graph,"../Map/testNodes.txt","../Map/testEdges.txt");
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
@@ -133,6 +219,5 @@ void App::aStarAnalysis() {
 
 
     cout<<"D:"<<durationDijkstra.count()<<endl;
-
-
 }
+

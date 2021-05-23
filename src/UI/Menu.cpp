@@ -5,39 +5,38 @@
 #include "Menu.h"
 
 void Menu::frontpage(){
-    std::cout << "=======================================================================================================" << std::endl;
-    std::cout << "  __          _____     _____________________________                  ___      ________   ________" << std::endl;
-    std::cout << "  \\ \\        / /   \\  /  ___________   ___|  ________|                /   \\    |  _____  \\|  _____  \\" << std::endl;
-    std::cout << "   \\ \\  /\\  / / /_\\ \\ | |_______    | |   |  |_______    _____       / /_\\ \\   | |_____|  | |_____|  |" << std::endl;
-    std::cout << "    \\ \\/  \\/ / _____ \\\\_______  \\   | |   |  ________|  |_____|     / _____ \\  |  _______/|  _______/" << std::endl;
-    std::cout << "     \\  /\\  / /     \\ \\_______| |   | |   |  |_______              / /     \\ \\ | |        | |" << std::endl;
-    std::cout << "      \\/  \\/_/       \\_\\________/   |_|   |__________|            /_/       \\_\\|_|        |_|" << std::endl;
-    std::cout << std::endl;
-    std::cout << "=======================================================================================================" << std::endl;
+    cout << "=======================================================================================================" << endl;
+    cout << "  __          _____     _____________________________                  ___      ________   ________" << endl;
+    cout << "  \\ \\        / /   \\  /  ___________   ___|  ________|                /   \\    |  _____  \\|  _____  \\" << endl;
+    cout << "   \\ \\  /\\  / / /_\\ \\ | |_______    | |   |  |_______    _____       / /_\\ \\   | |_____|  | |_____|  |" << endl;
+    cout << "    \\ \\/  \\/ / _____ \\\\_______  \\   | |   |  ________|  |_____|     / _____ \\  |  _______/|  _______/" << endl;
+    cout << "     \\  /\\  / /     \\ \\_______| |   | |   |  |_______              / /     \\ \\ | |        | |" << endl;
+    cout << "      \\/  \\/_/       \\_\\________/   |_|   |__________|            /_/       \\_\\|_|        |_|" << endl;
+    cout << endl;
+    cout << "=======================================================================================================" << endl;
 
 }
 
 void Menu::beginningOptions(){
-    std::cout << "Please tell us who you are:" << std::endl;
-    std::cout << " 1. User" << std::endl;
-    std::cout << " 2. Driver" << std::endl;
-    std::cout << " 9. Exit" << std::endl;
+    cout << "Please tell us who you are:" << endl;
+    cout << " 1. User" << endl;
+    cout << " 2. Driver" << endl;
+    cout << " 3. Programmer" << endl;
+    cout << " 0. Exit" << endl;
 }
 
 void Menu::mainMenu() {
-    std::string input;
-
-    //read files with users and drivers accounts infos
+    string input;
 
     Menu::frontpage();
 
-    std::cout << std::endl << "Welcome to WASTE-App!" << std::endl;
+    cout << endl << "Welcome to WASTE-App!" << endl;
     while (true){
         Menu::beginningOptions();
-        std::getline(std::cin, input);
+        getline(cin, input);
 
         if(input.size() != 1) {
-            std::cout << INVALIDOPTION << std::endl;
+            cout << INVALIDOPTION << endl;
             continue;
         }
 
@@ -50,244 +49,409 @@ void Menu::mainMenu() {
                 //Drivers Menu
                 Menu::driverMenu();
                 break;
-            case '9':
-                std::cout << "Thank you for using WASTE-App, we hope to you see again soon!" << std::endl;
+            case '3':
+                //Programmers Menu
+                Menu::programmerMenu();
+                break;
+            case '0':
+                cout << "Thank you for using WASTE-App, we hope to you see again soon!" << endl;
                 return;
             default:
-                std::cout << INVALIDOPTION << std::endl;
+                cout << INVALIDOPTION << endl;
         }
     }
 }
 
 void Menu::userMenu() {
-    std::string input;
+    string input;
     bool endWhile = false;
-    User* user = new User(rand() * 1000);
+    User* user;
 
     //ask for credentials
     do {
-        std::cout << "Now we need to know who you are." << std::endl;
+        cout << "Now we need to know who you are." << endl;
         Menu::loginOptions();
-        std::getline(std::cin, input);
+        getline(cin, input);
 
         if(input.size() != 1) {
-            std::cout << INVALIDOPTION << std::endl;
+            cout << INVALIDOPTION << endl;
             continue;
         }
 
         switch (input[0]) {
             case '1':
                 //Log in
-                std::cout << "Logging in to an account..." << std::endl;
-                //DO AFTER IMPLEMENTING A CLASS THAT SAVES USER'S INFOS!!!
+                cout << "Logging in to an account..." << endl;
+                user = loginUser();
+                if(user == nullptr){
+                    cout << "We don't have a user with that combination!" << endl;
+                    break;
+                }
                 endWhile = true;
                 break;
 
             case '2':
                 //Create account
-                std::cout << "Creating account..." << std::endl;
-                Menu::createUser(user);
+                cout << "Creating account..." << endl;
+                user = Menu::createUser();
+                if(user == nullptr) break;
                 endWhile = true;
                 break;
 
-            case '9':
+            case '0':
                 return;
 
             default:
-                std::cout << INVALIDOPTION << std::endl;
+                cout << INVALIDOPTION << endl;
                 break;
         }
     } while (!endWhile);
 
-    //Get User
-
-    //show options
-    std::cout << "Hello there " << user->getName() << std::endl;
+    cout << "Hello there " << user->getName() << endl;
     while (true){
         Menu::userOptions(*user);
-        std::getline(std::cin, input);
+        getline(cin, input);
 
         if(input.size() != 1) {
-            std::cout << INVALIDOPTION << std::endl;
+            cout << INVALIDOPTION << endl;
             continue;
         }
 
         switch (input[0]) {
             case '1':
                 //Set/change address
-                std::cout << "Set/change address" << std::endl;
+                cout << "Set/change address" << endl;
                 break;
             case '2':
                 //Set/cancel pickup
-                std::cout << "Set/cancel pickup" << std::endl;
+                cout << "Set/cancel pickup" << endl;
                 break;
-            case '9': {
-                std::cout << "we hope to you see again " << user->getName() << std::endl;
-                delete user;
+            case '3':
+                //Search for a specific trash container
+                Menu::trashMenu();
+                break;
+            case '0': {
+                cout << "We hope to you see again " << user->getName() << endl;
                 return;
             }
             default:
-                std::cout << INVALIDOPTION << std::endl;
+                cout << INVALIDOPTION << endl;
         }
     }
 }
 
 void Menu::driverMenu() {
-    std::string input;
+    string input;
     bool endWhile = false;
-    auto* driver = new Driver(rand() * 1000);
+    Driver* driver;
 
     //ask for credentials
     do {
-        std::cout << "Now we need to know who you are." << std::endl;
+        cout << "Now we need to know who you are." << endl;
         Menu::loginOptions();
-        std::getline(std::cin, input);
+        getline(cin, input);
 
         if(input.size() != 1) {
-            std::cout << INVALIDOPTION << std::endl;
+            cout << INVALIDOPTION << endl;
             continue;
         }
 
         switch (input[0]) {
             case '1':
                 //Log in
-                std::cout << "Logging in to an account..." << std::endl;
-                //DO AFTER IMPLEMENTING A CLASS THAT SAVES DRIVER'S INFOS!!!
+                cout << "Logging in to an account..." << endl;
+                driver = Menu::loginDriver();
+                if(driver == nullptr){
+                    cout << "We don't have a driver with that combination!" << endl;
+                    break;
+                }
                 endWhile = true;
                 break;
 
             case '2':
                 //Create account
-                std::cout << "Creating account..." << std::endl;
-                Menu::createDriver(driver);
+                cout << "Creating account..." << endl;
+                driver = Menu::createDriver();
+                if(driver == nullptr) break;
                 endWhile = true;
                 break;
 
-            case '9':
+            case '0':
                 return;
 
             default:
-                std::cout << INVALIDOPTION << std::endl;
+                cout << INVALIDOPTION << endl;
                 break;
         }
     } while (!endWhile);
 
     //show options
-    std::cout << "Hello there " << driver->getName() << std::endl;
+    cout << "Hello there " << driver->getName() << endl;
     while (true){
         Menu::driverOptions(*driver);
-        std::getline(std::cin, input);
+        getline(cin, input);
 
         if(input.size() != 1) {
-            std::cout << INVALIDOPTION << std::endl;
+            cout << INVALIDOPTION << endl;
             continue;
         }
 
         switch (input[0]) {
             case '1':
                 //Set/change car
-                std::cout << "Set/change car" << std::endl;
+                cout << "Set/change car" << endl;
                 break;
             case '2':
                 //Set/cancel pickup route
-                std::cout << "Set/cancel pickup route" << std::endl;
+                cout << "Set/cancel pickup route" << endl;
                 break;
-            case '9': {
-                std::cout << "we hope to you see again " << driver->getName() << std::endl;
+            case '3':
+                //Check money
+                cout << "You have made " << driver->getMoneyEarned() << "€ with our app!" << endl;
+                break;
+            case '0': {
+                cout << "we hope to you see again " << driver->getName() << endl;
                 delete driver;
                 return;
             }
             default:
-                std::cout << INVALIDOPTION << std::endl;
+                cout << INVALIDOPTION << endl;
         }
     }
 }
 
 void Menu::loginOptions() {
-    std::cout << "Tell us what you want to do:" << std::endl;
-    std::cout << " 1. Log in" << std::endl;
-    std::cout << " 2. Create an account" << std::endl;
-    std::cout << " 9. Go back" << std::endl;
+    cout << "Tell us what you want to do:" << endl;
+    cout << " 1. Log in" << endl;
+    cout << " 2. Create an account" << endl;
+    cout << " 0. Go back" << endl;
 }
 
 void Menu::userOptions(User &user) {
-    //need to change this!!!
+    //need to change this!
     bool hasAddress = false, needsPickup = false;
 
-    std::cout << "Here's what you can do: " << std::endl;
+    cout << "Here's what you can do: " << endl;
 
-    if(hasAddress)
-        std::cout << " 1. Change address" << std::endl;
-    else
-        std::cout << " 1. Input address" << std::endl;
+    if(hasAddress) cout << " 1. Change address" << endl;
+    else cout << " 1. Input address" << endl;
 
-    if(needsPickup)
-        std::cout << " 2. Cancel pick up" << std::endl;
-    else
-        std::cout << " 2. Set pick up" << std::endl;
+    if(needsPickup) cout << " 2. Cancel pick up" << endl;
+    else cout << " 2. Set pick up" << endl;
 
-    std::cout << " 9. Go back" << std::endl;
+    cout << " 3. Search for closest trash container " << endl;
+
+    cout << " 0. Go back" << endl;
 }
 
 void Menu::driverOptions(Driver &driver) {
 
-    //need to change this!!!
+    //need to change this!
     bool hasPickupRoute = false;
 
-    std::cout << "Here's what you can do: " << std::endl;
+    cout << "Here's what you can do: " << endl;
 
-    if(driver.getCar() != nullptr) std::cout << " 1. Change car" << std::endl;
-    else std::cout << " 1. Input car" << std::endl;
+    if(driver.getCar() != nullptr) cout << " 1. Change car" << endl;
+    else cout << " 1. Input car" << endl;
 
-    if(hasPickupRoute) std::cout << " 2. Cancel pick up route" << std::endl;
-    else std::cout << " 2. Set pick up route" << std::endl;
+    if(hasPickupRoute) cout << " 2. Cancel pick up route" << endl;
+    else cout << " 2. Set pick up route" << endl;
 
-    std::cout << " 9. Go back" << std::endl;
+    cout << " 3. Check amount of money earned" << endl;
+
+    cout << " 0. Go back" << endl;
 
 }
 
-void Menu::createUser(User *user) {
-    std::string input;
+User* Menu::createUser() {
+    string username, userpassowrd;
 
-    std::cout << "Hello! Let's create an account for you." << std::endl;
+    cout << "Hello! Let's create an account for you." << endl;
     //get users name
-    std::cout << "First of all we will need your name:" << std::endl;
-    std::getline(std::cin, input);
-    user->setName(input);
+    cout << "First of all we will need your name:" << endl;
+    getline(cin, username);
     //get users password
-    std::cout << "Next we will need your password:" << std::endl;
-    std::getline(std::cin, input);
-    user->setPassword(input);
+    cout << "Next we will need your password:" << endl;
+    getline(cin, userpassowrd);
 
-    std::cout << "Your user ID is: " << user->getUserId() << std::endl;
-    std::cout << "You are all set, " << user->getName() << ", don't forget your password and user ID!" << std::endl;
+    int userid = app.addUser(username, userpassowrd);
+    User* user = app.findUser(userid, userpassowrd);
+    if(user == nullptr) {
+        cout << "ERROR CREATING USER!" << endl;
+        return user;
+    }
 
-    //INSERIR USER NO VETOR!!!
+    cout << "Your user ID is: " << user->getUserId() << endl;
+    cout << "You are all set, " << user->getName() << ", don't forget your password and user ID!" << endl;
+
+    return user;
 }
 
-void Menu::createDriver(Driver *driver) {
-    std::string input;
+Driver* Menu::createDriver() {
     float inputcarmax;
+    string username, userpassowrd, carlicenseplate;
 
-    driver->setUserId(rand() * 1000);
-
-    std::cout << "Hello! Let's create an account for you." << std::endl;
+    cout << "Hello! Let's create an account for you." << endl;
     //get users name
-    std::cout << "First of all we will need your name:" << std::endl;
-    std::getline(std::cin, input);
-    driver->setName(input);
+    cout << "First of all we will need your name:" << endl;
+    getline(cin, username);
     //get users password
-    std::cout << "Next we will need your password:" << std::endl;
-    std::getline(std::cin, input);
-    driver->setPassword(input);
+    cout << "Next we will need your password:" << endl;
+    getline(cin, userpassowrd);
+
     //get drivers car
-    std::cout << "Since you are a driver we need some information about you car" << std::endl;
-    std::cout << "All we need to know is how many liters of trash your car can carry" << std::endl;
-    std::cin >> inputcarmax;
-    driver->setCar(new Car(inputcarmax));
+    cout << "Since you are a driver we need some information about you car" << endl;
+    cout << "We need to know your car's license plate" << endl;
+    getline(cin, carlicenseplate);
+    cout << "We need to know is how many liters of trash your car can carry" << endl;
+    cin >> inputcarmax;
 
-    std::cout << "Your user ID is: " << driver->getUserId() << std::endl;
-    std::cout << "You are all set, " << driver->getName() << ", don't forget your password and user ID!" << std::endl;
+    app.addCar(carlicenseplate, inputcarmax);
+    int driverid = app.addDriver(username, userpassowrd, carlicenseplate);
+    if(driverid  == -1){
+        cout << "ERROR CREATING CAR!" << endl;
+        return nullptr;
+    }
+    Driver* driver = app.findDriver(driverid, userpassowrd);
+    if(driver == nullptr){
+            cout << "ERROR CREATING DRIVER!" << endl;
+            return driver;
+    }
 
-    //INSERIR USER NO VETOR!!!
+    cout << "Your user ID is: " << driver->getUserId() << endl;
+    cout << "Your car's license plate is " << driver->getCar()->getLicensePlate() << " And it can hold "
+        << driver->getCar()->getMaxCapacity() << " liters of trash" << endl;
+    cout << "You are all set, " << driver->getName() << ", don't forget your password and user ID!" << endl;
+
+    return driver;
+}
+
+User * Menu::loginUser() {
+    int userid;
+    string password;
+    cout << "UserID: " << endl;
+    cin >> userid;
+    cout << "Password: " << endl;
+    getline(cin, password);
+    return app.findUser(userid, password);
+}
+
+Driver *Menu::loginDriver() {
+    int userid;
+    string password;
+    cout << "UserID: " << endl;
+    cin >> userid;
+    cout << "Password: " << endl;
+    getline(cin, password);
+    return app.findDriver(userid, password);
+}
+
+void Menu::trashMenu() {
+    string input;
+
+    while (true){
+        cout << "What type of trash container do you wish to look for? " << endl;
+        Menu::trashOptions();
+        getline(cin, input);
+
+        if(input.size() != 1) {
+            cout << INVALIDOPTION << endl;
+            continue;
+        }
+
+        switch (input[0]) {
+            case '1':
+                //Paper
+                cout << "Searching for the closest Paper container..." << endl;
+                //NEED FUNCTION HERE!!!
+                break;
+
+            case '2':
+                //Plastic
+                cout << "Searching for the closest Plastic container..." << endl;
+                //NEED FUNCTION HERE!!!
+                break;
+
+            case '3':
+                //Glass
+                cout << "Searching for the closest Glass container..." << endl;
+                //NEED FUNCTION HERE!!!
+                break;
+
+            case '4':
+                //Metal
+                cout << "Searching for the closest Metal container..." << endl;
+                //NEED FUNCTION HERE!!!
+                break;
+
+            case '5':
+                //Plastic
+                cout << "Searching for the closest Organic container..." << endl;
+                //NEED FUNCTION HERE!!!
+                break;
+
+            case '6':
+                //Plastic
+                cout << "Searching for the closest Non-recyclable container..." << endl;
+                //NEED FUNCTION HERE!!!
+                break;
+
+            case '0':
+                return;
+
+            default:
+                cout << INVALIDOPTION << endl;
+                break;
+        }
+    }
+}
+
+void Menu::trashOptions() {
+    cout << " 1. Paper" << endl;
+    cout << " 2. Plastic" << endl;
+    cout << " 3. Glass" << endl;
+    cout << " 4. Metal" << endl;
+    cout << " 5. Organic" << endl;
+    cout << " 6. Non-recyclable" << endl;
+    cout << " 0. Go back" << endl;
+}
+
+void Menu::programmerMenu() {
+    string input;
+    cout << "Hello Programmer" << endl;
+
+    while (true){
+        Menu::programmerOptions();
+        getline(cin, input);
+
+        if(input.size() != 1) {
+            cout << INVALIDOPTION << endl;
+            continue;
+        }
+
+        switch (input[0]) {
+            case '1':
+                //Check graph
+                cout << "Checking Graph..." << endl;
+                //NEED FUNCTION HERE!!!
+                break;
+            case '2':
+                //Check Algorithm efficiency
+                cout << "Checking Algorithm efficiency..." << endl;
+                //NEED FUNCTION HERE!!!
+                break;
+            case '0':
+                cout << "Going to the previous menu..." << endl;
+                return;
+            default:
+                cout << INVALIDOPTION << endl;
+        }
+    }
+}
+
+void Menu::programmerOptions() {
+    cout << "Here's what you can do: " << endl;
+    cout << " 1. Check Graph" << endl;
+    cout << " 2. Check Algorithm efficiency" << endl;
+    cout << " 0. Go back" << endl;
 }

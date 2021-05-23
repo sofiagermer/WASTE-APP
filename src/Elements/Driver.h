@@ -32,6 +32,13 @@ public:
     Car *getCar() const;
 
     void setCar(Car *car);
+
+    //friend std::istream& operator>>(std::istream& input, Driver &d);
+
+    /**
+     * Output operator.
+     */
+    friend std::ostream& operator<<(std::ostream& output, const Driver &d);
 };
 
 
