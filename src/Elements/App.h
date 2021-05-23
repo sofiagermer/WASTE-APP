@@ -21,6 +21,7 @@
 #include "../Algorithms/Preprocessing.h"
 #include "../Algorithms/Routing.h"
 #include "Driver.h"
+#include "User.h"
 
 class App {
     vector<House> houses;
@@ -50,6 +51,7 @@ public:
     void saveDrivers(string filename);
     void saveUsers(string filename);
 
+    House* findHouse(Vertex* housevertex);
     void addCar(const string& licensePlate, float maxCarCap);
     Car* findCar(const string& licensePlate);
     int addUser(const string& name, const string& password);

@@ -53,3 +53,11 @@ std::ostream& operator<<(std::ostream& output, const Driver &d){
     output << d.getUserId() << " " << d.getName() << " " << d.getPassword() << " " << d.moneyEarned << " " << d.getCar()->getLicensePlate() << " " << d.getCar()->getMaxCapacity() << std::endl;
     return output;
 }
+
+int Driver::getUserID(){
+    return this->getUserId();
+}
+
+string Driver::getPassworD() {
+    return this->getPassword();
+}
