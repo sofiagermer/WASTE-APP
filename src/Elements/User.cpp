@@ -48,7 +48,7 @@ std::istream& operator>>(std::istream& input, User &u){
 }
 
 std::ostream& operator<<(std::ostream& output, const User &u){
-    output << u.userID << " " << u.name << " " << u.password << u.getHouse()->getHouseVertex()->getX() << endl;
+    output << u.userID << " " << u.name << " " << u.password << u.getHouse()->getHouseVertex()->getID() << endl;
     return output;
 }
 

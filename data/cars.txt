@@ -1,11 +1,11 @@
 10
-5
-3
-10
-9
-4
-3
-5
-7
-2
-6
+5 abcdef
+3 abefcd
+10 cdabef
+9 efcdab
+4 efabcd
+3 licens
+5 notlic
+7 calcal
+2 carcar
+6 carros
