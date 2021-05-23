@@ -12,7 +12,7 @@ void Analysis::preprocessingAnalysisTarjan() {
     cout<<endl<<"Using a Porto Map with 53 621 nodes."<<endl;
 
     //Initializes a full graph
-    Graph graph("../Map/porto_full_nodes_xy.txt","../Map/porto_full_edges.txt");
+    Graph graph("../Map/sccGiven/porto_strong_nodes_xy.txt","../Map/sccGiven/porto_strong_edges.txt");
 
     //Runs Tarjan's algorithm and records the time it took
     auto start = std::chrono::high_resolution_clock::now();
@@ -37,7 +37,7 @@ void Analysis::preprocessingAnalysisKosaraju() {
     cout<<endl<<"Using a Porto Map with 53 621 nodes."<<endl;
 
     //Initializes a full graph
-    Graph graph("../Map/porto_full_nodes_xy.txt","../Map/porto_full_edges.txt");
+    Graph graph("../Map/sccGiven/porto_strong_nodes_xy.txt","../Map/sccGiven/porto_strong_edges.txt");
 
     //Runs Kosaraju's algorithm and records the time it took
     auto start = std::chrono::high_resolution_clock::now();
