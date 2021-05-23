@@ -33,6 +33,10 @@ public:
 
     void setCar(Car *car);
 
+    int getUserID();
+
+    string getPassworD();
+
     //friend std::istream& operator>>(std::istream& input, Driver &d);
 
     /**

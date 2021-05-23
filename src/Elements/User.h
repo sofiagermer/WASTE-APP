@@ -7,6 +7,9 @@
 
 #include <iostream>
 #include <string>
+#include "House.h"
+
+using namespace std;
 
 class User {
 private:
@@ -18,12 +21,12 @@ private:
     /**
      * User's name, used for identification purposes
      */
-    std::string name;
+    string name;
 
     /**
      * User's password
      */
-    std::string password;
+    string password;
 
     /*
      * User's position
@@ -31,16 +34,17 @@ private:
     double x;
     double y;
 
+    House* house;
 public:
     User();
 
     User(int uId);
 
-    User(int uId, std::string n, std::string pass);
+    User(int uId, string n, string pass);
 
     void setUserId(int userId);
 
-    void setName(const std::string &name);
+    void setName(const string &name);
 
     void setPosition(double x,double y);
 
@@ -52,13 +56,17 @@ public:
 
     double getY() const;
 
-    void setPassword(const std::string &password);
+    void setPassword(const string &password);
 
     int getUserId() const;
 
-    const std::string &getName() const;
+    const string &getName() const;
 
-    const std::string &getPassword() const;
+    const string &getPassword() const;
+
+    House *getHouse() const;
+
+    void setHouse(House *house);
 
 
     /**

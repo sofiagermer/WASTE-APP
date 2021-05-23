@@ -120,8 +120,16 @@ void App::initializeUsers(string filename){
     int numUsers;
     fileUsers >> numUsers;
     for(int i = 0; i < numUsers; i++){
-        User u;
-        fileUsers >> u;
+        string username, userpassword;
+        int userid, houseid;
+        fileUsers >> userid >> username >> userpassword >> houseid;
+        User u(userid, username, userpassword);
+        House* house = findHouse(graph.findVertex(houseid));
+        if(house == nullptr) {
+            houses.emplace_back(graph.findVertex(houseid), 0);
+            house = findHouse(graph.findVertex(houseid));
+        }
+        u.setHouse(house);
         users.push_back(u);
     }
     fileUsers.close();
@@ -138,9 +146,16 @@ Car *App::findCar(const string& licensePlate) {
     return nullptr;
 }
 
+House *App::findHouse(Vertex* housevertex) {
+    for(auto houseit = houses.begin(); houseit < houses.end(); houseit++){
+        if((*houseit).getHouseVertex()->getID() == housevertex->getID()) return &(*houseit);
+    }
+    return nullptr;
+}
+
 bool App::userIDRepeated(const int &userid) {
     for(const auto& u : users) if(u.getUserId() == userid) return true;
-    for(const auto& d : drivers) if(d.getUserId() == userid) return true;
+    for(auto& d : drivers) if(d.getUserID() == userid) return true;
     return false;
 }
 
@@ -171,7 +186,7 @@ int App::addDriver(const string& name, const string& password, const string& lic
 
 Driver *App::findDriver(int userID, const string& password) {
     for(auto driverit = drivers.begin(); driverit < drivers.end(); driverit++){
-        if((*driverit).getUserId() == userID && (*driverit).getPassword() == password) return &(*driverit);
+        if((*driverit).getUserID() == userID && (*driverit).getPassworD() == password) return &(*driverit);
     }
     return nullptr;
 }
