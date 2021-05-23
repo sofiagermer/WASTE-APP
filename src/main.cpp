@@ -30,7 +30,8 @@ int main() {
     Menu::frontpage();
     Graph graph("../Map/outputTarjan/processedNodes.txt","../Map/outputKosaraju/processedEdges.txt");
     App app(graph);
-    Menu::mainMenu();
+    Menu menu(app);
+    menu.mainMenu();
     return 0;
 }
 

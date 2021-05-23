@@ -3,18 +3,24 @@
 //
 
 #include "Menu.h"
+#ifdef _WIN32
+#include <Windows.h>
+#else
+#include <unistd.h>
+#endif
 
 void Menu::frontpage(){
     cout << "=======================================================================================================" << endl;
     cout << "  __          _____     _____________________________                  ___      ________   ________" << endl;
     cout << "  \\ \\        / /   \\  /  ___________  ___|  ________|                /   \\    |  _____  \\|  _____  \\" << endl;
-    cout << "   \\ \\  /\\  / / /_\\ \\ | |_______    | |  |  |_______    _____     / /_\\ \\   | |_____|  | |_____|  |" << endl;
-    cout << "    \\ \\/  \\/ / _____ \\\\_______  \\  | |  |  ________|  |_____|   / _____ \\  |  _______/|  _______/" << endl;
+    cout << "   \\ \\  /\\  / / /_\\ \\ | |_______    | |  |  |_______    _____       / /_\\ \\   | |_____|  | |_____|  |" << endl;
+    cout << "    \\ \\/  \\/ / _____ \\\\_______  \\  | |  |  ________|  |_____|     / _____ \\  |  _______/|  _______/" << endl;
     cout << "     \\  /\\  / /     \\ \\_______| |    | |  |  |_______            / /     \\ \\ | |        | |" << endl;
     cout << "      \\/  \\/_/       \\_\\________/    |_|  |__________|          /_/       \\_\\|_|        |_|" << endl;
     cout << endl;
     cout << "=======================================================================================================" << endl;
-
+    sleep(3);
+    cout<<endl<<endl;
 }
 
 void Menu::beginningOptions(){
@@ -414,14 +420,20 @@ void Menu::programmerMenu() {
 
         switch (input[0]) {
             case '1':
-                //Check graph
-                cout << "Checking Graph..." << endl;
-                //NEED FUNCTION HERE!!!
+                app.preprocessingAnalysisTarjan();
                 break;
             case '2':
-                //Check Algorithm efficiency
-                cout << "Checking Algorithm efficiency..." << endl;
-                //NEED FUNCTION HERE!!!
+                //Kosaraju
+                cout<<"Not implemented yet"<<endl;
+                break;
+            case '3':
+                app.aStarAnalysis();
+                break;
+            case '4':
+                app.dijkstraAnalysis();
+                break;
+            case '5':
+                app.aStarVsDijkstra();
                 break;
             case '0':
                 cout << "Going to the previous menu..." << endl;
@@ -434,8 +446,11 @@ void Menu::programmerMenu() {
 
 void Menu::programmerOptions() {
     cout << "Here's what you can do: " << endl;
-    cout << " 1. Check Graph" << endl;
-    cout << " 2. Check Algorithm efficiency" << endl;
+    cout << " 1. Check Tarjan's time efficiency (PREPROCESSING)" << endl;
+    cout << " 2. Check Kosaraju's time efficiency (PREPROCESSING)" << endl;
+    cout << " 3. Check A*'s time efficiency (ROUTING)" << endl;
+    cout << " 4. Check Dijkstra's time efficiency (ROUTING)" << endl;
+    cout << " 5. Compare Dijkstra's algorithm with A*'s algorithm (ROUTING)" << endl;
     cout << " 0. Go back" << endl;
 }
 

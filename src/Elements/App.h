@@ -5,6 +5,12 @@
 #ifndef WASTE_APP_APP_H
 #define WASTE_APP_APP_H
 
+
+#ifdef _WIN32
+#include <Windows.h>
+#else
+#include <unistd.h>
+#endif
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -47,8 +53,10 @@ public:
     Vertex* findClosestTrashContainer(User user, TrashType type);
 
     //Algorithm's Analysis
-    static void preprocessingAnalysisTarjan();
+    void preprocessingAnalysisTarjan();
     void aStarAnalysis();
+    void dijkstraAnalysis();
+    void aStarVsDijkstra();
 };
 
 

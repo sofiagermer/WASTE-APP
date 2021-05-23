@@ -181,7 +181,7 @@ void Preprocessing::preprocessGraphKosaraju(Graph graph, string nodePath, string
 }
 
 void Preprocessing::preprocess(Graph graph, string nodePath, string edgesPath, vector<int> strongComponent) {
-    cout << "Size of Larger SCC "  << strongComponent.size() << endl;
+    //cout << "Size of Larger SCC "  << strongComponent.size() << endl;
     stack<int> toRemove;
     int i=0,k=0;
     bool remove;
@@ -198,7 +198,7 @@ void Preprocessing::preprocess(Graph graph, string nodePath, string edgesPath, v
             k++;
         };
     }
-    cout<<"Number of edges that will be removed: " << toRemove.size()<< endl;
+    //cout<<"Number of edges that will be removed: " << toRemove.size()<< endl;
     while(!toRemove.empty()){
         if(!graph.removeVertex(toRemove.top())){
             cout<<"e\n"<<endl;

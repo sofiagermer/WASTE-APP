@@ -187,7 +187,7 @@ void App::preprocessingAnalysisTarjan() {
 
     //Runs Tarjan's algorithm and records the time it took
     auto start = std::chrono::high_resolution_clock::now();
-    (graph,"../Map/testNodes.txt","../Map/testEdges.txt");
+    Preprocessing::preprocessGraphTarjan(graph,"../Map/testNodes.txt","../Map/testEdges.txt");
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
@@ -205,20 +205,18 @@ void App::preprocessingAnalysisTarjan() {
 }
 
 void App::aStarAnalysis() {
-    auto v1 = graph.findVertex(3);
-    auto v2 = graph.findVertex(38052);
+    srand (time(NULL));
+    int index1=rand()%graph.getNumVertex();
+    int index2=rand()%graph.getNumVertex();
+    while(index1==index2) index2=rand()%graph.getNumVertex();
+    auto v1 = graph.getVertexSet()[index1];
+    auto v2 = graph.getVertexSet()[index2];
     auto start = std::chrono::high_resolution_clock::now();
-    auto pathDijkstra=Routing::dijkstra(graph,v1,v2);
-    auto end = std::chrono::high_resolution_clock::now();
-    auto durationDijkstra = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-    start = std::chrono::high_resolution_clock::now();
     auto pathAStar=Routing::aStar(graph,v1,v2);
-    end = std::chrono::high_resolution_clock::now();
+    auto end = std::chrono::high_resolution_clock::now();
     auto durationAStar = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-    cout<<"A:"<<durationAStar.count()<<endl;
-
-
-    cout<<"D:"<<durationDijkstra.count()<<endl;
+    cout<<endl<<"A* algorithm took "<<durationAStar.count()<<" microseconds to compute the shortest path between 2 random nodes"<<endl<<endl;
+    sleep(2);
 }
 
 Vertex* App::findClosestTrashContainer(User user, TrashType type) {
@@ -234,5 +232,41 @@ Vertex* App::findClosestTrashContainer(User user, TrashType type) {
         }
     }
     return selectedTrashContainer;
+}
+
+void App::aStarVsDijkstra() {
+    srand (time(NULL));
+    int index1=rand()%graph.getNumVertex();
+    int index2=rand()%graph.getNumVertex();
+    while(index1==index2) index2=rand()%graph.getNumVertex();
+    auto v1 = graph.getVertexSet()[index1];
+    auto v2 = graph.getVertexSet()[index2];
+    auto start = std::chrono::high_resolution_clock::now();
+    auto pathDijkstra=Routing::dijkstra(graph,v1,v2);
+    auto end = std::chrono::high_resolution_clock::now();
+    auto durationDijkstra = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+    start = std::chrono::high_resolution_clock::now();
+    auto pathAStar=Routing::aStar(graph,v1,v2);
+    end = std::chrono::high_resolution_clock::now();
+    auto durationAStar = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+    cout<<endl<<"For the same 2 random points:"<<endl<<endl;
+    cout<<"Dijkstra's algorithm took "<<durationDijkstra.count()<<" microseconds to compute the shortest path"<<endl;
+    cout<<"A* algorithm took "<<durationAStar.count()<<" microseconds to compute the shortest path"<<endl<<endl;
+    sleep(2);
+}
+
+void App::dijkstraAnalysis() {
+    srand (time(NULL));
+    int index1=rand()%graph.getNumVertex();
+    int index2=rand()%graph.getNumVertex();
+    while(index1==index2) index2=rand()%graph.getNumVertex();
+    auto v1 = graph.getVertexSet()[index1];
+    auto v2 = graph.getVertexSet()[index2];
+    auto start = std::chrono::high_resolution_clock::now();
+    auto pathDijkstra=Routing::dijkstra(graph,v1,v2);
+    auto end = std::chrono::high_resolution_clock::now();
+    auto durationDijkstra = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+    cout<<endl<<"Dijkstra's algorithm took "<<durationDijkstra.count()<<" microseconds to compute the shortest path between 2 random nodes"<<endl<<endl;
+    sleep(2);
 }
 

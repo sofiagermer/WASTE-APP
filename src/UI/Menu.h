@@ -44,7 +44,7 @@ private:
 public:
 
     Menu(App app);;
-    void frontpage();
+    static void frontpage();
     void beginningOptions();
     void mainMenu();
     void loginOptions();
