@@ -112,6 +112,7 @@ void Menu::userMenu() {
     } while (!endWhile);
 
     cout << "Hello there " << user->getName() << endl;
+    getLocation(user);
     while (true){
         Menu::userOptions(*user);
         getline(cin, input);
@@ -132,7 +133,7 @@ void Menu::userMenu() {
                 break;
             case '3':
                 //Search for a specific trash container
-                Menu::trashMenu(user);
+                trashMenu(user);
                 break;
             case '0': {
                 cout << "We hope to you see again " << user->getName() << endl;
@@ -455,4 +456,32 @@ void Menu::programmerOptions() {
 }
 
 Menu::Menu(App app) : app(app){
+}
+
+void Menu::getLocation(User *user) {
+    double x,y;
+    char c;
+    string input;
+    cout<<"What is your current location ?"<<endl;
+    cout << "Enter x:" << endl;
+    while(true) {
+        cin>>x;
+        if(x==NULL){
+            cout<<INVALIDOPTION<<endl;
+            continue;
+        }
+        else break;
+    }
+    cout << "Enter y:" << endl;
+    while(true) {
+        cin>>y;
+        if(y==NULL){
+            cout<<INVALIDOPTION<<endl;
+            continue;
+        }
+        else break;
+    }
+    user->setX(x);
+    user->setY(y);
+    cout<<endl;
 }

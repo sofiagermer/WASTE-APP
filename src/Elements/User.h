@@ -44,9 +44,13 @@ public:
 
     void setPosition(double x,double y);
 
-    double getX() const;;
+    double getX() const;
 
-    double getY() const;;
+    void setX(double x);
+
+    void setY(double y);
+
+    double getY() const;
 
     void setPassword(const std::string &password);
 
