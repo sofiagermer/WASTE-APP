@@ -42,12 +42,20 @@ public:
     void initializeDrivers(string filename);
     void initializeUsers(string filename);
 
-    void addCar(string licensePlate, float maxCarCap);
-    Car* findCar(string licensePlate);
-    int addUser(string name, string password);
-    User* findUser(int userID, string password);
-    int addDriver(string name, string password, string licensePlate);
-    Driver* findDriver(int userID, string password);
+    void saveInfo();
+    void saveHouses(string filename);
+    void saveTrashContainers(string filename);
+    void saveGarbageFacilities(string filename);
+    void saveCars(string filename);
+    void saveDrivers(string filename);
+    void saveUsers(string filename);
+
+    void addCar(const string& licensePlate, float maxCarCap);
+    Car* findCar(const string& licensePlate);
+    int addUser(const string& name, const string& password);
+    User* findUser(int userID, const string& password);
+    int addDriver(const string& name, const string& password, const string& licensePlate);
+    Driver* findDriver(int userID, const string& password);
     bool userIDRepeated(const int &userID);
 
     Vertex* findClosestTrashContainer(User user, TrashType type);
