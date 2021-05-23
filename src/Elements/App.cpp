@@ -19,6 +19,8 @@ void App::initializePoints(){
     initializeTrashContainers("../data/trashContainers.txt");
     initializeGarbageFacilities("../data/garbageFacilitys.txt");
     initializeCars("../data/cars.txt");
+    initializeDrivers("../data/drivers.txt");
+    initializeUsers("../data/users.txt");
 }
 
 void App::initializeHouses(string filename) {
@@ -221,7 +223,8 @@ void App::saveInfo(){
     saveTrashContainers("../data/trashContainers.txt");
     saveGarbageFacilities("../data/garbageFacilitys.txt");
     saveCars("../data/cars.txt");
-
+    saveDrivers("../data/drivers.txt");
+    saveUsers("../data/users.txt");
 }
 void App::saveHouses(string filename){
     ofstream fileHouses(filename);
