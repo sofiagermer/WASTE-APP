@@ -48,6 +48,53 @@ vector<Edge> Vertex::getOutgoingEdges() {
     return outgoingEdges;
 }
 
+void Vertex::addToStack(){
+    inStack = true;
+}
+
+void Vertex::removeFromStack(){
+    inStack = false;
+}
+
+bool Vertex::getInStack(){
+    return inStack;
+}
+bool Vertex::operator<(Vertex *v) {
+    return this->distance<v->distance;
+}
+
+int Vertex::getIndex() const {
+    return index;
+}
+
+void Vertex::setIndex(int index) {
+    Vertex::index = index;
+}
+
+int Vertex::getLow() const {
+    return low;
+}
+
+void Vertex::setLow(int low) {
+    this->low = low;
+}
+
+double Vertex::getDistance() const {
+    return distance;
+}
+
+void Vertex::setDistance(double distance) {
+   distance = distance;
+}
+
+int Vertex::getQueueIndex() const {
+    return queueIndex;
+}
+
+void Vertex::setQueueIndex(int queueIndex) {
+   queueIndex = queueIndex;
+}
+
 /* ================================================================================================
  * Edge
  * ================================================================================================
@@ -84,42 +131,6 @@ bool Graph::removeEdge(double sourceX, double sourceY, double destX, double dest
     auto *v2=findVertex(destX,destY);
     if(v1==NULL||v2==NULL) return false;
     return v1->removeEdgeTo(v2);
-}
-
-bool Vertex::operator<(Vertex *v) {
-    return this->distance<v->distance;
-}
-
-int Vertex::getIndex() const {
-    return index;
-}
-
-void Vertex::setIndex(int index) {
-    Vertex::index = index;
-}
-
-int Vertex::getLow() const {
-    return low;
-}
-
-void Vertex::setLow(int low) {
-    Vertex::low = low;
-}
-
-double Vertex::getDistance() const {
-    return distance;
-}
-
-void Vertex::setDistance(double distance) {
-    Vertex::distance = distance;
-}
-
-int Vertex::getQueueIndex() const {
-    return queueIndex;
-}
-
-void Vertex::setQueueIndex(int queueIndex) {
-    Vertex::queueIndex = queueIndex;
 }
 
 bool Graph::removeVertex(double x, double y) {

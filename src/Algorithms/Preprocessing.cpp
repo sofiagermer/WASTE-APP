@@ -23,37 +23,36 @@ bool Preprocessing::findStackElement(stack<Vertex *> stackV, Vertex *vertex) {
 
 vector<vector<int>> Preprocessing::tarjan(Graph graph) {
     for (Vertex * vertex : graph.getVertexSet()) {
-        vertex->setIndex(0);
+        vertex->setIndex(-1);
+        vertex->setLow(-1);
+        vertex->removeFromStack();
     }
 
     vector<vector<int>> scc;
+    int nid = 0;
+    stack<Vertex*> L;
 
     for (Vertex* vertex : graph.getVertexSet()) {
-        if (vertex->getIndex() == 0) {
-            strongConnectedComponent(vertex, scc);
+        if (vertex->getIndex() == -1) {
+            DFS_Tarjan(vertex, nid, L ,scc);
         }
     }
 
     return scc;
 }
 
-void Preprocessing::strongConnectedComponent(Vertex *src, vector<vector<int>> &scc) {
-    int nid = 1;
-    stack<Vertex*> L;
-
-    DFS_Tarjan(src, nid, L, scc);
-}
-
-void Preprocessing::DFS_Tarjan(Vertex *src, int nid, stack<Vertex *> &L, vector<vector<int>> &scc) {
-    L.push(src);
-    src->setIndex(nid++);
+void Preprocessing::DFS_Tarjan(Vertex *src, int &nid, stack<Vertex *> &L, vector<vector<int>> &scc) {
+    src->setIndex(nid);
     src->setLow(nid);
+    nid++;
+    L.push(src);
+    src->addToStack();
 
     for (Edge edge : src->getOutgoingEdges()) {
-        if (edge.getDest()->getIndex() == 0) {
+        if (edge.getDest()->getIndex() == -1) {
             DFS_Tarjan(edge.getDest(), nid, L, scc);
             src->setLow(min(src->getLow(), edge.getDest()->getLow()));
-        } else if (findStackElement(L, edge.getDest())) {
+        } else if (edge.getDest()->getInStack()) {
             src->setLow( min(src->getLow(), edge.getDest()->getIndex()));
         }
     }
@@ -113,9 +112,6 @@ vector<vector<int>> Preprocessing::kosaraju(Graph graph) {
         if(!scc.empty()) {
             cout << "TEMOS UM SCC " << endl;
             SCCs.push_back(scc);
-        }
-        else{
-            cout << "TÁ VAZIA E EU TOU NA MERDA " << endl;
         }
     }
     cout << "Number of SCCs: " << SCCs.size() << endl;
