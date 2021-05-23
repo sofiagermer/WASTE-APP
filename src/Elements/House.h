@@ -8,13 +8,13 @@
 #include <iostream>
 #include <string>
 
-#include "User.h"
 #include "../Graph/Graph.h"
 
 
 class House {
     float amountTrash;
     Vertex * vertexPt;
+    bool needPickUp;
 
 public:
     House(Vertex *vertexPt, float amountTrash);
@@ -33,9 +33,9 @@ public:
 
     /**
      * Sets the flag if the house needs trash to be collected
-     * @param needpu - flag if the house needs collection
+     * @param needPickUp - flag if the house needs collection
      */
-    void setNeedPickUp(bool needpu);
+    void setNeedPickUp(bool needPickUp);
     /**
      * Sets the amount of trash that the house needs coleected
      * @param amount - amount of trash to collect

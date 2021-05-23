@@ -22,3 +22,11 @@ Vertex* House::getHouseVertex(){
     return this->vertexPt;
 }
 
+void House::setNeedPickUp(bool needPickUp) {
+    this->needPickUp=needPickUp;
+}
+
+bool House::getNeedPickUp() {
+    return needPickUp;
+}
+
