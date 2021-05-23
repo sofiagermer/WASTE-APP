@@ -7,7 +7,7 @@
 
 using namespace std;
 
-App::App() {}
+App::App() = default;
 
 App::App(Graph graph) {
     this->graph = graph;
@@ -53,7 +53,7 @@ void App::initializeTrashContainers(string filename) {
             TrashContainer trashContainer(graph.findVertex(id), Regular, maxCapacity);
             trashContainers.push_back(trashContainer);
         }
-        else if(trashType=='P'){
+        else if(trashType=='p'){
             TrashContainer trashContainer(graph.findVertex(id), Paper, maxCapacity);
             trashContainers.push_back(trashContainer);
         }
@@ -85,12 +85,11 @@ void App::initializeCars(string filename) {
     ifstream fileCars(filename);
     int numberElements;
     fileCars >> numberElements;
-    int capacity;
-    string centralName;
+    float capacity;
+    string licenseplate;
     for(int i=0;i<numberElements;i++){
-        fileCars>>capacity;
-        Car car(capacity);
-        cars.push_back(car);
+        fileCars >> capacity >> licenseplate;
+        cars.emplace_back(capacity, licenseplate);
     }
     fileCars.close();
 }
@@ -128,11 +127,11 @@ void App::initializeUsers(string filename){
     fileUsers.close();
 }
 
-void App::addCar(string licensePlate, float maxCarCap) {
+void App::addCar(const string& licensePlate, float maxCarCap) {
     cars.emplace_back(maxCarCap, licensePlate);
 }
 
-Car *App::findCar(string licensePlate) {
+Car *App::findCar(const string& licensePlate) {
     for(auto carit = cars.begin(); carit < cars.end(); carit++){
         if((*carit).getLicensePlate() == licensePlate) return &(*carit);
     }
@@ -140,27 +139,27 @@ Car *App::findCar(string licensePlate) {
 }
 
 bool App::userIDRepeated(const int &userid) {
-    for(auto u : users) if(u.getUserId() == userid) return true;
-    for(auto d : drivers) if(d.getUserId() == userid) return true;
+    for(const auto& u : users) if(u.getUserId() == userid) return true;
+    for(const auto& d : drivers) if(d.getUserId() == userid) return true;
     return false;
 }
 
-int App::addUser(string name, string password) {
-    srand(time(NULL));
+int App::addUser(const string& name, const string& password) {
+    srand(time(nullptr));
     int userid = rand();
     while (userIDRepeated(userid)) userid = rand();
     users.emplace_back(userid, name, password);
     return userid;
 }
 
-User *App::findUser(int userID, string password) {
+User *App::findUser(int userID, const string& password) {
     for(auto userit = users.begin(); userit < users.end(); userit++){
         if((*userit).getUserId() == userID && (*userit).getPassword() == password) return &(*userit);
     }
     return nullptr;
 }
 
-int App::addDriver(string name, string password, string licensePlate) {
+int App::addDriver(const string& name, const string& password, const string& licensePlate) {
     srand(time(NULL));
     int userid = rand();
     while (userIDRepeated(userid)) userid = rand();
@@ -170,81 +169,14 @@ int App::addDriver(string name, string password, string licensePlate) {
     return userid;
 }
 
-Driver *App::findDriver(int userID, string password) {
+Driver *App::findDriver(int userID, const string& password) {
     for(auto driverit = drivers.begin(); driverit < drivers.end(); driverit++){
         if((*driverit).getUserId() == userID && (*driverit).getPassword() == password) return &(*driverit);
     }
     return nullptr;
 }
 
-
-
-void App::preprocessingAnalysisTarjan() {
-    cout<<endl<<"Using a Porto Map with 53 621 nodes."<<endl;
-
-    //Initializes a full graph
-    Graph graph("../Map/porto_full_nodes_xy.txt","../Map/porto_full_edges.txt");
-
-    //Runs Tarjan's algorithm and records the time it took
-    auto start = std::chrono::high_resolution_clock::now();
-    Preprocessing::preprocessGraphTarjan(graph,"../Map/testNodes.txt","../Map/testEdges.txt");
-    auto end = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-
-    //Reads the number of nodes created from the nodes file
-    ifstream f("../Map/testNodes.txt");
-    int nodes;
-    f>>nodes;
-    cout <<"Tarjan's Algorithm ran in "<<duration.count()<<" milliseconds and produced a graph with "<<nodes<<" nodes"<<endl;
-    f.close();
-
-    //Erases temporary files created to test the algorithm
-    int result1=remove("../Map/testNodes.txt");
-    int result2=remove("../Map/testEdges.txt");
-    if(result1!=0 || result2!=0) cout <<"Error deleting temporary files"<<endl;
-}
-
-void App::preprocessingAnalysisKosaraju() {
-    cout<<endl<<"Using a Porto Map with 53 621 nodes."<<endl;
-
-    //Initializes a full graph
-    Graph graph("../Map/porto_full_nodes_xy.txt","../Map/porto_full_edges.txt");
-
-    //Runs Kosaraju's algorithm and records the time it took
-    auto start = std::chrono::high_resolution_clock::now();
-    Preprocessing::preprocessGraphKosaraju(graph,"../Map/testNodes.txt","../Map/testEdges.txt");
-    auto end = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-
-    //Reads the number of nodes created from the nodes file
-    ifstream f("../Map/testNodes.txt");
-    int nodes;
-    f>>nodes;
-    cout <<"Kosaraju's Algorithm ran in "<<duration.count()<<" milliseconds and produced a graph with "<<nodes<<" nodes"<<endl;
-    f.close();
-
-    //Erases temporary files created to test the algorithm
-    int result1=remove("../Map/testNodes.txt");
-    int result2=remove("../Map/testEdges.txt");
-    if(result1!=0 || result2!=0) cout <<"Error deleting temporary files"<<endl;
-}
-
-void App::aStarAnalysis() {
-    srand (time(NULL));
-    int index1=rand()%graph.getNumVertex();
-    int index2=rand()%graph.getNumVertex();
-    while(index1==index2) index2=rand()%graph.getNumVertex();
-    auto v1 = graph.getVertexSet()[index1];
-    auto v2 = graph.getVertexSet()[index2];
-    auto start = std::chrono::high_resolution_clock::now();
-    auto pathAStar=Routing::aStar(graph,v1,v2);
-    auto end = std::chrono::high_resolution_clock::now();
-    auto durationAStar = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-    cout<<endl<<"A* algorithm took "<<durationAStar.count()<<" microseconds to compute the shortest path between 2 random nodes"<<endl<<endl;
-    sleep(2);
-}
-
-TrashContainer* App::findClosestTrashContainer(User user, TrashType type) {
+Vertex* App::findClosestTrashContainer(User user, TrashType type) {
     auto userLocation=graph.findClosestVertex(user.getX(),user.getY());
     TrashContainer* selectedTrashContainer= nullptr;
     double min=INF;
@@ -259,39 +191,73 @@ TrashContainer* App::findClosestTrashContainer(User user, TrashType type) {
     return selectedTrashContainer;
 }
 
-void App::aStarVsDijkstra() {
-    srand (time(NULL));
-    int index1=rand()%graph.getNumVertex();
-    int index2=rand()%graph.getNumVertex();
-    while(index1==index2) index2=rand()%graph.getNumVertex();
-    auto v1 = graph.getVertexSet()[index1];
-    auto v2 = graph.getVertexSet()[index2];
-    auto start = std::chrono::high_resolution_clock::now();
-    auto pathDijkstra=Routing::dijkstra(graph,v1,v2);
-    auto end = std::chrono::high_resolution_clock::now();
-    auto durationDijkstra = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-    start = std::chrono::high_resolution_clock::now();
-    auto pathAStar=Routing::aStar(graph,v1,v2);
-    end = std::chrono::high_resolution_clock::now();
-    auto durationAStar = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-    cout<<endl<<"For the same 2 random points:"<<endl<<endl;
-    cout<<"Dijkstra's algorithm took "<<durationDijkstra.count()<<" microseconds to compute the shortest path"<<endl;
-    cout<<"A* algorithm took "<<durationAStar.count()<<" microseconds to compute the shortest path"<<endl<<endl;
-    sleep(2);
+Graph App::getGraph(){
+    return graph;
 }
 
-void App::dijkstraAnalysis() {
-    srand (time(NULL));
-    int index1=rand()%graph.getNumVertex();
-    int index2=rand()%graph.getNumVertex();
-    while(index1==index2) index2=rand()%graph.getNumVertex();
-    auto v1 = graph.getVertexSet()[index1];
-    auto v2 = graph.getVertexSet()[index2];
-    auto start = std::chrono::high_resolution_clock::now();
-    auto pathDijkstra=Routing::dijkstra(graph,v1,v2);
-    auto end = std::chrono::high_resolution_clock::now();
-    auto durationDijkstra = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-    cout<<endl<<"Dijkstra's algorithm took "<<durationDijkstra.count()<<" microseconds to compute the shortest path between 2 random nodes"<<endl<<endl;
-    sleep(2);
-}
+void App::saveInfo(){
+    saveHouses("../data/houses.txt");
+    saveTrashContainers("../data/trashContainers.txt");
+    saveGarbageFacilities("../data/garbageFacilitys.txt");
+    saveCars("../data/cars.txt");
 
+}
+void App::saveHouses(string filename){
+    ofstream fileHouses(filename);
+    fileHouses << houses.size() << "\n";
+    for(auto h : houses){
+        fileHouses << h.getHouseVertex()->getID() << " " << h.getAmountOfTrash() << "\n";
+    }
+    fileHouses.close();
+}
+void App::saveTrashContainers(string filename){
+    ofstream fileTrashContainers(filename);
+    fileTrashContainers << trashContainers.size() << "\n";
+    for (auto tc : trashContainers){
+        switch (tc.getType()) {
+            case Regular:
+                fileTrashContainers << tc.getVertex()->getID() << " " << 'R' << " " << tc.getMaxCapacity() << "\n";
+                break;
+
+            case Paper:
+                fileTrashContainers << tc.getVertex()->getID() << " " << 'p' << " " << tc.getMaxCapacity() << "\n";
+                break;
+            case Plastic:
+                fileTrashContainers << tc.getVertex()->getID() << " " << 'P' << " " << tc.getMaxCapacity() << "\n";
+
+                break;
+            case Glass:
+                fileTrashContainers << tc.getVertex()->getID() << " " << 'G' << " " << tc.getMaxCapacity() << "\n";
+                break;
+        }
+    }
+    fileTrashContainers.close();
+}
+void App::saveGarbageFacilities(string filename){
+    ofstream fileGarbageFacilitys(filename);
+    fileGarbageFacilitys << garbageCFs.size() << endl;
+    for(auto gf : garbageCFs){
+        fileGarbageFacilitys << gf.getVertex()->getID() << " " << gf.getName() << endl;
+    }
+    fileGarbageFacilitys.close();
+}
+void App::saveCars(string filename){
+    ofstream fileCars(filename);
+    fileCars << cars.size() << endl;
+    for(auto c: cars){
+        fileCars << c.getMaxCapacity() << " " << c.getLicensePlate() << endl;
+    }
+    fileCars.close();
+}
+void App::saveDrivers(string filename){
+    ofstream fileDrivers(filename);
+    fileDrivers << drivers.size() << "\n";
+    for(const auto& d: drivers) fileDrivers << d;
+    fileDrivers.close();
+}
+void App::saveUsers(string filename){
+    ofstream fileUsers(filename);
+    fileUsers << drivers.size() << "\n";
+    for(const auto& u: users) fileUsers << u;
+    fileUsers.close();
+}

@@ -19,7 +19,7 @@ private:
     static void DFS_Tarjan(Vertex* src, int &index, stack<Vertex*> &L, vector<vector<int>> &scc);
 
     static vector<int> largestSCCTarjan(Graph graph);
-
+    static void strongConnectedComponent(Vertex src, vector<vector<int>> &scc);
     static void createSCCFile(string fileNodes, string fileEdges,Graph graph);
 
     //KOSARAJU
@@ -33,8 +33,6 @@ public:
     static void preprocessGraphTarjan(Graph graph, string nodePath, string edgesPath);
     static void preprocessGraphKosaraju(Graph graph, string nodePath, string edgesPath);
     static void preprocess(Graph graph, string nodePath, string edgesPath,vector<int> strongComponent);
-
-
 };
 
 

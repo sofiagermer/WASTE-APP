@@ -4,6 +4,7 @@
 
 #include "Menu.h"
 #include "UI.h"
+#include "../Algorithms/Analysis.h"
 
 #ifdef _WIN32
 #include <Windows.h>
@@ -423,19 +424,19 @@ void Menu::programmerMenu() {
 
         switch (input[0]) {
             case '1':
-                app.preprocessingAnalysisTarjan();
+                Analysis::preprocessingAnalysisTarjan();
                 break;
             case '2':
-                app.preprocessingAnalysisKosaraju();
+                Analysis::preprocessingAnalysisKosaraju();
                 break;
             case '3':
-                app.aStarAnalysis();
+                Analysis::aStarAnalysis(app.getGraph());
                 break;
             case '4':
-                app.dijkstraAnalysis();
+                Analysis::dijkstraAnalysis(app.getGraph());
                 break;
             case '5':
-                app.aStarVsDijkstra();
+                Analysis::aStarVsDijkstra(app.getGraph());
                 break;
             case '0':
                 cout << "Going to the previous menu..." << endl;

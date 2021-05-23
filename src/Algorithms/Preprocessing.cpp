@@ -8,8 +8,6 @@
  * Tarjan
  * ================================================================================================
  */
-
-
 bool Preprocessing::findStackElement(stack<Vertex *> stackV, Vertex *vertex) {
     while (!stackV.empty() && stackV.top() != vertex){
         stackV.pop();
@@ -27,42 +25,43 @@ vector<vector<int>> Preprocessing::tarjan(Graph graph) {
         vertex->setLow(-1);
         vertex->removeFromStack();
     }
-
     vector<vector<int>> scc;
-    int nid = 0;
     stack<Vertex*> L;
-
+    int index = 0;
     for (Vertex* vertex : graph.getVertexSet()) {
         if (vertex->getIndex() == -1) {
-            DFS_Tarjan(vertex, nid, L ,scc);
+            DFS_Tarjan(vertex, index, L, scc);
         }
     }
-
     return scc;
 }
 
-void Preprocessing::DFS_Tarjan(Vertex *src, int &nid, stack<Vertex *> &L, vector<vector<int>> &scc) {
-    src->setIndex(nid);
-    src->setLow(nid);
-    nid++;
+void Preprocessing::DFS_Tarjan(Vertex *src, int &index, stack<Vertex *> &L, vector<vector<int>> &scc) {
+    // Set the depth index for v to the smallest unused index
+    src->setIndex(index);
+    src->setLow(index);
+    index++;
     L.push(src);
     src->addToStack();
-
+    //// Consider successors of v
     for (Edge edge : src->getOutgoingEdges()) {
         if (edge.getDest()->getIndex() == -1) {
-            DFS_Tarjan(edge.getDest(), nid, L, scc);
+            //// Successor has not yet been visited; recurse on it
+            DFS_Tarjan(edge.getDest(), index, L, scc);
             src->setLow(min(src->getLow(), edge.getDest()->getLow()));
         } else if (edge.getDest()->getInStack()) {
+            //// Successor w is in stack S and hence in the current SCC
             src->setLow( min(src->getLow(), edge.getDest()->getIndex()));
         }
     }
-
+    //// If src is a root node, pop the stack and generate an SCC
     if (src->getLow() == src->getIndex()) {
         vector<int> sc;
         Vertex * v;
         do {
             v = L.top();
             L.pop();
+            src->removeFromStack();
             sc.push_back(v->getID());
         } while (v != src);
         scc.push_back(sc);
@@ -82,7 +81,6 @@ vector<int> Preprocessing::largestSCCTarjan(Graph graph) {
     }
     return scc_list.at(index);
 }
-
 /* ================================================================================================
  * Kosaraju
  * ================================================================================================
@@ -106,11 +104,11 @@ vector<vector<int>> Preprocessing::kosaraju(Graph graph) {
     while(!L.empty()){
         Vertex * vertex = L.top();
         L.pop();
-        cout << "Tamanho L: " << L.size() << endl;
+        //cout << "Tamanho L: " << L.size() << endl;
         scc.clear();
         DFS_2(vertex, S2, scc);
         if(!scc.empty()) {
-            cout << "TEMOS UM SCC " << endl;
+            //cout << "TEMOS UM SCC " << endl;
             SCCs.push_back(scc);
         }
     }
