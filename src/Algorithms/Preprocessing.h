@@ -33,8 +33,6 @@ public:
     static void preprocessGraphTarjan(Graph graph, string nodePath, string edgesPath);
     static void preprocessGraphKosaraju(Graph graph, string nodePath, string edgesPath);
     static void preprocess(Graph graph, string nodePath, string edgesPath,vector<int> strongComponent);
-
-
 };
 
 

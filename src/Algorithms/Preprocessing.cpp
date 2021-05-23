@@ -106,11 +106,11 @@ vector<vector<int>> Preprocessing::kosaraju(Graph graph) {
     while(!L.empty()){
         Vertex * vertex = L.top();
         L.pop();
-        cout << "Tamanho L: " << L.size() << endl;
+        //cout << "Tamanho L: " << L.size() << endl;
         scc.clear();
         DFS_2(vertex, S2, scc);
         if(!scc.empty()) {
-            cout << "TEMOS UM SCC " << endl;
+            //cout << "TEMOS UM SCC " << endl;
             SCCs.push_back(scc);
         }
     }

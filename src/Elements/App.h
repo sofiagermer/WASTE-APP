@@ -53,11 +53,7 @@ public:
     Vertex* findClosestTrashContainer(User user, TrashType type);
 
     //Algorithm's Analysis
-    void preprocessingAnalysisTarjan();
-    void preprocessingAnalysisKosaraju();
-    void aStarAnalysis();
-    void dijkstraAnalysis();
-    void aStarVsDijkstra();
+    Graph getGraph();
 };
 
 
