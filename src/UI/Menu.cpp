@@ -252,14 +252,16 @@ void Menu::loginOptions() {
 void Menu::userOptions(User &user) {
     cout << "Here's what you can do: " << endl;
 
-    if(user.getHouse() != nullptr) cout << " 1. Change address" << endl;
-    else cout << " 1. Input address" << endl;
-
-    if(user.getHouse()->getNeedPickUp()) cout << " 2. Cancel pick up" << endl;
-    else cout << " 2. Set pick up" << endl;
-
-    cout << " 3. Search for closest trash container " << endl;
-
+    if(user.getHouse() != nullptr) {
+        cout << " 1. Change address" << endl;
+        if(user.getHouse()->getNeedPickUp()) cout << " 2. Cancel pick up" << endl;
+        else cout << " 2. Set pick up" << endl;
+        cout << " 3. Search for closest trash container " << endl;
+    }
+    else{
+        cout << " 1. Add house address" << endl;
+        cout << " 2. Search for closest trash container " << endl;
+    }
     cout << " 0. Go back" << endl;
 }
 
