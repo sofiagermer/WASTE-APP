@@ -24,7 +24,8 @@ void UI::showGraph() {
 }
 
 void UI::showTrashContainer(double userX, double userY, TrashContainer *trashContainer) {
-    this->graphViewer = new GraphViewer();
+    cout << trashContainer->getVertex()->getID() << endl;
+    /*this->graphViewer = new GraphViewer();
     graphViewer->setCenter(sf::Vector2f(userX, userY));
     auto maxDist=graph->distanceBetweenCoords(userX,trashContainer->getVertex()->getX(),userY,trashContainer->getVertex()->getY());
     maxDist=maxDist*1.5;
@@ -66,6 +67,6 @@ void UI::showTrashContainer(double userX, double userY, TrashContainer *trashCon
             id++;
         }
     }
-    graphViewer->createWindow(graphViewerWidth, graphViewerHeight);
+    graphViewer->createWindow(graphViewerWidth, graphViewerHeight);*/
 
 }
