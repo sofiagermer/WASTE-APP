@@ -7,6 +7,7 @@
 
 #include <graphviewer.h>
 #include "../Graph/Graph.h"
+#include "../Elements/TrashContainer.h"
 
 class UI {
     Graph *graph;
@@ -19,6 +20,8 @@ public:
     UI(Graph * graph, int width, int height);
 
     void showGraph();
+
+    void showTrashContainer(double userX,double userY, TrashContainer *trashContainer);
 };
 
 

@@ -191,18 +191,24 @@ Driver *App::findDriver(int userID, const string& password) {
     return nullptr;
 }
 
-Vertex* App::findClosestTrashContainer(User user, TrashType type) {
+TrashContainer* App::findClosestTrashContainer(User user, TrashType type) {
+    cout << "aqui " << endl;
     auto userLocation=graph.findClosestVertex(user.getX(),user.getY());
-    Vertex* selectedTrashContainer= nullptr;
+    TrashContainer* selectedTrashContainer= nullptr;
     double min=INF;
+    cout << "antes do for " << endl;
     for(auto t:trashContainers){
+        cout << "dentro do for " << endl;
         if(t.getType()==type && t.getCurrentCapacity()>0){
+            cout << "disjktra merdou" << endl;
             auto temp=Routing::dijkstra(graph,userLocation,t.getVertex());
+            cout << "NAO SE CHMA DISKSTRASSSSSS " << endl;
             if(Routing::pathCost(temp)<min){
-                selectedTrashContainer=t.getVertex();
+                selectedTrashContainer=&t;
             }
         }
     }
+    cout << "depois do for" << endl;
     return selectedTrashContainer;
 }
 
