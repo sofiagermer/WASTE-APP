@@ -117,6 +117,14 @@ void Vertex::setDistance(double distance) {
     Vertex::distance = distance;
 }
 
+int Vertex::getQueueIndex() const {
+    return queueIndex;
+}
+
+void Vertex::setQueueIndex(int queueIndex) {
+    Vertex::queueIndex = queueIndex;
+}
+
 bool Graph::removeVertex(double x, double y) {
     auto v=findVertex(x,y);
     if(v==NULL) return false;

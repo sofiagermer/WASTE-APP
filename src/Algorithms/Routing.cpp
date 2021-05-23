@@ -48,57 +48,10 @@ double Routing::heuristic(Vertex *start, Vertex *end) {
 }
 
 stack<Vertex *> Routing::aStar(Graph graph,Vertex *start, Vertex *end) {
-    /*vector<Vertex*> discoveredNodes;
-    discoveredNodes.push_back(start);
-    map<Vertex*,Vertex*> cameFrom;
-    map<Vertex*,double> costMap;
-    map<Vertex*,double> guessMap;
-    for(auto v:graph.getVertexSet()){
-        costMap[v]=INF;
-        guessMap[v]=INF;
-    }
-    costMap[start]=0;
-    guessMap[start]=heuristic(start,end);
-    while(!discoveredNodes.empty()){
-        Vertex* current;
-        double min=INF;
-        vector<Vertex*>::iterator it=discoveredNodes.begin();
-        vector<Vertex*>::iterator toErase;
-        while(it!=discoveredNodes.end()){
-            if(guessMap[*it]<min){
-                min=guessMap[*it];
-                current=*it;
-                toErase=it;
-            }
-            it++;
-        }
-
-        if(current==end){
-            return reconstructPath(cameFrom,current,start);
-        }
-        discoveredNodes.erase(toErase);
-        for(auto edge:current->getOutgoingEdges()){
-            double tentative=costMap[current]+edge.getWeight();
-            if(tentative<costMap[edge.getDest()]){
-                cameFrom[edge.getDest()]=current;
-                costMap[edge.getDest()]=tentative;
-                guessMap[edge.getDest()]=costMap[edge.getDest()]+ heuristic(current,end);
-                bool exists=false;
-                for(auto d:discoveredNodes){
-                    if(d==edge.getDest()){
-                        exists=true;
-                    }
-                }
-                if(!exists) discoveredNodes.push_back(edge.getDest());
-            }
-        }
-
-    }
-    return {};*/
     map <Vertex*,Vertex*> cameFrom;
     for(auto v:graph.getVertexSet()){
         v->setDistance(INF);
-        v->setIndex(0);
+        v->setQueueIndex(0);
     }
     start->setDistance(heuristic(start,end));
     MutablePriorityQueue<Vertex*> queue;
@@ -110,16 +63,9 @@ stack<Vertex *> Routing::aStar(Graph graph,Vertex *start, Vertex *end) {
         for(auto e:v->getOutgoingEdges()){
             double d=v->getDistance()- heuristic(v,end)+e.getWeight()+ heuristic(e.getDest(),end);
             if(d<e.getDest()->getDistance()){
-                double temp = e.getDest()->getDistance();
                 e.getDest()->setDistance(d);
                 cameFrom[e.getDest()]=v;
-                if (temp == INF){
-                    queue.insert(e.getDest());
-                }
-                else {
-                    queue.decreaseKey(e.getDest());
-                }
-                //queue.insertOrDecreaseKey(e.getDest());
+                queue.insertOrDecreaseKey(e.getDest());
             }
         }
     }
@@ -130,7 +76,7 @@ stack<Vertex *> Routing::dijkstra(Graph graph,Vertex *start, Vertex *end) {
     map <Vertex*,Vertex*> cameFrom;
     for(auto v:graph.getVertexSet()){
         v->setDistance(INF);
-        v->setIndex(0);
+        v->setQueueIndex(0);
     }
     start->setDistance(0);
     MutablePriorityQueue<Vertex*> queue;

@@ -120,17 +120,17 @@ void App::preprocessingAnalysisTarjan() {
 
 void App::aStarAnalysis() {
     auto v1 = graph.findVertex(3);
-    auto v2 = graph.findVertex(8);
-
+    auto v2 = graph.findVertex(38052);
     auto start = std::chrono::high_resolution_clock::now();
-    auto pathAStar=Routing::aStar(graph,v1,v2);
-    auto end = std::chrono::high_resolution_clock::now();
-    auto durationAStar = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-    cout<<"A:"<<durationAStar.count()<<endl;
-    start = std::chrono::high_resolution_clock::now();
     auto pathDijkstra=Routing::dijkstra(graph,v1,v2);
+    auto end = std::chrono::high_resolution_clock::now();
+    auto durationDijkstra = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+    start = std::chrono::high_resolution_clock::now();
+    auto pathAStar=Routing::aStar(graph,v1,v2);
     end = std::chrono::high_resolution_clock::now();
-    auto durationDijkstra = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+    auto durationAStar = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+    cout<<"A:"<<durationAStar.count()<<endl;
+
 
     cout<<"D:"<<durationDijkstra.count()<<endl;
 

@@ -36,9 +36,13 @@ class Vertex{
     int index = -1;
     int low = -1;
     //Dijkstra
-    int queueIndex = 0; // required by MutablePriorityQueue
+    int queueIndex;
+    // required by MutablePriorityQueue
     double distance;
 public:
+    int getQueueIndex() const;
+
+    void setQueueIndex(int queueIndex);
     double getDistance() const;
 
     void setDistance(double distance);
