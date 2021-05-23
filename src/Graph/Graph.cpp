@@ -84,7 +84,7 @@ double Vertex::getDistance() const {
 }
 
 void Vertex::setDistance(double distance) {
-   distance = distance;
+    Vertex::distance = distance;
 }
 
 int Vertex::getQueueIndex() const {
@@ -92,7 +92,7 @@ int Vertex::getQueueIndex() const {
 }
 
 void Vertex::setQueueIndex(int queueIndex) {
-   queueIndex = queueIndex;
+    Vertex::queueIndex = queueIndex;
 }
 
 /* ================================================================================================

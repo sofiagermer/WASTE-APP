@@ -176,7 +176,7 @@ Driver *App::findDriver(int userID, const string& password) {
     return nullptr;
 }
 
-Vertex* App::findClosestTrashContainer(User user, TrashType type) {
+TrashContainer* App::findClosestTrashContainer(User user, TrashType type) {
     auto userLocation=graph.findClosestVertex(user.getX(),user.getY());
     TrashContainer* selectedTrashContainer= nullptr;
     double min=INF;
