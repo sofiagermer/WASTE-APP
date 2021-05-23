@@ -129,11 +129,25 @@ void Menu::userMenu() {
             case '1':
                 //Set/change address
                 cout << "Set/change address" << endl;
+                //Idk how to this!!!
                 break;
-            case '2':
+            case '2': {
                 //Set/cancel pickup
-                cout << "Set/cancel pickup" << endl;
+                //cout << "Set/cancel pickup" << endl;
+                if(user->getHouse()->getNeedPickUp()){
+                    user->getHouse()->setNeedPickUp(false);
+                    cout << "Pick up cancelled" << endl;
+                }
+                else{
+                    double inputAmountoftrash;
+                    cout << "Ammout of trash: ";
+                    cin >> inputAmountoftrash;
+                    user->getHouse()->setNeedPickUp(true);
+                    user->getHouse()->setAmountOfTrash(inputAmountoftrash);
+                    cout << "Pick up set for " << inputAmountoftrash << "L of trash." << endl;
+                }
                 break;
+            }
             case '3':
                 //Search for a specific trash container
                 trashMenu(user);
@@ -236,15 +250,12 @@ void Menu::loginOptions() {
 }
 
 void Menu::userOptions(User &user) {
-    //need to change this!
-    bool hasAddress = false, needsPickup = false;
-
     cout << "Here's what you can do: " << endl;
 
-    if(hasAddress) cout << " 1. Change address" << endl;
+    if(user.getHouse() != nullptr) cout << " 1. Change address" << endl;
     else cout << " 1. Input address" << endl;
 
-    if(needsPickup) cout << " 2. Cancel pick up" << endl;
+    if(user.getHouse()->getNeedPickUp()) cout << " 2. Cancel pick up" << endl;
     else cout << " 2. Set pick up" << endl;
 
     cout << " 3. Search for closest trash container " << endl;
