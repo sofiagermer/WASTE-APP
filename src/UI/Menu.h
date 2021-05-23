@@ -61,6 +61,7 @@ public:
     void programmerMenu();
     void programmerOptions();
 
+    void getLocation(User *user);
 };
 
 

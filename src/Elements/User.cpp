@@ -60,3 +60,11 @@ void User::setPosition(double x, double y) {
 double User::getX() const {return this->x;}
 
 double User::getY() const {return this->y;}
+
+void User::setY(double y) {
+    this->y=y;
+}
+
+void User::setX(double x) {
+    this->x=x;
+}
