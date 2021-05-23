@@ -244,15 +244,15 @@ void App::aStarAnalysis() {
     sleep(2);
 }
 
-Vertex* App::findClosestTrashContainer(User user, TrashType type) {
+TrashContainer* App::findClosestTrashContainer(User user, TrashType type) {
     auto userLocation=graph.findClosestVertex(user.getX(),user.getY());
-    Vertex* selectedTrashContainer= nullptr;
+    TrashContainer* selectedTrashContainer= nullptr;
     double min=INF;
     for(auto t:trashContainers){
         if(t.getType()==type && t.getCurrentCapacity()>0){
             auto temp=Routing::dijkstra(graph,userLocation,t.getVertex());
             if(Routing::pathCost(temp)<min){
-                selectedTrashContainer=t.getVertex();
+                selectedTrashContainer=&t;
             }
         }
     }

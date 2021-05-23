@@ -26,7 +26,9 @@ int main() {
     Menu::frontpage();
     Graph graph("../Map/outputTarjan/processedNodes.txt","../Map/outputKosaraju/processedEdges.txt");
     App app(graph);
-    Menu menu(app);
+    UI ui(&graph,300,300);
+    //ui.showGraph();
+    Menu menu(app, ui);
     menu.mainMenu();
     return 0;
 }

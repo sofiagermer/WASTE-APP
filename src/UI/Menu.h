@@ -10,6 +10,7 @@
 #include "../Elements/User.h"
 #include "../Elements/Driver.h"
 #include "../Elements/App.h"
+#include "UI.h"
 
 #define INVALIDOPTION "That's not a valid option! Try again please:"
 /**
@@ -41,9 +42,10 @@ using namespace std;
 class Menu {
 private:
     App app;
+    UI ui;
 public:
 
-    Menu(App app);;
+    Menu(App app, UI ui);;
     static void frontpage();
     void beginningOptions();
     void mainMenu();

@@ -50,7 +50,7 @@ public:
     Driver* findDriver(int userID, string password);
     bool userIDRepeated(const int &userID);
 
-    Vertex* findClosestTrashContainer(User user, TrashType type);
+    TrashContainer* findClosestTrashContainer(User user, TrashType type);
 
     //Algorithm's Analysis
     void preprocessingAnalysisTarjan();

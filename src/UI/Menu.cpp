@@ -3,6 +3,8 @@
 //
 
 #include "Menu.h"
+#include "UI.h"
+
 #ifdef _WIN32
 #include <Windows.h>
 #else
@@ -368,25 +370,25 @@ void Menu::trashMenu(User *user) {
             case '1':
                 //Paper
                 cout << "Searching for the closest Paper container..." << endl;
-                app.findClosestTrashContainer(*user,Paper);
+                ui.showTrashContainer(user->getX(),user->getY(),app.findClosestTrashContainer(*user,Paper)) ;
                 break;
 
             case '2':
                 //Plastic
                 cout << "Searching for the closest Plastic container..." << endl;
-                app.findClosestTrashContainer(*user,Plastic);
+                ui.showTrashContainer(user->getX(),user->getY(),app.findClosestTrashContainer(*user,Plastic));
                 break;
 
             case '3':
                 //Glass
                 cout << "Searching for the closest Glass container..." << endl;
-                app.findClosestTrashContainer(*user,Glass);
+                ui.showTrashContainer(user->getX(),user->getY(),app.findClosestTrashContainer(*user,Glass));
                 break;
 
             case '4':
                 //Regular
                 cout << "Searching for the closest Metal container..." << endl;
-                app.findClosestTrashContainer(*user,Regular);
+                ui.showTrashContainer(user->getX(),user->getY(),app.findClosestTrashContainer(*user,Regular));
                 break;
             case '0':
                 return;
@@ -454,7 +456,7 @@ void Menu::programmerOptions() {
     cout << " 0. Go back" << endl;
 }
 
-Menu::Menu(App app) : app(app){
+Menu::Menu(App app, UI ui) : app(app), ui(ui){
 }
 
 void Menu::getLocation(User *user) {
