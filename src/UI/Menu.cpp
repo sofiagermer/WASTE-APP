@@ -484,24 +484,99 @@ void Menu::programmerMenu() {
 
         switch (input[0]) {
             case '1':
+                preprocessingMenu();
+                break;
+            case '2':
+                routingMenu();
+                break;
+            case '3':
+                testMenu();
+                break;
+            case '0':
+                cout << "Going to the previous menu..." << endl;
+                return;
+            default:
+                cout << INVALIDOPTION << endl;
+        }
+    }
+}
+
+void Menu::preprocessingMenu() {
+    string input;
+
+    while (true){
+        Menu::preprocessingOptions();
+        getline(cin, input);
+
+        if(input.size() != 1) {
+            cout << INVALIDOPTION << endl;
+            continue;
+        }
+
+        switch (input[0]) {
+            case '1':
                 Analysis::preprocessingAnalysisTarjan();
                 break;
             case '2':
                 Analysis::preprocessingAnalysisKosaraju();
                 break;
-            case '3':
+            case '0':
+                cout << "Going to the previous menu..." << endl;
+                return;
+            default:
+                cout << INVALIDOPTION << endl;
+        }
+    }
+}
+
+void Menu::routingMenu() {
+    string input;
+
+    while (true){
+        Menu::routingOptions();
+        getline(cin, input);
+
+        if(input.size() != 1) {
+            cout << INVALIDOPTION << endl;
+            continue;
+        }
+
+        switch (input[0]) {
+            case '1':
                 Analysis::aStarAnalysis(app.getGraph());
                 break;
-            case '4':
+            case '2':
                 Analysis::dijkstraAnalysis(app.getGraph());
                 break;
-            case '5':
+            case '3':
                 Analysis::aStarVsDijkstra(app.getGraph());
                 break;
-            case '6':
+            case '0':
+                cout << "Going to the previous menu..." << endl;
+                return;
+            default:
+                cout << INVALIDOPTION << endl;
+        }
+    }
+}
+
+void Menu::testMenu(){
+    string input;
+
+    while (true){
+        Menu::testOptions();
+        getline(cin, input);
+
+        if(input.size() != 1) {
+            cout << INVALIDOPTION << endl;
+            continue;
+        }
+
+        switch (input[0]) {
+            case '1':
                 Preprocessing::testTarjan();
                 break;
-            case '7':
+            case '2':
                 Preprocessing::testKosaraju();
                 break;
             case '0':
@@ -513,15 +588,27 @@ void Menu::programmerMenu() {
     }
 }
 
-void Menu::programmerOptions() {
-    cout << "Here's what you can do: " << endl;
-    cout << " 1. Check Tarjan's time efficiency (PREPROCESSING)" << endl;
-    cout << " 2. Check Kosaraju's time efficiency (PREPROCESSING)" << endl;
-    cout << " 3. Check A*'s time efficiency (ROUTING)" << endl;
-    cout << " 4. Check Dijkstra's time efficiency (ROUTING)" << endl;
-    cout << " 5. Compare Dijkstra's algorithm with A*'s algorithm (ROUTING)" << endl;
-    cout << " 6. Test Tarjan" << endl;
-    cout << " 7. Test Kosaraju" << endl;
+void Menu::preprocessingOptions(){
+    cout << " 1. Check Tarjan's time efficiency" << endl;
+    cout << " 2. Check Kosaraju's time efficiency" << endl;
+    cout << " 0. Go back" << endl;
+}
+void Menu::routingOptions(){
+    cout << " 1. Check A*'s time efficiency" << endl;
+    cout << " 2. Check Dijkstra's time efficiency" << endl;
+    cout << " 3. Compare Dijkstra's algorithm with A*'s algorithm" << endl;
+    cout << " 0. Go back" << endl;
+}
+void Menu::testOptions(){
+    cout << " 1. Test Tarjan" << endl;
+    cout << " 2. Test Kosaraju" << endl;
     cout << " 0. Go back" << endl;
 }
 
+void Menu::programmerOptions() {
+    cout << "Here's what you can do: " << endl;
+    cout << " 1. Preprocessing Time Efficiency" << endl;
+    cout << " 2. Routing Time Efficiency" << endl;
+    cout << " 3. Test Algorithms" << endl;
+    cout << " 0. Go back" << endl;
+}
