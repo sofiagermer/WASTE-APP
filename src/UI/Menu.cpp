@@ -59,7 +59,7 @@ void Menu::mainMenu() {
                 MenuUser::userMenu(&app, &ui);
                 break;
             case '2':
-                MenuDriver::driverMenu(&app);
+                MenuDriver::driverMenu(&app,&ui);
                 break;
             case '3':
                 MenuProgrammer::programmerMenu(&app);

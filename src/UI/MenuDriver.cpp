@@ -3,15 +3,12 @@
 //
 
 #include "MenuDriver.h"
-#include <iostream>
-#include <string>
-#include "MenuDriver.h"
-#include "../Elements/Driver.h"
+
 
 #define INVALIDOPTION "That's not a valid option! Try again please:"
 
 using namespace std;
-void MenuDriver::driverMenu(App *app) {
+void MenuDriver::driverMenu(App *app,UI *ui) {
     string input;
     bool endWhile = false;
     Driver* driver;
@@ -75,6 +72,7 @@ void MenuDriver::driverMenu(App *app) {
             case '2': {
                 vector<House *> housesToVisit = app->getHousesToVisit();
                 queue<Vertex *> route = Routing::nearestNeighbour(app->getGraph(), driver, housesToVisit);
+                ui->displayRoute(housesToVisit,route);
                 break;
             }
             case '3':

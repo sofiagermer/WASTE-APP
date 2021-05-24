@@ -4,10 +4,10 @@
 
 #include "Routing.h"
 
-queue<Vertex *> Routing::nearestNeighbour(Graph *graph,Driver *driver, vector<House *> &housesToVisit) {
+queue<Vertex *> Routing::nearestNeighbour(Graph *graph,Driver *driver, vector<House *> housesToVisit) {
     queue<Vertex*> orderedCompletePath;
     //Vertex *initialVertex = graph->findClosestVertex(driver->getX(),driver->getY());
-    Vertex *initialVertex = graph->findClosestVertex(300,200);
+    Vertex *initialVertex = graph->findClosestVertex(200,300);
     orderedCompletePath.push(initialVertex);
     double minDistance;
     stack<Vertex*> next;
@@ -15,8 +15,7 @@ queue<Vertex *> Routing::nearestNeighbour(Graph *graph,Driver *driver, vector<Ho
     while(!housesToVisit.empty()&&driver->getCar()->getCurrentCapacity()>0) {
         minDistance=INF;
         for (auto it = housesToVisit.begin(); it != housesToVisit.end(); it++) {
-            cout<<(*it)->getHouseVertex()->getX()<<endl;
-            auto path = aStar(graph,initialVertex, (*it)->getHouseVertex());
+            auto path = aStar(graph,orderedCompletePath.back(), (*it)->getHouseVertex());
             double aux = pathCost(path);
             if (aux < minDistance && driver->getCar()->wouldFit((*it)->getAmountOfTrash()) ) {
                 minDistance = aux;
