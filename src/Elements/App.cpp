@@ -89,8 +89,7 @@ void App::initializeGarbageFacilities(string filename) {
     for(int i=0;i<numberElements;i++){
         fileGarbageFacilitys>>c>>id>>c>>centralName;
         centralName.pop_back();
-        GarbageCollectionFacility garbageCollectionFacility(graph->findVertex(id), centralName);
-        garbageCFs.push_back(garbageCollectionFacility);
+        garbageCFs.push_back(new GarbageCollectionFacility(graph->findVertex(id), centralName));
     }
    fileGarbageFacilitys.close();
 }
@@ -226,7 +225,7 @@ void App::saveGarbageFacilities(string filename){
     ofstream fileGarbageFacilitys(filename);
     fileGarbageFacilitys << garbageCFs.size() << endl;
     for(auto gf : garbageCFs){
-        fileGarbageFacilitys << '('  << gf.getVertex()->getID() << ',' << gf.getName() << ')' << "\n";
+        fileGarbageFacilitys << '('  << gf->getVertex()->getID() << ',' << gf->getName() << ')' << "\n";
     }
     fileGarbageFacilitys.close();
 }
@@ -352,5 +351,9 @@ vector<House *> App::getHousesToVisit() {
             housesToVisit.push_back(h);
     }
     return housesToVisit;
+}
+
+vector<GarbageCollectionFacility*> App::getGarbageCFs() {
+    return garbageCFs;
 }
 

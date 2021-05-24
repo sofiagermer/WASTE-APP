@@ -78,7 +78,7 @@ void UI::showTrashContainer(double userX, double userY, Vertex *trashContainer, 
 
 void UI::displayRoute(vector<House *> houses, queue<Vertex *> route) {
     this->graphViewer = new GraphViewer();
-
+    graphViewer->setCenter(sf::Vector2f(route.front()->getX(), route.front()->getY()));
     for (Vertex * vertex : graph->getVertexSet()) {
         GraphViewer::Node &n=graphViewer->addNode(vertex->getID(), sf::Vector2f (vertex->getX(), vertex->getY()));
         n.setColor(GraphViewer::LIGHT_GRAY);
@@ -97,6 +97,52 @@ void UI::displayRoute(vector<House *> houses, queue<Vertex *> route) {
                 break;
             }
         }
+        route.pop();
+    }
+    int id = 0;
+    for (Vertex* vertex : graph->getVertexSet()) {
+        for (Edge edge : vertex->getOutgoingEdges()) {
+            if((graphViewer->getNode(vertex->getID()).getColor()==GraphViewer::YELLOW || graphViewer->getNode(vertex->getID()).getColor()==GraphViewer::GREEN) && (graphViewer->getNode(edge.getDest()->getID()).getColor()==GraphViewer::YELLOW ||graphViewer->getNode(edge.getDest()->getID()).getColor()==GraphViewer::GREEN)){
+                GraphViewer::Edge &edge1= graphViewer->addEdge(id, graphViewer->getNode(vertex->getID()), graphViewer->getNode(edge.getDest()->getID()), GraphViewer::Edge::EdgeType::DIRECTED);
+                edge1.setColor(GraphViewer::BLUE);
+                id++;
+                continue;
+            }
+            graphViewer->addEdge(id, graphViewer->getNode(vertex->getID()), graphViewer->getNode(edge.getDest()->getID()), GraphViewer::Edge::EdgeType::DIRECTED);
+            id++;
+        }
+    }
+    graphViewer->createWindow(graphViewerWidth, graphViewerHeight);
+}
+
+void UI::displayTwoPointRoute(queue<Vertex *> route) {
+    this->graphViewer = new GraphViewer();
+    graphViewer->setCenter(sf::Vector2f(route.front()->getX(), route.front()->getY()));
+
+    for (Vertex * vertex : graph->getVertexSet()) {
+        GraphViewer::Node &n=graphViewer->addNode(vertex->getID(), sf::Vector2f (vertex->getX(), vertex->getY()));
+        n.setColor(GraphViewer::LIGHT_GRAY);
+        n.setSize(5);
+    }
+    auto front=route.front();
+    auto back=route.back();
+    while(!route.empty()){
+        GraphViewer::Node &n = graphViewer->getNode(route.front()->getID());
+        n.setColor(GraphViewer::YELLOW);
+        n.setSize(10);
+        if(n.getId()==front->getID()){
+            n.setSize(40);
+            n.setColor(GraphViewer::GREEN);
+            n.setOutlineColor(GraphViewer::RED);
+            n.setLabel("BEGIN");
+        }
+        else if(n.getId()==back->getID()){
+                n.setSize(40);
+                n.setColor(GraphViewer::GREEN);
+                n.setOutlineColor(GraphViewer::RED);
+                n.setLabel("END");
+        }
+
         route.pop();
     }
     int id = 0;

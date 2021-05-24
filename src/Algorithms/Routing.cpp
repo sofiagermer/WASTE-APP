@@ -41,6 +41,7 @@ queue<Vertex *> Routing::nearestNeighbour(Graph *graph,Driver *driver, vector<Ho
     return orderedCompletePath;
 }
 
+
 stack<Vertex *> Routing::reconstructPath(map<Vertex *, Vertex *> cameFrom, Vertex *current) {
     stack<Vertex*> path;
     path.push(current);
@@ -129,4 +130,27 @@ double Routing::pathCost(stack<Vertex *> path) {
 
 double Routing::distanceBetweenCoords(double x1, double x2, double y1, double y2) {
     return sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
+}
+
+queue<Vertex *> Routing::closestFacility(Graph *graph, Driver *driver, vector<GarbageCollectionFacility *> facilities) {
+    queue<Vertex*> orderedCompletePath;
+    Vertex *initialVertex = graph->findClosestVertex(driver->getX(),driver->getY());
+    double minDistance=INF;
+    stack<Vertex*> result;
+    for (auto it = facilities.begin(); it != facilities.end(); it++) {
+        auto path = aStar(graph,initialVertex, (*it)->getVertex());
+        double aux = pathCost(path);
+        if(aux<0){
+            continue;
+        }
+        if (aux < minDistance) {
+            minDistance = aux;
+            result = path;
+        }
+    }
+    while(!result.empty()){
+        orderedCompletePath.push(result.top());
+        result.pop();
+    }
+    return orderedCompletePath;
 }

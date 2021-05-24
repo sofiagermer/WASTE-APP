@@ -153,8 +153,8 @@ void MenuDriver::driverOptions(Driver *driver) {
     cout<< "===================================="<<endl;
     cout << "Here's what you can do: " << endl;
     cout << " 1. Get pick up route" << endl;
-    cout << " 2. Check amount of money earned" << endl;
-    if(driver->getCar() == nullptr) cout << " 1. Input car" << endl;
+    cout << " 2. Get route to facility" <<endl;
+    cout << " 3. Check amount of money earned" << endl;
     cout << " 0. Go back" << endl;
     cout<< "===================================="<<endl;
 }
@@ -177,13 +177,18 @@ void MenuDriver::actionsMenu(Driver *driver, App *app,UI *ui){
                 ui->displayRoute(housesToVisit,route);
                 break;
             }
-            case '2':
+            case '3':
                 cout << "You have made " << driver->getMoneyEarned() << "€ with our app!" << endl;
                 break;
-            case '3':
-                if(driver->getCar() == nullptr); //ADICIONAR CARRO;
-                else cout << INVALIDOPTION << endl; ////Driver already has a car
+            case '2':{
+                queue<Vertex *> route = Routing::closestFacility(app->getGraph(),driver,app->getGarbageCFs());
+                ui->displayTwoPointRoute(route);
+                while(!route.empty()){
+                    cout << route.front()->getX()<<endl;
+                    route.pop();
+                }
                 break;
+            }
             case '0': {
                 cout << "We hope to you see again " << driver->getName() << endl;
                 return;

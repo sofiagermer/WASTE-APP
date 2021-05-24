@@ -24,9 +24,10 @@
 #include "User.h"
 
 class App {
+private:
     vector<House*> houses;
     vector<TrashContainer> trashContainers;
-    vector<GarbageCollectionFacility> garbageCFs;
+    vector<GarbageCollectionFacility*> garbageCFs;
     vector<Car> cars;
     Graph *graph;
     vector<Driver> drivers;
@@ -60,6 +61,7 @@ public:
     int addDriver(const string& name, const string& password, const string& licensePlate);
     Driver* findDriver(int userID, const string& password);
     bool userIDRepeated(const int &userID);
+    vector<GarbageCollectionFacility*> getGarbageCFs();
 
     Vertex* findClosestTrashContainer(User user, TrashType type);
 
