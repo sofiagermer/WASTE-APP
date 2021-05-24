@@ -1,4 +1,4 @@
-11
+10
 (5,abcdef)
 (3,abefcd)
 (10,cdabef)
@@ -9,4 +9,3 @@
 (5,notli)
 (5,notl)
 (5,not)
-(9,vroomvroom)
