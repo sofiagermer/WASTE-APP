@@ -12,6 +12,7 @@ using namespace std;
 
 void MenuUser::userMenu(App *app, UI *ui) {
     User *user = loginMenu(app);
+    if(user == nullptr) return;
     cout << "Hello there " << user->getName() << endl;
     getLocation(user);
     if(user->getHouse() == nullptr) actionMenu(user,app,ui);
@@ -22,7 +23,7 @@ void MenuUser::userMenu(App *app, UI *ui) {
 User* MenuUser::loginMenu(App *app){
     char input;
     bool endWhile = false;
-    User* user;
+    User* user = nullptr;
 
     ////Ask for credentials
     do {

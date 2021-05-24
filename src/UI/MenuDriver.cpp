@@ -12,6 +12,7 @@ using namespace std;
 
 void MenuDriver::driverMenu(App *app,UI *ui) {
     Driver *driver = loginMenu(app);
+    if(driver == nullptr) return;
     cout << "Hello there " << driver->getName() << endl;
     actionsMenu(driver, app,ui);
 }
@@ -31,7 +32,7 @@ void MenuDriver::loginOptions() {
 Driver* MenuDriver::loginMenu(App *app){
     char input;
     bool endWhile = false;
-    Driver *driver;
+    Driver *driver = nullptr;
     //ask for credentials
     do {
         cout << "Now we need to know who you are." << endl;
@@ -64,8 +65,8 @@ Driver* MenuDriver::loginMenu(App *app){
                 break;
 
             case '0':
-                return nullptr;
-
+                endWhile = true;
+                break;
             default:
                 cout << INVALIDOPTION << endl;
                 break;
