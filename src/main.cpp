@@ -24,8 +24,8 @@ int main() {
     //ui.showGraph();
     //cout<<"terminei";
     Menu::frontpage();
-    //Graph graph("../Map/sccGiven/porto_strong_nodes_xy.txt","../Map/sccGiven/porto_strong_edges.txt");
-    Graph graph("../Map/outputTarjan/processedNodes.txt","../Map/outputTarjan/processedEdges.txt");
+    Graph graph("../Map/sccGiven/porto_strong_nodes_xy.txt","../Map/sccGiven/porto_strong_edges.txt");
+    //Graph graph("../Map/outputTarjan/processedNodes.txt","../Map/outputTarjan/processedEdges.txt");
     App app(&graph);
     UI ui(&graph,300,300);
         //ui.showGraph();
