@@ -174,9 +174,6 @@ void MenuDriver::actionsMenu(Driver *driver, App *app,UI *ui){
         switch (input) {
             case '1': {
                 vector<House *> housesToVisit = app->getHousesToVisit();
-                for(auto h:housesToVisit){
-                    cout<<h->getHouseVertex()->getX()<<endl;
-                }
                 queue<Vertex *> route = Routing::nearestNeighbour(app->getGraph(), driver, housesToVisit);
                 ui->displayRoute(housesToVisit,route);
                 break;
