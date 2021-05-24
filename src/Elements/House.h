@@ -44,6 +44,8 @@ public:
     void setAmountOfTrash(float amount);
 
     Vertex* getHouseVertex();
+
+    int getHouseID();
 };
 
 

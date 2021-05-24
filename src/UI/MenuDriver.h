@@ -21,6 +21,7 @@ private:
     static void actionsMenu(Driver *driver, App *app,UI *ui);
     static Driver* loginDriver(App *app);
     static void loginOptions();
+    static void getLocation(Driver *driver);
 public:
     static void driverMenu(App *app,UI *ui);
 };

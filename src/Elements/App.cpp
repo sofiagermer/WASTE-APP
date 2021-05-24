@@ -20,6 +20,11 @@ App::~App(){
     }
     houses.clear();*/
 };
+
+/* ================================================================================================
+ * READ FROM FILES
+ * ================================================================================================
+ */
 void App::initializePoints(){
     initializeHouses("../data/houses.txt");
     initializeTrashContainers("../data/trashContainers.txt");
@@ -105,14 +110,15 @@ void App::initializeCars(string filename) {
 }
 
 void App::initializeDrivers(string filename) {
+    string uname, upassword, carlicenseplate;
+    int uid;
+    float carmaxcap, moneyearned;
     ifstream fileDrivers(filename);
     int numDrivers;
+    char c;
     fileDrivers >> numDrivers;
     for(int i = 0; i < numDrivers; i++){
-        std::string uname, upassword, carlicenseplate;
-        int uid;
-        float carmaxcap, moneyearned;
-        fileDrivers >> uid >> uname >> upassword >> moneyearned >> carlicenseplate >> carmaxcap;
+        fileDrivers >> c >> uid >> c >> uname >> c >> upassword >> c >> moneyearned >> c >> carlicenseplate >> c >> carmaxcap >> c;
         Car* car = findCar(carlicenseplate);
         if(car == nullptr) {
             addCar(carlicenseplate, carmaxcap);
@@ -145,6 +151,94 @@ void App::initializeUsers(string filename){
     fileUsers.close();
 }
 
+/* ================================================================================================
+ * WRITE TO FILES
+ * ================================================================================================
+ */
+
+void App::saveInfo(){
+    saveHouses("../data/houses.txt");
+    saveTrashContainers("../data/trashContainers.txt");
+    saveGarbageFacilities("../data/garbageFacilitys.txt");
+    saveCars("../data/cars.txt");
+    saveDrivers("../data/drivers.txt");
+    saveUsers("../data/users.txt");
+}
+
+void App::saveHouses(string filename){
+    ofstream fileHouses(filename);
+    fileHouses << houses.size() << "\n";
+    for(House * h : houses){
+        fileHouses << '(' << h->getHouseVertex()->getID() << ',' << h->getAmountOfTrash() << ')' << "\n";
+    }
+    fileHouses.close();
+
+}
+
+void App::saveTrashContainers(string filename){
+    ofstream fileTrashContainers(filename);
+    fileTrashContainers << trashContainers.size() << "\n";
+    for (auto tc : trashContainers){
+        switch (tc.getType()) {
+            case Regular:
+                fileTrashContainers << '(' << tc.getVertex()->getID() << ',' << 'R' << ','<< tc.getMaxCapacity() << ')' << "\n";
+                break;
+
+            case Paper:
+                fileTrashContainers << '(' << tc.getVertex()->getID() << ',' << 'p' << ',' << tc.getMaxCapacity() << ')' << "\n";
+                break;
+            case Plastic:
+                fileTrashContainers << '(' <<  tc.getVertex()->getID() << ','<< 'P' <<',' << tc.getMaxCapacity() << ')' <<  "\n";
+
+                break;
+            case Glass:
+                fileTrashContainers << '(' << tc.getVertex()->getID() << ',' << 'G' << ',' << tc.getMaxCapacity() << ')' << "\n";
+                break;
+        }
+    }
+    fileTrashContainers.close();
+}
+
+void App::saveGarbageFacilities(string filename){
+    ofstream fileGarbageFacilitys(filename);
+    fileGarbageFacilitys << garbageCFs.size() << endl;
+    for(auto gf : garbageCFs){
+        fileGarbageFacilitys << '('  << gf.getVertex()->getID() << ',' << gf.getName() << ')' << endl;
+    }
+    fileGarbageFacilitys.close();
+}
+
+void App::saveCars(string filename){
+    ofstream fileCars(filename);
+    fileCars << cars.size() << endl;
+    for(Car c: cars){
+        fileCars << '(' << c.getMaxCapacity() << ',' << c.getLicensePlate() << ')'<< endl;
+    }
+    fileCars.close();
+}
+
+void App::saveDrivers(string filename){
+    ofstream fileDrivers(filename);
+    fileDrivers << drivers.size() << "\n";
+    for(const auto& d: drivers) {
+        fileDrivers << '('<< d.getUserId() << ',' << d.getName() << ',' << d.getPassword() << ',' << d.getMoneyEarned() << ',' << d.getCar()->getLicensePlate() << ',' << d.getCar()->getMaxCapacity() << ')' << "\n";
+    }
+    fileDrivers.close();
+}
+
+void App::saveUsers(string filename){
+    ofstream fileUsers(filename);
+    fileUsers << drivers.size() << "\n";
+    for(const auto& u: users) {
+        fileUsers << '(' << u.getUserId() << ',' << u.getName() << ',' << u.getPassword() << ',' << u.getHouse()->getHouseID() << ')' << "\n";
+    }
+    fileUsers.close();
+}
+
+/* ================================================================================================
+ * APP FUNCTIONS
+ * ================================================================================================
+ */
 void App::addCar(const string& licensePlate, float maxCarCap) {
     cars.emplace_back(maxCarCap, licensePlate);
 }
@@ -223,78 +317,9 @@ Graph* App::getGraph(){
     return graph;
 }
 
-void App::saveInfo(){
-    saveHouses("../data/houses.txt");
-    saveTrashContainers("../data/trashContainers.txt");
-    saveGarbageFacilities("../data/garbageFacilitys.txt");
-    saveCars("../data/cars.txt");
-    saveDrivers("../data/drivers.txt");
-    saveUsers("../data/users.txt");
-}
-void App::saveHouses(string filename){
-    ofstream fileHouses(filename);
-    fileHouses << houses.size() << "\n";
-    for(auto h : houses){
-        fileHouses << '(' << h->getHouseVertex()->getID() << ',' << h->getAmountOfTrash() << ')' << "\n";
-    }
-    fileHouses.close();
-
-}
-void App::saveTrashContainers(string filename){
-    ofstream fileTrashContainers(filename);
-    fileTrashContainers << trashContainers.size() << "\n";
-    for (auto tc : trashContainers){
-        switch (tc.getType()) {
-            case Regular:
-                fileTrashContainers << '(' << tc.getVertex()->getID() << ',' << 'R' << ','<< tc.getMaxCapacity() << ')' << "\n";
-                break;
-
-            case Paper:
-                fileTrashContainers << '(' << tc.getVertex()->getID() << ',' << 'p' << ',' << tc.getMaxCapacity() << ')' << "\n";
-                break;
-            case Plastic:
-                fileTrashContainers << '(' <<  tc.getVertex()->getID() << ','<< 'P' <<',' << tc.getMaxCapacity() << ')' <<  "\n";
-
-                break;
-            case Glass:
-                fileTrashContainers << '(' << tc.getVertex()->getID() << ',' << 'G' << ',' << tc.getMaxCapacity() << ')' << "\n";
-                break;
-        }
-    }
-    fileTrashContainers.close();
-}
-void App::saveGarbageFacilities(string filename){
-    ofstream fileGarbageFacilitys(filename);
-    fileGarbageFacilitys << garbageCFs.size() << endl;
-    for(auto gf : garbageCFs){
-        fileGarbageFacilitys << '('  << gf.getVertex()->getID() << ',' << gf.getName() << ')' << endl;
-    }
-    fileGarbageFacilitys.close();
-}
-void App::saveCars(string filename){
-    ofstream fileCars(filename);
-    fileCars << cars.size() << endl;
-    for(auto c: cars){
-        fileCars << '(' << c.getMaxCapacity() << ',' << c.getLicensePlate() << ')'<< endl;
-    }
-    fileCars.close();
-}
-void App::saveDrivers(string filename){
-    ofstream fileDrivers(filename);
-    fileDrivers << drivers.size() << "\n";
-    for(const auto& d: drivers) fileDrivers << d;
-    fileDrivers.close();
-}
-void App::saveUsers(string filename){
-    ofstream fileUsers(filename);
-    fileUsers << drivers.size() << "\n";
-    for(const auto& u: users) fileUsers << u;
-    fileUsers.close();
-}
-
 vector<House *> App::getHousesToVisit() {
     vector<House*> housesToVisit;
-    for(auto h:houses){
+    for(House * h:houses){
         if(h->getNeedPickUp())
             housesToVisit.push_back(h);
     }
