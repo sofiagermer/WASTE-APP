@@ -224,8 +224,8 @@ void App::saveTrashContainers(string filename){
 void App::saveGarbageFacilities(string filename){
     ofstream fileGarbageFacilitys(filename);
     fileGarbageFacilitys << garbageCFs.size() << endl;
-    for(auto gf : garbageCFs){
-        fileGarbageFacilitys << '('  << gf->getVertex()->getID() << ',' << gf->getName() << ')' << "\n";
+    for(GarbageCollectionFacility gf : garbageCFs){
+        fileGarbageFacilitys << '('  << gf.getVertex()->getID() << ',' << gf.getName() << ')' << "\n";
     }
     fileGarbageFacilitys.close();
 }
@@ -242,7 +242,7 @@ void App::saveCars(string filename){
 void App::saveDrivers(string filename){
     ofstream fileDrivers(filename);
     fileDrivers << drivers.size() << "\n";
-    for(const auto& d: drivers) {
+    for(Driver d: drivers) {
         fileDrivers << '('<< d.getUserId() << ',' << d.getMoneyEarned() <<',' << d.getCar()->getMaxCapacity() <<',' << d.getName() << ',' << d.getPassword()  << ',' << d.getCar()->getLicensePlate()  << ')' << "\n";
     }
     fileDrivers.close();
