@@ -114,15 +114,18 @@ Driver* MenuDriver::createDriver(App *app) {
 Driver *MenuDriver::loginDriver(App *app) {
     int userid;
     string password;
+    cout<< "===================================="<<endl;
     cout << "UserID: " << endl;
     cin >> userid;
     cout << "Password: " << endl;
     cin >> password;
+    cout<< "===================================="<<endl;
     return app->findDriver(userid, password);
 }
 
 void MenuDriver::getLocation(Driver *driver) {
     double x,y;
+    cout<< "===================================="<<endl;
     cout<<"What is your current location ?"<<endl;
     cout << "Enter x:" << endl;
     cin>>x;
@@ -138,6 +141,7 @@ void MenuDriver::getLocation(Driver *driver) {
     }
     driver->setX(x);
     driver->setY(y);
+    cout<< "===================================="<<endl;
 }
 
 /* ================================================================================================
@@ -146,11 +150,13 @@ void MenuDriver::getLocation(Driver *driver) {
  */
 
 void MenuDriver::driverOptions(Driver *driver) {
+    cout<< "===================================="<<endl;
     cout << "Here's what you can do: " << endl;
     cout << " 1. Get pick up route" << endl;
     cout << " 2. Check amount of money earned" << endl;
     if(driver->getCar() == nullptr) cout << " 1. Input car" << endl;
     cout << " 0. Go back" << endl;
+    cout<< "===================================="<<endl;
 }
 
 void MenuDriver::actionsMenu(Driver *driver, App *app,UI *ui){

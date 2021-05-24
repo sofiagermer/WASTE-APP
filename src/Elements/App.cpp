@@ -125,7 +125,6 @@ void App::initializeDrivers(string filename) {
         size_t pos = bigString.find(',');
         uname = bigString.substr(0,pos);
         bigString.erase(0, pos + 1);
-        cout << "uname: " << uname << endl;
         ////Drivers password
         pos = bigString.find(',');
         upassword = bigString.substr(0,pos);
@@ -154,7 +153,7 @@ void App::initializeUsers(string filename){
     char c;
     for(int i = 0; i < numUsers; i++){
         int userid, houseid;
-        fileUsers >> c >> userid >> c >> bigString >> c;
+        fileUsers >> c >> userid >> c >> houseid >> c >> bigString;
         ////Name
         size_t pos = bigString.find(',');
         username = bigString.substr(0,pos);
@@ -163,9 +162,7 @@ void App::initializeUsers(string filename){
         pos = bigString.find(',');
         userpassword = bigString.substr(0,pos);
         bigString.erase(0, pos + 1);
-        ////HouseID
-        bigString.pop_back();
-        houseid = stoi(bigString);
+
         User u(userid, username, userpassword);
         House* house = findHouse(houseid);
         if(house != nullptr){
@@ -247,16 +244,21 @@ void App::saveDrivers(string filename){
     ofstream fileDrivers(filename);
     fileDrivers << drivers.size() << "\n";
     for(const auto& d: drivers) {
-        fileDrivers << '('<< d.getUserId() <<  d.getMoneyEarned() <<',' << d.getCar()->getMaxCapacity() <<',' << d.getName() << ',' << d.getPassword()  << ',' << d.getCar()->getLicensePlate()  << ')' << "\n";
+        fileDrivers << '('<< d.getUserId() << ',' << d.getMoneyEarned() <<',' << d.getCar()->getMaxCapacity() <<',' << d.getName() << ',' << d.getPassword()  << ',' << d.getCar()->getLicensePlate()  << ')' << "\n";
     }
     fileDrivers.close();
 }
 
 void App::saveUsers(string filename){
     ofstream fileUsers(filename);
-    fileUsers << drivers.size() << "\n";
-    for(const auto& u: users) {
-        fileUsers << '(' << u.getUserId() << ',' << u.getName() << ',' << u.getPassword() << ',' << u.getHouse()->getHouseID() << ')' << "\n";
+    fileUsers << users.size() << "\n";
+    for(User u: users) {
+        if(u.getHouse() == nullptr) {
+            fileUsers << '(' << u.getUserId() << ',' << -1 << ',' << u.getName() << ',' << u.getPassword() << ')' << "\n";
+        }
+        else{
+            fileUsers << '(' << u.getUserId() << ',' << u.getHouse()->getHouseID() << ',' << u.getName() << ',' << u.getPassword() << ')' << "\n";
+        }
     }
     fileUsers.close();
 }
