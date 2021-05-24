@@ -38,6 +38,7 @@ void App::initializeHouses(string filename) {
     char c;
     for(int i=0;i<numberElements;i++){
         fileHouses>>c>>id>>c>>amountTrash>>c>>needPickUp>>c;
+        cout<<id<<endl;
         houses.push_back(new House(graph->findVertex(id),amountTrash,needPickUp));
     }
     fileHouses.close();
