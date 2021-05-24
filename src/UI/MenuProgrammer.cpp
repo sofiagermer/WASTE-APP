@@ -10,19 +10,19 @@
 using namespace std;
 
 void MenuProgrammer::programmerMenu(App *app) {
-    string input;
+    char input;
     cout << "Hello Programmer" << endl;
 
     while (true){
         programmerOptions();
-        getline(cin, input);
+        cin >> input;
 
-        if(input.size() != 1) {
+        if(cin.fail()) {
             cout << INVALIDOPTION << endl;
             continue;
         }
 
-        switch (input[0]) {
+        switch (input) {
             case '1':
                 preprocessingMenu();
                 break;
@@ -42,18 +42,18 @@ void MenuProgrammer::programmerMenu(App *app) {
 }
 
 void MenuProgrammer::preprocessingMenu() {
-    string input;
+    char input;
 
     while (true){
         preprocessingOptions();
-        getline(cin, input);
+        cin >> input;
 
-        if(input.size() != 1) {
+        if(cin.fail()) {
             cout << INVALIDOPTION << endl;
             continue;
         }
 
-        switch (input[0]) {
+        switch (input) {
             case '1':
                 Analysis::preprocessingAnalysisTarjan();
                 break;
@@ -70,18 +70,18 @@ void MenuProgrammer::preprocessingMenu() {
 }
 
 void MenuProgrammer::routingMenu(App *app) {
-    string input;
+    char input;
 
     while (true){
         routingOptions();
-        getline(cin, input);
+        cin >> input;;
 
-        if(input.size() != 1) {
+        if(cin.fail()) {
             cout << INVALIDOPTION << endl;
             continue;
         }
 
-        switch (input[0]) {
+        switch (input) {
             case '1':
                 Analysis::aStarAnalysis(app->getGraph());
                 break;
@@ -101,18 +101,18 @@ void MenuProgrammer::routingMenu(App *app) {
 }
 
 void MenuProgrammer::testMenu(){
-    string input;
+    char input;
 
     while (true){
         testOptions();
-        getline(cin, input);
+        cin >> input;
 
-        if(input.size() != 1) {
+        if(cin.fail()) {
             cout << INVALIDOPTION << endl;
             continue;
         }
 
-        switch (input[0]) {
+        switch (input) {
             case '1':
                 Preprocessing::testTarjan();
                 break;
