@@ -25,7 +25,7 @@ private:
     //KOSARAJU
     static vector<vector<int>> kosaraju(Graph graph);
     static void DFS_Kosaraju(Vertex *src, stack<Vertex*> &L, unordered_set <Vertex *> &S);
-    static void DFS_2(Vertex *src, unordered_set <Vertex *> &S, vector <int> &sc);
+    static void DFS_2(Vertex *src, unordered_set <Vertex *> &S, vector <int> &sc, Graph graph);
     static Graph getTransposedGraph(Graph graph);
     static vector<int> largestSCCKosaraju(Graph graph);
 public:

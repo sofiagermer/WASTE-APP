@@ -23,7 +23,6 @@ vector<vector<int>> Preprocessing::tarjan(Graph graph) {
     for (Vertex * vertex : graph.getVertexSet()) {
         vertex->setIndex(-1);
         vertex->setLow(-1);
-        vertex->removeFromStack();
     }
     vector<vector<int>> scc;
     stack<Vertex*> L;
@@ -42,14 +41,13 @@ void Preprocessing::DFS_Tarjan(Vertex *src, int &index, stack<Vertex *> &L, vect
     src->setLow(index);
     index++;
     L.push(src);
-    src->addToStack();
     //// Consider successors of v
     for (Edge edge : src->getOutgoingEdges()) {
         if (edge.getDest()->getIndex() == -1) {
             //// Successor has not yet been visited; recurse on it
             DFS_Tarjan(edge.getDest(), index, L, scc);
             src->setLow(min(src->getLow(), edge.getDest()->getLow()));
-        } else if (edge.getDest()->getInStack()) {
+        } else if (findStackElement(L, edge.getDest())) {
             //// Successor w is in stack S and hence in the current SCC
             src->setLow( min(src->getLow(), edge.getDest()->getIndex()));
         }
@@ -61,7 +59,6 @@ void Preprocessing::DFS_Tarjan(Vertex *src, int &index, stack<Vertex *> &L, vect
         do {
             v = L.top();
             L.pop();
-            src->removeFromStack();
             sc.push_back(v->getID());
         } while (v != src);
         scc.push_back(sc);
@@ -93,24 +90,35 @@ vector<vector<int>> Preprocessing::kosaraju(Graph graph) {
     vector<vector<int>> SCCs;
     ////STEP 1: Perfome DFS traversal and push nodes to the stack
     for (Vertex * vertex : graph.getVertexSet()) {
-        DFS_Kosaraju(vertex, L, S1);
+        if(S1.find(vertex) == S1.end()) DFS_Kosaraju(vertex, L, S1);
     }
 
     ////STEP 2: Find the transposed graph by reversing the edges
     Graph transposedGraph = getTransposedGraph(graph);
 
+    for(Vertex * vertex : transposedGraph.getVertexSet()){
+        cout << vertex->getID() << endl;
+    }
+    for(Vertex * vertex : transposedGraph.getVertexSet()){
+        for(Edge edge : vertex->getOutgoingEdges()){
+            cout << vertex->getID() << " -> " << edge.getDest()->getID() << endl;
+        }
+    }
     ////STEP 3: Pop nodes one by one from stack
     vector<int> scc;
     while(!L.empty()){
+        for (auto const &i: S2) {
+            cout << i->getID() << " ";
+        }
+        cout << endl;
         Vertex * vertex = L.top();
         L.pop();
         scc.clear();
-        DFS_2(vertex, S2, scc);
+        DFS_2(vertex, S2, scc, transposedGraph);
         if(!scc.empty()) {
             SCCs.push_back(scc);
         }
     }
-    cout << "Number of SCCs: " << SCCs.size() << endl;
     return SCCs;
 }
 
@@ -123,12 +131,12 @@ void Preprocessing::DFS_Kosaraju(Vertex *src, stack<Vertex*> &L, unordered_set <
     L.push(src);
 }
 
-void Preprocessing::DFS_2(Vertex *src, unordered_set <Vertex *> &S, vector <int> &sc) {
-    if (S.find(src) != S.end()) return;
-    S.insert(src);
-    sc.push_back(src->getID());
-    for (Edge e : src->getOutgoingEdges()) {
-        DFS_2(e.getDest(), S, sc);
+void Preprocessing::DFS_2(Vertex *src, unordered_set <Vertex *> &S, vector <int> &scc, Graph transposedGraph) {
+    if (S.find(transposedGraph.findVertex(src->getID())) != S.end()) return; ////is already visited
+    S.insert(transposedGraph.findVertex(src->getID()));
+    scc.push_back(src->getID());
+    for (Edge edge :transposedGraph.findVertex(src->getID())->getOutgoingEdges()) {
+        DFS_2(edge.getDest(), S, scc, transposedGraph);
     }
 }
 
@@ -222,11 +230,12 @@ void Preprocessing::createSCCFile(string fileNodes, string fileEdges,Graph graph
  * ================================================================================================
  */
 void Preprocessing::testTarjan(){
+    //Initializes a full graph
+    Graph graph("../Map/testSCC/testNodes.txt","../Map/testSCC/testEdges.txt");
+
     cout<< "===================================="<<endl;
     cout<< "           TESTING TARJAN           "<<endl;
     cout<< "===================================="<<endl;
-    //Initializes a full graph
-    Graph graph("../Map/testSCC/testNodes.txt","../Map/testSCC/testEdges.txt");
 
     //Runs Tarjan's algorithm
     vector<vector<int>> scc = tarjan(graph);
@@ -242,11 +251,12 @@ void Preprocessing::testTarjan(){
 }
 
 void Preprocessing::testKosaraju(){
+    //Initializes a full graph
+    Graph graph("../Map/testSCC/testNodes.txt","../Map/testSCC/testEdges.txt");
+
     cout<< "===================================="<<endl;
     cout<< "         TESTING KOSARAJU           "<<endl;
     cout<< "===================================="<<endl;
-    //Initializes a full graph
-    Graph graph("../Map/testSCC/testNodes.txt","../Map/testSCC/testEdges.txt");
 
     //Runs Kosaraju's algorithm
     vector<vector<int>> scc = kosaraju(graph);
