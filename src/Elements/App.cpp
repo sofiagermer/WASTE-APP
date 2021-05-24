@@ -29,7 +29,7 @@ void App::initializeHouses(string filename) {
     fileHouses>>numberElements;
     int id;
     float amountTrash;
-    bool needPickUp;
+    int needPickUp;
     char c;
     for(int i=0;i<numberElements;i++){
         fileHouses>>c>>id>>c>>amountTrash>>c>>needPickUp>>c;
@@ -285,10 +285,11 @@ void App::saveUsers(string filename){
 }
 
 vector<House *> App::getHousesToVisit() {
-    vector<House*> houses;
+    vector<House*> housesToVisit;
     for(auto h:houses){
-        if(h->getNeedPickUp())  houses.push_back(h);
+        if(h.getNeedPickUp())
+            housesToVisit.push_back(&h);
     }
-    return houses;
+    return housesToVisit;
 }
 

@@ -371,7 +371,15 @@ void Menu::driverMenu() {
                 break;
             case '2': {
                 vector<House *> housesToVisit = app.getHousesToVisit();
+                cout<<"aqui"<<endl<<flush;
+
+                cout<<housesToVisit.size()<<endl;
                 queue<Vertex *> route = Routing::nearestNeighbour(app.getGraph(), driver, housesToVisit);
+                cout<<"aqui"<<endl<<flush;
+                while(!route.empty()){
+                    cout<<route.front()->getX()<<" : "<<route.front()->getY()<<endl;
+                    route.pop();
+                }
                 break;
             }
             case '3':
