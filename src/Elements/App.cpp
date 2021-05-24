@@ -158,6 +158,7 @@ void App::initializeUsers(string filename){
         bigString.erase(0, pos + 1);
         ////Password
         pos = bigString.find(',');
+        bigString.pop_back();
         userpassword = bigString.substr(0,pos);
         bigString.erase(0, pos + 1);
 
@@ -362,12 +363,11 @@ void App::setAdress(User* user){
             v = graph->findVertex(x,y);
             if(v == nullptr) cout << "Sorry that localization doesn't exist in our data base" << endl;
         }
-        house = findHouse(v->getID());
-        if(house != nullptr) {
-            cout << "Your house is set to this coordinates: " << endl;
-            cout << "X : " << house->getHouseVertex()->getX() << endl;
-            cout << "Y : " << house->getHouseVertex()->getY() << endl;
-        }
+
+        house = new House(v);
+        cout << "Your house is set to this coordinates: " << endl;
+        cout << "X : " << house->getHouseVertex()->getX() << endl;
+        cout << "Y : " << house->getHouseVertex()->getY() << endl;
     }
     houses.push_back(house);
     user->setHouse(house);

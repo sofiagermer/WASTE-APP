@@ -13,6 +13,13 @@ House::House(Vertex *vertexPt, float amoutTrash, bool needPickUp) {
 House::House(Vertex *vertexPt, float amoutTrash) {
     this->vertexPt = vertexPt;
     this->amountTrash = amoutTrash;
+    this->needPickUp = false;
+}
+
+House::House(Vertex *vertexPt) {
+    this->vertexPt = vertexPt;
+    this->amountTrash = 0;
+    this->needPickUp = false;
 }
 
 float House::getAmountOfTrash() {
