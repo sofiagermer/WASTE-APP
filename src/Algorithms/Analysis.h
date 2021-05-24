@@ -15,9 +15,9 @@ private:
 public:
     static void preprocessingAnalysisTarjan();
     static void preprocessingAnalysisKosaraju();
-    static void aStarAnalysis(Graph graph);
-    static void aStarVsDijkstra(Graph graph);
-    static void dijkstraAnalysis(Graph graph);
+    static void aStarAnalysis(Graph *graph);
+    static void aStarVsDijkstra(Graph *graph);
+    static void dijkstraAnalysis(Graph *graph);
 
 };
 

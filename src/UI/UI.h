@@ -21,7 +21,7 @@ public:
 
     void showGraph();
 
-    void showTrashContainer(double userX,double userY, TrashContainer *trashContainer);
+    void showTrashContainer(double userX,double userY, Vertex *trashContainer, TrashType type);
 };
 
 

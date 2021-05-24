@@ -4,9 +4,9 @@
 
 #include "Routing.h"
 
-queue<Vertex *> Routing::nearestNeighbour(Graph graph,double x, double y, vector<Vertex *> pointsTravel) {
+queue<Vertex *> Routing::nearestNeighbour(Graph *graph,Driver *driver, vector<Vertex *> pointsTravel) {
     queue<Vertex*> orderedCompletePath;
-    Vertex *initialVertex = graph.findClosestVertex(x,y);
+    Vertex *initialVertex = graph->findClosestVertex(driver->getX(),driver->getY());
     orderedCompletePath.push(initialVertex);
     double minDistance;
     stack<Vertex*> next;
@@ -35,12 +35,10 @@ queue<Vertex *> Routing::nearestNeighbour(Graph graph,double x, double y, vector
 stack<Vertex *> Routing::reconstructPath(map<Vertex *, Vertex *> cameFrom, Vertex *current, Vertex *start) {
     stack<Vertex*> path;
     path.push(current);
-    cout << "inicio" << endl;
     while(current!=start){
         current=cameFrom[current];
         path.push(current);
     }
-    cout << "fim do reconstruct path " << endl;
     return path;
 }
 
@@ -48,9 +46,9 @@ double Routing::heuristic(Vertex *start, Vertex *end) {
     return distanceBetweenCoords(start->getX(), end->getX(), start->getY(), end->getY());
 }
 
-stack<Vertex *> Routing::aStar(Graph graph,Vertex *start, Vertex *end) {
+stack<Vertex *> Routing::aStar(Graph *graph,Vertex *start, Vertex *end) {
     map <Vertex*,Vertex*> cameFrom;
-    for(auto v:graph.getVertexSet()){
+    for(auto v:graph->getVertexSet()){
         v->setDistance(INF);
         v->setQueueIndex(0);
     }
@@ -73,9 +71,9 @@ stack<Vertex *> Routing::aStar(Graph graph,Vertex *start, Vertex *end) {
     return reconstructPath(cameFrom,end,start);
 }
 
-stack<Vertex *> Routing::dijkstra(Graph graph,Vertex *start, Vertex *end) {
+stack<Vertex *> Routing::dijkstra(Graph *graph,Vertex *start, Vertex *end) {
     map <Vertex*,Vertex*> cameFrom;
-    for(auto v:graph.getVertexSet()){
+    for(auto v:graph->getVertexSet()){
         v->setDistance(INF);
         v->setQueueIndex(0);
     }

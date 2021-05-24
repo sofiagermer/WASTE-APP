@@ -58,13 +58,13 @@ void Analysis::preprocessingAnalysisKosaraju() {
     if(result1!=0 || result2!=0) cout <<"Error deleting temporary files"<<endl;
 }
 
-void Analysis::aStarVsDijkstra(Graph graph) {
+void Analysis::aStarVsDijkstra(Graph *graph) {
     srand (time(NULL));
-    int index1=rand()%graph.getNumVertex();
-    int index2=rand()%graph.getNumVertex();
-    while(index1==index2) index2=rand()%graph.getNumVertex();
-    auto v1 = graph.getVertexSet()[index1];
-    auto v2 = graph.getVertexSet()[index2];
+    int index1=rand()%graph->getNumVertex();
+    int index2=rand()%graph->getNumVertex();
+    while(index1==index2) index2=rand()%graph->getNumVertex();
+    auto v1 = graph->getVertexSet()[index1];
+    auto v2 = graph->getVertexSet()[index2];
     auto start = std::chrono::high_resolution_clock::now();
     auto pathDijkstra=Routing::dijkstra(graph,v1,v2);
     auto end = std::chrono::high_resolution_clock::now();
@@ -79,13 +79,13 @@ void Analysis::aStarVsDijkstra(Graph graph) {
     sleep(2);
 }
 
-void Analysis::dijkstraAnalysis(Graph graph) {
+void Analysis::dijkstraAnalysis(Graph *graph) {
     srand (time(NULL));
-    int index1=rand()%graph.getNumVertex();
-    int index2=rand()%graph.getNumVertex();
-    while(index1==index2) index2=rand()%graph.getNumVertex();
-    auto v1 = graph.getVertexSet()[index1];
-    auto v2 = graph.getVertexSet()[index2];
+    int index1=rand()%graph->getNumVertex();
+    int index2=rand()%graph->getNumVertex();
+    while(index1==index2) index2=rand()%graph->getNumVertex();
+    auto v1 = graph->getVertexSet()[index1];
+    auto v2 = graph->getVertexSet()[index2];
     auto start = std::chrono::high_resolution_clock::now();
     auto pathDijkstra=Routing::dijkstra(graph,v1,v2);
     auto end = std::chrono::high_resolution_clock::now();
@@ -95,13 +95,13 @@ void Analysis::dijkstraAnalysis(Graph graph) {
 }
 
 
-void Analysis::aStarAnalysis(Graph graph) {
+void Analysis::aStarAnalysis(Graph *graph) {
     srand (time(NULL));
-    int index1=rand()%graph.getNumVertex();
-    int index2=rand()%graph.getNumVertex();
-    while(index1==index2) index2=rand()%graph.getNumVertex();
-    auto v1 = graph.getVertexSet()[index1];
-    auto v2 = graph.getVertexSet()[index2];
+    int index1=rand()%graph->getNumVertex();
+    int index2=rand()%graph->getNumVertex();
+    while(index1==index2) index2=rand()%graph->getNumVertex();
+    auto v1 = graph->getVertexSet()[index1];
+    auto v2 = graph->getVertexSet()[index2];
     auto start = std::chrono::high_resolution_clock::now();
     auto pathAStar=Routing::aStar(graph,v1,v2);
     auto end = std::chrono::high_resolution_clock::now();
