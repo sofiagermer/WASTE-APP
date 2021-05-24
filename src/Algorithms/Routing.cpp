@@ -6,32 +6,42 @@
 
 queue<Vertex *> Routing::nearestNeighbour(Graph *graph,Driver *driver, vector<House *> housesToVisit) {
     queue<Vertex*> orderedCompletePath;
-    //Vertex *initialVertex = graph->findClosestVertex(driver->getX(),driver->getY());
-    Vertex *initialVertex = graph->findClosestVertex(200,300);
+    Vertex *initialVertex = graph->findClosestVertex(driver->getX(),driver->getY());
+    //Vertex *initialVertex = graph->findClosestVertex(200,300);
     orderedCompletePath.push(initialVertex);
-    cout<<orderedCompletePath.back()->getX();
     double minDistance;
+    int initial=housesToVisit.size();
     stack<Vertex*> next;
     vector<House*>::iterator copy;
-    while(!housesToVisit.empty()&&driver->getCar()->getCurrentCapacity()>0) {
+    int i=housesToVisit.size();
+    bool flag=false;
+    while(i!=0&&driver->getCar()->getCurrentCapacity()>0) {
         minDistance=INF;
+        flag=true;
         for (auto it = housesToVisit.begin(); it != housesToVisit.end(); it++) {
-            cout<<orderedCompletePath.back()->getX()<<endl;
-            cout<< (*it)->getHouseVertex()->getX()<<endl;
             auto path = aStar(graph,orderedCompletePath.back(), (*it)->getHouseVertex());
-            cout<<"passei"<<endl;
             double aux = pathCost(path);
+            if(aux<0){
+                cout<<"caminho curto"<<endl;
+                continue;
+            }
             if (aux < minDistance && driver->getCar()->wouldFit((*it)->getAmountOfTrash()) ) {
                 minDistance = aux;
                 next = path;
                 copy=it;
+                flag=false;
             }
         }
+        if(flag) break;
+        cout<<"lixo em casa: "<<(*copy)->getAmountOfTrash()<<endl;
+        cout<<"espaço livre: "<<driver->getCar()->getCurrentCapacity()<<endl;
+        driver->getCar()->addTrash((*copy)->getAmountOfTrash());
         while(!next.empty()){
             orderedCompletePath.push(next.top());
             next.pop();
         }
         housesToVisit.erase(copy);
+        i--;
     }
     return orderedCompletePath;
 }
@@ -105,7 +115,7 @@ stack<Vertex *> Routing::dijkstra(Graph *graph,Vertex *start, Vertex *end) {
 }
 
 double Routing::pathCost(stack<Vertex *> path) {
-    if(path.size()<2) return 0;
+    if(path.size()<2) return -1;
     double cost=0;
     auto v=path.top();
     path.pop();

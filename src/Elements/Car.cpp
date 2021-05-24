@@ -44,13 +44,8 @@ void Car::setCurrentCapacity(float currentcap) {
 }
 
 bool Car::addTrash(float amount) {
-    if(CurrentCapacity - amount < 0){
-        return false;
-    }
-    else {
-        CurrentCapacity -= amount;
-        return true;
-    }
+    CurrentCapacity -= amount;
+    return true;
 }
 
 const string &Car::getLicensePlate() const {
