@@ -85,21 +85,21 @@ void UI::displayRoute(vector<House *> houses, queue<Vertex *> route) {
     while(!route.empty()){
         GraphViewer::Node n = graphViewer->getNode(route.front()->getID());
         n.setColor(GraphViewer::YELLOW);
-        n.setLabel("HOUSE");
-        for(auto h:houses){
+        /*for(auto h:houses){
             if(h->getHouseVertex()->getID()==route.front()->getID()){
                 n = graphViewer->getNode(route.front()->getID());
-                n.setColor(GraphViewer::RED);
+                n.setSize(20);
                 n.setLabel("HOUSE");
                 break;
             }
-        }
+        }*/
+        cout<<route.front()->getX()<<endl;
         route.pop();
     }
     int id = 0;
     for (Vertex* vertex : graph->getVertexSet()) {
         for (Edge edge : vertex->getOutgoingEdges()) {
-            if(graphViewer->getNode(vertex->getID()).getColor()==GraphViewer::BLUE && graphViewer->getNode(edge.getDest()->getID()).getColor()==GraphViewer::BLUE){
+            if(graphViewer->getNode(vertex->getID()).getColor()==GraphViewer::YELLOW && graphViewer->getNode(edge.getDest()->getID()).getColor()==GraphViewer::YELLOW){
                 graphViewer->addEdge(id, graphViewer->getNode(vertex->getID()), graphViewer->getNode(edge.getDest()->getID()), GraphViewer::Edge::EdgeType::DIRECTED).setColor(GraphViewer::BLUE);
                 id++;
                 continue;
