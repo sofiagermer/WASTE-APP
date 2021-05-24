@@ -52,7 +52,7 @@ public:
     void saveDrivers(string filename);
     void saveUsers(string filename);
 
-    House* findHouse(Vertex* housevertex);
+    House* findHouse(int houseid);
     void addCar(const string& licensePlate, float maxCarCap);
     Car* findCar(const string& licensePlate);
     int addUser(const string& name, const string& password);

@@ -133,15 +133,11 @@ void App::initializeUsers(string filename){
         int userid, houseid;
         fileUsers >> c >> userid >> c >>username >> c >> userpassword >> c >> houseid >> c;
         User u(userid, username, userpassword);
-        House* house = findHouse(graph->findVertex(houseid));
-        /*if(house == nullptr) {
-            House =
-            houses.emplace_back(graph->findVertex(houseid), 0);
-        if(house == nullptr) {
-            houses.push_back(new House(graph->findVertex(houseid), 0));
-            house = findHouse(graph->findVertex(houseid));
-        }*/
-        u.setHouse(house);
+        House* house = findHouse(houseid);
+        if(house != nullptr){
+            houses.push_back(house);
+            u.setHouse(house);
+        }
         users.push_back(u);
     }
     fileUsers.close();
@@ -158,9 +154,9 @@ Car *App::findCar(const string& licensePlate) {
     return nullptr;
 }
 
-House *App::findHouse(Vertex* housevertex) {
-    for(auto h:houses){
-        if(h->getHouseVertex()->getID() == housevertex->getID()) return h;
+House *App::findHouse(int houseid) {
+    for(House *house :houses){
+        if(house->getHouseVertex()->getID() == houseid) return house;
     }
     return nullptr;
 }
