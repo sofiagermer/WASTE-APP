@@ -184,10 +184,6 @@ void MenuDriver::actionsMenu(Driver *driver, App *app,UI *ui){
             case '2':{
                 queue<Vertex *> route = Routing::closestFacility(app->getGraph(),driver,app->getGarbageCFs());
                 ui->displayTwoPointRoute(route);
-                while(!route.empty()){
-                    cout << route.front()->getX()<<endl;
-                    route.pop();
-                }
                 break;
             }
             case '0': {
