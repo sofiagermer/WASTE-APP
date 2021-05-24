@@ -37,7 +37,7 @@ vector<vector<int>> Preprocessing::tarjan(Graph graph) {
 }
 
 void Preprocessing::DFS_Tarjan(Vertex *src, int &index, stack<Vertex *> &L, vector<vector<int>> &scc) {
-    // Set the depth index for v to the smallest unused index
+    //// Set the depth index for v to the smallest unused index
     src->setIndex(index);
     src->setLow(index);
     index++;
@@ -91,24 +91,22 @@ vector<vector<int>> Preprocessing::kosaraju(Graph graph) {
     unordered_set<Vertex*> S2;
 
     vector<vector<int>> SCCs;
-    //STEP 1: Perfome DFS traversal and push nodes to the stack
+    ////STEP 1: Perfome DFS traversal and push nodes to the stack
     for (Vertex * vertex : graph.getVertexSet()) {
         DFS_Kosaraju(vertex, L, S1);
     }
 
-    //STEP 2: Find the transposed graph by reversing the edges
+    ////STEP 2: Find the transposed graph by reversing the edges
     Graph transposedGraph = getTransposedGraph(graph);
-    cout << "fim de transposed graph " << endl;
-    //STEP 3: Pop nodes one by one from stack
+
+    ////STEP 3: Pop nodes one by one from stack
     vector<int> scc;
     while(!L.empty()){
         Vertex * vertex = L.top();
         L.pop();
-        //cout << "Tamanho L: " << L.size() << endl;
         scc.clear();
         DFS_2(vertex, S2, scc);
         if(!scc.empty()) {
-            //cout << "TEMOS UM SCC " << endl;
             SCCs.push_back(scc);
         }
     }
@@ -219,3 +217,47 @@ void Preprocessing::createSCCFile(string fileNodes, string fileEdges,Graph graph
     }
 }
 
+/* ================================================================================================
+ * Test Preprocessing Algorithms
+ * ================================================================================================
+ */
+void Preprocessing::testTarjan(){
+    cout<< "===================================="<<endl;
+    cout<< "           TESTING TARJAN           "<<endl;
+    cout<< "===================================="<<endl;
+    //Initializes a full graph
+    Graph graph("../Map/testSCC/testNodes.txt","../Map/testSCC/testEdges.txt");
+
+    //Runs Tarjan's algorithm
+    vector<vector<int>> scc = tarjan(graph);
+
+    for(int i = 0; i < scc.size(); i++){
+        for(int j = 0; j < scc.at(i).size(); j++){
+            cout << scc.at(i).at(j) << " ";
+        }
+        cout << endl;
+    }
+    cout << "You should have " << 4 << " strong connected components" << endl;
+    cout << "You have : " << scc.size() <<  " strong connected components" << endl;
+}
+
+void Preprocessing::testKosaraju(){
+    cout<< "===================================="<<endl;
+    cout<< "         TESTING KOSARAJU           "<<endl;
+    cout<< "===================================="<<endl;
+    //Initializes a full graph
+    Graph graph("../Map/testSCC/testNodes.txt","../Map/testSCC/testEdges.txt");
+
+    //Runs Kosaraju's algorithm
+    vector<vector<int>> scc = kosaraju(graph);
+
+    for(int i = 0; i < scc.size(); i++){
+        for(int j = 0; j < scc.at(i).size(); j++){
+            cout << scc.at(i).at(j) << " ";
+        }
+        cout << endl;
+    }
+
+    cout << "You should have " << 4 << " strong connected components" << endl;
+    cout << "You have : " << scc.size() <<  " strong connected components" << endl;
+}

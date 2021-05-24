@@ -41,6 +41,8 @@ class Vertex{
     // required by MutablePriorityQueue
     double distance;
 public:
+    Vertex(int ID, double x, double y);
+    Vertex(int ID);
     int getQueueIndex() const;
 
     void setQueueIndex(int queueIndex);
@@ -55,7 +57,6 @@ public:
     int getLow() const;
 
     void setLow(int low);
-    Vertex(int ID, double x, double y);
     double getX();
     double getY();
     bool operator<(Vertex* v);;
