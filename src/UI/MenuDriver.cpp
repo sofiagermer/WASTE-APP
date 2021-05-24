@@ -5,29 +5,45 @@
 #include "MenuDriver.h"
 #include <iostream>
 #include <string>
-#include "MenuDriver.h"
-#include "../Elements/Driver.h"
 
 #define INVALIDOPTION "That's not a valid option! Try again please:"
 
 using namespace std;
-void MenuDriver::driverMenu(App *app) {
-    string input;
-    bool endWhile = false;
-    Driver* driver;
 
+void MenuDriver::driverMenu(App *app) {
+    Driver *driver = loginMenu(app);
+    cout << "Hello there " << driver->getName() << endl;
+    actionsMenu(driver, app);
+}
+/* ================================================================================================
+ * Drivers Login Menu
+ * ================================================================================================
+ */
+void MenuDriver::loginOptions() {
+    cout<< "===================================="<<endl;
+    cout << "Tell us what you want to do:" << endl;
+    cout << " 1. Log in" << endl;
+    cout << " 2. Create an account" << endl;
+    cout << " 0. Go back" << endl;
+    cout<< "===================================="<<endl;
+}
+
+Driver* MenuDriver::loginMenu(App *app){
+    char input;
+    bool endWhile = false;
+    Driver *driver;
     //ask for credentials
     do {
         cout << "Now we need to know who you are." << endl;
         loginOptions();
-        getline(cin, input);
+        cin >> input;
 
-        if(input.size() != 1) {
+        if(cin.fail()) {
             cout << INVALIDOPTION << endl;
             continue;
         }
 
-        switch (input[0]) {
+        switch (input) {
             case '1':
                 //Log in
                 cout << "Logging in to an account..." << endl;
@@ -48,67 +64,14 @@ void MenuDriver::driverMenu(App *app) {
                 break;
 
             case '0':
-                return;
+                return nullptr;
 
             default:
                 cout << INVALIDOPTION << endl;
                 break;
         }
     } while (!endWhile);
-
-    //show options
-    cout << "Hello there " << driver->getName() << endl;
-    while (true){
-        driverOptions(*driver);
-        getline(cin, input);
-
-        if(input.size() != 1) {
-            cout << INVALIDOPTION << endl;
-            continue;
-        }
-
-        switch (input[0]) {
-            case '1':
-                //Set/change car
-                cout << "Set/change car" << endl;
-                break;
-            case '2': {
-                vector<House *> housesToVisit = app->getHousesToVisit();
-                queue<Vertex *> route = Routing::nearestNeighbour(app->getGraph(), driver, housesToVisit);
-                break;
-            }
-            case '3':
-                //Check money
-                cout << "You have made " << driver->getMoneyEarned() << "€ with our app!" << endl;
-                break;
-            case '0': {
-                cout << "We hope to you see again " << driver->getName() << endl;
-                delete driver;
-                return;
-            }
-            default:
-                cout << INVALIDOPTION << endl;
-        }
-    }
-}
-
-
-void MenuDriver::driverOptions(Driver &driver) {
-
-    //need to change this!
-    bool hasPickupRoute = false;
-
-    cout << "Here's what you can do: " << endl;
-
-    if(driver.getCar() != nullptr) cout << " 1. Change car" << endl;
-    else cout << " 1. Input car" << endl;
-
-    cout << " 2. Get pick up route" << endl;
-
-    cout << " 3. Check amount of money earned" << endl;
-
-    cout << " 0. Go back" << endl;
-
+    return driver;
 }
 
 Driver* MenuDriver::createDriver(App *app) {
@@ -161,11 +124,53 @@ Driver *MenuDriver::loginDriver(App *app) {
     return app->findDriver(userid, password);
 }
 
-void MenuDriver::loginOptions() {
-    cout<< "===================================="<<endl;
-    cout << "Tell us what you want to do:" << endl;
-    cout << " 1. Log in" << endl;
-    cout << " 2. Create an account" << endl;
+
+/* ================================================================================================
+ * Drivers Actions Menu
+ * ================================================================================================
+ */
+
+void MenuDriver::driverOptions(Driver *driver) {
+    cout << "Here's what you can do: " << endl;
+    cout << " 1. Get pick up route" << endl;
+    cout << " 2. Check amount of money earned" << endl;
+    if(driver->getCar() == nullptr) cout << " 1. Input car" << endl;
     cout << " 0. Go back" << endl;
-    cout<< "===================================="<<endl;
+}
+
+void MenuDriver::actionsMenu(Driver *driver, App *app){
+    char input;
+    while (true){
+        driverOptions(driver);
+        cin >> input;
+
+        if(cin.fail()) {
+            cout << INVALIDOPTION << endl;
+            continue;
+        }
+
+        switch (input) {
+            case '1': {
+                vector<House *> housesToVisit = app->getHousesToVisit();
+                queue<Vertex *> route = Routing::nearestNeighbour(app->getGraph(), driver, housesToVisit);
+                break;
+            }
+            case '2':
+                //Check money
+                cout << "You have made " << driver->getMoneyEarned() << "€ with our app!" << endl;
+                break;
+            case '3':
+                //Check money
+                if(driver->getCar() == nullptr); //ADICIONAR CARRO;
+                else cout << INVALIDOPTION << endl; ////Driver already has a car
+                break;
+            case '0': {
+                cout << "We hope to you see again " << driver->getName() << endl;
+                delete driver;
+                return;
+            }
+            default:
+                cout << INVALIDOPTION << endl;
+        }
+    }
 }
