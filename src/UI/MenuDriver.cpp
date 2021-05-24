@@ -51,6 +51,7 @@ Driver* MenuDriver::loginMenu(App *app){
                     cout << "We don't have a driver with that combination!" << endl;
                     break;
                 }
+                getLocation(driver);
                 endWhile = true;
                 break;
 
@@ -58,6 +59,7 @@ Driver* MenuDriver::loginMenu(App *app){
                 cout << "Creating account..." << endl;
                 driver = createDriver(app);
                 if(driver == nullptr) break;
+                getLocation(driver);
                 endWhile = true;
                 break;
 
@@ -119,6 +121,24 @@ Driver *MenuDriver::loginDriver(App *app) {
     return app->findDriver(userid, password);
 }
 
+void MenuDriver::getLocation(Driver *driver) {
+    double x,y;
+    cout<<"What is your current location ?"<<endl;
+    cout << "Enter x:" << endl;
+    cin>>x;
+    while(cin.fail()){
+        cout<<"Invalid input, please select a number: " << endl;
+        cin >>x;
+    }
+    cout << "Enter y:" << endl;
+    cin >> y;
+    while(cin.fail()){
+        cout<<"Invalid input, please select a number: " << endl;
+        cin >>y;
+    }
+    driver->setX(x);
+    driver->setY(y);
+}
 
 /* ================================================================================================
  * Drivers Actions Menu

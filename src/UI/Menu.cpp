@@ -65,6 +65,7 @@ void Menu::mainMenu() {
                 MenuProgrammer::programmerMenu(&app);
                 break;
             case '0':
+                app.saveInfo();
                 cout << "Thank you for using WASTE-App, we hope to you see again soon!" << endl;
                 return;
             default:

@@ -35,3 +35,7 @@ bool House::getNeedPickUp() {
     return needPickUp;
 }
 
+int House::getHouseID() {
+    return this->vertexPt->getID();
+}
+
