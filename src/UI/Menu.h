@@ -64,13 +64,6 @@ public:
     void programmerOptions();
 
     static void getLocation(User *user);
-
-    void preprocessingOptions();
-    void routingOptions();
-    void testOptions();
-    void preprocessingMenu();
-    void routingMenu();
-    void testMenu();
 };
 
 
