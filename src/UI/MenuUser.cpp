@@ -9,12 +9,22 @@
 
 #define INVALIDOPTION "That's not a valid option! Try again please:"
 using namespace std;
+
 void MenuUser::userMenu(App *app, UI *ui) {
+    User *user = loginMenu(app);
+    cout << "Hello there " << user->getName() << endl;
+    getLocation(user);
+    if(user->getHouse() == nullptr) actionMenu(user,app,ui);
+    else actionMenuWH(user, app, ui);
+
+}
+
+User* MenuUser::loginMenu(App *app){
     char input;
     bool endWhile = false;
     User* user;
 
-    //ask for credentials
+    ////Ask for credentials
     do {
         cout << "Now we need to know who you are." << endl;
         loginOptions();
@@ -46,64 +56,15 @@ void MenuUser::userMenu(App *app, UI *ui) {
                 break;
 
             case '0':
-                return;
+                return nullptr;
 
             default:
                 cout << INVALIDOPTION << endl;
                 break;
         }
     } while (!endWhile);
-
-    cout << "Hello there " << user->getName() << endl;
-    getLocation(user);
-    while (true){
-        userOptions(*user);
-        cin >> input;
-
-        if(cin.fail()) {
-            cout << INVALIDOPTION << endl;
-            continue;
-        }
-
-        switch (input) {
-            case '1':
-                cout << "Set/change address" << endl;
-                break;
-            case '2': {
-                //Set/cancel pickup
-                //cout << "Set/cancel pickup" << endl;
-                if(user->getHouse() == nullptr){
-                    cout << INVALIDOPTION << endl;
-                    break;
-                }
-                if(user->getHouse()->getNeedPickUp()){
-                    user->getHouse()->setNeedPickUp(false);
-                    cout << "Pick up cancelled" << endl;
-                }
-                else{
-                    double inputAmountoftrash;
-                    cout << "Ammout of trash: ";
-                    cin >> inputAmountoftrash;
-                    user->getHouse()->setNeedPickUp(true);
-                    user->getHouse()->setAmountOfTrash(inputAmountoftrash);
-                    cout << "Pick up set for " << inputAmountoftrash << "L of trash." << endl;
-                }
-                break;
-            }
-            case '3':
-                //Search for a specific trash container
-                trashMenu(user, app, ui);
-                break;
-            case '0': {
-                cout << "We hope to you see again " << user->getName() << endl;
-                return;
-            }
-            default:
-                cout << INVALIDOPTION << endl;
-        }
-    }
+    return user;
 }
-
 void MenuUser::loginOptions() {
     cout<< "===================================="<<endl;
     cout << "Tell us what you want to do:" << endl;
@@ -113,24 +74,6 @@ void MenuUser::loginOptions() {
     cout<< "===================================="<<endl;
 }
 
-
-void MenuUser::userOptions(User &user) {
-    cout<< "===================================="<<endl;
-    cout << "Here's what you can do: " << endl;
-
-    if(user.getHouse() != nullptr) {
-        cout << " 1. Change address" << endl;
-        if(user.getHouse()->getNeedPickUp()) cout << " 2. Cancel pick up" << endl;
-        else cout << " 2. Set pick up" << endl;
-        cout << " 3. Search for closest trash container " << endl;
-    }
-    else{
-        cout << " 1. Add house address" << endl;
-        cout << " 3. Search for closest trash container " << endl;
-    }
-    cout << " 0. Go back" << endl;
-    cout<< "===================================="<<endl;
-}
 
 User* MenuUser::createUser(App *app) {
     string username, userpassowrd;
@@ -161,7 +104,7 @@ User * MenuUser::loginUser(App *app) {
     cout << "UserID: " << endl;
     cin >> userid;
     cout << "Password: " << endl;
-    getline(cin, password);
+    cin >> password;
     return app->findUser(userid, password);
 }
 
@@ -184,20 +127,122 @@ void MenuUser::getLocation(User *user) {
     user->setY(y);
 }
 
-void MenuUser::trashMenu(User *user, App *app, UI *ui) {
-    string input;
-
+/* ================================================================================================
+ * User's Without House Actions Menu
+ * ================================================================================================
+ */
+void MenuUser::actionMenu(User *user, App* app, UI *ui){
+    char input;
     while (true){
-        cout << "What type of trash container do you wish to look for? " << endl;
-        trashOptions();
-        getline(cin, input);
+        userOptions();
+        cin >> input;
 
-        if(input.size() != 1) {
+        if(cin.fail()) {
             cout << INVALIDOPTION << endl;
             continue;
         }
 
-        switch (input[0]) {
+        switch (input) {
+            case '1':
+                cout << "NÃO ESTÁ FEITO" << endl;
+                cout << "Set/change address" << endl;
+                break;
+            case '2': {
+                //Search for a specific trash container
+                trashMenu(user, app, ui);
+                break;
+            }
+            case '0': {
+                cout << "We hope to you see again " << user->getName() << endl;
+                return;
+            }
+            default:
+                cout << INVALIDOPTION << endl;
+        }
+    }
+}
+
+void MenuUser::userOptions() {
+    cout<< "===================================="<<endl;
+    cout << "Here's what you can do: " << endl;
+    cout << " 1. Add house address" << endl;
+    cout << " 2. Search for closest trash container " << endl;
+    cout << " 0. Go back" << endl;
+    cout<< "===================================="<<endl;
+}
+
+
+/* ================================================================================================
+ * User's With House Actions Menu
+ * ================================================================================================
+ */
+
+void MenuUser::actionMenuWH(User *user, App* app, UI *ui){
+    char input;
+    while (true){
+        userOptions();
+        cin >> input;
+
+        if(cin.fail()) {
+            cout << INVALIDOPTION << endl;
+            continue;
+        }
+
+        switch (input) {
+            case '1':
+                cout << "Set/change address" << endl;
+                break;
+            case '2': {
+                double inputAmountoftrash;
+                cout << "Ammout of trash: ";
+                cin >> inputAmountoftrash;
+                user->getHouse()->setNeedPickUp(true);
+                user->getHouse()->setAmountOfTrash(inputAmountoftrash);
+                cout << "Pick up set for " << inputAmountoftrash << "L of trash." << endl;
+                break;
+            }
+            case '3':
+                //Search for a specific trash container
+                trashMenu(user, app, ui);
+                break;
+            case '0': {
+                cout << "We hope to you see again " << user->getName() << endl;
+                return;
+            }
+            default:
+                cout << INVALIDOPTION << endl;
+        }
+    }
+}
+
+void MenuUser::userOptionsWH() {
+    cout<< "===================================="<<endl;
+    cout << "Here's what you can do: " << endl;
+    cout << " 1. Change address" << endl;
+    cout << " 2. Set pick up" << endl;
+    cout << " 3. Search for closest trash container " << endl;
+    cout << " 0. Go back" << endl;
+    cout<< "===================================="<<endl;
+}
+
+/* ================================================================================================
+ * Nearest Trash Menu
+ * ================================================================================================
+ */
+void MenuUser::trashMenu(User *user, App *app, UI *ui) {
+    char input;
+
+    while (true){
+        cout << "What type of trash container do you wish to look for? " << endl;
+        trashOptions();
+        cin >> input;
+
+        if(cin.fail()) {
+            cout << INVALIDOPTION << endl;
+            continue;
+        }
+
+        switch (input) {
             case '1':
                 cout << "Searching for the closest Paper container..." << endl;
                 ui->showTrashContainer(user->getX(),user->getY(),app->findClosestTrashContainer(*user,Paper),Paper) ;

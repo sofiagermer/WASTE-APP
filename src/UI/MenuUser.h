@@ -12,8 +12,12 @@
 
 class MenuUser {
 private:
+    static User* loginMenu(App *app);
+    static void actionMenu(User *user, App* app, UI *ui);
+    static void userOptions();
+    static void actionMenuWH(User *user, App* app, UI *ui);
+    static void userOptionsWH();
     static void loginOptions();
-    static void userOptions(User &user);
     static User* createUser(App *app);
     static User* loginUser(App *app);
     static void getLocation(User *user);
