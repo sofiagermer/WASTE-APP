@@ -12,7 +12,7 @@
 class Routing {
     static double heuristic(Vertex *start, Vertex *end);
 
-    static stack<Vertex *> reconstructPath(map<Vertex *, Vertex *> cameFrom, Vertex *current,Vertex *start);
+    static stack<Vertex *> reconstructPath(map<Vertex *, Vertex *> cameFrom, Vertex *current);
 
     static double distanceBetweenCoords(double x1, double x2, double y1, double y2);
 

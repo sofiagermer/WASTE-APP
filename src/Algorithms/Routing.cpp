@@ -9,13 +9,17 @@ queue<Vertex *> Routing::nearestNeighbour(Graph *graph,Driver *driver, vector<Ho
     //Vertex *initialVertex = graph->findClosestVertex(driver->getX(),driver->getY());
     Vertex *initialVertex = graph->findClosestVertex(200,300);
     orderedCompletePath.push(initialVertex);
+    cout<<orderedCompletePath.back()->getX();
     double minDistance;
     stack<Vertex*> next;
     vector<House*>::iterator copy;
     while(!housesToVisit.empty()&&driver->getCar()->getCurrentCapacity()>0) {
         minDistance=INF;
         for (auto it = housesToVisit.begin(); it != housesToVisit.end(); it++) {
+            cout<<orderedCompletePath.back()->getX()<<endl;
+            cout<< (*it)->getHouseVertex()->getX()<<endl;
             auto path = aStar(graph,orderedCompletePath.back(), (*it)->getHouseVertex());
+            cout<<"passei"<<endl;
             double aux = pathCost(path);
             if (aux < minDistance && driver->getCar()->wouldFit((*it)->getAmountOfTrash()) ) {
                 minDistance = aux;
@@ -32,12 +36,13 @@ queue<Vertex *> Routing::nearestNeighbour(Graph *graph,Driver *driver, vector<Ho
     return orderedCompletePath;
 }
 
-stack<Vertex *> Routing::reconstructPath(map<Vertex *, Vertex *> cameFrom, Vertex *current, Vertex *start) {
+stack<Vertex *> Routing::reconstructPath(map<Vertex *, Vertex *> cameFrom, Vertex *current) {
     stack<Vertex*> path;
     path.push(current);
-    while(current!=start){
+    while(current!= nullptr){
         current=cameFrom[current];
-        path.push(current);
+        if(current!= nullptr)
+            path.push(current);
     }
     return path;
 }
@@ -48,6 +53,7 @@ double Routing::heuristic(Vertex *start, Vertex *end) {
 
 stack<Vertex *> Routing::aStar(Graph *graph,Vertex *start, Vertex *end) {
     map <Vertex*,Vertex*> cameFrom;
+    cameFrom[start]= nullptr;
     for(auto v:graph->getVertexSet()){
         v->setDistance(INF);
         v->setQueueIndex(0);
@@ -68,11 +74,12 @@ stack<Vertex *> Routing::aStar(Graph *graph,Vertex *start, Vertex *end) {
             }
         }
     }
-    return reconstructPath(cameFrom,end,start);
+    return reconstructPath(cameFrom, end);
 }
 
 stack<Vertex *> Routing::dijkstra(Graph *graph,Vertex *start, Vertex *end) {
     map <Vertex*,Vertex*> cameFrom;
+    cameFrom[start]= nullptr;
     for(auto v:graph->getVertexSet()){
         v->setDistance(INF);
         v->setQueueIndex(0);
@@ -93,7 +100,7 @@ stack<Vertex *> Routing::dijkstra(Graph *graph,Vertex *start, Vertex *end) {
             }
         }
     }
-    return reconstructPath(cameFrom,end,start);
+    return reconstructPath(cameFrom, end);
 
 }
 
