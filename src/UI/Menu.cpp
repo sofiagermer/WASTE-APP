@@ -42,19 +42,19 @@ void Menu::beginningOptions(){
 }
 
 void Menu::mainMenu() {
-    string input;
+    char input;
 
     cout << endl << "Welcome to WASTE-App!" << endl;
     while (true){
         beginningOptions();
-        getline(cin, input);
+        cin >> input;
 
-        if(input.size() != 1) {
+        if(cin.fail()) {
             cout << INVALIDOPTION << endl;
             continue;
         }
 
-        switch (input[0]) {
+        switch (input) {
             case '1':
                 MenuUser::userMenu(&app, &ui);
                 break;

@@ -15,8 +15,10 @@
 
 class MenuDriver {
 private:
-    static void driverOptions(Driver &driver);
+    static void driverOptions(Driver *driver);
     static Driver* createDriver(App *app);
+    static Driver* loginMenu(App *app);
+    static void actionsMenu(Driver *driver, App *app);
     static Driver* loginDriver(App *app);
     static void loginOptions();
 public:
