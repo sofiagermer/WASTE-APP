@@ -30,11 +30,13 @@ void Menu::frontpage(){
 }
 
 void Menu::beginningOptions(){
+    cout<< "===================================="<<endl;
     cout << "Please tell us who you are:" << endl;
     cout << " 1. User" << endl;
     cout << " 2. Driver" << endl;
     cout << " 3. Programmer" << endl;
     cout << " 0. Exit" << endl;
+    cout<< "===================================="<<endl;
 }
 
 void Menu::mainMenu() {
@@ -73,10 +75,12 @@ void Menu::mainMenu() {
 }
 
 void Menu::loginOptions() {
+    cout<< "===================================="<<endl;
     cout << "Tell us what you want to do:" << endl;
     cout << " 1. Log in" << endl;
     cout << " 2. Create an account" << endl;
     cout << " 0. Go back" << endl;
+    cout<< "===================================="<<endl;
 }
 
 /* ================================================================================================
@@ -181,6 +185,7 @@ void Menu::userMenu() {
 }
 
 void Menu::userOptions(User &user) {
+    cout<< "===================================="<<endl;
     cout << "Here's what you can do: " << endl;
 
     if(user.getHouse() != nullptr) {
@@ -194,6 +199,7 @@ void Menu::userOptions(User &user) {
         cout << " 3. Search for closest trash container " << endl;
     }
     cout << " 0. Go back" << endl;
+    cout<< "===================================="<<endl;
 }
 
 User* Menu::createUser() {
@@ -305,11 +311,13 @@ void Menu::trashMenu(User *user) {
 }
 
 void Menu::trashOptions() {
+    cout<< "===================================="<<endl;
     cout << " 1. Paper" << endl;
     cout << " 2. Plastic" << endl;
     cout << " 3. Glass" << endl;
     cout << " 4. Regular" << endl;
     cout << " 0. Go back" << endl;
+    cout<< "===================================="<<endl;
 }
 
 /* ================================================================================================
@@ -589,26 +597,34 @@ void Menu::testMenu(){
 }
 
 void Menu::preprocessingOptions(){
+    cout<< "===================================="<<endl;
     cout << " 1. Check Tarjan's time efficiency" << endl;
     cout << " 2. Check Kosaraju's time efficiency" << endl;
     cout << " 0. Go back" << endl;
+    cout<< "===================================="<<endl;
 }
 void Menu::routingOptions(){
+    cout<< "===================================="<<endl;
     cout << " 1. Check A*'s time efficiency" << endl;
     cout << " 2. Check Dijkstra's time efficiency" << endl;
     cout << " 3. Compare Dijkstra's algorithm with A*'s algorithm" << endl;
     cout << " 0. Go back" << endl;
+    cout<< "===================================="<<endl;
 }
 void Menu::testOptions(){
+    cout<< "===================================="<<endl;
     cout << " 1. Test Tarjan" << endl;
     cout << " 2. Test Kosaraju" << endl;
     cout << " 0. Go back" << endl;
+    cout<< "===================================="<<endl;
 }
 
 void Menu::programmerOptions() {
+    cout<< "===================================="<<endl;
     cout << "Here's what you can do: " << endl;
     cout << " 1. Preprocessing Time Efficiency" << endl;
     cout << " 2. Routing Time Efficiency" << endl;
     cout << " 3. Test Algorithms" << endl;
     cout << " 0. Go back" << endl;
+    cout<< "===================================="<<endl;
 }

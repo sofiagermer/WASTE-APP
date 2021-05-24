@@ -96,21 +96,9 @@ vector<vector<int>> Preprocessing::kosaraju(Graph graph) {
     ////STEP 2: Find the transposed graph by reversing the edges
     Graph transposedGraph = getTransposedGraph(graph);
 
-    for(Vertex * vertex : transposedGraph.getVertexSet()){
-        cout << vertex->getID() << endl;
-    }
-    for(Vertex * vertex : transposedGraph.getVertexSet()){
-        for(Edge edge : vertex->getOutgoingEdges()){
-            cout << vertex->getID() << " -> " << edge.getDest()->getID() << endl;
-        }
-    }
     ////STEP 3: Pop nodes one by one from stack
     vector<int> scc;
     while(!L.empty()){
-        for (auto const &i: S2) {
-            cout << i->getID() << " ";
-        }
-        cout << endl;
         Vertex * vertex = L.top();
         L.pop();
         scc.clear();
@@ -240,14 +228,22 @@ void Preprocessing::testTarjan(){
     //Runs Tarjan's algorithm
     vector<vector<int>> scc = tarjan(graph);
 
+    cout << "You should have: " << 4 << " strong connected components" << endl;
+    cout << "You have       : " << scc.size() <<  " strong connected components" << endl;
+    cout << endl;
+    cout << "The supposed strong connected components should be: " << endl;
+    cout << "0 1 2 3" << endl;
+    cout << "4 5 6" << endl;
+    cout << "7" << endl;
+    cout  << "8" << endl;
+    cout << endl;
+    cout << "Applying the Tarjan's algorithm the stronc componnents are: " << endl;
     for(int i = 0; i < scc.size(); i++){
         for(int j = 0; j < scc.at(i).size(); j++){
             cout << scc.at(i).at(j) << " ";
         }
         cout << endl;
     }
-    cout << "You should have " << 4 << " strong connected components" << endl;
-    cout << "You have : " << scc.size() <<  " strong connected components" << endl;
 }
 
 void Preprocessing::testKosaraju(){
@@ -261,13 +257,20 @@ void Preprocessing::testKosaraju(){
     //Runs Kosaraju's algorithm
     vector<vector<int>> scc = kosaraju(graph);
 
+    cout << "You should have: " << 4 << " strong connected components" << endl;
+    cout << "You have       : " << scc.size() <<  " strong connected components" << endl;
+    cout << endl;
+    cout << "The supposed strong connected components should be: " << endl;
+    cout << "0 1 2 3" << endl;
+    cout << "4 5 6" << endl;
+    cout << "7" << endl;
+    cout  << "8" << endl;
+    cout << endl;
+    cout << "Applying the Kosaraju's algorithm the strong componnents are: " << endl;
     for(int i = 0; i < scc.size(); i++){
         for(int j = 0; j < scc.at(i).size(); j++){
             cout << scc.at(i).at(j) << " ";
         }
         cout << endl;
     }
-
-    cout << "You should have " << 4 << " strong connected components" << endl;
-    cout << "You have : " << scc.size() <<  " strong connected components" << endl;
 }
