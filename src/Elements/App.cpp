@@ -87,11 +87,12 @@ void App::initializeGarbageFacilities(string filename) {
 void App::initializeCars(string filename) {
     ifstream fileCars(filename);
     int numberElements;
+    char c;
     fileCars >> numberElements;
     float capacity;
     string licenseplate;
     for(int i=0;i<numberElements;i++){
-        fileCars >> capacity >> licenseplate;
+        fileCars >> c >>capacity >> c >> licenseplate >> c;
         cars.emplace_back(capacity, licenseplate);
     }
     fileCars.close();
@@ -122,16 +123,18 @@ void App::initializeUsers(string filename){
     ifstream fileUsers(filename);
     int numUsers;
     fileUsers >> numUsers;
+    char c;
     for(int i = 0; i < numUsers; i++){
         string username, userpassword;
         int userid, houseid;
-        fileUsers >> userid >> username >> userpassword >> houseid;
+        fileUsers >> c >> userid >> c >>username >> c >> userpassword >> c >> houseid >> c;
         User u(userid, username, userpassword);
         House* house = findHouse(graph->findVertex(houseid));
-        if(house == nullptr) {
+        /*if(house == nullptr) {
+            House =
             houses.emplace_back(graph->findVertex(houseid), 0);
             house = findHouse(graph->findVertex(houseid));
-        }
+        }*/
         u.setHouse(house);
         users.push_back(u);
     }
@@ -228,7 +231,7 @@ void App::saveHouses(string filename){
     ofstream fileHouses(filename);
     fileHouses << houses.size() << "\n";
     for(auto h : houses){
-        fileHouses << h.getHouseVertex()->getID() << " " << h.getAmountOfTrash() << "\n";
+        fileHouses << '(' << h.getHouseVertex()->getID() << ',' << h.getAmountOfTrash() << ')' << "\n";
     }
     fileHouses.close();
 }
@@ -238,18 +241,18 @@ void App::saveTrashContainers(string filename){
     for (auto tc : trashContainers){
         switch (tc.getType()) {
             case Regular:
-                fileTrashContainers << tc.getVertex()->getID() << " " << 'R' << " " << tc.getMaxCapacity() << "\n";
+                fileTrashContainers << '(' << tc.getVertex()->getID() << ',' << 'R' << ','<< tc.getMaxCapacity() << ')' << "\n";
                 break;
 
             case Paper:
-                fileTrashContainers << tc.getVertex()->getID() << " " << 'p' << " " << tc.getMaxCapacity() << "\n";
+                fileTrashContainers << '(' << tc.getVertex()->getID() << ',' << 'p' << ',' << tc.getMaxCapacity() << ')' << "\n";
                 break;
             case Plastic:
-                fileTrashContainers << tc.getVertex()->getID() << " " << 'P' << " " << tc.getMaxCapacity() << "\n";
+                fileTrashContainers << '(' <<  tc.getVertex()->getID() << ','<< 'P' <<',' << tc.getMaxCapacity() << ')' <<  "\n";
 
                 break;
             case Glass:
-                fileTrashContainers << tc.getVertex()->getID() << " " << 'G' << " " << tc.getMaxCapacity() << "\n";
+                fileTrashContainers << '(' << tc.getVertex()->getID() << ',' << 'G' << ',' << tc.getMaxCapacity() << ')' << "\n";
                 break;
         }
     }
@@ -259,7 +262,7 @@ void App::saveGarbageFacilities(string filename){
     ofstream fileGarbageFacilitys(filename);
     fileGarbageFacilitys << garbageCFs.size() << endl;
     for(auto gf : garbageCFs){
-        fileGarbageFacilitys << gf.getVertex()->getID() << " " << gf.getName() << endl;
+        fileGarbageFacilitys << '('  << gf.getVertex()->getID() << ',' << gf.getName() << ')' << endl;
     }
     fileGarbageFacilitys.close();
 }
@@ -267,7 +270,7 @@ void App::saveCars(string filename){
     ofstream fileCars(filename);
     fileCars << cars.size() << endl;
     for(auto c: cars){
-        fileCars << c.getMaxCapacity() << " " << c.getLicensePlate() << endl;
+        fileCars << '(' << c.getMaxCapacity() << ',' << c.getLicensePlate() << ')'<< endl;
     }
     fileCars.close();
 }

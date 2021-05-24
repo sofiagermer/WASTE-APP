@@ -13,11 +13,6 @@ User::User() {
     password = "";
     this->house = nullptr;
 }
-User::User(int uId) : userID(uId) {
-    name = "abc xyz";
-    password = "abcxyz";
-    this->house = nullptr;
-}
 
 User::User(int uId, string n, string pass) : userID(uId), name(move(n)), password(move(pass)) {
     this->house = nullptr;

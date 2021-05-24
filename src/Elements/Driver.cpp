@@ -10,16 +10,6 @@ Driver::Driver(int uID, Car *ca, string name, string password) : User(uID, move(
     moneyEarned = 0;
 }
 
-Driver::Driver(int uID) : User(uID){
-    moneyEarned = 0;
-    car = nullptr;
-}
-
-Driver::Driver() : User(0) {
-    moneyEarned = 0;
-    car = nullptr;
-}
-
 Car *Driver::getCar() const {
     return car;
 }
