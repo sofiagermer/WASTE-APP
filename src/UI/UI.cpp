@@ -4,7 +4,9 @@
 
 #include "UI.h"
 
-UI::UI(Graph * graph, int width, int height) : graph(graph), graphViewerHeight(graphViewerHeight), graphViewerWidth(graphViewerWidth){}
+UI::UI(Graph * graph, int width, int height) : graph(graph), graphViewerHeight(graphViewerHeight), graphViewerWidth(graphViewerWidth){
+
+}
 
 void UI::showGraph() {
     this->graphViewer = new GraphViewer();
@@ -71,5 +73,5 @@ void UI::showTrashContainer(double userX, double userY, Vertex *trashContainer, 
     auto userClosestNode= graph->findClosestVertex(userX,userY);
     auto graphViewerUserNode=graphViewer->getNode(userClosestNode->getID());
     graphViewerUserNode.setColor(GraphViewer::PINK);
-    graphViewer->createWindow(graphViewerWidth, graphViewerHeight);
+    showGraph();
 }

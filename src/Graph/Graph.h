@@ -74,6 +74,7 @@ public:
 class Edge {
     Vertex * dest;      // destination vertex
     double weight;
+    int id;
 public:
     Edge(Vertex *dest, double weight);
     Vertex * getDest();

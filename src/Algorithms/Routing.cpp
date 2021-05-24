@@ -4,19 +4,19 @@
 
 #include "Routing.h"
 
-queue<Vertex *> Routing::nearestNeighbour(Graph *graph,Driver *driver, vector<Vertex *> pointsTravel) {
+queue<Vertex *> Routing::nearestNeighbour(Graph *graph,Driver *driver, vector<House *> &housesToVisit) {
     queue<Vertex*> orderedCompletePath;
     Vertex *initialVertex = graph->findClosestVertex(driver->getX(),driver->getY());
     orderedCompletePath.push(initialVertex);
     double minDistance;
     stack<Vertex*> next;
-    vector<Vertex*>::iterator copy;
-    while(!pointsTravel.empty()) {
+    vector<House*>::iterator copy;
+    while(!housesToVisit.empty()&&driver->getCar()->getCurrentCapacity()>0) {
         minDistance=INF;
-        for (auto it = pointsTravel.begin(); it != pointsTravel.end(); it++) {
-            auto path = aStar(graph,initialVertex, (*it));
+        for (auto it = housesToVisit.begin(); it != housesToVisit.end(); it++) {
+            auto path = aStar(graph,initialVertex, (*it)->getHouseVertex());
             double aux = pathCost(path);
-            if (aux < minDistance) {
+            if (aux < minDistance && driver->getCar()->wouldFit((*it)->getAmountOfTrash()) ) {
                 minDistance = aux;
                 next = path;
                 copy=it;
@@ -26,8 +26,7 @@ queue<Vertex *> Routing::nearestNeighbour(Graph *graph,Driver *driver, vector<Ve
             orderedCompletePath.push(next.top());
             next.pop();
         }
-        pointsTravel.erase(copy);
-        cout<<pointsTravel.size()<<endl;
+        housesToVisit.erase(copy);
     }
     return orderedCompletePath;
 }

@@ -64,6 +64,8 @@ public:
 
     //Algorithm's Analysis
     Graph* getGraph();
+
+    vector<House *> getHousesToVisit();
 };
 
 

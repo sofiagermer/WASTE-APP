@@ -283,3 +283,12 @@ void App::saveUsers(string filename){
     for(const auto& u: users) fileUsers << u;
     fileUsers.close();
 }
+
+vector<House *> App::getHousesToVisit() {
+    vector<House*> houses;
+    for(auto h:houses){
+        if(h->getNeedPickUp())  houses.push_back(h);
+    }
+    return houses;
+}
+

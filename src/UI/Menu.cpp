@@ -227,16 +227,17 @@ void Menu::driverMenu() {
                 //Set/change car
                 cout << "Set/change car" << endl;
                 break;
-            case '2':
-                //Set/cancel pickup route
-                cout << "Set/cancel pickup route" << endl;
+            case '2': {
+                vector<House *> housesToVisit = app.getHousesToVisit();
+                queue<Vertex *> route = Routing::nearestNeighbour(app.getGraph(), driver, housesToVisit);
                 break;
+            }
             case '3':
                 //Check money
                 cout << "You have made " << driver->getMoneyEarned() << "€ with our app!" << endl;
                 break;
             case '0': {
-                cout << "we hope to you see again " << driver->getName() << endl;
+                cout << "We hope to you see again " << driver->getName() << endl;
                 delete driver;
                 return;
             }
@@ -279,8 +280,7 @@ void Menu::driverOptions(Driver &driver) {
     if(driver.getCar() != nullptr) cout << " 1. Change car" << endl;
     else cout << " 1. Input car" << endl;
 
-    if(hasPickupRoute) cout << " 2. Cancel pick up route" << endl;
-    else cout << " 2. Set pick up route" << endl;
+    cout << " 2. Get pick up route" << endl;
 
     cout << " 3. Check amount of money earned" << endl;
 

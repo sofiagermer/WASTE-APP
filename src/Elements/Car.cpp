@@ -43,12 +43,13 @@ void Car::setCurrentCapacity(float currentcap) {
     }
 }
 
-void Car::AddTrash(float amount) {
+bool Car::addTrash(float amount) {
     if(CurrentCapacity + amount > MaxCapacity){
-        throw TRASHWILLNOTFIT;
+        return false;
     }
     else {
         CurrentCapacity += amount;
+        return true;
     }
 }
 

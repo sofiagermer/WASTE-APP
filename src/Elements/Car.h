@@ -62,7 +62,16 @@ public:
      * @throws TRASHWILLNOTFIT - if the trash amount will surpass that of the MaxCapacity defined for the car
      * @param amount - amount of trash to add to the car
      */
-    void AddTrash(float amount);
+    bool addTrash(float amount);
+
+    bool wouldFit(float amount){
+        if(CurrentCapacity + amount > MaxCapacity){
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
 
     /**
      *

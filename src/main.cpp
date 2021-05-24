@@ -28,7 +28,7 @@ int main() {
     Graph graph("../Map/outputTarjan/processedNodes.txt","../Map/outputTarjan/processedEdges.txt");
     App app(&graph);
     UI ui(&graph,300,300);
-    //ui.showGraph();
+        //ui.showGraph();
     //ui.showGraph();
     Menu menu(app, ui);
     menu.mainMenu();
