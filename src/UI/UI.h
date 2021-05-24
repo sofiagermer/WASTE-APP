@@ -25,6 +25,8 @@ public:
     void showTrashContainer(double userX,double userY, Vertex *trashContainer, TrashType type);
 
     void displayRoute(vector <House*> houses, queue <Vertex*> route);
+
+    void displayTwoPointRoute(queue <Vertex*> route);
 };
 
 

@@ -8,6 +8,7 @@
 
 #include "../Graph/Graph.h"
 #include "../Elements/Driver.h"
+#include "../Elements/GarbageCollectionFacility.h"
 
 class Routing {
     static double heuristic(Vertex *start, Vertex *end);
@@ -22,6 +23,8 @@ public:
     static stack<Vertex*> aStar(Graph *graph,Vertex *start, Vertex *end);
 
     static queue<Vertex *> nearestNeighbour(Graph *graph, Driver *driver,vector<House *> housesToVisit);
+
+    static queue<Vertex *> closestFacility(Graph *graph,Driver *driver,vector<GarbageCollectionFacility *> facilities);
 
     static double pathCost(stack<Vertex *> path);
 };

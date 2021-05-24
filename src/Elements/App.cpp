@@ -88,8 +88,7 @@ void App::initializeGarbageFacilities(string filename) {
     for(int i=0;i<numberElements;i++){
         fileGarbageFacilitys>>c>>id>>c>>centralName;
         centralName.pop_back();
-        GarbageCollectionFacility garbageCollectionFacility(graph->findVertex(id), centralName);
-        garbageCFs.push_back(garbageCollectionFacility);
+        garbageCFs.push_back(new GarbageCollectionFacility(graph->findVertex(id), centralName));
     }
    fileGarbageFacilitys.close();
 }
@@ -224,8 +223,8 @@ void App::saveTrashContainers(string filename){
 void App::saveGarbageFacilities(string filename){
     ofstream fileGarbageFacilitys(filename);
     fileGarbageFacilitys << garbageCFs.size() << endl;
-    for(GarbageCollectionFacility gf : garbageCFs){
-        fileGarbageFacilitys << '('  << gf.getVertex()->getID() << ',' << gf.getName() << ')' << "\n";
+    for(GarbageCollectionFacility* gf : garbageCFs){
+        fileGarbageFacilitys << '('  << gf->getVertex()->getID() << ',' << gf->getName() << ')' << "\n";
     }
     fileGarbageFacilitys.close();
 }
@@ -326,17 +325,16 @@ Vertex* App::findClosestTrashContainer(User user, TrashType type) {
     auto userLocation=graph->findClosestVertex(user.getX(),user.getY());
     Vertex *selectedTrashContainer;
     double min=INF;
-
     for(auto t:trashContainers){
         if(t.getType()==type && t.getCurrentCapacity()>0){
-            auto temp=Routing::pathCost(Routing::dijkstra(graph,userLocation,t.getVertex()));
+            auto temp=Routing::pathCost(Routing::aStar(graph,userLocation,t.getVertex()));
             if(temp<min){
                 selectedTrashContainer=t.getVertex();
                 min=temp;
-
             }
         }
     }
+    cout<<endl<<selectedTrashContainer->getX()<<endl;
     return selectedTrashContainer;
 }
 
@@ -396,3 +394,7 @@ double App::getY() {
     }
     return y;
 }
+vector<GarbageCollectionFacility*> App::getGarbageCFs() {
+    return garbageCFs;
+}
+

@@ -24,9 +24,10 @@
 #include "User.h"
 
 class App {
+private:
     vector<House*> houses;
     vector<TrashContainer> trashContainers;
-    vector<GarbageCollectionFacility> garbageCFs;
+    vector<GarbageCollectionFacility*> garbageCFs;
     vector<Car> cars;
     Graph *graph;
     vector<Driver> drivers;
@@ -63,6 +64,7 @@ public:
     void setAdress(User *user);
     static double getX();
     static double getY();
+    vector<GarbageCollectionFacility*> getGarbageCFs();
 
     Vertex* findClosestTrashContainer(User user, TrashType type);
 
