@@ -9,7 +9,7 @@ using namespace std;
 
 App::App() = default;
 
-App::App(Graph graph) {
+App::App(Graph *graph) {
     this->graph = graph;
     initializePoints();
 }
@@ -33,7 +33,7 @@ void App::initializeHouses(string filename) {
     char c;
     for(int i=0;i<numberElements;i++){
         fileHouses>>c>>id>>c>>amountTrash>>c>>needPickUp>>c;
-        House house(graph.findVertex(id),amountTrash,needPickUp);
+        House house(graph->findVertex(id),amountTrash,needPickUp);
         houses.push_back(house);
     }
     fileHouses.close();
@@ -49,19 +49,19 @@ void App::initializeTrashContainers(string filename) {
     for(int i=0;i<numberElements;i++){
         fileTrashContainers>>c1>>id>>c2>>trashType>>c3>>maxCapacity>>c4;
         if(trashType=='G'){
-            TrashContainer trashContainer(graph.findVertex(id), Glass, maxCapacity);
+            TrashContainer trashContainer(graph->findVertex(id), Glass, maxCapacity);
             trashContainers.push_back(trashContainer);
         }
         else if(trashType=='R'){
-            TrashContainer trashContainer(graph.findVertex(id), Regular, maxCapacity);
+            TrashContainer trashContainer(graph->findVertex(id), Regular, maxCapacity);
             trashContainers.push_back(trashContainer);
         }
         else if(trashType=='p'){
-            TrashContainer trashContainer(graph.findVertex(id), Paper, maxCapacity);
+            TrashContainer trashContainer(graph->findVertex(id), Paper, maxCapacity);
             trashContainers.push_back(trashContainer);
         }
         else if(trashType=='P'){
-            TrashContainer trashContainer(graph.findVertex(id), Plastic, maxCapacity);
+            TrashContainer trashContainer(graph->findVertex(id), Plastic, maxCapacity);
             trashContainers.push_back(trashContainer);
         }
     }
@@ -78,7 +78,7 @@ void App::initializeGarbageFacilities(string filename) {
     for(int i=0;i<numberElements;i++){
         fileGarbageFacilitys>>c>>id>>c>>centralName;
         centralName.pop_back();
-        GarbageCollectionFacility garbageCollectionFacility(graph.findVertex(id), centralName);
+        GarbageCollectionFacility garbageCollectionFacility(graph->findVertex(id), centralName);
         garbageCFs.push_back(garbageCollectionFacility);
     }
    fileGarbageFacilitys.close();
@@ -127,10 +127,10 @@ void App::initializeUsers(string filename){
         int userid, houseid;
         fileUsers >> userid >> username >> userpassword >> houseid;
         User u(userid, username, userpassword);
-        House* house = findHouse(graph.findVertex(houseid));
+        House* house = findHouse(graph->findVertex(houseid));
         if(house == nullptr) {
-            houses.emplace_back(graph.findVertex(houseid), 0);
-            house = findHouse(graph.findVertex(houseid));
+            houses.emplace_back(graph->findVertex(houseid), 0);
+            house = findHouse(graph->findVertex(houseid));
         }
         u.setHouse(house);
         users.push_back(u);
@@ -194,27 +194,25 @@ Driver *App::findDriver(int userID, const string& password) {
     return nullptr;
 }
 
-TrashContainer* App::findClosestTrashContainer(User user, TrashType type) {
-    auto userLocation=graph.findClosestVertex(user.getX(),user.getY());
-    TrashContainer* selectedTrashContainer= nullptr;
+Vertex* App::findClosestTrashContainer(User user, TrashType type) {
+    auto userLocation=graph->findClosestVertex(user.getX(),user.getY());
+    Vertex *selectedTrashContainer;
     double min=INF;
-    cout << "antes do for " << endl;
+
     for(auto t:trashContainers){
-        cout << "dentro do for " << endl;
         if(t.getType()==type && t.getCurrentCapacity()>0){
-            cout << "disjktra merdou" << endl;
-            auto temp=Routing::dijkstra(graph,userLocation,t.getVertex());
-            cout << "NAO SE CHMA DISKSTRASSSSSS " << endl;
-            if(Routing::pathCost(temp)<min){
-                selectedTrashContainer=&t;
+            auto temp=Routing::pathCost(Routing::dijkstra(graph,userLocation,t.getVertex()));
+            if(temp<min){
+                selectedTrashContainer=t.getVertex();
+                min=temp;
+
             }
         }
     }
-    cout << "depois do for" << endl;
     return selectedTrashContainer;
 }
 
-Graph App::getGraph(){
+Graph* App::getGraph(){
     return graph;
 }
 

@@ -388,25 +388,25 @@ void Menu::trashMenu(User *user) {
             case '1':
                 //Paper
                 cout << "Searching for the closest Paper container..." << endl;
-                ui.showTrashContainer(user->getX(),user->getY(),app.findClosestTrashContainer(*user,Paper)) ;
+                ui.showTrashContainer(user->getX(),user->getY(),app.findClosestTrashContainer(*user,Paper),Paper) ;
                 break;
 
             case '2':
                 //Plastic
                 cout << "Searching for the closest Plastic container..." << endl;
-                ui.showTrashContainer(user->getX(),user->getY(),app.findClosestTrashContainer(*user,Plastic));
+                ui.showTrashContainer(user->getX(),user->getY(),app.findClosestTrashContainer(*user,Plastic),Plastic);
                 break;
 
             case '3':
                 //Glass
                 cout << "Searching for the closest Glass container..." << endl;
-                ui.showTrashContainer(user->getX(),user->getY(),app.findClosestTrashContainer(*user,Glass));
+                ui.showTrashContainer(user->getX(),user->getY(),app.findClosestTrashContainer(*user,Glass),Glass);
                 break;
 
             case '4':
                 //Regular
                 cout << "Searching for the closest Metal container..." << endl;
-                ui.showTrashContainer(user->getX(),user->getY(),app.findClosestTrashContainer(*user,Regular));
+                ui.showTrashContainer(user->getX(),user->getY(),app.findClosestTrashContainer(*user,Regular),Regular);
                 break;
             case '0':
                 return;

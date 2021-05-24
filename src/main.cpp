@@ -26,8 +26,9 @@ int main() {
     Menu::frontpage();
    // Graph graph("../Map/sccGiven/porto_strong_nodes_xyy.txt","../Map/sccGiven/porto_strong_edges.txt");
     Graph graph("../Map/outputTarjan/processedNodes.txt","../Map/outputTarjan/processedEdges.txt");
-    App app(graph);
+    App app(&graph);
     UI ui(&graph,300,300);
+    //ui.showGraph();
     //ui.showGraph();
     Menu menu(app, ui);
     menu.mainMenu();

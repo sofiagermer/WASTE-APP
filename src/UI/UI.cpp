@@ -8,7 +8,7 @@ UI::UI(Graph * graph, int width, int height) : graph(graph), graphViewerHeight(g
 
 void UI::showGraph() {
     this->graphViewer = new GraphViewer();
-    graphViewer->createWindow(graphViewerWidth, graphViewerHeight);
+
 
     for (Vertex * vertex : graph->getVertexSet()) {
         graphViewer->addNode(vertex->getID(), sf::Vector2f (vertex->getX(), vertex->getY()));
@@ -21,52 +21,55 @@ void UI::showGraph() {
             id++;
         }
     }
+    graphViewer->createWindow(graphViewerWidth, graphViewerHeight);
 }
 
-void UI::showTrashContainer(double userX, double userY, TrashContainer *trashContainer) {
-    cout << trashContainer->getVertex()->getID() << endl;
+void UI::showTrashContainer(double userX, double userY, Vertex *trashContainer, TrashType type) {
     this->graphViewer = new GraphViewer();
-    graphViewer->setCenter(sf::Vector2f(userX, userY));
-    auto maxDist=graph->distanceBetweenCoords(userX,trashContainer->getVertex()->getX(),userY,trashContainer->getVertex()->getY());
+    graphViewer->setCenter(sf::Vector2f(trashContainer->getX(), trashContainer->getY()));
+    auto maxDist=graph->distanceBetweenCoords(userX,trashContainer->getX(),userY,trashContainer->getY());
     maxDist=maxDist*1.1;
 
     for (Vertex * vertex : graph->getVertexSet()) {
-        if(graph->distanceBetweenCoords(vertex->getX(),trashContainer->getVertex()->getX(),vertex->getY(),trashContainer->getVertex()->getY())>maxDist)
-            continue;
-        if(vertex->getID()==trashContainer->getVertex()->getID()){
-            auto node=graphViewer->addNode(vertex->getID(), sf::Vector2f (vertex->getX(), vertex->getY()));
-            switch (trashContainer->getType()) {
-                case Paper:
-                    node.setColor(GraphViewer::BLUE);
-                    break;
-                case Plastic:
-                    node.setColor(GraphViewer::YELLOW);
-                    break;
-                case Glass:
-                    node.setColor(GraphViewer::GREEN);
-                    break;
-                case Regular:
-                    node.setColor(GraphViewer::GRAY);
-                    break;
-                default:
-                    break;
-            }
+        if(graph->distanceBetweenCoords(userX,vertex->getX(),userY,vertex->getY())>maxDist) {
             continue;
         }
-        graphViewer->addNode(vertex->getID(), sf::Vector2f (vertex->getX(), vertex->getY()));
+        graphViewer->addNode(vertex->getID(), sf::Vector2f (vertex->getX(), vertex->getY())).setColor(GraphViewer::DARK_GRAY);;
+
     }
 
     int id = 0;
     for (Vertex* vertex : graph->getVertexSet()) {
-        if(graph->distanceBetweenCoords(vertex->getX(),trashContainer->getVertex()->getX(),vertex->getY(),trashContainer->getVertex()->getY())>maxDist)
+        if(graph->distanceBetweenCoords(userX,vertex->getX(),userY,vertex->getY())>maxDist)
             continue;
         for (Edge edge : vertex->getOutgoingEdges()) {
-            if(graph->distanceBetweenCoords(edge.getDest()->getX(),trashContainer->getVertex()->getX(),edge.getDest()->getY(),trashContainer->getVertex()->getY())>maxDist)
-                break;
+            if(graph->distanceBetweenCoords(edge.getDest()->getX(),userX,edge.getDest()->getY(),userY)>maxDist)
+                continue;
             graphViewer->addEdge(id, graphViewer->getNode(vertex->getID()), graphViewer->getNode(edge.getDest()->getID()), GraphViewer::Edge::EdgeType::DIRECTED);
             id++;
         }
     }
-    graphViewer->createWindow(graphViewerWidth, graphViewerHeight);
 
+
+    auto node=graphViewer->getNode(trashContainer->getID());
+    switch (type) {
+        case Paper:
+            node.setColor(GraphViewer::BLUE);
+            break;
+        case Plastic:
+            node.setColor(GraphViewer::YELLOW);
+            break;
+        case Glass:
+            node.setColor(GraphViewer::GREEN);
+            break;
+        case Regular:
+            node.setColor(GraphViewer::GRAY);
+            break;
+        default:
+            break;
+    }
+    auto userClosestNode= graph->findClosestVertex(userX,userY);
+    auto graphViewerUserNode=graphViewer->getNode(userClosestNode->getID());
+    graphViewerUserNode.setColor(GraphViewer::PINK);
+    graphViewer->createWindow(graphViewerWidth, graphViewerHeight);
 }

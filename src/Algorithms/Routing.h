@@ -7,6 +7,7 @@
 
 
 #include "../Graph/Graph.h"
+#include "../Elements/Driver.h"
 
 class Routing {
     static double heuristic(Vertex *start, Vertex *end);
@@ -16,11 +17,11 @@ class Routing {
     static double distanceBetweenCoords(double x1, double x2, double y1, double y2);
 
 public:
-    static stack<Vertex *> dijkstra(Graph graph,Vertex *start, Vertex *end);
+    static stack<Vertex *> dijkstra(Graph *graph,Vertex *start, Vertex *end);
 
-    static stack<Vertex*> aStar(Graph graph,Vertex *start, Vertex *end);
+    static stack<Vertex*> aStar(Graph *graph,Vertex *start, Vertex *end);
 
-    static queue<Vertex *> nearestNeighbour(Graph graph, double x,double y,vector<Vertex*> pointsTravel);
+    static queue<Vertex *> nearestNeighbour(Graph *graph, Driver *driver,vector<Vertex*> pointsTravel);
 
     static double pathCost(stack<Vertex *> path);
 };

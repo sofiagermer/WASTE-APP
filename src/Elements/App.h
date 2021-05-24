@@ -28,13 +28,13 @@ class App {
     vector<TrashContainer> trashContainers;
     vector<GarbageCollectionFacility> garbageCFs;
     vector<Car> cars;
-    Graph graph;
+    Graph *graph;
     vector<Driver> drivers;
     vector<User> users;
 
 public:
     App();
-    App(Graph graph);
+    App(Graph *graph);
     void initializePoints();
     void initializeHouses(string filename);
     void initializeTrashContainers(string filename);
@@ -60,10 +60,10 @@ public:
     Driver* findDriver(int userID, const string& password);
     bool userIDRepeated(const int &userID);
 
-    TrashContainer* findClosestTrashContainer(User user, TrashType type);
+    Vertex* findClosestTrashContainer(User user, TrashType type);
 
     //Algorithm's Analysis
-    Graph getGraph();
+    Graph* getGraph();
 };
 
 
