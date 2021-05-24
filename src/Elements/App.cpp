@@ -192,7 +192,7 @@ void App::saveHouses(string filename){
     ofstream fileHouses(filename);
     fileHouses << houses.size() << "\n";
     for(House * h : houses){
-        fileHouses << '(' << h->getHouseVertex()->getID() << ',' << h->getAmountOfTrash() << ')' << "\n";
+        fileHouses << '(' << h->getHouseVertex()->getID() << ',' << h->getAmountOfTrash() << ',' << h->getNeedPickUp() << ')' << "\n";
     }
     fileHouses.close();
 
