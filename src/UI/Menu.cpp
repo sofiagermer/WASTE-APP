@@ -12,6 +12,9 @@
 #include <unistd.h>
 #endif
 
+Menu::Menu(App app, UI ui) : app(app), ui(ui){
+}
+
 void Menu::frontpage(){
     cout << "=======================================================================================================" << endl;
     cout << "  __          _____     _____________________________                  ___      ________   ________" << endl;
@@ -27,11 +30,13 @@ void Menu::frontpage(){
 }
 
 void Menu::beginningOptions(){
+    cout<< "===================================="<<endl;
     cout << "Please tell us who you are:" << endl;
     cout << " 1. User" << endl;
     cout << " 2. Driver" << endl;
     cout << " 3. Programmer" << endl;
     cout << " 0. Exit" << endl;
+    cout<< "===================================="<<endl;
 }
 
 void Menu::mainMenu() {
@@ -39,7 +44,7 @@ void Menu::mainMenu() {
 
     cout << endl << "Welcome to WASTE-App!" << endl;
     while (true){
-        Menu::beginningOptions();
+        beginningOptions();
         getline(cin, input);
 
         if(input.size() != 1) {
@@ -49,16 +54,13 @@ void Menu::mainMenu() {
 
         switch (input[0]) {
             case '1':
-                //Users Menu
-                Menu::userMenu();
+                userMenu();
                 break;
             case '2':
-                //Drivers Menu
-                Menu::driverMenu();
+                driverMenu();
                 break;
             case '3':
-                //Programmers Menu
-                Menu::programmerMenu();
+                programmerMenu();
                 break;
             case '0':
                 cout << "Thank you for using WASTE-App, we hope to you see again soon!" << endl;
@@ -69,23 +71,28 @@ void Menu::mainMenu() {
     }
 }
 
+/* ================================================================================================
+ * USER MENU
+ * ================================================================================================
+ */
+
 void Menu::userMenu() {
-    string input;
+    char input;
     bool endWhile = false;
     User* user;
 
     //ask for credentials
     do {
         cout << "Now we need to know who you are." << endl;
-        Menu::loginOptions();
-        getline(cin, input);
+        loginOptions();
+        cin >> input;
 
-        if(input.size() != 1) {
+        if(cin.fail()) {
             cout << INVALIDOPTION << endl;
             continue;
         }
 
-        switch (input[0]) {
+        switch (input) {
             case '1':
                 //Log in
                 cout << "Logging in to an account..." << endl;
@@ -100,7 +107,7 @@ void Menu::userMenu() {
             case '2':
                 //Create account
                 cout << "Creating account..." << endl;
-                user = Menu::createUser();
+                user = createUser();
                 if(user == nullptr) break;
                 endWhile = true;
                 break;
@@ -117,19 +124,17 @@ void Menu::userMenu() {
     cout << "Hello there " << user->getName() << endl;
     getLocation(user);
     while (true){
-        Menu::userOptions(*user);
-        getline(cin, input);
+        userOptions(*user);
+        cin >> input;
 
-        if(input.size() != 1) {
+        if(cin.fail()) {
             cout << INVALIDOPTION << endl;
             continue;
         }
 
-        switch (input[0]) {
+        switch (input) {
             case '1':
-                //Set/change address
                 cout << "Set/change address" << endl;
-                //Idk how to this!!!
                 break;
             case '2': {
                 //Set/cancel pickup
@@ -166,6 +171,143 @@ void Menu::userMenu() {
     }
 }
 
+void Menu::loginOptions() {
+    cout<< "===================================="<<endl;
+    cout << "Tell us what you want to do:" << endl;
+    cout << " 1. Log in" << endl;
+    cout << " 2. Create an account" << endl;
+    cout << " 0. Go back" << endl;
+    cout<< "===================================="<<endl;
+}
+
+
+void Menu::userOptions(User &user) {
+    cout<< "===================================="<<endl;
+    cout << "Here's what you can do: " << endl;
+
+    if(user.getHouse() != nullptr) {
+        cout << " 1. Change address" << endl;
+        if(user.getHouse()->getNeedPickUp()) cout << " 2. Cancel pick up" << endl;
+        else cout << " 2. Set pick up" << endl;
+        cout << " 3. Search for closest trash container " << endl;
+    }
+    else{
+        cout << " 1. Add house address" << endl;
+        cout << " 3. Search for closest trash container " << endl;
+    }
+    cout << " 0. Go back" << endl;
+    cout<< "===================================="<<endl;
+}
+
+User* Menu::createUser() {
+    string username, userpassowrd;
+
+    cout << "Hello! Let's create an account for you." << endl;
+    //get users name
+    cout << "First of all we will need your name:" << endl;
+    cin >> username;
+    cout << "Next we will need your password:" << endl;
+    cin>> userpassowrd;
+
+    int userid = app.addUser(username, userpassowrd);
+    User* user = app.findUser(userid, userpassowrd);
+    if(user == nullptr) {
+        cout << "ERROR CREATING USER!" << endl;
+        return user;
+    }
+
+    cout << "Your user ID is: " << user->getUserId() << endl;
+    cout << "You are all set, " << user->getName() << ", don't forget your password and user ID!" << endl;
+
+    return user;
+}
+
+User * Menu::loginUser() {
+    int userid;
+    string password;
+    cout << "UserID: " << endl;
+    cin >> userid;
+    cout << "Password: " << endl;
+    getline(cin, password);
+    return app.findUser(userid, password);
+}
+
+void Menu::getLocation(User *user) {
+    double x,y;
+    cout<<"What is your current location ?"<<endl;
+    cout << "Enter x:" << endl;
+    cin>>x;
+    while(cin.fail()){
+        cout<<"Invalid input, please select a number: " << endl;
+        cin >>x;
+    }
+    cout << "Enter y:" << endl;
+    cin >> y;
+    while(cin.fail()){
+        cout<<"Invalid input, please select a number: " << endl;
+        cin >>y;
+    }
+    user->setX(x);
+    user->setY(y);
+}
+
+void Menu::trashMenu(User *user) {
+    string input;
+
+    while (true){
+        cout << "What type of trash container do you wish to look for? " << endl;
+        trashOptions();
+        getline(cin, input);
+
+        if(input.size() != 1) {
+            cout << INVALIDOPTION << endl;
+            continue;
+        }
+
+        switch (input[0]) {
+            case '1':
+                cout << "Searching for the closest Paper container..." << endl;
+                ui.showTrashContainer(user->getX(),user->getY(),app.findClosestTrashContainer(*user,Paper),Paper) ;
+                break;
+
+            case '2':
+                cout << "Searching for the closest Plastic container..." << endl;
+                ui.showTrashContainer(user->getX(),user->getY(),app.findClosestTrashContainer(*user,Plastic),Plastic);
+                break;
+
+            case '3':
+                cout << "Searching for the closest Glass container..." << endl;
+                ui.showTrashContainer(user->getX(),user->getY(),app.findClosestTrashContainer(*user,Glass),Glass);
+                break;
+
+            case '4':
+                cout << "Searching for the closest Regular container..." << endl;
+                ui.showTrashContainer(user->getX(),user->getY(),app.findClosestTrashContainer(*user,Regular),Regular);
+                break;
+            case '0':
+                return;
+
+            default:
+                cout << INVALIDOPTION << endl;
+                break;
+        }
+    }
+}
+
+void Menu::trashOptions() {
+    cout<< "===================================="<<endl;
+    cout << " 1. Paper" << endl;
+    cout << " 2. Plastic" << endl;
+    cout << " 3. Glass" << endl;
+    cout << " 4. Regular" << endl;
+    cout << " 0. Go back" << endl;
+    cout<< "===================================="<<endl;
+}
+
+/* ================================================================================================
+ * DRIVER MENU
+ * ================================================================================================
+ */
 void Menu::driverMenu() {
     string input;
     bool endWhile = false;
@@ -174,7 +316,7 @@ void Menu::driverMenu() {
     //ask for credentials
     do {
         cout << "Now we need to know who you are." << endl;
-        Menu::loginOptions();
+        loginOptions();
         getline(cin, input);
 
         if(input.size() != 1) {
@@ -214,7 +356,7 @@ void Menu::driverMenu() {
     //show options
     cout << "Hello there " << driver->getName() << endl;
     while (true){
-        Menu::driverOptions(*driver);
+        driverOptions(*driver);
         getline(cin, input);
 
         if(input.size() != 1) {
@@ -247,28 +389,6 @@ void Menu::driverMenu() {
     }
 }
 
-void Menu::loginOptions() {
-    cout << "Tell us what you want to do:" << endl;
-    cout << " 1. Log in" << endl;
-    cout << " 2. Create an account" << endl;
-    cout << " 0. Go back" << endl;
-}
-
-void Menu::userOptions(User &user) {
-    cout << "Here's what you can do: " << endl;
-
-    if(user.getHouse() != nullptr) {
-        cout << " 1. Change address" << endl;
-        if(user.getHouse()->getNeedPickUp()) cout << " 2. Cancel pick up" << endl;
-        else cout << " 2. Set pick up" << endl;
-        cout << " 3. Search for closest trash container " << endl;
-    }
-    else{
-        cout << " 1. Add house address" << endl;
-        cout << " 3. Search for closest trash container " << endl;
-    }
-    cout << " 0. Go back" << endl;
-}
 
 void Menu::driverOptions(Driver &driver) {
 
@@ -286,30 +406,6 @@ void Menu::driverOptions(Driver &driver) {
 
     cout << " 0. Go back" << endl;
 
-}
-
-User* Menu::createUser() {
-    string username, userpassowrd;
-
-    cout << "Hello! Let's create an account for you." << endl;
-    //get users name
-    cout << "First of all we will need your name:" << endl;
-    getline(cin, username);
-    //get users password
-    cout << "Next we will need your password:" << endl;
-    getline(cin, userpassowrd);
-
-    int userid = app.addUser(username, userpassowrd);
-    User* user = app.findUser(userid, userpassowrd);
-    if(user == nullptr) {
-        cout << "ERROR CREATING USER!" << endl;
-        return user;
-    }
-
-    cout << "Your user ID is: " << user->getUserId() << endl;
-    cout << "You are all set, " << user->getName() << ", don't forget your password and user ID!" << endl;
-
-    return user;
 }
 
 Driver* Menu::createDriver() {
@@ -351,15 +447,6 @@ Driver* Menu::createDriver() {
     return driver;
 }
 
-User * Menu::loginUser() {
-    int userid;
-    string password;
-    cout << "UserID: " << endl;
-    cin >> userid;
-    cout << "Password: " << endl;
-    getline(cin, password);
-    return app.findUser(userid, password);
-}
 
 Driver *Menu::loginDriver() {
     int userid;
@@ -370,62 +457,10 @@ Driver *Menu::loginDriver() {
     getline(cin, password);
     return app.findDriver(userid, password);
 }
-
-void Menu::trashMenu(User *user) {
-    string input;
-
-    while (true){
-        cout << "What type of trash container do you wish to look for? " << endl;
-        Menu::trashOptions();
-        getline(cin, input);
-
-        if(input.size() != 1) {
-            cout << INVALIDOPTION << endl;
-            continue;
-        }
-
-        switch (input[0]) {
-            case '1':
-                //Paper
-                cout << "Searching for the closest Paper container..." << endl;
-                ui.showTrashContainer(user->getX(),user->getY(),app.findClosestTrashContainer(*user,Paper),Paper) ;
-                break;
-
-            case '2':
-                //Plastic
-                cout << "Searching for the closest Plastic container..." << endl;
-                ui.showTrashContainer(user->getX(),user->getY(),app.findClosestTrashContainer(*user,Plastic),Plastic);
-                break;
-
-            case '3':
-                //Glass
-                cout << "Searching for the closest Glass container..." << endl;
-                ui.showTrashContainer(user->getX(),user->getY(),app.findClosestTrashContainer(*user,Glass),Glass);
-                break;
-
-            case '4':
-                //Regular
-                cout << "Searching for the closest Metal container..." << endl;
-                ui.showTrashContainer(user->getX(),user->getY(),app.findClosestTrashContainer(*user,Regular),Regular);
-                break;
-            case '0':
-                return;
-
-            default:
-                cout << INVALIDOPTION << endl;
-                break;
-        }
-    }
-}
-
-void Menu::trashOptions() {
-    cout << " 1. Paper" << endl;
-    cout << " 2. Plastic" << endl;
-    cout << " 3. Glass" << endl;
-    cout << " 4. Regular" << endl;
-    cout << " 0. Go back" << endl;
-}
-
+/* ================================================================================================
+ * PROGRAMMER MENU
+ * ================================================================================================
+ */
 void Menu::programmerMenu() {
     string input;
     cout << "Hello Programmer" << endl;
@@ -441,24 +476,99 @@ void Menu::programmerMenu() {
 
         switch (input[0]) {
             case '1':
+                preprocessingMenu();
+                break;
+            case '2':
+                routingMenu();
+                break;
+            case '3':
+                testMenu();
+                break;
+            case '0':
+                cout << "Going to the previous menu..." << endl;
+                return;
+            default:
+                cout << INVALIDOPTION << endl;
+        }
+    }
+}
+
+void Menu::preprocessingMenu() {
+    string input;
+
+    while (true){
+        preprocessingOptions();
+        getline(cin, input);
+
+        if(input.size() != 1) {
+            cout << INVALIDOPTION << endl;
+            continue;
+        }
+
+        switch (input[0]) {
+            case '1':
                 Analysis::preprocessingAnalysisTarjan();
                 break;
             case '2':
                 Analysis::preprocessingAnalysisKosaraju();
                 break;
-            case '3':
+            case '0':
+                cout << "Going to the previous menu..." << endl;
+                return;
+            default:
+                cout << INVALIDOPTION << endl;
+        }
+    }
+}
+
+void Menu::routingMenu() {
+    string input;
+
+    while (true){
+        routingOptions();
+        getline(cin, input);
+
+        if(input.size() != 1) {
+            cout << INVALIDOPTION << endl;
+            continue;
+        }
+
+        switch (input[0]) {
+            case '1':
                 Analysis::aStarAnalysis(app.getGraph());
                 break;
-            case '4':
+            case '2':
                 Analysis::dijkstraAnalysis(app.getGraph());
                 break;
-            case '5':
+            case '3':
                 Analysis::aStarVsDijkstra(app.getGraph());
                 break;
-            case '6':
+            case '0':
+                cout << "Going to the previous menu..." << endl;
+                return;
+            default:
+                cout << INVALIDOPTION << endl;
+        }
+    }
+}
+
+void Menu::testMenu(){
+    string input;
+
+    while (true){
+        testOptions();
+        getline(cin, input);
+
+        if(input.size() != 1) {
+            cout << INVALIDOPTION << endl;
+            continue;
+        }
+
+        switch (input[0]) {
+            case '1':
                 Preprocessing::testTarjan();
                 break;
-            case '7':
+            case '2':
                 Preprocessing::testKosaraju();
                 break;
             case '0':
@@ -470,45 +580,35 @@ void Menu::programmerMenu() {
     }
 }
 
-void Menu::programmerOptions() {
-    cout << "Here's what you can do: " << endl;
-    cout << " 1. Check Tarjan's time efficiency (PREPROCESSING)" << endl;
-    cout << " 2. Check Kosaraju's time efficiency (PREPROCESSING)" << endl;
-    cout << " 3. Check A*'s time efficiency (ROUTING)" << endl;
-    cout << " 4. Check Dijkstra's time efficiency (ROUTING)" << endl;
-    cout << " 5. Compare Dijkstra's algorithm with A*'s algorithm (ROUTING)" << endl;
-    cout << " 6. Test Tarjan" << endl;
-    cout << " 7. Test Kosaraju" << endl;
+void Menu::preprocessingOptions(){
+    cout<< "===================================="<<endl;
+    cout << " 1. Check Tarjan's time efficiency" << endl;
+    cout << " 2. Check Kosaraju's time efficiency" << endl;
     cout << " 0. Go back" << endl;
+    cout<< "===================================="<<endl;
+}
+void Menu::routingOptions(){
+    cout<< "===================================="<<endl;
+    cout << " 1. Check A*'s time efficiency" << endl;
+    cout << " 2. Check Dijkstra's time efficiency" << endl;
+    cout << " 3. Compare Dijkstra's algorithm with A*'s algorithm" << endl;
+    cout << " 0. Go back" << endl;
+    cout<< "===================================="<<endl;
+}
+void Menu::testOptions(){
+    cout<< "===================================="<<endl;
+    cout << " 1. Test Tarjan" << endl;
+    cout << " 2. Test Kosaraju" << endl;
+    cout << " 0. Go back" << endl;
+    cout<< "===================================="<<endl;
 }
 
-Menu::Menu(App app, UI ui) : app(app), ui(ui){
-}
-
-void Menu::getLocation(User *user) {
-    double x,y;
-    char c;
-    string input;
-    cout<<"What is your current location ?"<<endl;
-    cout << "Enter x:" << endl;
-    while(true) {
-        cin>>x;
-        if(x==NULL){
-            cout<<INVALIDOPTION<<endl;
-            continue;
-        }
-        else break;
-    }
-    cout << "Enter y:" << endl;
-    while(true) {
-        cin>>y;
-        if(y==NULL){
-            cout<<INVALIDOPTION<<endl;
-            continue;
-        }
-        else break;
-    }
-    user->setX(x);
-    user->setY(y);
-    cout<<endl;
+void Menu::programmerOptions() {
+    cout<< "===================================="<<endl;
+    cout << "Here's what you can do: " << endl;
+    cout << " 1. Preprocessing Time Efficiency" << endl;
+    cout << " 2. Routing Time Efficiency" << endl;
+    cout << " 3. Test Algorithms" << endl;
+    cout << " 0. Go back" << endl;
+    cout<< "===================================="<<endl;
 }
