@@ -35,6 +35,8 @@ queue<Vertex *> Routing::nearestNeighbour(Graph *graph,Driver *driver, vector<Ho
             orderedCompletePath.push(next.top());
             next.pop();
         }
+        (*copy)->setNeedPickUp(false);
+        driver->setMoneyEarned(driver->getMoneyEarned()+4);
         housesToVisit.erase(copy);
         i--;
     }

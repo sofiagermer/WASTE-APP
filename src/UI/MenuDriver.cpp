@@ -176,7 +176,6 @@ void MenuDriver::actionsMenu(Driver *driver, App *app,UI *ui){
                 vector<House *> housesToVisit = app->getHousesToVisit();
                 queue<Vertex *> route = Routing::nearestNeighbour(app->getGraph(), driver, housesToVisit);
                 ui->displayRoute(housesToVisit,route);
-                driver->setMoneyEarned(housesToVisit.size() * 4);
                 break;
             }
             case '3':
