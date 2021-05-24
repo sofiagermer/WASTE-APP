@@ -183,7 +183,6 @@ void MenuDriver::actionsMenu(Driver *driver, App *app,UI *ui){
                 break;
             case '0': {
                 cout << "We hope to you see again " << driver->getName() << endl;
-                delete driver;
                 return;
             }
             default:

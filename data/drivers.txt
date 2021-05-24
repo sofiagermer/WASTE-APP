@@ -1,7 +1,8 @@
-6
-(123456789,driver,password,100,abcdef,5)
-(646461161,rafa,pass,10,abefcd,3)
-(871237107,camelo,word,1,cdabef,10)
-(141947324,driver1,password1,0,efcdab,9)
-(124134141,driver2,password2,1,efabcd,4)
-(235252234,driver3,password3,10,licens,3)
+7
+(123456789100,5,driver,password,abcdef)
+(64646116110,3,rafa,pass,abefcd)
+(8712371071,10,camelo,word,cdabef)
+(1419473240,9,driver1,password1,efcdab)
+(1241341411,4,driver2,password2,efabcd)
+(23525223410,3,driver3,password3,licens)
+(20836947180,9,sofi,1234,fsadfs)

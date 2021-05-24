@@ -42,16 +42,6 @@ void User::setPassword(const std::string &password) {
     User::password = password;
 }
 
-std::istream& operator>>(std::istream& input, User &u){
-    input >> u.userID >> u.name >> u.password;
-    return input;
-}
-
-std::ostream& operator<<(std::ostream& output, const User &u){
-    output << u.userID << " " << u.name << " " << u.password << u.getHouse()->getHouseVertex()->getID() << endl;
-    return output;
-}
-
 void User::setPosition(double x, double y) {
     this->x=x;
     this->y=y;
