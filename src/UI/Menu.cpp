@@ -44,7 +44,7 @@ void Menu::mainMenu() {
 
     cout << endl << "Welcome to WASTE-App!" << endl;
     while (true){
-        Menu::beginningOptions();
+        beginningOptions();
         getline(cin, input);
 
         if(input.size() != 1) {
@@ -54,16 +54,13 @@ void Menu::mainMenu() {
 
         switch (input[0]) {
             case '1':
-                //Users Menu
-                Menu::userMenu();
+                userMenu();
                 break;
             case '2':
-                //Drivers Menu
-                Menu::driverMenu();
+                driverMenu();
                 break;
             case '3':
-                //Programmers Menu
-                Menu::programmerMenu();
+                programmerMenu();
                 break;
             case '0':
                 cout << "Thank you for using WASTE-App, we hope to you see again soon!" << endl;
@@ -74,36 +71,28 @@ void Menu::mainMenu() {
     }
 }
 
-void Menu::loginOptions() {
-    cout<< "===================================="<<endl;
-    cout << "Tell us what you want to do:" << endl;
-    cout << " 1. Log in" << endl;
-    cout << " 2. Create an account" << endl;
-    cout << " 0. Go back" << endl;
-    cout<< "===================================="<<endl;
-}
-
 /* ================================================================================================
  * USER MENU
  * ================================================================================================
  */
+
 void Menu::userMenu() {
-    string input;
+    char input;
     bool endWhile = false;
     User* user;
 
     //ask for credentials
     do {
         cout << "Now we need to know who you are." << endl;
-        Menu::loginOptions();
-        getline(cin, input);
+        loginOptions();
+        cin >> input;
 
-        if(input.size() != 1) {
+        if(cin.fail()) {
             cout << INVALIDOPTION << endl;
             continue;
         }
 
-        switch (input[0]) {
+        switch (input) {
             case '1':
                 //Log in
                 cout << "Logging in to an account..." << endl;
@@ -118,7 +107,7 @@ void Menu::userMenu() {
             case '2':
                 //Create account
                 cout << "Creating account..." << endl;
-                user = Menu::createUser();
+                user = createUser();
                 if(user == nullptr) break;
                 endWhile = true;
                 break;
@@ -135,19 +124,17 @@ void Menu::userMenu() {
     cout << "Hello there " << user->getName() << endl;
     getLocation(user);
     while (true){
-        Menu::userOptions(*user);
-        getline(cin, input);
+        userOptions(*user);
+        cin >> input;
 
-        if(input.size() != 1) {
+        if(cin.fail()) {
             cout << INVALIDOPTION << endl;
             continue;
         }
 
-        switch (input[0]) {
+        switch (input) {
             case '1':
-                //Set/change address
                 cout << "Set/change address" << endl;
-                //Idk how to this!!!
                 break;
             case '2': {
                 //Set/cancel pickup
@@ -184,6 +171,16 @@ void Menu::userMenu() {
     }
 }
 
+void Menu::loginOptions() {
+    cout<< "===================================="<<endl;
+    cout << "Tell us what you want to do:" << endl;
+    cout << " 1. Log in" << endl;
+    cout << " 2. Create an account" << endl;
+    cout << " 0. Go back" << endl;
+    cout<< "===================================="<<endl;
+}
+
+
 void Menu::userOptions(User &user) {
     cout<< "===================================="<<endl;
     cout << "Here's what you can do: " << endl;
@@ -208,10 +205,9 @@ User* Menu::createUser() {
     cout << "Hello! Let's create an account for you." << endl;
     //get users name
     cout << "First of all we will need your name:" << endl;
-    getline(cin, username);
-    //get users password
+    cin >> username;
     cout << "Next we will need your password:" << endl;
-    getline(cin, userpassowrd);
+    cin>> userpassowrd;
 
     int userid = app.addUser(username, userpassowrd);
     User* user = app.findUser(userid, userpassowrd);
@@ -235,32 +231,24 @@ User * Menu::loginUser() {
     getline(cin, password);
     return app.findUser(userid, password);
 }
+
 void Menu::getLocation(User *user) {
     double x,y;
-    char c;
-    string input;
     cout<<"What is your current location ?"<<endl;
     cout << "Enter x:" << endl;
-    while(true) {
-        cin>>x;
-        if(x==NULL){
-            cout<<INVALIDOPTION<<endl;
-            continue;
-        }
-        else break;
+    cin>>x;
+    while(cin.fail()){
+        cout<<"Invalid input, please select a number: " << endl;
+        cin >>x;
     }
     cout << "Enter y:" << endl;
-    while(true) {
-        cin>>y;
-        if(y==NULL){
-            cout<<INVALIDOPTION<<endl;
-            continue;
-        }
-        else break;
+    cin >> y;
+    while(cin.fail()){
+        cout<<"Invalid input, please select a number: " << endl;
+        cin >>y;
     }
     user->setX(x);
     user->setY(y);
-    cout<<endl;
 }
 
 void Menu::trashMenu(User *user) {
@@ -268,7 +256,7 @@ void Menu::trashMenu(User *user) {
 
     while (true){
         cout << "What type of trash container do you wish to look for? " << endl;
-        Menu::trashOptions();
+        trashOptions();
         getline(cin, input);
 
         if(input.size() != 1) {
@@ -278,26 +266,22 @@ void Menu::trashMenu(User *user) {
 
         switch (input[0]) {
             case '1':
-                //Paper
                 cout << "Searching for the closest Paper container..." << endl;
                 ui.showTrashContainer(user->getX(),user->getY(),app.findClosestTrashContainer(*user,Paper),Paper) ;
                 break;
 
             case '2':
-                //Plastic
                 cout << "Searching for the closest Plastic container..." << endl;
                 ui.showTrashContainer(user->getX(),user->getY(),app.findClosestTrashContainer(*user,Plastic),Plastic);
                 break;
 
             case '3':
-                //Glass
                 cout << "Searching for the closest Glass container..." << endl;
                 ui.showTrashContainer(user->getX(),user->getY(),app.findClosestTrashContainer(*user,Glass),Glass);
                 break;
 
             case '4':
-                //Regular
-                cout << "Searching for the closest Metal container..." << endl;
+                cout << "Searching for the closest Regular container..." << endl;
                 ui.showTrashContainer(user->getX(),user->getY(),app.findClosestTrashContainer(*user,Regular),Regular);
                 break;
             case '0':
@@ -332,7 +316,7 @@ void Menu::driverMenu() {
     //ask for credentials
     do {
         cout << "Now we need to know who you are." << endl;
-        Menu::loginOptions();
+        loginOptions();
         getline(cin, input);
 
         if(input.size() != 1) {
@@ -372,7 +356,7 @@ void Menu::driverMenu() {
     //show options
     cout << "Hello there " << driver->getName() << endl;
     while (true){
-        Menu::driverOptions(*driver);
+        driverOptions(*driver);
         getline(cin, input);
 
         if(input.size() != 1) {
@@ -513,7 +497,7 @@ void Menu::preprocessingMenu() {
     string input;
 
     while (true){
-        Menu::preprocessingOptions();
+        preprocessingOptions();
         getline(cin, input);
 
         if(input.size() != 1) {
@@ -541,7 +525,7 @@ void Menu::routingMenu() {
     string input;
 
     while (true){
-        Menu::routingOptions();
+        routingOptions();
         getline(cin, input);
 
         if(input.size() != 1) {
@@ -572,7 +556,7 @@ void Menu::testMenu(){
     string input;
 
     while (true){
-        Menu::testOptions();
+        testOptions();
         getline(cin, input);
 
         if(input.size() != 1) {

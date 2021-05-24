@@ -63,7 +63,7 @@ public:
     void programmerMenu();
     void programmerOptions();
 
-    void getLocation(User *user);
+    static void getLocation(User *user);
 
     void preprocessingOptions();
     void routingOptions();
