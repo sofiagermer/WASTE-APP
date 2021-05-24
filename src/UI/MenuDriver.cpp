@@ -148,6 +148,7 @@ void MenuDriver::actionsMenu(Driver *driver, App *app){
             case '1': {
                 vector<House *> housesToVisit = app->getHousesToVisit();
                 queue<Vertex *> route = Routing::nearestNeighbour(app->getGraph(), driver, housesToVisit);
+                ui->displayRoute(housesToVisit,route);
                 break;
             }
             case '2':

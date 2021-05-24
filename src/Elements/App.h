@@ -24,7 +24,7 @@
 #include "User.h"
 
 class App {
-    vector<House> houses;
+    vector<House*> houses;
     vector<TrashContainer> trashContainers;
     vector<GarbageCollectionFacility> garbageCFs;
     vector<Car> cars;
@@ -34,6 +34,7 @@ class App {
 
 public:
     App();
+    ~App(void);
     App(Graph *graph);
     void initializePoints();
     void initializeHouses(string filename);

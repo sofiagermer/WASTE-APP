@@ -64,14 +64,7 @@ public:
      */
     bool addTrash(float amount);
 
-    bool wouldFit(float amount){
-        if(CurrentCapacity + amount > MaxCapacity){
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
+    bool wouldFit(float amount);
 
     /**
      *

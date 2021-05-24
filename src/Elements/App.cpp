@@ -13,7 +13,12 @@ App::App(Graph *graph) {
     this->graph = graph;
     initializePoints();
 }
-
+App::~App(){
+    for(auto h: houses){
+        delete h;
+    }
+    houses.clear();
+};
 void App::initializePoints(){
     initializeHouses("../data/houses.txt");
     initializeTrashContainers("../data/trashContainers.txt");
@@ -33,8 +38,7 @@ void App::initializeHouses(string filename) {
     char c;
     for(int i=0;i<numberElements;i++){
         fileHouses>>c>>id>>c>>amountTrash>>c>>needPickUp>>c;
-        House house(graph->findVertex(id),amountTrash,needPickUp);
-        houses.push_back(house);
+        houses.push_back(new House(graph->findVertex(id),amountTrash,needPickUp));
     }
     fileHouses.close();
 }
@@ -133,6 +137,8 @@ void App::initializeUsers(string filename){
         /*if(house == nullptr) {
             House =
             houses.emplace_back(graph->findVertex(houseid), 0);
+        if(house == nullptr) {
+            houses.push_back(new House(graph->findVertex(houseid), 0));
             house = findHouse(graph->findVertex(houseid));
         }*/
         u.setHouse(house);
@@ -153,8 +159,8 @@ Car *App::findCar(const string& licensePlate) {
 }
 
 House *App::findHouse(Vertex* housevertex) {
-    for(auto houseit = houses.begin(); houseit < houses.end(); houseit++){
-        if((*houseit).getHouseVertex()->getID() == housevertex->getID()) return &(*houseit);
+    for(auto h:houses){
+        if(h->getHouseVertex()->getID() == housevertex->getID()) return h;
     }
     return nullptr;
 }
@@ -234,6 +240,7 @@ void App::saveHouses(string filename){
         fileHouses << '(' << h.getHouseVertex()->getID() << ',' << h.getAmountOfTrash() << ')' << "\n";
     }
     fileHouses.close();
+
 }
 void App::saveTrashContainers(string filename){
     ofstream fileTrashContainers(filename);
@@ -290,8 +297,8 @@ void App::saveUsers(string filename){
 vector<House *> App::getHousesToVisit() {
     vector<House*> housesToVisit;
     for(auto h:houses){
-        if(h.getNeedPickUp())
-            housesToVisit.push_back(&h);
+        if(h->getNeedPickUp())
+            housesToVisit.push_back(h);
     }
     return housesToVisit;
 }

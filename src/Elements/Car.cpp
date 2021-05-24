@@ -11,7 +11,7 @@ Car::Car() {
 }
 
 Car::Car(float maxcap): MaxCapacity(maxcap) {
-    CurrentCapacity = 0;
+    CurrentCapacity = maxcap;
     srand(time(NULL));
     for(int i = 0; i < 6; i++){
         LicensePlate.push_back((int) (rand() % 26 + 65));
@@ -44,11 +44,11 @@ void Car::setCurrentCapacity(float currentcap) {
 }
 
 bool Car::addTrash(float amount) {
-    if(CurrentCapacity + amount > MaxCapacity){
+    if(CurrentCapacity - amount < 0){
         return false;
     }
     else {
-        CurrentCapacity += amount;
+        CurrentCapacity -= amount;
         return true;
     }
 }
@@ -59,4 +59,13 @@ const string &Car::getLicensePlate() const {
 
 void Car::setLicensePlate(const string &licensePlate) {
     LicensePlate = licensePlate;
+}
+
+bool Car::wouldFit(float amount) {
+    if(CurrentCapacity - amount < 0){
+        return false;
+    }
+    else {
+        return true;
+    }
 }

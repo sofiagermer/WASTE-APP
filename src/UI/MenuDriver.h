@@ -8,6 +8,10 @@
 
 #include "../Elements/Driver.h"
 #include "../Elements/App.h"
+#include "UI.h"
+#include <iostream>
+#include <string>
+
 
 class MenuDriver {
 private:
@@ -18,7 +22,7 @@ private:
     static Driver* loginDriver(App *app);
     static void loginOptions();
 public:
-    static void driverMenu(App *app);
+    static void driverMenu(App *app,UI *ui);
 };
 
 

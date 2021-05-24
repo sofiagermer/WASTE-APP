@@ -21,7 +21,7 @@ public:
 
     static stack<Vertex*> aStar(Graph *graph,Vertex *start, Vertex *end);
 
-    static queue<Vertex *> nearestNeighbour(Graph *graph, Driver *driver,vector<House *> &housesToVisit);
+    static queue<Vertex *> nearestNeighbour(Graph *graph, Driver *driver,vector<House *> housesToVisit);
 
     static double pathCost(stack<Vertex *> path);
 };
