@@ -81,15 +81,16 @@ Driver* MenuDriver::createDriver(App *app) {
     cout << "Hello! Let's create an account for you." << endl;
     //get users name
     cout << "First of all we will need your name:" << endl;
-    getline(cin, username);
+    cin >> username;
     //get users password
     cout << "Next we will need your password:" << endl;
-    getline(cin, userpassowrd);
+    cin >> userpassowrd;
+
 
     //get drivers car
     cout << "Since you are a driver we need some information about you car" << endl;
     cout << "We need to know your car's license plate" << endl;
-    getline(cin, carlicenseplate);
+    cin >> carlicenseplate;
     cout << "We need to know is how many liters of trash your car can carry" << endl;
     cin >> inputcarmax;
 
@@ -120,7 +121,7 @@ Driver *MenuDriver::loginDriver(App *app) {
     cout << "UserID: " << endl;
     cin >> userid;
     cout << "Password: " << endl;
-    getline(cin, password);
+    cin >> password;
     return app->findDriver(userid, password);
 }
 
@@ -156,11 +157,9 @@ void MenuDriver::actionsMenu(Driver *driver, App *app){
                 break;
             }
             case '2':
-                //Check money
                 cout << "You have made " << driver->getMoneyEarned() << "€ with our app!" << endl;
                 break;
             case '3':
-                //Check money
                 if(driver->getCar() == nullptr); //ADICIONAR CARRO;
                 else cout << INVALIDOPTION << endl; ////Driver already has a car
                 break;
