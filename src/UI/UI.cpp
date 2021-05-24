@@ -53,27 +53,32 @@ void UI::showTrashContainer(double userX, double userY, Vertex *trashContainer, 
     }
 
 
-    auto node=graphViewer->getNode(trashContainer->getID());
+    GraphViewer::Node &node=graphViewer->getNode(trashContainer->getID());
     switch (type) {
         case Paper:
             node.setColor(GraphViewer::BLUE);
+            node.setSize(40);
             break;
         case Plastic:
             node.setColor(GraphViewer::YELLOW);
+            node.setSize(40);
             break;
         case Glass:
             node.setColor(GraphViewer::GREEN);
+            node.setSize(40);
             break;
         case Regular:
             node.setColor(GraphViewer::GRAY);
+            node.setSize(40);
             break;
         default:
             break;
     }
     auto userClosestNode= graph->findClosestVertex(userX,userY);
-    auto graphViewerUserNode=graphViewer->getNode(userClosestNode->getID());
+    GraphViewer::Node &graphViewerUserNode=graphViewer->getNode(userClosestNode->getID());
     graphViewerUserNode.setColor(GraphViewer::PINK);
-    showGraph();
+    graphViewerUserNode.setSize(40);
+    graphViewer->createWindow(graphViewerWidth, graphViewerHeight);
 }
 
 void UI::displayRoute(vector<House *> houses, queue<Vertex *> route) {
