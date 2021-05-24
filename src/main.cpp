@@ -10,7 +10,7 @@
 #include "Algorithms/Preprocessing.h"
 
 using namespace std;
-App app;
+//App app;
 
 int main() {
     //App app(graph);

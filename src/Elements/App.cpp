@@ -13,11 +13,12 @@ App::App(Graph *graph) {
     this->graph = graph;
     initializePoints();
 }
+
 App::~App(){
-    for(auto h: houses){
+    /*for(auto h: houses){
         delete h;
     }
-    houses.clear();
+    houses.clear();*/
 };
 void App::initializePoints(){
     initializeHouses("../data/houses.txt");
