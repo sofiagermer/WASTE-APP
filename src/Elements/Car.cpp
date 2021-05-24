@@ -4,12 +4,6 @@
 
 #include "Car.h"
 
-Car::Car() {
-    MaxCapacity = 0.0;
-    CurrentCapacity = 0.0;
-    LicensePlate = "";
-}
-
 Car::Car(float maxcap): MaxCapacity(maxcap) {
     CurrentCapacity = maxcap;
     srand(time(NULL));

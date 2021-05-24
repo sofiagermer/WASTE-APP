@@ -1,4 +1,4 @@
-10
+11
 (5,abcdef)
 (3,abefcd)
 (10,cdabef)
@@ -6,3 +6,7 @@
 (4,efabcd)
 (3,licens)
 (5,notlic)
+(5,notli)
+(5,notl)
+(5,not)
+(9,vroomvroom)

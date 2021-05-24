@@ -56,7 +56,8 @@ User* MenuUser::loginMenu(App *app){
                 break;
 
             case '0':
-                return nullptr;
+                endWhile = true;
+                break;
 
             default:
                 cout << INVALIDOPTION << endl;

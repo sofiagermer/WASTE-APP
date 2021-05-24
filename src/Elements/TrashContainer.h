@@ -37,7 +37,6 @@ public:
     TrashType getType() const;
 
     Vertex* getVertex();
-
 };
 
 
