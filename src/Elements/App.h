@@ -60,6 +60,9 @@ public:
     int addDriver(const string& name, const string& password, const string& licensePlate);
     Driver* findDriver(int userID, const string& password);
     bool userIDRepeated(const int &userID);
+    void setAdress(User *user);
+    static double getX();
+    static double getY();
 
     Vertex* findClosestTrashContainer(User user, TrashType type);
 

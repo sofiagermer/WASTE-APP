@@ -86,8 +86,6 @@ public:
 class Graph {
     vector<Vertex *> vertexSet;    // vertex set
 
-    Vertex *findVertex(double x, double y);
-
 public:
     Graph(string nodesFile,string edgesFile);
     Graph(){};
@@ -126,6 +124,7 @@ public:
     double pathCost(stack<Vertex *> path);
 
 
+    Vertex *findVertex(double x, double y);
 };
 
 

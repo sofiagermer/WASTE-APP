@@ -44,7 +44,6 @@ void App::initializeHouses(string filename) {
     char c;
     for(int i=0;i<numberElements;i++){
         fileHouses>>c>>id>>c>>amountTrash>>c>>needPickUp>>c;
-        cout<<id<<endl;
         houses.push_back(new House(graph->findVertex(id),amountTrash,needPickUp));
     }
     fileHouses.close();
@@ -354,3 +353,46 @@ vector<House *> App::getHousesToVisit() {
     return housesToVisit;
 }
 
+void App::setAdress(User* user){
+    Vertex *v = nullptr;
+    House* house = nullptr;
+    while(house == nullptr){
+        while(v == nullptr){
+            cout <<"What is your home location ?"<<endl;
+            double x = getX();
+            double y = getY();
+            v = graph->findVertex(x,y);
+            if(v == nullptr) cout << "Sorry that localization doesn't exist in our data base" << endl;
+        }
+        house = findHouse(v->getID());
+        if(house != nullptr) {
+            cout << "Your house is set to this coordinates: " << endl;
+            cout << "X : " << house->getHouseVertex()->getX() << endl;
+            cout << "Y : " << house->getHouseVertex()->getY() << endl;
+        }
+    }
+    houses.push_back(house);
+    user->setHouse(house);
+}
+
+double App::getX() {
+    double x;
+    cout << "Enter x:" << endl;
+    cin>>x;
+    while(cin.fail()){
+        cout<<"Invalid input, please select a number: " << endl;
+        cin >>x;
+    }
+    return x;
+}
+
+double App::getY() {
+    double y;
+    cout << "Enter y:" << endl;
+    cin >> y;
+    while(cin.fail()){
+        cout<<"Invalid input, please select a number: " << endl;
+        cin >>y;
+    }
+    return y;
+}

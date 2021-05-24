@@ -146,8 +146,7 @@ void MenuUser::actionMenu(User *user, App* app, UI *ui){
 
         switch (input) {
             case '1':
-                cout << "NÃO ESTÁ FEITO" << endl;
-                cout << "Set/change address" << endl;
+                app->setAdress(user);
                 break;
             case '2': {
                 //Search for a specific trash container
@@ -192,7 +191,7 @@ void MenuUser::actionMenuWH(User *user, App* app, UI *ui){
 
         switch (input) {
             case '1':
-                cout << "Set/change address" << endl;
+                app->setAdress(user);
                 break;
             case '2': {
                 double inputAmountoftrash;
