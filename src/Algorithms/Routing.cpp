@@ -7,10 +7,8 @@
 queue<Vertex *> Routing::nearestNeighbour(Graph *graph,Driver *driver, vector<House *> housesToVisit) {
     queue<Vertex*> orderedCompletePath;
     Vertex *initialVertex = graph->findClosestVertex(driver->getX(),driver->getY());
-    //Vertex *initialVertex = graph->findClosestVertex(200,300);
     orderedCompletePath.push(initialVertex);
     double minDistance;
-    int initial=housesToVisit.size();
     stack<Vertex*> next;
     vector<House*>::iterator copy;
     int i=housesToVisit.size();
@@ -22,7 +20,6 @@ queue<Vertex *> Routing::nearestNeighbour(Graph *graph,Driver *driver, vector<Ho
             auto path = aStar(graph,orderedCompletePath.back(), (*it)->getHouseVertex());
             double aux = pathCost(path);
             if(aux<0){
-                cout<<"caminho curto"<<endl;
                 continue;
             }
             if (aux < minDistance && driver->getCar()->wouldFit((*it)->getAmountOfTrash()) ) {
@@ -33,8 +30,6 @@ queue<Vertex *> Routing::nearestNeighbour(Graph *graph,Driver *driver, vector<Ho
             }
         }
         if(flag) break;
-        cout<<"lixo em casa: "<<(*copy)->getAmountOfTrash()<<endl;
-        cout<<"espaço livre: "<<driver->getCar()->getCurrentCapacity()<<endl;
         driver->getCar()->addTrash((*copy)->getAmountOfTrash());
         while(!next.empty()){
             orderedCompletePath.push(next.top());
