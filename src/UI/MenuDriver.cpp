@@ -10,10 +10,10 @@
 
 using namespace std;
 
-void MenuDriver::driverMenu(App *app) {
+void MenuDriver::driverMenu(App *app,UI *ui) {
     Driver *driver = loginMenu(app);
     cout << "Hello there " << driver->getName() << endl;
-    actionsMenu(driver, app);
+    actionsMenu(driver, app,ui);
 }
 /* ================================================================================================
  * Drivers Login Menu
@@ -139,7 +139,7 @@ void MenuDriver::driverOptions(Driver *driver) {
     cout << " 0. Go back" << endl;
 }
 
-void MenuDriver::actionsMenu(Driver *driver, App *app){
+void MenuDriver::actionsMenu(Driver *driver, App *app,UI *ui){
     char input;
     while (true){
         driverOptions(driver);

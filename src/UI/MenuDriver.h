@@ -18,7 +18,7 @@ private:
     static void driverOptions(Driver *driver);
     static Driver* createDriver(App *app);
     static Driver* loginMenu(App *app);
-    static void actionsMenu(Driver *driver, App *app);
+    static void actionsMenu(Driver *driver, App *app,UI *ui);
     static Driver* loginDriver(App *app);
     static void loginOptions();
 public:
