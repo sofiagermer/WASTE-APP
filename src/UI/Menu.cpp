@@ -455,6 +455,12 @@ void Menu::programmerMenu() {
             case '5':
                 Analysis::aStarVsDijkstra(app.getGraph());
                 break;
+            case '6':
+                Preprocessing::testTarjan();
+                break;
+            case '7':
+                Preprocessing::testKosaraju();
+                break;
             case '0':
                 cout << "Going to the previous menu..." << endl;
                 return;
@@ -471,6 +477,8 @@ void Menu::programmerOptions() {
     cout << " 3. Check A*'s time efficiency (ROUTING)" << endl;
     cout << " 4. Check Dijkstra's time efficiency (ROUTING)" << endl;
     cout << " 5. Compare Dijkstra's algorithm with A*'s algorithm (ROUTING)" << endl;
+    cout << " 6. Test Tarjan" << endl;
+    cout << " 7. Test Kosaraju" << endl;
     cout << " 0. Go back" << endl;
 }
 

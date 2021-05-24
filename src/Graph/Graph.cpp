@@ -6,6 +6,7 @@
  */
 Vertex::Vertex(int id, double x, double y): x(x), y(y), ID(id){}
 
+Vertex::Vertex(int id) : ID(id) {}
 Vertex *Edge::getDest() {
     return dest;
 }
@@ -102,6 +103,9 @@ void Vertex::setQueueIndex(int queueIndex) {
 Edge::Edge(Vertex *d, double w): dest(d), weight(w) {}
 
 
+double Edge::getWeight() const {
+    return weight;
+}
 /* ================================================================================================
  * Graph
  * ================================================================================================
@@ -239,9 +243,5 @@ Vertex * Graph::findClosestVertex(double x, double y) {
 
 double Graph::distanceBetweenCoords(double x1, double x2, double y1, double y2) {
     return sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
-}
-
-double Edge::getWeight() const {
-    return weight;
 }
 
