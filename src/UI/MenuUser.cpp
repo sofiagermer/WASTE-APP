@@ -180,7 +180,7 @@ void MenuUser::userOptions() {
 void MenuUser::actionMenuWH(User *user, App* app, UI *ui){
     char input;
     while (true){
-        userOptions();
+        userOptionsWH();
         cin >> input;
 
         if(cin.fail()) {

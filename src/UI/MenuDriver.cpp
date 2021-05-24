@@ -45,7 +45,6 @@ Driver* MenuDriver::loginMenu(App *app){
 
         switch (input) {
             case '1':
-                //Log in
                 cout << "Logging in to an account..." << endl;
                 driver = loginDriver(app);
                 if(driver == nullptr){
@@ -56,7 +55,6 @@ Driver* MenuDriver::loginMenu(App *app){
                 break;
 
             case '2':
-                //Create account
                 cout << "Creating account..." << endl;
                 driver = createDriver(app);
                 if(driver == nullptr) break;
@@ -79,15 +77,11 @@ Driver* MenuDriver::createDriver(App *app) {
     string username, userpassowrd, carlicenseplate;
 
     cout << "Hello! Let's create an account for you." << endl;
-    //get users name
     cout << "First of all we will need your name:" << endl;
     cin >> username;
-    //get users password
     cout << "Next we will need your password:" << endl;
     cin >> userpassowrd;
 
-
-    //get drivers car
     cout << "Since you are a driver we need some information about you car" << endl;
     cout << "We need to know your car's license plate" << endl;
     cin >> carlicenseplate;
