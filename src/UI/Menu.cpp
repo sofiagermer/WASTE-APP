@@ -134,6 +134,10 @@ void Menu::userMenu() {
             case '2': {
                 //Set/cancel pickup
                 //cout << "Set/cancel pickup" << endl;
+                if(user->getHouse() == nullptr){
+                    cout << INVALIDOPTION << endl;
+                    break;
+                }
                 if(user->getHouse()->getNeedPickUp()){
                     user->getHouse()->setNeedPickUp(false);
                     cout << "Pick up cancelled" << endl;
@@ -260,7 +264,7 @@ void Menu::userOptions(User &user) {
     }
     else{
         cout << " 1. Add house address" << endl;
-        cout << " 2. Search for closest trash container " << endl;
+        cout << " 3. Search for closest trash container " << endl;
     }
     cout << " 0. Go back" << endl;
 }
