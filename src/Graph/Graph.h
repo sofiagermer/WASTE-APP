@@ -57,6 +57,8 @@ public:
     int getLow() const;
 
     void setLow(int low);
+
+    void setInStack(bool b);
     double getX();
     double getY();
     bool operator<(Vertex* v);;

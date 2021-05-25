@@ -96,6 +96,10 @@ void Vertex::setQueueIndex(int queueIndex) {
     Vertex::queueIndex = queueIndex;
 }
 
+void Vertex::setInStack(bool b) {
+    this->inStack=b;
+}
+
 /* ================================================================================================
  * Edge
  * ================================================================================================

@@ -165,7 +165,6 @@ void App::initializeUsers(string filename){
         User u(userid, username, userpassword);
         House* house = findHouse(houseid);
         if(house != nullptr){
-            houses.push_back(house);
             u.setHouse(house);
         }
         users.push_back(u);

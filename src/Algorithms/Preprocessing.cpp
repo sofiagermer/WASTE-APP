@@ -4,50 +4,38 @@
 
 #include "Preprocessing.h"
 
-/* ================================================================================================
- * Tarjan
- * ================================================================================================
- */
-bool Preprocessing::findStackElement(stack<Vertex *> stackV, Vertex *vertex) {
-    while (!stackV.empty() && stackV.top() != vertex){
-        stackV.pop();
-    }
-
-    if (!stackV.empty())
-        return true;
-
-    return false;
-}
-
 vector<vector<int>> Preprocessing::tarjan(Graph graph) {
+
     for (Vertex * vertex : graph.getVertexSet()) {
         vertex->setIndex(-1);
         vertex->setLow(-1);
+        vertex->setInStack(false);
     }
     vector<vector<int>> scc;
-    stack<Vertex*> L;
-    int index = 0;
+    stack<Vertex*> S;
+    int index=0;
     for (Vertex* vertex : graph.getVertexSet()) {
         if (vertex->getIndex() == -1) {
-            DFS_Tarjan(vertex, index, L, scc);
+            DFS_Tarjan(vertex, index, S, scc);
         }
     }
     return scc;
 }
 
-void Preprocessing::DFS_Tarjan(Vertex *src, int &index, stack<Vertex *> &L, vector<vector<int>> &scc) {
+void Preprocessing::DFS_Tarjan(Vertex *src, int &index, stack<Vertex *> &S, vector<vector<int>> &scc) {
     //// Set the depth index for v to the smallest unused index
     src->setIndex(index);
     src->setLow(index);
     index++;
-    L.push(src);
+    S.push(src);
+    src->setInStack(true);
     //// Consider successors of v
     for (Edge edge : src->getOutgoingEdges()) {
         if (edge.getDest()->getIndex() == -1) {
             //// Successor has not yet been visited; recurse on it
-            DFS_Tarjan(edge.getDest(), index, L, scc);
+            DFS_Tarjan(edge.getDest(), index, S, scc);
             src->setLow(min(src->getLow(), edge.getDest()->getLow()));
-        } else if (findStackElement(L, edge.getDest())) {
+        } else if (edge.getDest()->getInStack()) {
             //// Successor w is in stack S and hence in the current SCC
             src->setLow( min(src->getLow(), edge.getDest()->getIndex()));
         }
@@ -57,8 +45,9 @@ void Preprocessing::DFS_Tarjan(Vertex *src, int &index, stack<Vertex *> &L, vect
         vector<int> sc;
         Vertex * v;
         do {
-            v = L.top();
-            L.pop();
+            v = S.top();
+            S.pop();
+            v->setInStack(false);
             sc.push_back(v->getID());
         } while (v != src);
         scc.push_back(sc);
@@ -189,7 +178,7 @@ void Preprocessing::preprocess(Graph graph, string nodePath, string edgesPath, v
     //cout<<"Number of edges that will be removed: " << toRemove.size()<< endl;
     while(!toRemove.empty()){
         if(!graph.removeVertex(toRemove.top())){
-            cout<<"e\n"<<endl;
+            //cout<<"e\n"<<endl;
             i++;
         }
         toRemove.pop();

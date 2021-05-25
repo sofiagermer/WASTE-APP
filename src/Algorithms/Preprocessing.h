@@ -10,7 +10,6 @@
 
 class Preprocessing {
 private:
-    static bool findStackElement (stack<Vertex*> stackV, Vertex * vertex);
 
     static vector<vector<int>> tarjan(Graph graph);
 
