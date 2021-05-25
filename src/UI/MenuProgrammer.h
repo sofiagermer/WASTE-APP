@@ -7,6 +7,7 @@
 
 
 #include "../Elements/App.h"
+#include "UI.h"
 
 class MenuProgrammer {
 private:
@@ -18,7 +19,7 @@ private:
     static void routingMenu(App *app);
     static void testMenu();
 public:
-    static void programmerMenu(App *app);
+    static void programmerMenu(App *app, UI *ui);
 };
 
 

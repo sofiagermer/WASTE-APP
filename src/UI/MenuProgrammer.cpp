@@ -9,7 +9,7 @@
 #define INVALIDOPTION "That's not a valid option! Try again please:"
 using namespace std;
 
-void MenuProgrammer::programmerMenu(App *app) {
+void MenuProgrammer::programmerMenu(App *app, UI *ui) {
     char input;
     cout << "Hello Programmer" << endl;
 
@@ -31,6 +31,9 @@ void MenuProgrammer::programmerMenu(App *app) {
                 break;
             case '3':
                 testMenu();
+                break;
+            case '4':
+                ui->showGraph();
                 break;
             case '0':
                 cout << "Going to the previous menu..." << endl;
@@ -157,6 +160,7 @@ void MenuProgrammer::programmerOptions() {
     cout << " 1. Preprocessing Time Efficiency" << endl;
     cout << " 2. Routing Time Efficiency" << endl;
     cout << " 3. Test Algorithms" << endl;
+    cout << " 4. See Graph" << endl;
     cout << " 0. Go back" << endl;
     cout<< "===================================="<<endl;
 }
