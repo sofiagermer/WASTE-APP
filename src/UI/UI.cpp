@@ -29,24 +29,14 @@ void UI::showGraph() {
 void UI::showTrashContainer(double userX, double userY, Vertex *trashContainer, TrashType type) {
     this->graphViewer = new GraphViewer();
     graphViewer->setCenter(sf::Vector2f(trashContainer->getX(), trashContainer->getY()));
-    auto maxDist=graph->distanceBetweenCoords(userX,trashContainer->getX(),userY,trashContainer->getY());
-    maxDist=maxDist*1.1;
 
     for (Vertex * vertex : graph->getVertexSet()) {
-        if(graph->distanceBetweenCoords(userX,vertex->getX(),userY,vertex->getY())>maxDist) {
-            continue;
-        }
         graphViewer->addNode(vertex->getID(), sf::Vector2f (vertex->getX(), vertex->getY())).setColor(GraphViewer::DARK_GRAY);;
-
     }
 
     int id = 0;
     for (Vertex* vertex : graph->getVertexSet()) {
-        if(graph->distanceBetweenCoords(userX,vertex->getX(),userY,vertex->getY())>maxDist)
-            continue;
         for (Edge edge : vertex->getOutgoingEdges()) {
-            if(graph->distanceBetweenCoords(edge.getDest()->getX(),userX,edge.getDest()->getY(),userY)>maxDist)
-                continue;
             graphViewer->addEdge(id, graphViewer->getNode(vertex->getID()), graphViewer->getNode(edge.getDest()->getID()), GraphViewer::Edge::EdgeType::DIRECTED);
             id++;
         }
@@ -68,7 +58,7 @@ void UI::showTrashContainer(double userX, double userY, Vertex *trashContainer, 
             node.setSize(40);
             break;
         case Regular:
-            node.setColor(GraphViewer::GRAY);
+            node.setColor(GraphViewer::ORANGE);
             node.setSize(40);
             break;
         default:
@@ -89,6 +79,8 @@ void UI::displayRoute(vector<House *> houses, queue<Vertex *> route) {
         n.setColor(GraphViewer::LIGHT_GRAY);
         n.setSize(5);
     }
+    GraphViewer::Node &starting = graphViewer->getNode(route.front()->getID());
+
     while(!route.empty()){
         GraphViewer::Node &n = graphViewer->getNode(route.front()->getID());
         n.setColor(GraphViewer::YELLOW);
@@ -117,6 +109,8 @@ void UI::displayRoute(vector<House *> houses, queue<Vertex *> route) {
             id++;
         }
     }
+    starting.setColor(GraphViewer::PINK);
+    starting.setSize(40);
     graphViewer->createWindow(graphViewerWidth, graphViewerHeight);
 }
 
