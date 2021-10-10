@@ -1,1 +1,13 @@
-O projecto usa o GraphViewer. Não conseguimos que ele corresse em Windows por causa do GraphViewer, mas corre perfeitamente em linux, basta abrir o CLION e correr.
+Dependencias:
+
+GraphViewer, fornecida pelos docentes, para visualização de grafos (pasta 'lib').
+Os ficheiros presentes nas pastas 'data' e 'map'.
+
+O programa pode ser compilado usando o CLion, onde foi desenvolvido, ou cmake:
+
+CLion: Importar o projeto e executar
+
+cmake:	cmake -S ./ -B ./build && cd ./build && make 
+		cd build
+		./WASTE-APP
+

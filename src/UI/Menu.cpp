@@ -62,14 +62,11 @@ void Menu::mainMenu() {
                 MenuDriver::driverMenu(&app,&ui);
                 break;
             case '3':
-                MenuProgrammer::programmerMenu(&app, &ui);
+                MenuProgrammer::programmerMenu(&app);
                 break;
             case '0':
                 app.saveInfo();
-                cout<< "===================================="<<endl;
-                cout << " Thank you for using WASTE-App" << endl;
-                cout << " We hope to you see again soon!" << endl;
-                cout<< "===================================="<<endl;
+                cout << "Thank you for using WASTE-App, we hope to you see again soon!" << endl;
                 return;
             default:
                 cout << INVALIDOPTION << endl;
